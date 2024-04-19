@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import "./App.css";
-import Signin from "./pages/signIn";
+import SignupPage from "./pages/Signup";
 import LoginPage from "./pages/login";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <div className="h-screen">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<Signin/>} />
+          <Route path="/signup" element={<SignupPage/>} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
