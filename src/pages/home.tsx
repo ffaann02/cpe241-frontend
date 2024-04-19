@@ -10,7 +10,7 @@
 export default function Home() {
   return (
     <>
-      <h1 className = "h-[1400px]" > HOME </h1>
+      <h1 className="h-[400vh]">HOME</h1>
     </>
   );
   
