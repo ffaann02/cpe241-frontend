@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
 import { loginFields } from "../constants/formfield";
+import FormAction from "./FormAction";
+import FormExtra from "./FormExtra";
 import Input from "./LoginInput";
 
-const fields = loginFields;
+interface Field {
+  id: string;
+  labelText: string;
+  labelFor: string;
+  name: string;
+  type: string;
+  isRequired: boolean;
+  placeholder: string;
+}
+
+const fields: Field[] = loginFields;
 let fieldsState: { [key: string]: string } = {};
 fields.forEach(field => fieldsState[field.id] = '');
 
@@ -17,8 +29,18 @@ const Login: React.FC = () => {
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    authenticateUser();
+  };
+
+  // Handle Login API Integration here
+  const authenticateUser = (): void => {
+    // Add your authentication logic here
+  };
+
   return (
-    <form className="mt-8 space-y-6">
+    <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
       <div className="-space-y-px">
         {fields.map(field => (
           <Input
@@ -35,6 +57,8 @@ const Login: React.FC = () => {
           />
         ))}
       </div>
+      <FormExtra />
+      <FormAction handleSubmit={handleSubmit} text="Login" />
     </form>
   );
 };
