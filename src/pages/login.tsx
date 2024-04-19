@@ -3,7 +3,7 @@ import Login from "../components/Login"
 
 export default function LoginPage(){
     return(
-        <>
+        <div>
              <Header
                 heading="Login to your account"
                 paragraph="Don't have an account yet? "
@@ -11,6 +11,6 @@ export default function LoginPage(){
                 linkUrl="/signup"
                 />
             <Login/>
-        </>
+        </div>
     )
 }

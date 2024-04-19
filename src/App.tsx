@@ -7,7 +7,7 @@ import LoginPage from "./pages/login";
 function App() {
   return (
     <>
-      <div>
+      <div className="h-screen">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<Signin/>} />
