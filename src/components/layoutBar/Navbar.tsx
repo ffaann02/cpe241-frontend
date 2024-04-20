@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
     <>
-      <div className="navbar bg-base-100 shadow-md rounded-md fixed">
+      <div className="navbar bg-base-100 shadow-sm rounded-md rounded-b-none fixed px-12 z-50">
         <div className="navbar-start  ">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -33,7 +35,7 @@ function Navbar() {
               <li><a>Enterprise</a></li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <Link to="/"><a className="text-3xl font-bold tracking-wide text-purple-700">Agado</a></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">

@@ -1,17 +1,10 @@
-// export default function Home() {
-//   return (
-//     <>
-//       <h1>Home</h1>
-//     </>
-//   );
-// } 
-
+import HereBlock from "../components/homePage/HereBlock";
 
 export default function Home() {
   return (
-    <>
-      <h1 className="h-[400vh]">HOME</h1>
-    </>
+    <div className="w-full h-full">
+      <HereBlock/>
+    </div>
   );
   
 } 
