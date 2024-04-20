@@ -1,4 +1,4 @@
-import HereBlock from "../components/homePage/HereBlock";
+import HereBlock from "../components/homePage/heroBlock/HereBlock";
 
 export default function Home() {
   return (
