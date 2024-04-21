@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+
 import fakeAirportData from '../../../data/fakeAirportData.json';
 import { FlightData } from './HereBlock';
 
@@ -21,7 +22,7 @@ interface LocationInputFormProps {
     setFocusedState: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const LocationInputForm = ({
+export const LocationInputForm: React.FC<LocationInputFormProps> = ({
     icon,
     title,
     state,
@@ -33,6 +34,7 @@ export const LocationInputForm = ({
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [selectedCity, setSelectedCity] = useState<City | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     const handleFocus = () => {
         setFocusedState(state);
@@ -73,12 +75,30 @@ export const LocationInputForm = ({
         };
     }, [searchTerm, selectedCity]);
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node) &&
+                focusedState === state
+            ) {
+                setFocusedState('');
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [focusedState, setFocusedState, state]);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setSearchTerm(e.target.value);
     };
 
     const handleSelectCity = (city: City) => {
-        console.log(city);
+        console.log(city)
         setSelectedCity(city);
         setSearchTerm(`${city.name} (${city.code})`);
         setFlightData((prevFlightData) => {
@@ -89,6 +109,7 @@ export const LocationInputForm = ({
                 return flightData;
             });
         });
+        setFocusedState('');
     };
 
     const filterCities = (city: City) => {
@@ -116,8 +137,8 @@ export const LocationInputForm = ({
                     onFocus={handleFocus}
                     onChange={handleChange}
                 />
-                {focusedState === state && (
-                    <div className="absolute w-full bg-white overflow-y-auto max-h-80 left-0 top-14 border rounded-lg">
+                {focusedState === state && !selectedCity && (
+                    <div ref={dropdownRef} className="absolute w-full bg-white overflow-y-auto max-h-80 left-0 top-14 border rounded-lg">
                         <p className="text-sm sticky top-0 bg-slate-100 pl-4 py-2 shadow-sm shadow-slate-200">
                             ค้นหาเมืองหรือสนามบินที่คุณต้องการ
                         </p>
@@ -127,9 +148,9 @@ export const LocationInputForm = ({
                                 .map((city, index) => (
                                     <li
                                         key={index}
-                                        onClick={() => handleSelectCity(city)} // Check this onClick handler
+                                        onClick={() => handleSelectCity(city)}
                                         className={`hover:bg-violet-50 px-4 py-2 rounded-none cursor-pointer 
-            ${fakeAirportData.filter(filterCities).length - 1 !== index ? 'border-b' : 'border-b-0'}`}
+                                    ${fakeAirportData.filter(filterCities).length - 1 !== index ? 'border-b' : 'border-b-0'}`}
                                     >
                                         <div className="text-sm">
                                             <p className="font-semibold text-slate-600">
@@ -141,8 +162,7 @@ export const LocationInputForm = ({
                                         </div>
                                     </li>
                                 ))}
-                            {fakeAirportData.filter(filterCities).length ===
-                                0 && (
+                            {fakeAirportData.filter(filterCities).length === 0 && (
                                 <li className="px-4 py-2 text-sm text-slate-600">
                                     ไม่พบผลลัพธ์
                                 </li>

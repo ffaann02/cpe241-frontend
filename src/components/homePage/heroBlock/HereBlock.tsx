@@ -34,6 +34,7 @@ const HereBlock = () => {
         },
     ]);
     const [focusedState, setFocusedState] = useState<string>('');
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleChangeService = (index: number) => setServiceIndex(index);
     const handleChangeFlightType = (index: number) => setFlightType(index);
