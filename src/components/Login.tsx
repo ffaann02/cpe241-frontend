@@ -35,18 +35,29 @@ const Login: React.FC = () => {
         authenticateUser();
     };
 
+    const setAuthTokens = (data: { token: string }) => {
+        if (data.token) {
+            axios.defaults.headers.common['Authorization'] =
+                `Bearer ${data.token}`;
+        } else {
+            delete axios.defaults.headers.common['Authorization'];
+        }
+    };
+
     // Handle Login API Integration here
     async function authenticateUser() {
-      try {
-          const response = await axios.post('http://localhost:3000/login', {
-              email: loginState.email,
-              password: loginState.password,
-          });
-          console.log(response);
-      } catch (error) {
-          console.log(error);
-      }
-  }
+        try {
+            const response = await axios.post('http://localhost:3000/api/login', {
+                email: loginState.email,
+                password: loginState.password,
+            });
+            localStorage.setItem('token', response.data.token);
+            setAuthTokens(response.data);
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="-space-y-px">
