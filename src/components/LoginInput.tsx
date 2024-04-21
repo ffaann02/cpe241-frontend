@@ -4,6 +4,7 @@ const fixedInputClass="rounded-md appearance-none relative block w-full px-3 py-
 
 interface InputProps {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleResetError: () => void;
   value: string;
   labelText: string;
   labelFor: string;
@@ -17,6 +18,7 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = ({
   handleChange,
+  handleResetError,
   value,
   labelText,
   labelFor,
@@ -34,6 +36,7 @@ const Input: React.FC<InputProps> = ({
       </label>
       <input
         onChange={handleChange}
+        onClick={handleResetError}
         value={value}
         id={id}
         name={name}

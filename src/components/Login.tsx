@@ -29,7 +29,7 @@ const Login: React.FC = () => {
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     authenticateUser();
   };
@@ -38,6 +38,7 @@ const Login: React.FC = () => {
   const authenticateUser = (): void => {
     // Add your authentication logic here
   };
+  
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

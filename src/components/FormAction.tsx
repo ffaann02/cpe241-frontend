@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface FormActionProps {
-  handleSubmit: React.FormEvent<HTMLFormElement>;
+  handleSubmit:React.FormEventHandler<HTMLFormElement>;
   type?: 'Button' | 'Link';
   action?: 'submit' | 'button';
   text: string;
