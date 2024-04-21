@@ -40,10 +40,6 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
         setFocusedState(state);
     };
 
-    const handleBlur = () => {
-        setFocusedState('');
-    };
-
     useEffect(() => {
         if (focusedState === state && inputRef.current) {
             inputRef.current.focus();

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { IoMdAirplane, IoIosGift } from 'react-icons/io';
 import { LocationInputForm } from './FlightInputForm';
 import { PiAirplaneTakeoffFill, PiAirplaneLandingFill } from 'react-icons/pi';
@@ -34,7 +34,6 @@ const HereBlock = () => {
         },
     ]);
     const [focusedState, setFocusedState] = useState<string>('');
-    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleChangeService = (index: number) => setServiceIndex(index);
     const handleChangeFlightType = (index: number) => setFlightType(index);
