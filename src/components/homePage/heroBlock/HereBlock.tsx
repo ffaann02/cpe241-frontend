@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { IoMdAirplane, IoIosGift } from 'react-icons/io';
+import { IoMdAirplane, IoIosGift, IoIosSwap } from 'react-icons/io';
 import { LocationInputForm } from './FlightInputForm';
 import { PiAirplaneTakeoffFill, PiAirplaneLandingFill } from 'react-icons/pi';
+import DatePicker from './DatePicker';
 
 const flightTypeList = [
     { id: 1, name: 'เที่ยวเดียว' },
@@ -37,7 +38,15 @@ const HereBlock = () => {
 
     const handleChangeService = (index: number) => setServiceIndex(index);
     const handleChangeFlightType = (index: number) => setFlightType(index);
-    
+    const handleSwapLocations = (index: number) => {
+        // console.log(flightData[index])
+        const newFlightData = [...flightData];
+        const temp = newFlightData[index].from;
+        newFlightData[index].from = newFlightData[index].to;
+        newFlightData[index].to = temp;
+        setFlightData(newFlightData);
+    };
+
     return (
         <div className="bg-purple-200 min-h-[50vh] pt-8 relative justify-center">
             <div className="">
@@ -95,27 +104,52 @@ const HereBlock = () => {
                         ))}
                     </div>
                     {flightData.map((flight, index) => (
-                        <div className="grid grid-cols-2 gap-x-4 mt-4" key={index}>
-                            <LocationInputForm
-                                icon={<PiAirplaneTakeoffFill/>}
-                                title="จาก"
-                                state="from"
-                                flight={flight}
-                                index={index}
-                                setFlightData={setFlightData}
-                                focusedState={focusedState}
-                                setFocusedState={setFocusedState}
-                            />
-                            <LocationInputForm
-                                icon={<PiAirplaneLandingFill/>}
-                                title="ไป"
-                                state="to"
-                                flight={flight}
-                                index={index}
-                                setFlightData={setFlightData}
-                                focusedState={focusedState}
-                                setFocusedState={setFocusedState}
-                            />
+                        <div
+                            className="grid grid-cols-2 gap-4 mt-4 relative"
+                            key={index}
+                        >
+                            <div className="col-span-full">
+                                <div className="grid grid-cols-2 gap-x-4 relative">
+                                    <div className="relative">
+                                        <LocationInputForm
+                                            icon={<PiAirplaneTakeoffFill />}
+                                            title="จาก"
+                                            state="from"
+                                            flight={flight}
+                                            index={index}
+                                            flightData={flightData}
+                                            setFlightData={setFlightData}
+                                            focusedState={focusedState}
+                                            setFocusedState={setFocusedState}
+                                        />
+                                    </div>
+                                    <div className="relative">
+                                        <LocationInputForm
+                                            icon={<PiAirplaneLandingFill />}
+                                            title="ไป"
+                                            state="to"
+                                            flight={flight}
+                                            index={index}
+                                            flightData={flightData}
+                                            setFlightData={setFlightData}
+                                            focusedState={focusedState}
+                                            setFocusedState={setFocusedState}
+                                        />
+                                    </div>
+                                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                                        <button
+                                            className="p-1.5 bg-violet-100 rounded-lg border border-violet-300 drop-shadow-md
+                                 hover:bg-violet-200 hover:text-violet-800"
+                                            onClick={() =>
+                                                handleSwapLocations(index)
+                                            }
+                                        >
+                                            <IoIosSwap className="text-lg" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <DatePicker />
                         </div>
                     ))}
                 </div>
