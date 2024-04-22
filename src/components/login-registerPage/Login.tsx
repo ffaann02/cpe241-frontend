@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { loginFields } from "../constants/formfield";
+import { loginFields } from "../../constants/formfield";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import Input from "./LoginInput";
