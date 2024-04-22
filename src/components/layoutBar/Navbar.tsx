@@ -1,22 +1,11 @@
 import { Link } from "react-router-dom";
-<<<<<<< HEAD:src/components/navbar.tsx
-import Booking from "../pages/booking";
-import Home from "../pages/home";
-=======
->>>>>>> 2fb8127029f762f3f1e8c51073fc414070102e0a:src/components/layoutBar/Navbar.tsx
 
 function Navbar() {
   return (
     <>
-<<<<<<< HEAD:src/components/navbar.tsx
-      <div className="navbar bg-base-100 shadow-md rounded-md ">
-        <div className="navbar-start">
-          <div className="dropdown ">
-=======
       <div className="navbar bg-base-100 shadow-sm rounded-md rounded-b-none fixed px-12 z-50">
         <div className="navbar-start  ">
           <div className="dropdown">
->>>>>>> 2fb8127029f762f3f1e8c51073fc414070102e0a:src/components/layoutBar/Navbar.tsx
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </div>
@@ -34,13 +23,7 @@ function Navbar() {
               <li><a>องค์กร</a></li>
             </ul>
           </div>
-<<<<<<< HEAD:src/components/navbar.tsx
-          <Link to="/" className="btn btn-ghost text-xl">
-            daisyUI
-          </Link>        
-=======
           <Link to="/"><a className="text-3xl font-bold tracking-wide text-purple-700">Agado</a></Link>
->>>>>>> 2fb8127029f762f3f1e8c51073fc414070102e0a:src/components/layoutBar/Navbar.tsx
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
