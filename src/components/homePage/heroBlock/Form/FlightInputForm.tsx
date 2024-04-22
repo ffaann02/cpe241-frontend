@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import fakeAirportData from '../../../data/fakeAirportData.json';
-import { FlightData } from './HereBlock';
+import fakeAirportData from '../../../../data/fakeAirportData.json';
+import { FlightData } from '../HereBlock';
 
 export interface City {
     name: string;
@@ -17,6 +17,7 @@ interface LocationInputFormProps {
     state: string;
     flight: FlightData;
     index: number;
+    flightData: FlightData[];
     setFlightData: React.Dispatch<React.SetStateAction<FlightData[]>>;
     focusedState: string;
     setFocusedState: React.Dispatch<React.SetStateAction<string>>;
@@ -27,6 +28,7 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
     title,
     state,
     index,
+    flightData,
     setFlightData,
     focusedState,
     setFocusedState,
@@ -56,6 +58,14 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
             ) {
                 setSearchTerm('');
                 setSelectedCity(null);
+                setFlightData((prevFlightData) => {
+                    return prevFlightData.map((flightData, i) => {
+                        if (i === index) {
+                            return { ...flightData, [state]: '' };
+                        }
+                        return flightData;
+                    });
+                });
             }
         };
 
@@ -93,10 +103,24 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
         setSearchTerm(e.target.value);
     };
 
+    useEffect(() => {
+        const cityCode = flightData[index][state];
+        if(cityCode===''){
+            setSelectedCity(null);
+            setSearchTerm('');
+            return;
+        }
+        if (cityCode) {
+            const city = fakeAirportData.find((city) => city.code === cityCode);
+            if (city) {
+                setSelectedCity(city);
+                setSearchTerm(`${city.name} (${city.code})`);
+            }
+        }
+    }, [selectedCity,flightData[index][state]]);
+
     const handleSelectCity = (city: City) => {
-        console.log(city)
         setSelectedCity(city);
-        setSearchTerm(`${city.name} (${city.code})`);
         setFlightData((prevFlightData) => {
             return prevFlightData.map((flightData, i) => {
                 if (i === index) {
@@ -127,14 +151,17 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
                 <input
                     ref={inputRef}
                     type="text"
-                    className="grow placeholder:text-sm"
+                    className="grow placeholder:text-sm text-slate-500"
                     placeholder={`เดินทาง${title}... สนามบิน, เมือง, ประเทศ`}
                     value={searchTerm}
                     onFocus={handleFocus}
                     onChange={handleChange}
                 />
                 {focusedState === state && !selectedCity && (
-                    <div ref={dropdownRef} className="absolute w-full bg-white overflow-y-auto max-h-80 left-0 top-14 border rounded-lg">
+                    <div
+                        ref={dropdownRef}
+                        className="absolute w-full bg-white overflow-y-auto max-h-80 left-0 top-14 border rounded-lg z-10"
+                    >
                         <p className="text-sm sticky top-0 bg-slate-100 pl-4 py-2 shadow-sm shadow-slate-200">
                             ค้นหาเมืองหรือสนามบินที่คุณต้องการ
                         </p>
@@ -158,7 +185,8 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
                                         </div>
                                     </li>
                                 ))}
-                            {fakeAirportData.filter(filterCities).length === 0 && (
+                            {fakeAirportData.filter(filterCities).length ===
+                                0 && (
                                 <li className="px-4 py-2 text-sm text-slate-600">
                                     ไม่พบผลลัพธ์
                                 </li>
