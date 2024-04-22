@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import fakeAirportData from '../../../data/fakeAirportData.json';
-import { FlightData } from './HereBlock';
+import fakeAirportData from '../../../../data/fakeAirportData.json';
+import { FlightData } from '../HereBlock';
 
 export interface City {
     name: string;

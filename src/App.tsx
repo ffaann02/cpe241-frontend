@@ -1,11 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import About from "./pages/AboutUs";
-import SignupPage from "./pages/Signup";
+import SignupPage from "./pages/SignUp";
 import LoginPage from "./pages/Login";
 import Navbar from "./components/layoutBar/Navbar";
 import Footer from "./components/layoutBar/Footer";
 import Home from "./pages/Home";
+import Booking from "./pages/Booking";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/about" element={<About/>} />
             <Route path="/signup" element={<SignupPage/>} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/booking" element={<Booking />} />
           </Routes>
           </div>
         </div>
