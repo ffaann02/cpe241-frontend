@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-
+import logoTest from "/assets/logo-test.png";
 function Navbar() {
   return (
     <>
       <div className="navbar bg-base-100 shadow-sm rounded-md rounded-b-none fixed px-12 z-50">
-        <div className="navbar-start  ">
+        <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -23,7 +23,8 @@ function Navbar() {
               <li><a>องค์กร</a></li>
             </ul>
           </div>
-          <Link to="/"><a className="text-3xl font-bold tracking-wide text-purple-700">Agado</a></Link>
+          {/* <Link to="/"><img src={logoTest} className="w-20"/></Link> */}
+          <Link to="/"><a>LOGO</a></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
