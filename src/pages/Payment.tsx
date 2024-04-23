@@ -1,13 +1,10 @@
 import { AiFillApple, AiOutlineCreditCard, AiOutlineGoogle } from 'react-icons/ai';
 import { BsPaypal } from 'react-icons/bs';
-import { FcGoogle } from 'react-icons/fc';
 import { SiBitcoin } from 'react-icons/si';
-import { IoLogoApple } from 'react-icons/io';
-import { FaFacebookSquare } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Modal from '../components/paymentPage/modal';
-import Steps from '../components/paymentPage/steps';
+// import Steps from '../components/paymentPage/steps';
 
 const Payment = () => {
     const navigate = useNavigate();
