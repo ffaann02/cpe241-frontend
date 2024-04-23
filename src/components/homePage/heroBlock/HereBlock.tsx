@@ -70,9 +70,7 @@ const HereBlock = () => {
                             <IoMdAirplane
                                 className={`text-xl my-auto rotate-45 ${serviceIndex === 1 ? 'text-purple-600' : 'text-slate-600'}`}
                             />
-                            <p
-                                className={`${serviceIndex === 1 ? 'text-purple-600' : 'text-slate-600'} ml-0.5`}
-                            >
+                            <p className={`${serviceIndex === 1 ? 'text-purple-600' : 'text-slate-600'} ml-0.5`}>
                                 จองไฟล์ท
                             </p>
                         </button>
@@ -85,9 +83,7 @@ const HereBlock = () => {
                             <IoIosGift
                                 className={`text-xl my-auto ${serviceIndex === 2 ? 'text-purple-600' : 'text-slate-600'}`}
                             />
-                            <p
-                                className={`${serviceIndex === 2 ? 'text-purple-600' : 'text-slate-600'} ml-0.5`}
-                            >
+                            <p className={`${serviceIndex === 2 ? 'text-purple-600' : 'text-slate-600'} ml-0.5`}>
                                 โปรโมชั่น
                             </p>
                         </button>
@@ -104,10 +100,7 @@ const HereBlock = () => {
                         ))}
                     </div>
                     {flightData.map((flight, index) => (
-                        <div
-                            className="grid grid-cols-2 gap-4 mt-4 relative"
-                            key={index}
-                        >
+                        <div className="grid grid-cols-2 gap-4 mt-4 relative" key={index}>
                             <div className="col-span-full">
                                 <div className="grid grid-cols-2 gap-x-4 relative">
                                     <div className="relative">
@@ -140,9 +133,7 @@ const HereBlock = () => {
                                         <button
                                             className="p-1.5 bg-violet-100 rounded-lg border border-violet-300 drop-shadow-md
                                  hover:bg-violet-200 hover:text-violet-800"
-                                            onClick={() =>
-                                                handleSwapLocations(index)
-                                            }
+                                            onClick={() => handleSwapLocations(index)}
                                         >
                                             <IoIosSwap className="text-lg" />
                                         </button>

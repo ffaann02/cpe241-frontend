@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Datepicker from 'react-tailwindcss-datepicker';
-import { MdOutlineDateRange } from "react-icons/md";
+import { MdOutlineDateRange } from 'react-icons/md';
 
 export const DatePicker: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState<any>({
@@ -76,7 +76,7 @@ export const DatePicker: React.FC = () => {
                     value={formatThaiDate(selectedDate.startDate)}
                     readOnly
                 />
-                <MdOutlineDateRange className="absolute top-1/3 left-4"/>
+                <MdOutlineDateRange className="absolute top-1/3 left-4" />
             </div>
         </div>
     );
