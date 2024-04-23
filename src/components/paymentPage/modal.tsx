@@ -13,7 +13,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, message }) => {
     return (
         <dialog id="paymentModal" className="modal">
             <div className="modal-box">
-                <h3 className="font-bold text-lg">Alert!</h3>
+                <h3 className="font-bold text-lg">Sorry for inconvenience</h3>
                 <p className="py-4">{message}</p>
                 <div className="modal-action">
                     <button className="btn" onClick={onClose}>

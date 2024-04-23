@@ -62,7 +62,7 @@ const Payment = () => {
                 }}
                 message={alertMessage}
             />
-            <Steps currentStep={4} />
+            {/* <Steps currentStep={4} /> */}
             <div className="relative mb-20">
                 <div className="px-8 w-full h-full flex lg:flex-row flex-col justify-between items-start mt-20 gap-10">
                     <div className="w-full lg:w-[686px] flex flex-col items-start gap-12">
@@ -146,52 +146,12 @@ const Payment = () => {
                             </form>
                         </div>
                         <div className="w-full flex flex-col items-start justify-start gap-5">
-                            <div className="flex flex-col items-start justify-start gap-2">
-                                <h2 className="text-[#6E7491] text-xl">Create an account</h2>
-                                <p className="text-[#7C8DB0] text-base font-normal">
-                                    Tripma is free to use as a guest, but if you create an account today, you can save
-                                    and view flights, manage your trips, earn rewards, and more.
-                                </p>
-                            </div>
-                            <form className="w-full h-full flex flex-col items-start justify-start gap-5 mt-5">
-                                <input
-                                    type="text"
-                                    placeholder="Email address or phone number"
-                                    className="w-full sm:w-[480px] h-full outline-none border-[1px] border-[#A1B0CC] placeholder:text-[#7C8DB0] text-[#7C8DB0] px-2 py-3 text-base rounded"
-                                />
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    className="w-full sm:w-[480px] h-full outline-none border-[1px] border-[#A1B0CC] placeholder:text-[#7C8DB0] text-[#7C8DB0] px-2 py-3 text-base rounded"
-                                />
-                            </form>
-                            <div className="w-full sm:w-[480px] flex items-center justify-center gap-2 mt-7">
-                                <div className="w-full text-[#A1B0CC] border-t-[1px] border-t-[#A1B0CC] h-1 " />
-                                <p className="text-[#7C8DB0] text-[18px] leading-6">or</p>
-                                <div className="w-full text-[#A1B0CC] border-t-[1px] border-t-[#A1B0CC] h-1" />
-                            </div>
-                            <div className="w-full sm:w-[480px] flex flex-col items-center justify-center gap-4">
-                                <button className="w-full flex gap-2 items-center justify-center border-[1px] border-[#605DEC] rounded p-3">
-                                    <FcGoogle className="w-[18px] h-[18px]" />
-                                    <p className="text-[#605CDE] text-[16px] leading-6">Continue with Google</p>
-                                </button>
-                                <button className="w-full flex gap-2 items-center justify-center border-[1px] border-[#605DEC] rounded p-3">
-                                    <IoLogoApple className="w-[18px] h-[18px] text-black" />
-                                    <p className="text-[#605CDE] text-[16px] leading-6">Continue with Apple</p>
-                                </button>
-                                <button className="w-full flex gap-2 items-center justify-center border-[1px] border-[#605DEC] rounded p-3">
-                                    <FaFacebookSquare className="w-[18px] h-[18px]" />
-                                    <p className="text-[#605CDE] text-[16px] leading-6">Continue with Facebook</p>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="w-full flex flex-col items-start justify-start gap-5">
                             <div className="flex flex-col items-start justify-start gap-3">
                                 <h2 className="text-[#6E7491] text-xl">Cancellation policy</h2>
                                 <p className="text-[#7C8DB0] text-base font-normal">
                                     This flight has a flexible cancellation policy. If you cancel or change your flight
                                     up to 30 days before the departure date, you are eligible for a free refund. All
-                                    flights booked on Tripma are backed by our satisfaction guarantee, however
+                                    flights booked on Adago are backed by our satisfaction guarantee, however
                                     cancellation policies vary by airline. See the{' '}
                                     <span className="text-[#605CDE]"> full cancellation policy</span> for this flight.
                                 </p>
