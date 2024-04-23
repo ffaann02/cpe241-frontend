@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { signupFields } from "../constants/formfield";
+import { signupFields } from "../../constants/formfield";
 import FormAction from "./FormAction";
 import Input from "./LoginInput";
 import { useNavigate } from 'react-router-dom';
