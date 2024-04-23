@@ -83,11 +83,7 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            if (
-                dropdownRef.current &&
-                !dropdownRef.current.contains(event.target as Node) &&
-                focusedState === state
-            ) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) && focusedState === state) {
                 setFocusedState('');
             }
         };
@@ -105,7 +101,7 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
 
     useEffect(() => {
         const cityCode = flightData[index][state];
-        if(cityCode===''){
+        if (cityCode === '') {
             setSelectedCity(null);
             setSearchTerm('');
             return;
@@ -117,7 +113,7 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
                 setSearchTerm(`${city.name} (${city.code})`);
             }
         }
-    }, [selectedCity,flightData[index][state]]);
+    }, [selectedCity, flightData[index][state]]);
 
     const handleSelectCity = (city: City) => {
         setSelectedCity(city);
@@ -166,30 +162,25 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
                             ค้นหาเมืองหรือสนามบินที่คุณต้องการ
                         </p>
                         <ul className="">
-                            {fakeAirportData
-                                .filter(filterCities)
-                                .map((city, index) => (
-                                    <li
-                                        key={index}
-                                        onClick={() => handleSelectCity(city)}
-                                        className={`hover:bg-violet-50 px-4 py-2 rounded-none cursor-pointer 
+                            {fakeAirportData.filter(filterCities).map((city, index) => (
+                                <li
+                                    key={index}
+                                    onClick={() => handleSelectCity(city)}
+                                    className={`hover:bg-violet-50 px-4 py-2 rounded-none cursor-pointer 
                                     ${fakeAirportData.filter(filterCities).length - 1 !== index ? 'border-b' : 'border-b-0'}`}
-                                    >
-                                        <div className="text-sm">
-                                            <p className="font-semibold text-slate-600">
-                                                {city.name}, {city.country}
-                                            </p>
-                                            <p className="text-slate-500">
-                                                {city.code} - {city.airport}
-                                            </p>
-                                        </div>
-                                    </li>
-                                ))}
-                            {fakeAirportData.filter(filterCities).length ===
-                                0 && (
-                                <li className="px-4 py-2 text-sm text-slate-600">
-                                    ไม่พบผลลัพธ์
+                                >
+                                    <div className="text-sm">
+                                        <p className="font-semibold text-slate-600">
+                                            {city.name}, {city.country}
+                                        </p>
+                                        <p className="text-slate-500">
+                                            {city.code} - {city.airport}
+                                        </p>
+                                    </div>
                                 </li>
+                            ))}
+                            {fakeAirportData.filter(filterCities).length === 0 && (
+                                <li className="px-4 py-2 text-sm text-slate-600">ไม่พบผลลัพธ์</li>
                             )}
                         </ul>
                     </div>
