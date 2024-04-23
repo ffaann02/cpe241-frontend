@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Datepicker from 'react-tailwindcss-datepicker';
-import { MdOutlineDateRange } from "react-icons/md";
+import { MdOutlineDateRange } from 'react-icons/md';
 
 export const DatePicker: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState<any>({
@@ -54,6 +54,7 @@ export const DatePicker: React.FC = () => {
                 setIsPickingDate(false);
             }}
         >
+            <p className="text-slate-500 text-sm ml-0.5 mb-0.5">วันที่เดินทาง</p>
             <Datepicker
                 separator="-"
                 primaryColor={'blue'}
@@ -63,20 +64,24 @@ export const DatePicker: React.FC = () => {
                 displayFormat={'DD/MM/YYYY'}
                 popoverDirection={'down' as any}
                 inputClassName={
-                    'p-3 opacity-0 z-[50] text-slate-500 placeholder:text-sm w-full rounded-lg border border-slate-300 outline-none focus:border-violet-200 transition-all duration-100 ease-linear'
+                    'p-3 z-[50] opacity-0 text-slate-500 placeholder:text-sm w-full rounded-lg border border-slate-300 outline-none focus:border-violet-200 transition-all duration-100 ease-linear'
                 }
                 onChange={handleDateChange}
                 readOnly
             />
             <div>
                 <input
-                    className={`w-full absolute -z-50 top-0 p-3 pl-10 text-slate-500 placeholder:text-sm rounded-lg border 
+                    className={`mt-[1.35rem] input w-full absolute -z-50 top-0 p-3 pl-10 text-slate-500 placeholder:text-sm rounded-lg border 
                 border-slate-300 outline-none ${isPickingDate && 'border-violet-200'} transition-all duration-100 ease-linear`}
                     placeholder="โปรดเลือกวันที่ต้องการเดินทาง"
-                    value={formatThaiDate(selectedDate.startDate)}
+                    value={
+                        selectedDate.startDate
+                            ? formatThaiDate(selectedDate.startDate)
+                            : ''
+                    }
                     readOnly
                 />
-                <MdOutlineDateRange className="absolute top-1/3 left-4"/>
+                <MdOutlineDateRange className="absolute top-[52%] left-4" />
             </div>
         </div>
     );
