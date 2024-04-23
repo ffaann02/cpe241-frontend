@@ -10,12 +10,13 @@ export default function SignupPage() {
                             heading="Signup to create an account"
                             paragraph="Already have an account? "
                             linkName="Login"
-                            linkUrl="/"
+                            linkUrl="/Login"
                         />
                         <Signup />
                     </div>
                 </div>
             </div>
         </div>
-    );
+    )
 }
+

@@ -63,5 +63,4 @@ const signupFields = [
         placeholder: 'Confirm Password',
     },
 ];
-
 export { loginFields, signupFields };

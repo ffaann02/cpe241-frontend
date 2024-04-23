@@ -5,6 +5,7 @@ const fixedInputClass =
 
 interface InputProps {
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleResetError?: () => void;
     value: string;
     labelText: string;
     labelFor: string;
@@ -18,6 +19,7 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = ({
     handleChange,
+    handleResetError,
     value,
     labelText,
     labelFor,
