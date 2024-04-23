@@ -2,8 +2,17 @@ import { useState } from 'react';
 import { IoMdAirplane, IoIosGift, IoIosSwap } from 'react-icons/io';
 import { LocationInputForm } from './Form/FlightInputForm';
 import { PiAirplaneTakeoffFill, PiAirplaneLandingFill } from 'react-icons/pi';
+import { GoPeople } from 'react-icons/go';
 import { DatePicker } from './Form/DatePicker';
+// import backgroundImage from "https://www.shutterstock.com/image-photo/airplane-flying-above-tropical-sea-600nw-129132983.jpg"
 import '../../component.css';
+import PassengerInfoForm from './Form/PassengerInfoForm';
+import {
+    FlightTypeSelectButtons,
+    HeaderServicesButtons,
+    SearchFlightButton,
+    SwitchFlightButton,
+} from './BlockObject/Button';
 const flightTypeList = [
     { id: 1, name: 'เที่ยวเดียว' },
     { id: 2, name: 'ไป-กลับ' },
@@ -20,9 +29,15 @@ export interface FlightData {
     infant: number;
 }
 
+export interface PassengerAmountInfo {
+    adult: number;
+    child: number;
+    infant: number;
+}
+
 const HereBlock = () => {
     const [serviceIndex, setServiceIndex] = useState<number>(1);
-    const [flightType, setFlightType] = useState<number>(2);
+    const [flightType, setFlightType] = useState<number>(1);
     const [flightData, setFlightData] = useState<FlightData[]>([
         {
             from: '',
@@ -34,7 +49,17 @@ const HereBlock = () => {
             infant: 0,
         },
     ]);
+    const [passengerAmount, setPassengerAmount] = useState<PassengerAmountInfo>(
+        {
+            adult: 1,
+            child: 10,
+            infant: 2,
+        }
+    );
+
     const [focusedState, setFocusedState] = useState<string>('');
+    const [isEnterPassengerPicker, setIsEnterPassengerPicker] =
+        useState<boolean>(false);
 
     const handleChangeService = (index: number) => setServiceIndex(index);
     const handleChangeFlightType = (index: number) => setFlightType(index);
@@ -48,62 +73,36 @@ const HereBlock = () => {
     };
 
     return (
-        <div className="bg-purple-200 pt-8 relative justify-center pb-16">
-            <div className="">
-                <h1 className="text-3xl text-center font-semibold tracking-wide drop-shadow-md">
-                    จองตั๋วเครื่องบินทั่วไทยและทั่วโลกที่คุณสนใจเลยวันนี้
-                </h1>
-                <h2 className="text-2xl mt-2 text-center font-semibold tracking-wide drop-shadow-sm">
-                    ครอบคลุมบริการสายการบินกว่า 20 สายทั่วโลก
-                </h2>
-                <div className="bg-slate-50 w-full max-w-5xl mt-10 px-8 py-10 rounded-2xl drop-shadow-sm mx-auto relative">
-                    <div
-                        className="bg-slate-50 absolute drop-shadow-md px-3 rounded-md -top-6 left-0 right-0 mx-auto 
-                        w-fit flex gap-x-3"
-                    >
-                        <button
-                            className={`flex px-2 py-2 border-b-2 ${serviceIndex === 1 ? 'border-purple-400' : 'border-white'}`}
-                            onClick={() => {
-                                handleChangeService(1);
-                            }}
-                        >
-                            <IoMdAirplane
-                                className={`text-xl my-auto rotate-45 ${serviceIndex === 1 ? 'text-purple-600' : 'text-slate-600'}`}
-                            />
-                            <p className={`${serviceIndex === 1 ? 'text-purple-600' : 'text-slate-600'} ml-0.5`}>
-                                จองไฟล์ท
-                            </p>
-                        </button>
-                        <button
-                            className={`flex px-2 py-2 border-b-2 ${serviceIndex === 2 ? 'border-purple-400' : 'border-white'}`}
-                            onClick={() => {
-                                handleChangeService(2);
-                            }}
-                        >
-                            <IoIosGift
-                                className={`text-xl my-auto ${serviceIndex === 2 ? 'text-purple-600' : 'text-slate-600'}`}
-                            />
-                            <p className={`${serviceIndex === 2 ? 'text-purple-600' : 'text-slate-600'} ml-0.5`}>
-                                โปรโมชั่น
-                            </p>
-                        </button>
-                    </div>
-                    <div className="flex gap-x-3">
-                        {flightTypeList.map((item) => (
-                            <button
-                                key={item.id}
-                                className={`transition-all duration-100 ease-linear px-3.5 py-1.5 border-2 rounded-2xl ${flightType === item.id ? 'bg-violet-100 text-violet-600 border-violet-400' : 'bg-white text-slate-500 border-slate-200 hover:bg-violet-50 hover:text-violet-400 hover:border-violet-300'}`}
-                                onClick={() => handleChangeFlightType(item.id)}
+        <>
+            <div className="pt-8 relative justify-center pb-16">
+                <div className="absolute bg-gradient-to-b from-violet-500 via-violet-300 to-violet-100 w-full h-[80%] top-0"></div>
+                <div className="absolute bg-slate-50 w-full h-[20%] bottom-0"></div>
+                <div className="">
+                    <h1 className="text-3xl text-center font-semibold tracking-wide drop-shadow-lg text-white">
+                        จองตั๋วเครื่องบินทั่วไทยและทั่วโลกที่คุณสนใจเลยวันนี้
+                    </h1>
+                    <h2 className="text-2xl mt-2 text-center font-semibold tracking-wide drop-shadow-sm text-white">
+                        ครอบคลุมบริการสายการบินกว่า 20 สายทั่วโลก
+                    </h2>
+                    <div className="bg-slate-50 w-full max-w-5xl mt-10 px-8 py-10 rounded-2xl drop-shadow-lg mx-auto relative">
+                        <HeaderServicesButtons
+                            serviceIndex={serviceIndex}
+                            handleChangeService={handleChangeService}
+                            icon1={IoMdAirplane}
+                            icon2={IoIosGift}
+                        />
+                        <FlightTypeSelectButtons
+                            flightTypeList={flightTypeList}
+                            flightType={flightType}
+                            handleChangeFlightType={handleChangeFlightType}
+                        />
+                        {flightData.map((flight, index) => (
+                            <div
+                                className="grid grid-cols-2 gap-3 mt-4 relative"
+                                key={index}
                             >
-                                {item.name}
-                            </button>
-                        ))}
-                    </div>
-                    {flightData.map((flight, index) => (
-                        <div className="grid grid-cols-2 gap-4 mt-4 relative" key={index}>
-                            <div className="col-span-full">
-                                <div className="grid grid-cols-2 gap-x-4 relative">
-                                    <div className="relative">
+                                <div className="col-span-full">
+                                    <div className="grid grid-cols-2 gap-x-3 relative">
                                         <LocationInputForm
                                             icon={<PiAirplaneTakeoffFill />}
                                             title="จาก"
@@ -115,8 +114,6 @@ const HereBlock = () => {
                                             focusedState={focusedState}
                                             setFocusedState={setFocusedState}
                                         />
-                                    </div>
-                                    <div className="relative">
                                         <LocationInputForm
                                             icon={<PiAirplaneLandingFill />}
                                             title="ไป"
@@ -128,31 +125,34 @@ const HereBlock = () => {
                                             focusedState={focusedState}
                                             setFocusedState={setFocusedState}
                                         />
-                                    </div>
-                                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                                        <button
-                                            className="p-1.5 bg-violet-100 rounded-lg border border-violet-300 drop-shadow-md
-                                 hover:bg-violet-200 hover:text-violet-800"
-                                            onClick={() => handleSwapLocations(index)}
-                                        >
-                                            <IoIosSwap className="text-lg" />
-                                        </button>
+                                        <SwitchFlightButton
+                                            handleSwapLocations={
+                                                handleSwapLocations
+                                            }
+                                            index={index}
+                                            icon={IoIosSwap}
+                                        />
                                     </div>
                                 </div>
+                                <DatePicker />
+                                <PassengerInfoForm
+                                    icon={GoPeople}
+                                    passengerAmount={passengerAmount}
+                                    setPassengerAmount={setPassengerAmount}
+                                    isEnterPassengerPicker={
+                                        isEnterPassengerPicker
+                                    }
+                                    setIsEnterPassengerPicker={
+                                        setIsEnterPassengerPicker
+                                    }
+                                />
                             </div>
-                            <DatePicker />
-                        </div>
-                    ))}
-                    <button
-                        className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-violet-400 px-44 py-4 
-                        rounded-lg text-white tracking-wide text-xl hover:bg-violet-300 transition-all duration-200 
-                        ease-linear"
-                    >
-                        ค้นหาเที่ยวบิน
-                    </button>
+                        ))}
+                        <SearchFlightButton />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
