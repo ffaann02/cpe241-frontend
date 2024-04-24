@@ -10,14 +10,7 @@ import Home from './pages/Home';
 import Booking from './pages/Booking';
 import Payment from './pages/Payment';
 
-axios.defaults.baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
-axios.defaults.withCredentials = true;
-
 function App() {
-    const token = localStorage.getItem('token');
-    if (token) {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    }
     return (
         <>
             <div className="w-full">

@@ -3,6 +3,7 @@ import { loginFields } from '../../constants/formfield';
 import FormAction from './FormAction';
 import FormExtra from './FormExtra';
 import Input from './LoginInput';
+import axiosPrivate from '../../api/axios';
 
 interface Field {
     id: string;
@@ -35,8 +36,19 @@ const Login: React.FC = () => {
     };
 
     // Handle Login API Integration here
-    const authenticateUser = (): void => {
-        // Add your authentication logic here
+    const authenticateUser = async (): Promise<void> => {
+        try {
+            console.log(loginState);
+            const response = await axiosPrivate.post('/api/login', loginState);
+            if (response.status === 200) {
+                // Handle successful login here, e.g. redirecting to another page
+            } else {
+                // Handle unsuccessful login here, e.g. showing an error message
+            }
+        } catch (error) {
+            // Handle error here, e.g. showing an error message
+            console.error('An error occurred while trying to log in:', error);
+        }
     };
 
     return (
