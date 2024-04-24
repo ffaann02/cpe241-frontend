@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import axios from 'axios';
 import About from './pages/AboutUs';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
@@ -8,12 +9,15 @@ import Footer from './components/layoutBar/Footer';
 import Home from './pages/Home';
 import Booking from './pages/Booking';
 import Payment from './pages/Payment';
-import axios from 'axios';
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
-axios.defaults.withCredentials = true
+axios.defaults.withCredentials = true;
 
 function App() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    }
     return (
         <>
             <div className="w-full">
@@ -30,7 +34,6 @@ function App() {
                         </Routes>
                     </div>
                 </div>
-                <Footer />
             </div>
         </>
     );
