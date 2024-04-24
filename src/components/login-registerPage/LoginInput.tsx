@@ -19,7 +19,7 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = ({
     handleChange,
-    handleResetError,
+    // handleResetError,
     value,
     labelText,
     labelFor,

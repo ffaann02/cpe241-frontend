@@ -3,8 +3,6 @@ import { FaTwitter } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';
 import appleIcon from '../../assets/images/apple-icon.png';
 import googlePlay from '../../assets/images/google-play.webp';
-
-
 function Footer() {
     return (
         <>

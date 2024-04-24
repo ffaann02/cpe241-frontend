@@ -4,14 +4,10 @@ import About from './pages/AboutUs';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
 import Navbar from './components/layoutBar/Navbar';
-import Footer from './components/layoutBar/Footer';
+// import Footer from './components/layoutBar/Footer';
 import Home from './pages/Home';
 import Booking from './pages/Booking';
 import Payment from './pages/Payment';
-import axios from 'axios';
-
-axios.defaults.baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
-axios.defaults.withCredentials = true
 
 function App() {
     return (
@@ -30,7 +26,6 @@ function App() {
                         </Routes>
                     </div>
                 </div>
-                <Footer />
             </div>
         </>
     );
