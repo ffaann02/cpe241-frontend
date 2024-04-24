@@ -3,6 +3,8 @@ import { loginFields } from '../../constants/formfield';
 import FormAction from './FormAction';
 import FormExtra from './FormExtra';
 import Input from './LoginInput';
+import Navbar from '../layoutBar/Navbar';
+import { useNavigate } from 'react-router-dom';
 import axiosPrivate from '../../api/axios';
 
 interface Field {
@@ -25,7 +27,9 @@ interface LoginState {
 
 const Login: React.FC = () => {
     const [loginState, setLoginState] = useState<LoginState>(fieldsState);
-
+    const navigate = useNavigate();
+    const [ErrorMessage, setErrorMessage] = useState<string>('');
+    const [loginStatus , setLoginStatus] = useState<boolean>(false);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setLoginState({ ...loginState, [e.target.id]: e.target.value });
     };
@@ -41,9 +45,10 @@ const Login: React.FC = () => {
             console.log(loginState);
             const response = await axiosPrivate.post('/api/login', loginState);
             if (response.status === 200) {
-                // Handle successful login here, e.g. redirecting to another page
+                navigate('/home');
+                setLoginStatus(true);
             } else {
-                // Handle unsuccessful login here, e.g. showing an error message
+                setErrorMessage('Error: Invalid email or password');
             }
         } catch (error) {
             // Handle error here, e.g. showing an error message
@@ -66,11 +71,14 @@ const Login: React.FC = () => {
                         type={field.type}
                         isRequired={field.isRequired}
                         placeholder={field.placeholder}
+
                     />
                 ))}
             </div>
             <FormExtra />
             <FormAction handleSubmit={handleSubmit} text="Login" />
+            <Navbar isLoggedIn={loginStatus} />
+            <p className="text-red-500" >{ErrorMessage}</p>
         </form>
     );
 };
