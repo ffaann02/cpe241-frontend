@@ -8,6 +8,10 @@ import Footer from './components/layoutBar/Footer';
 import Home from './pages/Home';
 import Booking from './pages/Booking';
 import Payment from './pages/Payment';
+import axios from 'axios';
+
+axios.defaults.baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
+axios.defaults.withCredentials = true
 
 function App() {
     return (
