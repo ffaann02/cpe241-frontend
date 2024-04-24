@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import axios from 'axios';
 import About from './pages/AboutUs';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
