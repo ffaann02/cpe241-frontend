@@ -8,6 +8,7 @@ import Navbar from './components/layoutBar/Navbar';
 import Home from './pages/Home';
 import Booking from './pages/Booking';
 import Payment from './pages/Payment';
+import Footer from './components/layoutBar/Footer';
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                         </Routes>
                     </div>
                 </div>
+                <Footer/>
             </div>
         </>
     );
