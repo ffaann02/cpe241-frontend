@@ -12,6 +12,7 @@ const useAxiosPrivate = () => {
             async (error) => {
               const prevRequest = error?.config;
               if (error?.response?.status === 403 && !prevRequest?._retry) {
+                console.log('Refreshing token');
                 prevRequest._retry = true;
                 await axiosPrivate.post('/refresh');
                 return axiosPrivate(prevRequest);

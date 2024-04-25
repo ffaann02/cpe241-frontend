@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import axios from 'axios';
 import About from './pages/AboutUs';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
@@ -10,18 +9,11 @@ import Home from './pages/Home';
 import Booking from './pages/Booking';
 import Payment from './pages/Payment';
 
-axios.defaults.baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
-axios.defaults.withCredentials = true;
-
 function App() {
-    const token = localStorage.getItem('token');
-    if (token) {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    }
     return (
         <>
             <div className="w-full">
-                <Navbar />
+                <Navbar isLoggedIn={false}/>
                 <div className="w-full h-full min-h-screen pt-[4.25rem] flex" id="app_container">
                     <div className="flex-1 bg-slate-50">
                         <Routes>
