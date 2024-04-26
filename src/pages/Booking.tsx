@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Datepicker from "react-tailwindcss-datepicker"; 
+import FlightCartData from '../components/Card/FlightCartCard';
+import fakeFlightData from '../data/fakeFlightData.json';
 
 export default function Booking() {
   const [passengerData, setPassengerData] = useState([
@@ -135,6 +137,21 @@ export default function Booking() {
         console.log('Please fill in all required fields for each passenger.');
       }
     };
+    // useEffect(() => {
+    //     const cityCode = flightData[index][state];
+    //     if (cityCode === '') {
+    //         setSelectedCity(null);
+    //         setSearchTerm('');
+    //         return;
+    //     }
+    //     if (cityCode) {
+    //         const city = fakeFlightData.find((city) => city.code === cityCode);
+    //         if (city) {
+    //             setSelectedCity(city);
+    //             setSearchTerm(`${city.name} (${city.code})`);
+    //         }
+    //     }
+    // }, [selectedCity, flightData[index][state]]); 
 
     const handleSelectSeat = () => {
       console.log('Route to Seat Selection Path')
@@ -338,25 +355,9 @@ export default function Booking() {
                         </button>
                     </div>
                 </section>
-                <section className="mx-4 my-10 md:col-span-4">
-                    <img
-                        className="w-full h-fit rounded-xl"
-                        src="https://cdn.zeebiz.com/sites/default/files/2023/08/19/256870-air-india-reuters.jpg?im=FitAndFill=(1200,900)"
-                        alt=""
-                    />
-                    <div className="mt-6 grid-cols-3 grid gap-2">
-                        <div className="col-end-4 w-full flex items-center justify-between text-[#27273F] text-sm sm:text-base">
-                            <p>ผลรวมย่อย</p>
-                            <p>$503</p>
-                        </div>
-                        <div className="col-end-4 w-full flex items-center justify-between text-[#27273F] text-sm sm:text-base">
-                            <p>ภาษี</p>
-                            <p>$121</p>
-                        </div>
-                        <div className="col-end-4 w-full flex items-center justify-between text-[#27273F] text-sm sm:text-base">
-                            <p>ผลรวมสุทธิ</p>
-                            <p>$624</p>
-                        </div>
+                <section className="justify-end mx-4 my-10 col-span-4">
+                    <div>
+                        <FlightCartData flight={fakeFlightData[4]} />
                         <div className='mt-6 col-start-3 justify-end flex'>
                           <button 
                             className="btn mx-4 border-[1px] border-[#7C8DB0] text-[#7C8DB0] bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white hover:border-[#605DEC] transition-all duration-200"
@@ -365,9 +366,9 @@ export default function Booking() {
                             เลือกที่นั่ง
                           </button>
                         </div>
-                    </div>
-                    <div className='flex justify-end h-fit items-end mt-10'>
-                      <img src="\src\assets\images\Traveling-bag.png" alt="" />
+                        <div className='flex justify-end h-fit items-end mt-10'>
+                          <img src="\src\assets\images\Traveling-bag.png" alt="" />
+                        </div>
                     </div>
                 </section>
             </section>
