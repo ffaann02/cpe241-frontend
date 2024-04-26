@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import FlightCartData from '../components/Card/FlightCartCard';
+import fakeFlightData from '../data/fakeFlightData.json';
 
 export default function Booking() {
     const [count, setCount] = useState(1);
@@ -35,6 +37,21 @@ export default function Booking() {
         // Add your logic here to save the form data and close
         console.log('Form data saved:', formData);
     };
+    // useEffect(() => {
+    //     const cityCode = flightData[index][state];
+    //     if (cityCode === '') {
+    //         setSelectedCity(null);
+    //         setSearchTerm('');
+    //         return;
+    //     }
+    //     if (cityCode) {
+    //         const city = fakeFlightData.find((city) => city.code === cityCode);
+    //         if (city) {
+    //             setSelectedCity(city);
+    //             setSearchTerm(`${city.name} (${city.code})`);
+    //         }
+    //     }
+    // }, [selectedCity, flightData[index][state]]); 
 
     return (
         <>
@@ -220,27 +237,12 @@ export default function Booking() {
                     </div>
                 </section>
                 <section className="justify-end mx-4 my-10 col-span-4">
-                    <img
-                        className="w-full h-fit rounded-xl"
-                        src="https://cdn.zeebiz.com/sites/default/files/2023/08/19/256870-air-india-reuters.jpg?im=FitAndFill=(1200,900)"
-                        alt=""
-                    />
-                    <div className="mt-6 grid-cols-3 grid gap-2">
-                        <div className="col-end-4 w-full flex items-center justify-between text-[#27273F] text-sm sm:text-base">
-                            <p>ผลรวมย่อย</p>
-                            <p>$503</p>
-                        </div>
-                        <div className="col-end-4 w-full flex items-center justify-between text-[#27273F] text-sm sm:text-base">
-                            <p>ภาษี</p>
-                            <p>$121</p>
-                        </div>
-                        <div className="col-end-4 w-full flex items-center justify-between text-[#27273F] text-sm sm:text-base">
-                            <p>ผลรวมสุทธิ</p>
-                            <p>$624</p>
-                        </div>
+                    <div>
+                        <FlightCartData flight={fakeFlightData[4]} />
                     </div>
                 </section>
             </section>
+
         </>
     );
 }
