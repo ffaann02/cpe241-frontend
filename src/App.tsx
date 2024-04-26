@@ -8,6 +8,8 @@ import Navbar from './components/layoutBar/Navbar';
 import Home from './pages/Home';
 import Booking from './pages/Booking';
 import Payment from './pages/Payment';
+import Footer from './components/layoutBar/Footer';
+import Search from './pages/Search';
 
 function App() {
     return (
@@ -23,9 +25,11 @@ function App() {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
+                            <Route path="search" element={<Search/>}/>
                         </Routes>
                     </div>
                 </div>
+                <Footer/>
             </div>
         </>
     );

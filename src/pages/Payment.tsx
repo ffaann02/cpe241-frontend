@@ -2,9 +2,17 @@ import { AiFillApple, AiOutlineCreditCard, AiOutlineGoogle } from 'react-icons/a
 import { BsPaypal } from 'react-icons/bs';
 import { SiBitcoin } from 'react-icons/si';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import Modal from '../components/paymentPage/modal';
-// import Steps from '../components/paymentPage/steps';
+import { useState } from 'react';
+import {
+    Button,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+} from '@chakra-ui/react';
 
 const Payment = () => {
     const navigate = useNavigate();
@@ -17,15 +25,6 @@ const Payment = () => {
     const [selectedPayment, setSelectedPayment] = useState('Credit card');
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
-
-    useEffect(() => {
-        if (showAlert) {
-            const modalElement = document.getElementById('paymentModal') as HTMLDialogElement;
-            if (modalElement !== null) {
-                modalElement.showModal();
-            }
-        }
-    }, [showAlert]);
 
     const handlePaymentSelection = (payment: string) => {
         setSelectedPayment(payment);
@@ -48,23 +47,31 @@ const Payment = () => {
             console.log('Please fill the card details');
         }
     };
+    const onClose = () => {
+        setShowAlert(false);
+        setSelectedPayment('Credit card');
+    };
 
     return (
         <>
-            <Modal
-                isOpen={showAlert}
-                onClose={() => {
-                    setShowAlert(false);
-                    setSelectedPayment('Credit card');
-                }}
-                message={alertMessage}
-            />
-            {/* <Steps currentStep={4} /> */}
-            <div className="relative mb-20">
+            <Modal isOpen={showAlert} onClose={onClose} >
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Sorry for inconvenience</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>{alertMessage}</ModalBody>
+                    <ModalFooter>
+                        <Button colorScheme="blue" mr={3} onClick={onClose}>
+                            Close
+                        </Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+            <div className="relative mb-20 mx-16">
                 <div className="px-8 w-full h-full flex lg:flex-row flex-col justify-between items-start mt-20 gap-10">
                     <div className="w-full lg:w-[686px] flex flex-col items-start gap-12">
                         <div className="flex flex-col items-start gap-2 w-full">
-                            <h1 className="titleh1">Payment method</h1>
+                            <h1 className="text-2xl font-semibold  text-[#605DEC]">Payment method</h1>
                             <p className="text-[#7C8DB0] text-base font-normal">
                                 Select a payment method below. Agado processes your payment securely with end-to-end
                                 encryption.
