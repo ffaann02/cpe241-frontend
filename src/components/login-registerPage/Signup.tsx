@@ -16,7 +16,7 @@ export default function Signup() {
     const navigate = useNavigate();
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setSignupState({ ...signupState, [e.target.id]: e.target.value });
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log(signupState);
         createAccount();
@@ -29,11 +29,11 @@ export default function Signup() {
     const createAccount = () => {
 
 
-        if (!signupState.username || !signupState.emailaddress || !signupState.password) {
+        if (!signupState.firstname || !signupState.lastname|| !signupState.email || !signupState.password || !signupState.phonenumber || !signupState.confirmpassword) {
             setErrorMessage("Please fill out all required fields");
             return;
         }
-        else if (!isValidEmail(signupState.emailaddress)) {
+        else if (!isValidEmail(signupState.email)) {
 
             setErrorMessage("Please enter a valid email address");
             return;
@@ -71,11 +71,11 @@ export default function Signup() {
     };
 
     // Helper function for email validation
-    function isValidEmail(emailaddress: string): boolean {
+    function isValidEmail(email: string): boolean {
         // Implement email validation logic here
         // Example: using a regular expression
         const emailRegex = /\S+@\S+\.\S+/;
-        return emailRegex.test(emailaddress);
+        return emailRegex.test(email);
     }
     function isPasswordComplex(password: string): boolean {
         const hasUpperCase = /[A-Z]/.test(password);

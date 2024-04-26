@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import { Avatar } from '@chakra-ui/react'
+import { Menu, MenuButton, MenuList, MenuItem} from '@chakra-ui/react'
 // import logoTest from "/assets/logo-test.png";
-function Navbar() {
+
+interface NavbarProps {
+  isLoggedIn: boolean;
+}
+function Navbar({ isLoggedIn }: NavbarProps) {
   return (
     <>
       <div className="navbar bg-base-100 shadow-sm rounded-md rounded-b-none fixed px-12 z-50">
@@ -45,8 +51,15 @@ function Navbar() {
         </div>
         <div className="navbar-end justify-end">
           <a className="btn mx-5 bg-base-100 border-hidden">ติดต่อเพิ่มเติม</a>
-          <a className="btn mx-5 bg-base-600 shadow-md">เข้าสู่ระบบ</a>
-          <a className="btn mr-5 bg-purple-600 text-white shadow-md">ลงทะเบียน</a>
+          {!isLoggedIn && <Link to="/login" className="btn mx-5 bg-base-600 shadow-md">เข้าสู่ระบบ</Link>}
+          {!isLoggedIn && <Link to="/SignUp" className="btn mr-5 bg-purple-600 text-white shadow-md">ลงทะเบียน</Link>}
+          {isLoggedIn && <Menu>
+            <MenuButton as={Avatar} src='https://bit.ly/broken-link' />
+            <MenuList>
+              <MenuItem>ข้อมูลผู้ใช้</MenuItem>
+              <MenuItem>ประวัติการจอง</MenuItem>
+            </MenuList>
+          </Menu>}
         </div>
       </div>
     </>

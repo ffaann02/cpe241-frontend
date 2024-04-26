@@ -1,29 +1,43 @@
 import { useState } from 'react';
+import Datepicker from "react-tailwindcss-datepicker"; 
 
 export default function Booking() {
-    const [count, setCount] = useState(1);
-
-    const increment = () => {
-        setCount((prevCount) => prevCount + 1);
-    };
-
-    const decrement = () => {
-        if (count >= 1) {
-            setCount((prevCount) => prevCount - 1);
-        }
-    };
-
-    const [passengerData, setPassengerData] = useState([
-      {
-        firstName: '',
-        middleName: '',
-        lastName: '',
-        suffix: '',
-        dateOfBirth: '',
-        email: '',
-        phoneNumber: ''
+  const [passengerData, setPassengerData] = useState([
+    {
+      firstName: '',
+      middleName: '',
+      lastName: '',
+      suffix: '',
+      dateOfBirth: { startDate: null, endDate: null },
+      email: '',
+      phoneNumber: '',
+      count: 1
+    }
+  ]);
+  
+  const increment = (index) => {
+    setPassengerData((prevPassengerData) => {
+      const updatedPassengerData = [...prevPassengerData];
+      updatedPassengerData[index] = {
+        ...updatedPassengerData[index],
+        count: updatedPassengerData[index].count + 1
+      };
+      return updatedPassengerData;
+    });
+  };
+  
+  const decrement = (index) => {
+    setPassengerData((prevPassengerData) => {
+      const updatedPassengerData = [...prevPassengerData];
+      if (updatedPassengerData[index].count > 1) {
+        updatedPassengerData[index] = {
+          ...updatedPassengerData[index],
+          count: updatedPassengerData[index].count - 1
+        };
       }
-    ]);
+      return updatedPassengerData;
+    });
+  };  
 
     const [emergencyContactData, setEmergencyContactData] = useState({
       firstName: '',
@@ -38,9 +52,20 @@ export default function Booking() {
       const { name, value } = e.target;
       const updatedPassengerData = [...passengerData];
       updatedPassengerData[index][name] = value;
+  
+      // If the name is 'dateOfBirth', parse the value as a Date object
+      if (name === 'dateOfBirth') {
+        updatedPassengerData[index][name] = new Date(value);
+      }
+  
       setPassengerData(updatedPassengerData);
     };
 
+    const handleDateOfBirthChange = (index, value) => {
+      const updatedPassengerData = [...passengerData];
+      updatedPassengerData[index].dateOfBirth = value;
+      setPassengerData(updatedPassengerData);
+    };
 
     const handleAddPassenger = () => {
       setPassengerData([
@@ -50,13 +75,14 @@ export default function Booking() {
           middleName: '',
           lastName: '',
           suffix: '',
-          dateOfBirth: '',
+          dateOfBirth: { startDate: null, endDate: null},
           email: '',
-          phoneNumber: ''
+          phoneNumber: '',
+          count: 1
         }
       ]);
     };
-
+    
     const handleDeletePassenger = (index) => {
       if (passengerData.length > 1) {
         const updatedPassengerData = [...passengerData];
@@ -96,14 +122,28 @@ export default function Booking() {
     };
 
     const handleSaveAndClose = () => {
-        // Add your logic here to save the form data and close
-        console.log('Form data saved:', passengerData);
+      const isValid = passengerData.every(passenger => {
+        return passenger.firstName.trim() !== '' &&
+               passenger.lastName.trim() !== '' &&
+               passenger.email.trim() !== '' &&
+               passenger.phoneNumber.trim() !== '';
+      });
+    
+      if (isValid) {
+        console.log('Form data saved:', passengerData);      
+      } else {
+        console.log('Please fill in all required fields for each passenger.');
+      }
     };
+
+    const handleSelectSeat = () => {
+      console.log('Route to Seat Selection Path')
+    }
 
     return (
         <>
-            <section className="p-8 grid md:grid-cols-10">
-                <section className="mx-4 md:col-span-6">
+            <section className="p-8 grid md:grid-cols-10 mx-20 gap-x-10">
+                <section className="mx-4 md:col-span-6 pr-20">
                     <h1 className="text-blue-500 text-3xl mb-4">ข้อมูลผู้โดยสาร</h1>
                     <p className="mb-8 text-[#7C8DB0] text-base font-normal">
                     Enter the required information for each traveler and be sure that it exactly matches the government-issued ID presented at the airport.
@@ -151,17 +191,15 @@ export default function Booking() {
                             onChange={(e) => handleChangePassenger(index, e)}
                           />
                         </label>
-                        <label className="input border-[#A1B0CC] placeholder:text-[#7C8DB0] text-[#7C8DB0] px-2 py-3 text-base rounded flex items-center gap-2 col-span-3 ">
-                          <input
-                            type="text"
-                            className="grow"
-                            placeholder="วันเดือนปีเกิด*"
-                            name="dateOfBirth"
-                            value={passenger.dateOfBirth}
-                            onChange={(e) => handleChangePassenger(index, e)}
+                        <div className="col-span-2 relative">
+                          <Datepicker 
+                            asSingle={true} 
+                            value={passenger.dateOfBirth} 
+                            onChange={(e) => handleDateOfBirthChange(index, e)} 
+                            popoverDirection="down" 
+                            inputClassName="h-full border w-full px-2 py-3 rounded border-[#A1B0CC] focus:border-[#7C8DB0] input input-bordered"
                           />
-                          <p className='text-[#c6c8ca] my-auto'>DD/MM/YY</p>
-                        </label>
+                        </div>
                         <label className="input border-[#A1B0CC] placeholder:text-[#7C8DB0] text-[#7C8DB0] px-2 py-3 text-base rounded flex items-center gap-2 col-span-3">
                           <input
                             type="text"
@@ -172,7 +210,7 @@ export default function Booking() {
                             onChange={(e) => handleChangePassenger(index, e)}
                           />
                         </label>
-                        <label className="input border-[#A1B0CC] placeholder:text-[#7C8DB0] text-[#7C8DB0] px-2 py-3 text-base rounded flex items-center gap-2 col-span-3">
+                        <label className="input border-[#A1B0CC] placeholder:text-[#7C8DB0] text-[#7C8DB0] px-2 py-3 text-base rounded flex items-center gap-2 col-span-2">
                           <input
                             type="text"
                             className="grow"
@@ -183,10 +221,10 @@ export default function Booking() {
                           />
                         </label>
                         {index !== passengerData.length - 1 && (
-                          <button className="btn rounded bg-white text-red-500 border-red-500 hover:bg-red-500 hover:text-white hover:border-hidden w-[120px] md:w-full" onClick={() => handleDeletePassenger(index)}>ลบผู้โดยสาร</button>
+                          <button className="btn rounded bg-white text-red-500 border-red-500 hover:bg-red-500 hover:text-white hover:border-hidden w-[120px] col-start-1" onClick={() => handleDeletePassenger(index)}>ลบผู้โดยสาร</button>
                         )}
                         {index === passengerData.length - 1 && (
-                          <button className="btn rounded bg-white text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white hover:border-hidden w-[120px] md:w-full" onClick={handleAddPassenger}>เพิ่มผู้โดยสาร</button>
+                          <button className="btn rounded bg-white text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white hover:border-hidden w-[120px] col-start-1" onClick={handleAddPassenger}>เพิ่มผู้โดยสาร</button>
                         )}
                       </div>
                     ))}
@@ -257,32 +295,34 @@ export default function Booking() {
                       See {' '}
                       <span className="text-[#605CDE]"> the full bag policy.</span>
                     </p>
-                    <div className="grid grid-cols-2">
+                    {passengerData.map((passenger, index) => (
+                      <div className="grid grid-cols-2 mb-4" key={index}>
                         <div className="text-[#6E7491] text-lg">
-                            <h1 className="py-4">ผู้โดยสาร 1</h1>
-                            <h1>
-                            {passengerData[0].firstName} &nbsp;&nbsp; {passengerData[0].lastName}
-                            </h1>
+                          <h1 className="py-4">ผู้โดยสาร {index + 1}</h1>
+                          <h1>
+                            {passenger.firstName} &nbsp;&nbsp; {passenger.lastName}
+                          </h1>
                         </div>
                         <div className="text-[#6E7491] text-lg">
-                            <h1 className="py-4">จำนวนกระเป๋าเดินทาง</h1>
-                            <div className=" flex items-center gap-4">
-                                <button
-                                    className="text-[#605DEC] text-3xl font-semibold cursor-pointer disabled:cursor-not-allowed"
-                                    onClick={decrement}
-                                >
-                                    -
-                                </button>
-                                <span className="text-[#6E7491] text-base font-semibold">{count}</span>
-                                <button
-                                    className="text-[#605DEC] text-xl font-semibold cursor-pointer"
-                                    onClick={increment}
-                                >
-                                    +
-                                </button>
-                            </div>
+                          <h1 className="py-4">จำนวนกระเป๋าเดินทาง</h1>
+                          <div className="flex items-center gap-4">
+                            <button
+                              className="text-[#605DEC] text-3xl font-semibold cursor-pointer disabled:cursor-not-allowed"
+                              onClick={() => decrement(index)}
+                            >
+                              -
+                            </button>
+                            <span className="text-[#6E7491] text-base font-semibold">{passenger.count}</span>
+                            <button
+                              className="text-[#605DEC] text-xl font-semibold cursor-pointer"
+                              onClick={() => increment(index)}
+                            >
+                              +
+                            </button>
+                          </div>
                         </div>
-                    </div>
+                      </div>
+                    ))}
                     <div className="mt-10 flex md:justify-start justify-center">
                         <button
                             className="btn mx-4 border-[1px] border-[#605DEC] text-[#605DEC] rounded hover:bg-[#605DEC] hover:text-white transition-all duration-200"
@@ -290,7 +330,10 @@ export default function Booking() {
                         >
                             บันทึกและปิด
                         </button>
-                        <button className="btn mx-4 border-[1px] border-[#7C8DB0] text-[#7C8DB0] bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white hover:border-[#605DEC] transition-all duration-200">
+                        <button 
+                            className="btn mx-4 border-[1px] border-[#7C8DB0] text-[#7C8DB0] bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white hover:border-[#605DEC] transition-all duration-200"
+                            onClick={handleSelectSeat}
+                        >
                             เลือกที่นั่ง
                         </button>
                     </div>
@@ -315,8 +358,11 @@ export default function Booking() {
                             <p>$624</p>
                         </div>
                         <div className='mt-6 col-start-3 justify-end flex'>
-                          <button className="btn mx-4 border-[1px] border-[#7C8DB0] text-[#7C8DB0] bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white hover:border-[#605DEC] transition-all duration-200">
-                              เลือกที่นั่ง
+                          <button 
+                            className="btn mx-4 border-[1px] border-[#7C8DB0] text-[#7C8DB0] bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white hover:border-[#605DEC] transition-all duration-200"
+                            onClick={handleSelectSeat}
+                          >
+                            เลือกที่นั่ง
                           </button>
                         </div>
                     </div>
