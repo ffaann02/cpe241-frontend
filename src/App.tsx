@@ -16,7 +16,7 @@ function App() {
         <>
             <div className="w-full">
                 <Navbar isLoggedIn={false}/>
-                <div className="w-full h-full min-h-screen pt-[4.25rem] flex" id="app_container">
+                <div className="w-full h-full min-h-screen pt-[3.8rem] flex" id="app_container">
                     <div className="flex-1 bg-slate-50">
                         <Routes>
                             <Route path="/" element={<Home />} />
