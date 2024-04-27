@@ -14,10 +14,10 @@ import Search from './pages/Search';
 function App() {
     return (
         <>
-            <div className="w-full">
+            <div className="w-full h-full">
                 <Navbar isLoggedIn={false}/>
                 <div className="w-full h-full min-h-screen pt-[4.25rem] flex" id="app_container">
-                    <div className="flex-1 bg-slate-50">
+                    <div className="flex-1">
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/about" element={<About />} />
@@ -25,7 +25,7 @@ function App() {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
-                            <Route path="search" element={<Search/>}/>
+                            <Route path="/search" element={<Search/>}/>
                         </Routes>
                     </div>
                 </div>
