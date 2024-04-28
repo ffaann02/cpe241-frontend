@@ -9,13 +9,15 @@ import Booking from './pages/Booking';
 import Payment from './pages/Payment';
 import Footer from './components/layoutBar/Footer';
 import Search from './pages/Search';
+import AdminRoute from './routes/AdminRoute';
+import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
     return (
         <>
-            <div className="w-full h-full">
-                <Navbar isLoggedIn={false}/>
-                <div className="w-full h-full min-h-screen pt-[4.25rem] flex" id="app_container">
+            <div className="w-full h-full font-IBM-Plex">
+                <Navbar isLoggedIn={false} />
+                <div className="w-full h-full min-h-screen pt-[60px] flex" id="app_container">
                     <div className="flex-1">
                         <Routes>
                             <Route path="/" element={<Home />} />
@@ -24,11 +26,18 @@ function App() {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
-                            <Route path="/search" element={<Search/>}/>
+                            <Route path="/search" element={<Search />} />
+                            <Route element={<PrivateRoute />}>
+                                {/* <Route path="/booking" element={<Booking />} />
+                                <Route path="/payment" element={<Payment />} /> */}
+                            </Route>
+                            <Route element={<AdminRoute />}>
+                                <Route path="/dashboard" element={<h1>Admin Page</h1>} />
+                            </Route>
                         </Routes>
                     </div>
                 </div>
-                <Footer/>
+                <Footer />
             </div>
         </>
     );
