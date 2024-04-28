@@ -3,12 +3,12 @@ import { createContext , useState } from "react";
 interface User {
     user: string;
     role: string;
-  }
+}
 
 interface AuthContextType {
     auth: User;
     setAuth: React.Dispatch<React.SetStateAction<User>>;
-  }
+}
   
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 

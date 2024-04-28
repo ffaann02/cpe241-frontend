@@ -55,7 +55,6 @@ export default function Booking() {
       const updatedPassengerData = [...passengerData];
       updatedPassengerData[index][name] = value;
   
-      // If the name is 'dateOfBirth', parse the value as a Date object
       if (name === 'dateOfBirth') {
         updatedPassengerData[index][name] = new Date(value);
       }
@@ -342,10 +341,27 @@ export default function Booking() {
                     ))}
                     <div className="mt-10 flex md:justify-start justify-center">
                         <button
-                            className="btn mx-4 border-[1px] border-[#605DEC] text-[#605DEC] rounded hover:bg-[#605DEC] hover:text-white transition-all duration-200"
-                            onClick={handleSaveAndClose}
-                        >
-                            บันทึกและปิด
+                        className="btn mx-4 border-[1px] border-[#605DEC] text-[#605DEC] rounded hover:bg-[#605DEC] hover:text-white transition-all duration-200"
+                        onClick={handleSaveAndClose}
+                        disabled={
+                            !passengerData.every(
+                                passenger => (
+                                    passenger.firstName.trim() !== '' &&
+                                    passenger.lastName.trim() !== '' &&
+                                    passenger.email.trim() !== '' &&
+                                    passenger.phoneNumber.trim() !== ''
+                                )
+                            ) || (
+                                !usePassengerDataForEmergencyContact &&
+                                (
+                                    emergencyContactData.firstName.trim() === '' ||
+                                    emergencyContactData.lastName.trim() === '' ||
+                                    emergencyContactData.email.trim() === '' ||
+                                    emergencyContactData.phoneNumber.trim() === ''
+                                )
+                            )
+                        }
+                        >บันทึกและปิด
                         </button>
                         <button 
                             className="btn mx-4 border-[1px] border-[#7C8DB0] text-[#7C8DB0] bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white hover:border-[#605DEC] transition-all duration-200"
@@ -358,7 +374,7 @@ export default function Booking() {
                 <section className="justify-end mx-4 my-10 col-span-4">
                     <div>
                         <FlightCartData flight={fakeFlightData[4]} />
-                        <div className='mt-6 col-start-3 justify-end flex'>
+                        <div className='mt-6 items-end justify-end'>
                           <button 
                             className="btn mx-4 border-[1px] border-[#7C8DB0] text-[#7C8DB0] bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white hover:border-[#605DEC] transition-all duration-200"
                             onClick={handleSelectSeat}
@@ -367,7 +383,7 @@ export default function Booking() {
                           </button>
                         </div>
                         <div className='flex justify-end h-fit items-end mt-10'>
-                          <img src="\src\assets\images\Traveling-bag.png" alt="" />
+                          <img src="src\assets\images\Traveling-bag.png" alt="" />
                         </div>
                     </div>
                 </section>

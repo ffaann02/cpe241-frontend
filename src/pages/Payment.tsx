@@ -52,6 +52,8 @@ const Payment = () => {
         setSelectedPayment('Credit card');
     };
 
+    const isInputComplete = name.trim() !== '' && number.trim() !== '' && ccv.trim() !== '' && date.trim() !== '';
+
     return (
         <>
             <Modal isOpen={showAlert} onClose={onClose} >
@@ -169,8 +171,9 @@ const Payment = () => {
                             </Link>
                             <div>
                                 <button
-                                    className="hidden lg:block py-2 px-4 border-[1px] border-[#7C8DB0] text-[#7C8DB0] bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white hover:border-[#605DEC] transition-all duration-200"
+                                    className={`py-2 px-4 border-[1px] border-[#7C8DB0] text-[#7C8DB0] bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white hover:border-[#605DEC] transition-all duration-200 ${!isInputComplete && 'pointer-events-none opacity-50'}`}
                                     onClick={submitInputs}
+                                    disabled={!isInputComplete}
                                 >
                                     Confirm and pay
                                 </button>
@@ -181,8 +184,9 @@ const Payment = () => {
                     <div className="mt-10 flex flex-col gap-10 justify-end items-start lg:items-end">
                         <div className="mt-5">
                             <button
-                                className="py-2 px-4 border-[1px] border-[#7C8DB0] text-[#7C8DB0] bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white hover:border-[#605DEC] transition-all duration-200"
+                                className={`py-2 px-4 border-[1px] border-[#7C8DB0] text-[#7C8DB0] bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white hover:border-[#605DEC] transition-all duration-200 ${!isInputComplete && 'pointer-events-none opacity-50'}`}
                                 onClick={submitInputs}
+                                disabled={!isInputComplete}
                             >
                                 Confirm and pay
                             </button>
