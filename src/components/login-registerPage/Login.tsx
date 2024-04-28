@@ -3,7 +3,6 @@ import { loginFields } from '../../constants/formfield';
 import FormAction from './FormAction';
 import FormExtra from './FormExtra';
 import Input from './LoginInput';
-import Navbar from '../layoutBar/Navbar';
 import { useNavigate } from 'react-router-dom';
 import axiosPrivate from '../../api/axios';
 
@@ -29,7 +28,6 @@ const Login: React.FC = () => {
     const [loginState, setLoginState] = useState<LoginState>(fieldsState);
     const navigate = useNavigate();
     const [ErrorMessage, setErrorMessage] = useState<string>('');
-    const [loginStatus , setLoginStatus] = useState<boolean>(false);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setLoginState({ ...loginState, [e.target.id]: e.target.value });
     };
@@ -46,7 +44,6 @@ const Login: React.FC = () => {
             const response = await axiosPrivate.post('/api/login', loginState);
             if (response.status === 200) {
                 navigate('/home');
-                setLoginStatus(true);
             } else {
                 setErrorMessage('Error: Invalid email or password');
             }
@@ -77,7 +74,6 @@ const Login: React.FC = () => {
             </div>
             <FormExtra />
             <FormAction handleSubmit={handleSubmit} text="Login" />
-            <Navbar isLoggedIn={loginStatus} />
             <p className="text-red-500" >{ErrorMessage}</p>
         </form>
     );
