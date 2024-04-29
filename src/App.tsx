@@ -12,6 +12,7 @@ import Search from './pages/Search';
 import TripSection from './components/homePage/Trip/TripSection';
 import AdminRoute from './routes/AdminRoute';
 import PrivateRoute from './routes/PrivateRoute';
+import NotFound from './pages/NotFound';
 
 function App() {
     return (
@@ -27,8 +28,9 @@ function App() {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
-                            <Route path="search" element={<Search/>}/>
+                            <Route path="search" element={<Search />} />
                             <Route path="/trip" element={<TripSection />} />
+                            <Route path="*" element={<NotFound />} />
                             <Route element={<PrivateRoute />}>
                                 {/* <Route path="/booking" element={<Booking />} />
                                 <Route path="/payment" element={<Payment />} /> */}
