@@ -8,14 +8,9 @@ interface ToggleDropdownProps {
 const ToggleDropdown: React.FC<ToggleDropdownProps> = ({ isOpen }: ToggleDropdownProps) => {
     return (
         <div>
-            <label className={`swap swap-rotate ${isOpen ? 'swap-active' : 'swap-off'}`}>
-                <div className="swap-on">
-                    <FaAngleUp className="text-slate-500 text-sm" />
-                </div>
-                <div className="swap-off">
-                    <FaAngleDown className="text-slate-500 text-sm" />
-                </div>
-            </label>
+            <div className={` transition-all duration-200 ease-linear transform ${isOpen? "rotate-180":"rotate-0"}`}>
+                <FaAngleUp className="text-slate-500 text-sm" />
+            </div>
         </div>
     );
 };
