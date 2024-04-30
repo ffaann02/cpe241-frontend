@@ -4,7 +4,6 @@ import { LocationInputForm } from './Form/FlightInputForm';
 import { PiAirplaneTakeoffFill, PiAirplaneLandingFill } from 'react-icons/pi';
 import { GoPeople } from 'react-icons/go';
 import { DatePicker } from './Form/DatePicker';
-// import backgroundImage from "https://www.shutterstock.com/image-photo/airplane-flying-above-tropical-sea-600nw-129132983.jpg"
 import '../../component.css';
 import PassengerInfoForm from './Form/PassengerInfoForm';
 import {

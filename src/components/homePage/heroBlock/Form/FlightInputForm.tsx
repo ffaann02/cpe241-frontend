@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-
 import fakeAirportData from '../../../../data/fakeAirportData.json';
 import { FlightData } from '../HereBlock';
+import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 
 export interface City {
     name: string;
@@ -142,17 +142,23 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
     return (
         <div>
             <p className="text-slate-500 text-sm ml-0.5">{title}</p>
-            <label className="input input-bordered flex items-center gap-2 relative mt-0.5">
-                {icon}
-                <input
-                    ref={inputRef}
-                    type="text"
-                    className="grow placeholder:text-sm text-slate-500"
-                    placeholder={`เดินทาง${title}... สนามบิน, เมือง, ประเทศ`}
-                    value={searchTerm}
-                    onFocus={handleFocus}
-                    onChange={handleChange}
-                />
+            <label className="flex items-center gap-2 relative mt-0.5">
+                <InputGroup className="flex bg-white rounded-md">
+                    <InputLeftElement pointerEvents="none" className="mt-1">
+                        <span className="text-royal-blue-600 text-xl ml-3">{icon}</span>
+                    </InputLeftElement>
+                    <Input
+                        size="lg"
+                        focusBorderColor="purple.200"
+                        ref={inputRef}
+                        type="text"
+                        className="placeholder:text-sm text-slate-500 pt-0.5"
+                        placeholder={`เดินทาง${title}... สนามบิน, เมือง, ประเทศ`}
+                        value={searchTerm}
+                        onFocus={handleFocus}
+                        onChange={handleChange}
+                    />
+                </InputGroup>
                 {focusedState === state && !selectedCity && (
                     <div
                         ref={dropdownRef}

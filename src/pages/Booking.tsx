@@ -72,7 +72,7 @@ export default function Booking() {
                             index={index}
                             passenger={passenger}
                             handleChangePassenger={handleChangePassenger(setPassengerData, passengerData)}
-                            handleDateOfBirthChange={handleDateOfBirthChange}
+                            handleDateOfBirthChange={handleDateOfBirthChange(setPassengerData, passengerData)}
                             passengerData={passengerData}
                             handleDeletePassenger={handleDeletePassenger(setPassengerData, passengerData)}
                             handleAddPassenger={handleAddPassenger(setPassengerData, passengerData)}
@@ -127,7 +127,9 @@ export default function Booking() {
                             บันทึกและปิด
                         </button>
                         <button
-                            className="btn px-4 border-[1px] border-[#7C8DB0] text-[#7C8DB0] bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white hover:border-[#605DEC] transition-all duration-200"
+                            className="px-4 py-2 border-[1px] border-[#7C8DB0] text-[#7C8DB0] 
+                            bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white 
+                            hover:border-[#605DEC] transition-all duration-200"
                             onClick={handleSelectSeat}
                         >
                             เลือกที่นั่ง
