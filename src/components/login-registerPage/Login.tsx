@@ -54,8 +54,8 @@ const Login: React.FC = () => {
     };
 
     return (
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="-space-y-px">
+        <form className="" onSubmit={handleSubmit}>
+            <div className="">
                 {fields.map((field) => (
                     <Input
                         key={field.id}
