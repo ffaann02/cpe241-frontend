@@ -38,6 +38,8 @@ const handleChangePassenger = (setPassengerData, passengerData) => (index: numbe
 const handleDateOfBirthChange = (setPassengerData, passengerData) => (index: number, value: { startDate: string; endDate: string }) => {
     const updatedPassengerData = [...passengerData];
     updatedPassengerData[index].dateOfBirth = value.startDate;
+    console.log(updatedPassengerData)
+    console.log(updatedPassengerData[index].dateOfBirth)
     setPassengerData(updatedPassengerData);
 };
 
