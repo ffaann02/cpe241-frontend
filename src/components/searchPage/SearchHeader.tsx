@@ -6,13 +6,13 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useRef } from 'react';
-
+import FlightLineImage from "../../assets/images/airplane-vector.png";
 var settings = {
     dots: false,
     infinite: true,
     speed: 500,
     arrows: false,
-    slidesToShow: 6,
+    slidesToShow: 7,
     slidesToScroll: 1,
 };
 
@@ -29,11 +29,12 @@ const SearchHeader = () => {
 
 
     return (
-        <div className="pt-10 p-24 bg-gradient-to-b from-violet-600 via-violet-400 to-violet-300">
-            <div className="w-full max-w-5xl mx-auto">
-                <div className=" bg-white px-5 py-4 rounded-lg flex justify-between">
+        <div className="pt-6 pb-6 px-24 bg-gradient-to-b from-royal-blue-600 via-royal-blue-400 to-royal-blue-300 relative">
+            <img src={FlightLineImage} className="w-44 absolute z-0 right-4 bottom-12 opacity-50 rotate-12"/>
+            <div className="w-full max-w-5xl mx-auto z-10 relative">
+                <div className="bg-white px-5 py-4 rounded-lg flex justify-between">
                     <div className="flex">
-                        <PiAirplaneInFlightLight className="text-2xl mr-3 my-auto text-violet-500" />
+                        <PiAirplaneInFlightLight className="text-2xl mr-3 my-auto text-royal-blue-500" />
                         <div className="">
                             <div className="flex gap-x-4 text-lg font-semibold text-slate-600">
                                 <p>กรุงเทพมหานคร (BKKA)</p>
@@ -51,25 +52,25 @@ const SearchHeader = () => {
                     </div>
                     <div className="my-auto">
                         <button
-                            className="px-4 py-3 rounded-lg bg-violet-200 transition-all duration-100 ease-linear
-                     hover:bg-violet-100 hover:text-violet-600 text-violet-800 flex"
+                            className="px-4 py-3 rounded-lg bg-royal-blue-200 transition-all duration-100 ease-linear
+                     hover:bg-royal-blue-100 hover:text-royal-blue-600 text-royal-blue-800 flex"
                         >
                             <FiEdit className="my-auto mr-2 text-lg" />
                             <p>เปลี่ยนแปลงการค้นหา</p>
                         </button>
                     </div>
                 </div>
-                <div className="mt-4 grid grid-cols-12">
+                <div className="mt-4 grid grid-cols-14">
                     <div className="col-span-1">
                         <button
-                            className="bg-white w-full h-full rounded-md text-violet-500 hover:bg-violet-100 
-                            hover:text-violet-600"
+                            className="bg-white w-full h-full rounded-md text-royal-blue-500 hover:bg-royal-blue-100 
+                            hover:text-royal-blue-600"
                             onClick={handlePrev}
                         >
                             <FaChevronLeft className="text-2xl mx-auto" />
                         </button>
                     </div>
-                    <div className="col-span-10 px-2" id="card_container">
+                    <div className="col-span-12 px-2 mr-1" id="card_container">
                         <div>
                             <Slider ref={sliderRef} {...settings}>
                                 {Array(8)
@@ -85,8 +86,8 @@ const SearchHeader = () => {
                         </div>
                     </div>
                     <button
-                            className="bg-white w-full h-full rounded-md text-violet-500 hover:bg-violet-100 
-                            hover:text-violet-600"
+                            className="bg-white w-full h-full rounded-md text-royal-blue-500 hover:bg-royal-blue-100 
+                            hover:text-royal-blue-600"
                             onClick={handleNext}
                         >
                             <FaChevronRight className="text-2xl mx-auto" />

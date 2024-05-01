@@ -10,7 +10,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ heading, paragraph, linkName, linkUrl = '#' }) => {
     return (
-        <div className="mb-10">
+        <div className="mb-10 pt-6">
             <div className="flex justify-center">
                 {/* Replace this with the appropriate image import or src */}
                 <img

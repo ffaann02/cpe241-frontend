@@ -4,7 +4,6 @@ import { LocationInputForm } from './Form/FlightInputForm';
 import { PiAirplaneTakeoffFill, PiAirplaneLandingFill } from 'react-icons/pi';
 import { GoPeople } from 'react-icons/go';
 import { DatePicker } from './Form/DatePicker';
-// import backgroundImage from "https://www.shutterstock.com/image-photo/airplane-flying-above-tropical-sea-600nw-129132983.jpg"
 import '../../component.css';
 import PassengerInfoForm from './Form/PassengerInfoForm';
 import {
@@ -75,7 +74,7 @@ const HereBlock = () => {
     return (
         <>
             <div className="pt-8 relative justify-center pb-16">
-                <div className="absolute bg-gradient-to-b from-violet-500 via-violet-300 to-violet-100 w-full h-[80%] top-0"></div>
+                <div className="absolute bg-gradient-to-b from-royal-blue-500 via-royal-blue-300 to-royal-blue-100 w-full h-[80%] top-0"></div>
                 <div className="absolute bg-slate-50 w-full h-[20%] bottom-0"></div>
                 <div className="">
                     <h1 className="text-3xl text-center font-semibold tracking-wide drop-shadow-lg text-white">

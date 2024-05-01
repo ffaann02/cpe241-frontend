@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Datepicker from 'react-tailwindcss-datepicker';
 import { MdOutlineDateRange } from 'react-icons/md';
+import { Flex, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 
 export const DatePicker: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState<any>({
@@ -47,9 +48,9 @@ export const DatePicker: React.FC = () => {
             onFocus={() => {
                 setIsPickingDate(true);
             }}
-            onMouseEnter={() => {
-                setIsPickingDate(true);
-            }}
+            // onMouseEnter={() => {
+            //     setIsPickingDate(true);
+            // }}
             onMouseLeave={() => {
                 setIsPickingDate(false);
             }}
@@ -64,24 +65,32 @@ export const DatePicker: React.FC = () => {
                 displayFormat={'DD/MM/YYYY'}
                 popoverDirection={'down' as any}
                 inputClassName={
-                    'p-3 z-[50] opacity-0 text-slate-500 placeholder:text-sm w-full rounded-lg border border-slate-300 outline-none focus:border-violet-200 transition-all duration-100 ease-linear'
+                    'p-3 z-[50] opacity-0 w-full'
                 }
                 onChange={handleDateChange}
                 readOnly
             />
             <div>
-                <input
-                    className={`mt-[1.35rem] input w-full absolute -z-50 top-0 p-3 pl-10 text-slate-500 placeholder:text-sm rounded-lg border 
-                border-slate-300 outline-none ${isPickingDate && 'border-violet-200'} transition-all duration-100 ease-linear`}
-                    placeholder="โปรดเลือกวันที่ต้องการเดินทาง"
-                    value={
-                        selectedDate.startDate
-                            ? formatThaiDate(selectedDate.startDate)
-                            : ''
-                    }
-                    readOnly
-                />
-                <MdOutlineDateRange className="absolute top-[52%] left-4" />
+                <Flex className='absolute w-full top-0 mt-[1.35rem] -z-50'>
+                    <InputGroup
+                        className={`text-slate-500 bg-white placeholder:text-sm
+                        rounded-md ${isPickingDate && 'drop-shadow-md'} transition-all duration-100 ease-linear`}
+                    >
+                        <InputLeftElement pointerEvents="none" className="mt-1 ml-0.5">
+                            <span className="text-royal-blue-600 text-xl ml-3">
+                                <MdOutlineDateRange className="" />
+                            </span>
+                        </InputLeftElement>
+                        <Input
+                            size="lg"
+                            focusBorderColor="purple.200"
+                            type="text"
+                            className="placeholder:text-sm text-slate-500 pt-0.5"
+                            placeholder="โปรดเลือกวันที่ต้องการเดินทาง"
+                            value={selectedDate.startDate ? formatThaiDate(selectedDate.startDate) : ''}
+                        />
+                    </InputGroup>
+                </Flex>
             </div>
         </div>
     );

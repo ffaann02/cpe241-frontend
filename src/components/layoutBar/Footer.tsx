@@ -6,7 +6,7 @@ import googlePlay from '../../assets/images/google-play.webp';
 function Footer() {
     return (
         <>
-            <section className="py-2 flex justify-end w-full  border-violet-400 border-y-2">
+            <section className="py-2 mt-6 flex justify-end w-full  border-violet-400 border-y-2">
                 <div className="flex mr-16 gap-x-8">
                     <div className="">รายละเอียด</div>
                     <div className="divider divider-horizontal divider-primary"></div>
