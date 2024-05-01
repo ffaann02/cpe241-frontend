@@ -7,7 +7,7 @@ const ReviewSection = () => {
             <div className="flex flex-col gap-10 px-8 mt-24 items-center">
                 <div className="flex items-center justify-center">
                     <h1 className="text-[#6E7491] font-medium md:font-bold sm:text-base md:text-[24px] md:leading-8">
-                        รีวิวจากผู้ใช้งาน <span className="text-[#605DEC]">Agado</span>
+                        รีวิวจากผู้ใช้งาน <span className="text-royal-blue-500">Agado</span>
                     </h1>
                 </div>
 
