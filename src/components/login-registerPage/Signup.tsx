@@ -27,14 +27,11 @@ export default function Signup() {
 
     //handle Signup API Integration here
     const createAccount = () => {
-
-
         if (!signupState.firstname || !signupState.lastname|| !signupState.email || !signupState.password || !signupState.phonenumber || !signupState.confirmpassword) {
             setErrorMessage("Please fill out all required fields");
             return;
         }
         else if (!isValidEmail(signupState.email)) {
-
             setErrorMessage("Please enter a valid email address");
             return;
         }
@@ -45,8 +42,6 @@ export default function Signup() {
         }
 
         // Check if email is valid
-
-
         // Check if username is already taken
         // if (isUsernameTaken(signupState.username)) {
         //     setErrorMessage("Username is already taken");
@@ -83,19 +78,6 @@ export default function Signup() {
         const hasNumber = /\d/.test(password);
         return hasUpperCase && hasLowerCase && hasNumber;
     }
-    // function isUsernameTaken(username: string): boolean {
-    //     // Implement logic to check if username is already taken
-    //     // Example: make an API call to the server to check username availability
-    //     // ...
-    //     return false; // For demonstration purposes
-    // }
-
-    // Placeholder function for creating the user account
-    // function createUserAccount(signupState: SignupState): void {
-    //     // Implement logic to create the user account
-    //     // Example: make an API call to the server to create the account
-    //     console.log('Creating account with:', signupState);
-    // }
 
     return (
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

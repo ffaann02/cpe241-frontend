@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import fakeAirlineData from '../../../data/fakeFlightData.json';
-import { Checkbox } from '@chakra-ui/react';
+import { Checkbox, Collapse } from '@chakra-ui/react';
 import ToggleHeader from './ToggleHeader';
 
 interface AirlineProps {
@@ -22,12 +22,8 @@ const Airline: React.FC<AirlineProps> = ({ title, selectedAirline, setSelectedAi
 
     return (
         <div className="py-2 border-b border-b-slate-300">
-            <ToggleHeader
-                title={title}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-            />
-            {isOpen && (
+            <ToggleHeader title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
+            <Collapse in={isOpen} animateOpacity={false}>
                 <div className="flex flex-col gap-y-4 mt-2">
                     {fakeAirlineData.map((airline, index) => (
                         <Checkbox
@@ -36,7 +32,7 @@ const Airline: React.FC<AirlineProps> = ({ title, selectedAirline, setSelectedAi
                             colorScheme="purple"
                             onChange={(e) => handleCheckboxChange(airline.airline, e.target.checked)}
                             className="flex"
-                            key={"airline" + index}
+                            key={'airline' + index}
                         >
                             <div className="flex ml-2">
                                 <img src={airline.airlineIcon} className="w-8 h-8 my-auto" />
@@ -49,7 +45,7 @@ const Airline: React.FC<AirlineProps> = ({ title, selectedAirline, setSelectedAi
                         </Checkbox>
                     ))}
                 </div>
-            )}
+            </Collapse>
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoMdAirplane, IoIosGift, IoIosSwap } from 'react-icons/io';
 import { LocationInputForm } from './Form/FlightInputForm';
 import { PiAirplaneTakeoffFill, PiAirplaneLandingFill } from 'react-icons/pi';
@@ -12,6 +12,7 @@ import {
     SearchFlightButton,
     SwitchFlightButton,
 } from './BlockObject/Button';
+import { useNavigate } from 'react-router-dom';
 const flightTypeList = [
     { id: 1, name: 'เที่ยวเดียว' },
     { id: 2, name: 'ไป-กลับ' },
@@ -23,9 +24,6 @@ export interface FlightData {
     to: string;
     departDate: string;
     returnDate: string;
-    adult: number;
-    child: number;
-    infant: number;
 }
 
 export interface PassengerAmountInfo {
@@ -35,6 +33,7 @@ export interface PassengerAmountInfo {
 }
 
 const HereBlock = () => {
+    const navigate = useNavigate();
     const [serviceIndex, setServiceIndex] = useState<number>(1);
     const [flightType, setFlightType] = useState<number>(1);
     const [flightData, setFlightData] = useState<FlightData[]>([
@@ -43,32 +42,69 @@ const HereBlock = () => {
             to: '',
             departDate: '',
             returnDate: '',
-            adult: 1,
-            child: 0,
-            infant: 0,
         },
     ]);
-    const [passengerAmount, setPassengerAmount] = useState<PassengerAmountInfo>(
-        {
-            adult: 1,
-            child: 10,
-            infant: 2,
-        }
-    );
+    const [passengerAmount, setPassengerAmount] = useState<PassengerAmountInfo>({
+        adult: 1,
+        child: 10,
+        infant: 2,
+    });
+    const [selectedDate, setSelectedDate] = useState<{ startDate: string; endDate: string }>({
+        startDate: new Date().toISOString().slice(0, 10),
+        endDate: new Date().toISOString().slice(0, 10),
+    });
+
+    useEffect(()=>{
+        setFlightData(prevState => prevState.map((flight, index) => 
+            index === 0 ? { ...flight, departDate: selectedDate.startDate } : flight
+        ));
+    },[selectedDate])
+
 
     const [focusedState, setFocusedState] = useState<string>('');
-    const [isEnterPassengerPicker, setIsEnterPassengerPicker] =
-        useState<boolean>(false);
+    const [isEnterPassengerPicker, setIsEnterPassengerPicker] = useState<boolean>(false);
 
     const handleChangeService = (index: number) => setServiceIndex(index);
     const handleChangeFlightType = (index: number) => setFlightType(index);
     const handleSwapLocations = (index: number) => {
-        // console.log(flightData[index])
         const newFlightData = [...flightData];
         const temp = newFlightData[index].from;
         newFlightData[index].from = newFlightData[index].to;
         newFlightData[index].to = temp;
         setFlightData(newFlightData);
+    };
+    const handleSearchFlight = () => {
+        console.log('Search Flight');
+        console.log(flightData);
+        console.log(passengerAmount);
+
+        // Check if flightData has any null or empty string values
+        for (let data of flightData) {
+            if (!data.from || !data.to || !data.departDate) {
+                console.log('Invalid flight data');
+                return;
+            }
+        }
+
+        // Check if passengerAmount has a total of at least 1 and at least 1 adult
+        let totalPassengers = Object.values(passengerAmount).reduce((a, b) => a + b, 0);
+        if (totalPassengers < 1 || passengerAmount.adult < 1) {
+            console.log('Invalid passenger amount');
+            return;
+        }
+
+        let flightDataParams = flightData
+            .map(
+                (data) =>
+                    `from=${encodeURIComponent(data.from)}&to=${encodeURIComponent(data.to)}&departDate=${encodeURIComponent(data.departDate)}&returnDate=${encodeURIComponent(data.returnDate)}`
+            )
+            .join('&');
+
+        let passengerAmountParams = Object.entries(passengerAmount)
+            .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+            .join('&');
+
+        navigate(`/search?${flightDataParams}&${passengerAmountParams}`);
     };
 
     return (
@@ -96,10 +132,7 @@ const HereBlock = () => {
                             handleChangeFlightType={handleChangeFlightType}
                         />
                         {flightData.map((flight, index) => (
-                            <div
-                                className="grid grid-cols-2 gap-3 mt-4 relative"
-                                key={index}
-                            >
+                            <div className="grid grid-cols-2 gap-3 mt-4 relative" key={index}>
                                 <div className="col-span-full">
                                     <div className="grid grid-cols-2 gap-x-3 relative">
                                         <LocationInputForm
@@ -125,29 +158,27 @@ const HereBlock = () => {
                                             setFocusedState={setFocusedState}
                                         />
                                         <SwitchFlightButton
-                                            handleSwapLocations={
-                                                handleSwapLocations
-                                            }
+                                            handleSwapLocations={handleSwapLocations}
                                             index={index}
                                             icon={IoIosSwap}
                                         />
                                     </div>
                                 </div>
-                                <DatePicker />
+                                <DatePicker
+                                    selectedDate={selectedDate}
+                                    setSelectedDate={setSelectedDate}
+                                    setFlightData={setFlightData}
+                                />
                                 <PassengerInfoForm
                                     icon={GoPeople}
                                     passengerAmount={passengerAmount}
                                     setPassengerAmount={setPassengerAmount}
-                                    isEnterPassengerPicker={
-                                        isEnterPassengerPicker
-                                    }
-                                    setIsEnterPassengerPicker={
-                                        setIsEnterPassengerPicker
-                                    }
+                                    isEnterPassengerPicker={isEnterPassengerPicker}
+                                    setIsEnterPassengerPicker={setIsEnterPassengerPicker}
                                 />
                             </div>
                         ))}
-                        <SearchFlightButton />
+                        <SearchFlightButton handleSearchFlight={handleSearchFlight} />
                     </div>
                 </div>
             </div>
