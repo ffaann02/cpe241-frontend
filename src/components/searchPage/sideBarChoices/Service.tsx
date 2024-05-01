@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import ToggleHeader from './ToggleHeader';
-import { LiaSuitcaseSolid } from "react-icons/lia";
-import { IoFastFoodOutline } from "react-icons/io5";
-import { GrPlug } from "react-icons/gr";
+import { LiaSuitcaseSolid } from 'react-icons/lia';
+import { IoFastFoodOutline } from 'react-icons/io5';
+import { GrPlug } from 'react-icons/gr';
 
-import { Checkbox } from '@chakra-ui/react';
+import { Checkbox, Collapse } from '@chakra-ui/react';
 import { ServiceType } from '../FilterSideBar';
 
 interface ServiceProps {
@@ -17,22 +17,26 @@ const services = [
     {
         title: 'สัมภาระเพิ่มเติม',
         value: 'extraStorage',
-        icon: <LiaSuitcaseSolid/>,
+        icon: <LiaSuitcaseSolid />,
     },
     {
         title: 'อาหาร, เครื่องดื่ม',
         value: 'food',
-        icon: <IoFastFoodOutline/>,
+        icon: <IoFastFoodOutline />,
     },
     {
         title: 'ปลั๊กไฟ / ช่อง USB',
         value: 'plug',
-        icon: <GrPlug/>,
+        icon: <GrPlug />,
     },
 ];
 
-const Icon = ({ icon,isChecked }: { icon: React.ReactElement, isChecked: boolean }) => {
-    return <div className={`absolute top-0 right-0 text-lg ${isChecked ? "text-royal-blue-600":"text-slate-400"}`}>{icon}</div>
+const Icon = ({ icon, isChecked }: { icon: React.ReactElement; isChecked: boolean }) => {
+    return (
+        <div className={`absolute top-0 right-0 text-lg ${isChecked ? 'text-royal-blue-600' : 'text-slate-400'}`}>
+            {icon}
+        </div>
+    );
 };
 
 const Service: React.FC<ServiceProps> = ({ title, selectedServices, setSelectedServices }: ServiceProps) => {
@@ -40,7 +44,7 @@ const Service: React.FC<ServiceProps> = ({ title, selectedServices, setSelectedS
     return (
         <div className="py-2 border-b border-b-slate-300">
             <ToggleHeader title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
-            {isOpen && (
+            <Collapse in={isOpen} animateOpacity={false}>
                 <div className="mt-2">
                     <div className="flex flex-col gap-y-3">
                         {services.map((service) => (
@@ -59,12 +63,15 @@ const Service: React.FC<ServiceProps> = ({ title, selectedServices, setSelectedS
                                 }}
                             >
                                 <p className="text-sm text-slate-600 justify-self-end">{service.title}</p>
-                                <Icon icon={service.icon} isChecked={selectedServices[service.value as keyof ServiceType]}/>
+                                <Icon
+                                    icon={service.icon}
+                                    isChecked={selectedServices[service.value as keyof ServiceType]}
+                                />
                             </Checkbox>
                         ))}
                     </div>
                 </div>
-            )}
+            </Collapse>
         </div>
     );
 };

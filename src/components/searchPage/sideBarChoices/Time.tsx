@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Checkbox } from '@chakra-ui/react';
+import { Checkbox, Collapse } from '@chakra-ui/react';
 import { TimeRange } from '../FilterSideBar';
 import ToggleHeader from './ToggleHeader';
 
@@ -37,7 +37,7 @@ const Time: React.FC<TimeProps> = ({ title, selectedTime, setSelectedTime }: Tim
     return (
         <div className="py-2 border-b border-b-slate-300">
             <ToggleHeader title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
-            {isOpen && (
+            <Collapse in={isOpen} animateOpacity={false}>
                 <div className="mt-2">
                     <div className="flex flex-col gap-y-2">
                         {quaters.map((q) => (
@@ -63,7 +63,7 @@ const Time: React.FC<TimeProps> = ({ title, selectedTime, setSelectedTime }: Tim
                         ))}
                     </div>
                 </div>
-            )}
+            </Collapse>
         </div>
     );
 };

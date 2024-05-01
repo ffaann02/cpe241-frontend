@@ -2,12 +2,18 @@ import { useState } from 'react';
 import Datepicker from 'react-tailwindcss-datepicker';
 import { MdOutlineDateRange } from 'react-icons/md';
 import { Flex, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { FlightData } from '../HereBlock';
 
-export const DatePicker: React.FC = () => {
-    const [selectedDate, setSelectedDate] = useState<any>({
-        startDate: '',
-        endDate: '',
-    });
+interface DatePickerProps {
+    selectedDate: {
+        startDate: string;
+        endDate: string;
+    };
+    setSelectedDate: React.Dispatch<React.SetStateAction<{ startDate: string; endDate: string }>>;
+    setFlightData: React.Dispatch<React.SetStateAction<FlightData[]>>;
+}
+
+export const DatePicker: React.FC<DatePickerProps> = ({ selectedDate, setSelectedDate ,setFlightData}) => {
     const [isPickingDate, setIsPickingDate] = useState<boolean>(false);
 
     // Function to format the date in Thai format: วันที่ เดือน ปีพ.ศ.
@@ -39,6 +45,10 @@ export const DatePicker: React.FC = () => {
 
     const handleDateChange = (value: any) => {
         setSelectedDate(value);
+    
+        setFlightData(prevState => prevState.map((flight, index) => 
+            index === 0 ? { ...flight, departDate: value.startDate } : flight
+        ));
     };
 
     return (
@@ -48,9 +58,9 @@ export const DatePicker: React.FC = () => {
             onFocus={() => {
                 setIsPickingDate(true);
             }}
-            // onMouseEnter={() => {
-            //     setIsPickingDate(true);
-            // }}
+            onMouseEnter={() => {
+                setIsPickingDate(true);
+            }}
             onMouseLeave={() => {
                 setIsPickingDate(false);
             }}
@@ -64,14 +74,12 @@ export const DatePicker: React.FC = () => {
                 asSingle={true}
                 displayFormat={'DD/MM/YYYY'}
                 popoverDirection={'down' as any}
-                inputClassName={
-                    'p-3 z-[50] opacity-0 w-full'
-                }
+                inputClassName={'p-3 z-[50] opacity-0 w-full'}
                 onChange={handleDateChange}
                 readOnly
             />
             <div>
-                <Flex className='absolute w-full top-0 mt-[1.35rem] -z-50'>
+                <Flex className="absolute w-full top-0 mt-[1.35rem] -z-50">
                     <InputGroup
                         className={`text-slate-500 bg-white placeholder:text-sm
                         rounded-md ${isPickingDate && 'drop-shadow-md'} transition-all duration-100 ease-linear`}
@@ -82,6 +90,7 @@ export const DatePicker: React.FC = () => {
                             </span>
                         </InputLeftElement>
                         <Input
+                            borderColor={isPickingDate ? 'purple.200' : 'gray.200'}
                             size="lg"
                             focusBorderColor="purple.200"
                             type="text"

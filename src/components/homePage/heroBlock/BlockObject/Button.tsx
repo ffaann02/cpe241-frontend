@@ -70,9 +70,10 @@ export const HeaderServicesButtons: React.FC<HeaderServicesButtonsProps> = ({
     );
 };
 
-export const SearchFlightButton: React.FC = () => {
+export const SearchFlightButton = ({handleSearchFlight}:{handleSearchFlight: () => void;}) => {
     return (
         <button
+            onClick={handleSearchFlight}
             className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-violet-400 px-44 py-4 
         rounded-lg text-white tracking-wide text-xl hover:bg-violet-300 transition-all duration-200 
         ease-linear drop-shadow-md"
