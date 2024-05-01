@@ -13,7 +13,7 @@ export const SwitchFlightButton: React.FC<SwitchFlightButtonProps> = ({
     icon: Icon,
 }) => {
     return (
-        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+        <div className="absolute -bottom-2.5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
             <button
                 className="p-1.5 bg-violet-100 rounded-lg border border-violet-300 drop-shadow-md
                                  hover:bg-violet-200 hover:text-violet-800"
@@ -98,7 +98,9 @@ export const FlightTypeSelectButtons: React.FC<FlightTypeSelectButtonsProps> = (
             {flightTypeList.map((item) => (
                 <button
                     key={item.id}
-                    className={`transition-all duration-100 ease-linear px-3.5 py-1.5 border-2 rounded-2xl ${flightType === item.id ? 'bg-violet-100 text-violet-600 border-violet-400' : 'bg-white text-slate-500 border-slate-200 hover:bg-violet-50 hover:text-violet-400 hover:border-violet-300'}`}
+                    className={`transition-all duration-100 ease-linear px-3.5 py-1.5 border-2 rounded-2xl 
+                    ${flightType === item.id ? 'bg-violet-100 text-violet-600 border-violet-400' 
+                    : 'bg-white text-slate-500 border-slate-200 hover:bg-violet-50 hover:text-violet-400 hover:border-violet-300'}`}
                     onClick={() => handleChangeFlightType(item.id)}
                 >
                     {item.name}

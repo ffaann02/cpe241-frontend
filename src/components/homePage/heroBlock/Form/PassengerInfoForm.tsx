@@ -2,13 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { IconType } from 'react-icons';
 import { PassengerAmountInfo } from '../HereBlock';
 import { FiMinus, FiPlus } from 'react-icons/fi';
+import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 
 interface PassengerInfoFormProps {
     icon: IconType;
     passengerAmount: PassengerAmountInfo;
-    setPassengerAmount: React.Dispatch<
-        React.SetStateAction<PassengerAmountInfo>
-    >;
+    setPassengerAmount: React.Dispatch<React.SetStateAction<PassengerAmountInfo>>;
     isEnterPassengerPicker: boolean;
     setIsEnterPassengerPicker: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -30,10 +29,10 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
         }
     };
 
-    const handleSubmit = () =>{
+    const handleSubmit = () => {
         console.log(passengerAmount);
         setIsEnterPassengerPicker(false);
-    }
+    };
 
     const ref = useRef<any>(null);
 
@@ -53,11 +52,9 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
 
     return (
         <div className="relative" ref={ref}>
-            <p className="text-slate-500 text-sm ml-0.5 mb-0.5">
-                จำนวนผู้โดยสาร
-            </p>
+            <p className="text-slate-500 text-sm ml-0.5 mb-0.5">จำนวนผู้โดยสาร</p>
             <label className="input input-bordered flex items-center gap-2">
-                <Icon />
+                {/* <Icon />
                 <input
                     type="text"
                     onClick={() => setIsEnterPassengerPicker(true)}
@@ -66,7 +63,23 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
                     placeholder="จำนวนผู้ใหญ่, เด็ก, ทารก"
                     value={`ผู้ใหญ่ ${passengerAmount.adult}, เด็ก ${passengerAmount.child}, ทารก ${passengerAmount.infant}`}
                     readOnly
-                />
+                /> */}
+                <InputGroup className="flex bg-white rounded-md">
+                    <InputLeftElement pointerEvents="none" className="mt-1">
+                        <span className="text-royal-blue-600 text-xl ml-3"><Icon/></span>
+                    </InputLeftElement>
+                    <Input
+                        size="lg"
+                        focusBorderColor="purple.200"
+                        type="text"
+                        onClick={() => setIsEnterPassengerPicker(true)}
+                        onFocus={() => setIsEnterPassengerPicker(true)}
+                        className="placeholder:text-sm text-slate-500 pt-0.5"
+                        placeholder="จำนวนผู้ใหญ่, เด็ก, ทารก"
+                        value={`ผู้ใหญ่ ${passengerAmount.adult}, เด็ก ${passengerAmount.child}, ทารก ${passengerAmount.infant}`}
+                        readOnly
+                    />
+                </InputGroup>
             </label>
             {isEnterPassengerPicker && (
                 <div
@@ -75,9 +88,7 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
                 >
                     <div className="flex justify-between border-b py-1">
                         <div className="flex">
-                            <a className="text-sm my-auto text-neutral-400">
-                                ผู้ใหญ่ (อายุ 12 ปีขึ้นไป)
-                            </a>
+                            <a className="text-sm my-auto text-neutral-400">ผู้ใหญ่ (อายุ 12 ปีขึ้นไป)</a>
                         </div>
                         <div className="flex gap-x-4 pl-4">
                             <button onClick={() => handleDecrement('adult')}>
@@ -93,9 +104,7 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
                     </div>
                     <div className="flex justify-between border-b py-1">
                         <div className="flex">
-                            <a className="text-sm my-auto text-neutral-400">
-                                เด็ก (อายุ 2 - 11 ปี)
-                            </a>
+                            <a className="text-sm my-auto text-neutral-400">เด็ก (อายุ 2 - 11 ปี)</a>
                         </div>
                         <div className="flex gap-x-4 pl-4">
                             <button onClick={() => handleDecrement('child')}>
@@ -111,9 +120,7 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
                     </div>
                     <div className="flex justify-between border-b py-1">
                         <div className="flex">
-                            <a className="text-sm my-auto text-neutral-400">
-                                ทารก (อายุน้อยกว่า 2 ปี)
-                            </a>
+                            <a className="text-sm my-auto text-neutral-400">ทารก (อายุน้อยกว่า 2 ปี)</a>
                         </div>
                         <div className="flex gap-x-4">
                             <button onClick={() => handleDecrement('infant')}>
@@ -127,8 +134,10 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
                             </button>
                         </div>
                     </div>
-                    <button className="bg-violet-400 hover:bg-violet-500 w-fit px-10 py-2 ml-auto text-white rounded-md"
-                        onClick={handleSubmit}>
+                    <button
+                        className="bg-violet-400 hover:bg-violet-500 w-fit px-10 py-2 ml-auto text-white rounded-md"
+                        onClick={handleSubmit}
+                    >
                         เสร็จสิ้น
                     </button>
                 </div>

@@ -6,13 +6,13 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useRef } from 'react';
-
+import FlightLineImage from "../../assets/images/airplane-vector.png";
 var settings = {
     dots: false,
     infinite: true,
     speed: 500,
     arrows: false,
-    slidesToShow: 6,
+    slidesToShow: 7,
     slidesToScroll: 1,
 };
 
@@ -29,9 +29,10 @@ const SearchHeader = () => {
 
 
     return (
-        <div className="pt-10 p-24 bg-gradient-to-b from-violet-600 via-violet-400 to-violet-300">
-            <div className="w-full max-w-5xl mx-auto">
-                <div className=" bg-white px-5 py-4 rounded-lg flex justify-between">
+        <div className="pt-6 pb-6 px-24 bg-gradient-to-b from-violet-600 via-violet-400 to-violet-300 relative">
+            <img src={FlightLineImage} className="w-44 absolute z-0 right-4 bottom-12 opacity-50 rotate-12"/>
+            <div className="w-full max-w-5xl mx-auto z-10 relative">
+                <div className="bg-white px-5 py-4 rounded-lg flex justify-between">
                     <div className="flex">
                         <PiAirplaneInFlightLight className="text-2xl mr-3 my-auto text-violet-500" />
                         <div className="">
@@ -59,7 +60,7 @@ const SearchHeader = () => {
                         </button>
                     </div>
                 </div>
-                <div className="mt-4 grid grid-cols-12">
+                <div className="mt-4 grid grid-cols-14">
                     <div className="col-span-1">
                         <button
                             className="bg-white w-full h-full rounded-md text-violet-500 hover:bg-violet-100 
@@ -69,7 +70,7 @@ const SearchHeader = () => {
                             <FaChevronLeft className="text-2xl mx-auto" />
                         </button>
                     </div>
-                    <div className="col-span-10 px-2" id="card_container">
+                    <div className="col-span-12 px-2 mr-1" id="card_container">
                         <div>
                             <Slider ref={sliderRef} {...settings}>
                                 {Array(8)
