@@ -9,6 +9,7 @@ import Booking from './pages/Booking';
 import Payment from './pages/Payment';
 import Footer from './components/layoutBar/Footer';
 import Search from './pages/Search';
+import Confirm from './pages/Confirm';
 
 function App() {
     return (
@@ -25,7 +26,8 @@ function App() {
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
                             <Route path="search" element={<Search/>}/>
-                        </Routes>
+                            <Route path="/confirm" element={<Confirm/>}/>
+                        </Routes >
                     </div>
                 </div>
                 <Footer/>

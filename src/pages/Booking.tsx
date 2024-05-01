@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Datepicker from "react-tailwindcss-datepicker"; 
-import FlightCartData from '../components/Card/FlightCartCard';
+import FlightCartData from '../components/card/FlightCartCard';
 import fakeFlightData from '../data/fakeFlightData.json';
 
 export default function Booking() {
