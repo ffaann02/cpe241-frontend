@@ -13,15 +13,19 @@ import TripSection from './components/homePage/Trip/TripSection';
 import AdminRoute from './routes/AdminRoute';
 import PrivateRoute from './routes/PrivateRoute';
 import NotFound from './pages/NotFound';
-import RtlLayout from "./dashboard/layouts/rtl";
-import AdminLayout from "./dashboard/layouts/admin";
-import AuthLayout from "./dashboard/layouts/auth"; 
+import RtlLayout from './dashboard/layouts/rtl';
+import AdminLayout from './dashboard/layouts/admin';
+import AuthLayout from './dashboard/layouts/auth';
+import { useLocation } from 'react-router-dom';
 
 function App() {
+    const location = useLocation();
+    const disableNavbar = location.pathname.includes('dashboard');
+
     return (
         <>
             <div className="w-full h-full font-IBM-Plex">
-                <Navbar isLoggedIn={false} />
+                {!disableNavbar && <Navbar isLoggedIn={false} />}
                 <div className="w-full h-full min-h-screen pt-[60px] flex" id="app_container">
                     <div className="flex-1">
                         <Routes>
@@ -31,11 +35,11 @@ function App() {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
-                            <Route path="search" element={<Search  />} />
+                            <Route path="search" element={<Search />} />
                             <Route path="auth/*" element={<AuthLayout />} />
                             <Route path="admin/*" element={<AdminLayout />} />
                             <Route path="rtl/*" element={<RtlLayout />} />
-                            <Route path="/dashboard" element={<Navigate to="/admin" replace />}  />
+                            <Route path="/dashboard" element={<Navigate to="/admin" replace />} />
                             <Route path="/trip" element={<TripSection />} />
                             <Route path="*" element={<NotFound />} />
                             <Route element={<PrivateRoute />}>
