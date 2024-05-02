@@ -18,7 +18,7 @@ function App() {
     return (
         <>
             <div className="w-full h-full font-IBM-Plex">
-                <Navbar isLoggedIn={false} />
+                <Navbar/>
                 <div className="w-full h-full min-h-screen pt-[60px] flex" id="app_container">
                     <div className="flex-1">
                         <Routes>

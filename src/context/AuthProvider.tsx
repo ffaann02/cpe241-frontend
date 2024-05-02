@@ -1,8 +1,10 @@
 import { createContext , useState } from "react";
 
 interface User {
-    user: string;
-    role: string;
+    userid: string;
+    role: number
+    firstName: string;
+    email: string;
 }
 
 interface AuthContextType {

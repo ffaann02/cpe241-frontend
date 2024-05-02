@@ -16,9 +16,11 @@ import {
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
-export default function WithSubnavigation({ isLoggedIn }: { isLoggedIn: boolean }) {
+export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
+    const { auth, setAuth } = useAuth();
     return (
         <Box>
             <Flex className="top-0 bg-white drop-shadow-md z-50 w-full fixed h-[60px] py-2 px-6 border-b border-solid border-gray-200 items-center">
@@ -40,7 +42,7 @@ export default function WithSubnavigation({ isLoggedIn }: { isLoggedIn: boolean 
                 <Flex className="my-auto mr-6" display={{ base: 'none', md: 'flex' }}>
                     <DesktopNav />
                 </Flex>
-                {!isLoggedIn ? (
+                {!auth ? (
                     <Stack flex={{ base: 1, md: 0 }} justify={'flex-end'} direction={'row'} spacing={6}>
                         <Link to="/login" className="my-auto">
                             <Button fontSize={'sm'} fontWeight={500} variant={'link'} color={'slateblue'}>
@@ -74,6 +76,10 @@ export default function WithSubnavigation({ isLoggedIn }: { isLoggedIn: boolean 
                             variant={'link'}
                             href={'#'}
                             color={'slateblue'}
+                            onClick={() => {
+                                setAuth(null);
+                                window.location.reload();
+                            }}
                         >
                             ออกจากระบบ
                         </Button>
