@@ -30,7 +30,7 @@ interface LoginProps {
     setIsFetching: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Login: React.FC<LoginProps> = ({ isFetching, setIsFetching }: LoginProps) => {
+const Login: React.FC<LoginProps> = ({ setIsFetching }: LoginProps) => {
     const [loginState, setLoginState] = useState<LoginState>(fieldsState);
     const navigate = useNavigate();
     const [ErrorMessage, setErrorMessage] = useState<string>('');
