@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import ToggleHeader from './ToggleHeader';
+import React from 'react';
 import { LiaSuitcaseSolid } from 'react-icons/lia';
 import { IoFastFoodOutline } from 'react-icons/io5';
 import { GrPlug } from 'react-icons/gr';
 
-import { Checkbox, Collapse } from '@chakra-ui/react';
+import { Checkbox, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react';
 import { ServiceType } from '../FilterSideBar';
-
 interface ServiceProps {
     title: string;
     selectedServices: ServiceType;
@@ -40,11 +38,15 @@ const Icon = ({ icon, isChecked }: { icon: React.ReactElement; isChecked: boolea
 };
 
 const Service: React.FC<ServiceProps> = ({ title, selectedServices, setSelectedServices }: ServiceProps) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
     return (
-        <div className="py-2 border-b border-b-slate-300">
-            <ToggleHeader title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
-            <Collapse in={isOpen} animateOpacity={false}>
+        <AccordionItem className="py-2 border-b border-b-slate-300" borderTop={0}>
+            <AccordionButton paddingX={0} paddingY={1} _hover={{ bgColor: 'transparent' }}>
+                <Box as="span" flex="1" textAlign="left">
+                    <h2 className="text-slate-500 font-semibold">{title}</h2>
+                </Box>
+                <AccordionIcon textColor={'gray'} />
+            </AccordionButton>
+            <AccordionPanel paddingBottom={2} paddingX={1}>
                 <div className="mt-2">
                     <div className="flex flex-col gap-y-3">
                         {services.map((service) => (
@@ -71,8 +73,8 @@ const Service: React.FC<ServiceProps> = ({ title, selectedServices, setSelectedS
                         ))}
                     </div>
                 </div>
-            </Collapse>
-        </div>
+            </AccordionPanel>
+        </AccordionItem>
     );
 };
 export default Service;

@@ -56,8 +56,8 @@ const HereBlock = ({recommendAirports}:{recommendAirports:City[]}) => {
     ]);
     const [passengerAmount, setPassengerAmount] = useState<PassengerAmountInfo>({
         adult: 1,
-        child: 10,
-        infant: 2,
+        child: 0,
+        infant: 0,
     });
     const [selectedDate, setSelectedDate] = useState<{ startDate: string; endDate: string }>({
         startDate: new Date().toISOString().slice(0, 10),

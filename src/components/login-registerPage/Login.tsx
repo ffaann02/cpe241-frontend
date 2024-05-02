@@ -25,7 +25,12 @@ interface LoginState {
     [key: string]: string;
 }
 
-const Login: React.FC = () => {
+interface LoginProps {
+    isFetching: boolean;
+    setIsFetching: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Login: React.FC<LoginProps> = ({ setIsFetching }: LoginProps) => {
     const [loginState, setLoginState] = useState<LoginState>(fieldsState);
     const navigate = useNavigate();
     const [ErrorMessage, setErrorMessage] = useState<string>('');
@@ -43,14 +48,17 @@ const Login: React.FC = () => {
     // Handle Login API Integration here
     const authenticateUser = async (): Promise<void> => {
         try {
+            setIsFetching(true);
             const response = await axiosPrivate.post('/api/login', loginState);
             if (response.status === 200) {
+                setIsFetching(false);
                 setAuth({
                     userid: response.data.userid,
                     role: response.data.role,
                     firstName: response.data.firstName,
                     email: response.data.email,
                 });
+                localStorage.setItem('auth', JSON.stringify(response.data));
                 navigate('/');
             } else {
                 setErrorMessage('Error: Invalid email or password');
