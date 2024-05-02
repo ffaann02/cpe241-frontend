@@ -43,7 +43,7 @@ const Login: React.FC = () => {
             console.log(loginState);
             const response = await axiosPrivate.post('/api/login', loginState);
             if (response.status === 200) {
-                navigate('/home');
+                navigate('/');
             } else {
                 setErrorMessage('Error: Invalid email or password');
             }
