@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FlightData } from '../FlightResult';
 import { Collapse } from '@chakra-ui/react';
 import '../../component.css';
-export const FlightCard = ({ flight, index }: { flight: FlightData; index: number }) => {
+export const FlightCard = ({ flight }: { flight: FlightData }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [detailSection, setDetailSection] = useState<string>('flight');
 
@@ -16,7 +16,6 @@ export const FlightCard = ({ flight, index }: { flight: FlightData; index: numbe
         <div
             className="border transition-all duration-100 ease-linear border-neutral-300 bg-white 
             hover:drop-shadow-md hover:border-royal-blue-300 pt-3 rounded-[5px] cursor-pointer"
-            id={`${flight.airline}_${index}`}
             onClick={(event) => handleToggle('flight', event)}
         >
             <div className="grid grid-cols-6 px-4">

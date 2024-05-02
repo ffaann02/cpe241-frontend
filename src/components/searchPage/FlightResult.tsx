@@ -17,7 +17,9 @@ const FlightResult = () => {
     return (
         <div className="col-span-9 flex flex-col gap-y-3">
             {fakeFlightData.map((flight,index) => (
-                <FlightCard flight={flight} index={index}/>
+                <div key={index}>
+                    <FlightCard flight={flight}/>
+                </div>
             ))}
         </div>
     );

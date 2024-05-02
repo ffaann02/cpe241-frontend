@@ -45,7 +45,6 @@ const Login: React.FC = () => {
         try {
             const response = await axiosPrivate.post('/api/login', loginState);
             if (response.status === 200) {
-                console.log(response.data);
                 setAuth({
                     userid: response.data.userid,
                     role: response.data.role,
