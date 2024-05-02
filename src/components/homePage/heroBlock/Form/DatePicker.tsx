@@ -90,6 +90,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ selectedDate, setSelecte
                             </span>
                         </InputLeftElement>
                         <Input
+                            fontSize={'md'}
                             borderColor={isPickingDate ? 'purple.200' : 'gray.200'}
                             size="lg"
                             focusBorderColor="purple.200"

@@ -1,5 +1,5 @@
 import { createContext , useEffect, useState } from "react";
-import { axiosPrivate } from "../api/axios";
+// import { axiosPrivate } from "../api/axios";
 
 interface User {
     userid: string;
@@ -18,17 +18,22 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }) => {
     useEffect(()=>{
         console.log("test Auth");
-        const fetchUser = async () => {
+        const checkUser = async () => {
             try {
-                const response = await axiosPrivate.get('/api/user');
-                if (response.status === 200) {
-                    console.log("is already login")
+                // const response = await axiosPrivate.get('/api/user/status');
+                // if (response.status === 200) {
+                //     console.log("is already login")
+                // }
+                const localAuth = localStorage.getItem('auth');
+                if (localAuth) {
+                    const auth = JSON.parse(localAuth);
+                    setAuth(auth);
                 }
             } catch (error) {
                 console.error('An error occurred while trying to fetch user:', error);
             }
         }
-        fetchUser();
+        checkUser();
     },[])
 
     const [auth, setAuth] = useState<User>();
