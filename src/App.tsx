@@ -13,6 +13,7 @@ import Confirm from './pages/Confirm';
 import TripSection from './components/homePage/Trip/TripSection';
 import AdminRoute from './routes/AdminRoute';
 import PrivateRoute from './routes/PrivateRoute';
+import ProfilePage from './pages/Profile';
 import NotFound from './pages/NotFound';
 import RtlLayout from './dashboard/layouts/rtl';
 import AdminLayout from './dashboard/layouts/admin';
@@ -40,6 +41,8 @@ function App() {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
+                            <Route path="/search" element={<Search />} />
+                            <Route path="/profile" element={<ProfilePage />} />
                             <Route path="search" element={<Search />} />
                             <Route path="/confirm" element={<Confirm />} />
                             <Route path="search" element={<Search />} />
