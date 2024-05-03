@@ -30,8 +30,8 @@ function App() {
     return (
         <>
             <div className="w-full h-full font-IBM-Plex">
-                {!disableNavbar && <Navbar isLoggedIn={false} />}
-                <div className={`w-full h-full min-h-screen {!disableNavbar && "pt-[60px]"} flex`} id="app_container">
+                {!disableNavbar && <Navbar />}
+                <div className={`w-full h-full min-h-screen ${!disableNavbar && 'pt-[60px]'} flex`} id="app_container">
                     <div className="flex-1">
                         <Routes>
                             <Route path="/" element={<Home />} />
@@ -40,8 +40,8 @@ function App() {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
-                            <Route path="search" element={<Search/>}/>
-                            <Route path="/confirm" element={<Confirm/>}/>
+                            <Route path="search" element={<Search />} />
+                            <Route path="/confirm" element={<Confirm />} />
                             <Route path="search" element={<Search />} />
                             <Route path="auth/*" element={<AuthLayout />} />
                             <Route path="admin/*" element={<AdminLayout />} />
