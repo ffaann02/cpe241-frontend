@@ -1,6 +1,5 @@
 import {
     Input,
-    HStack,
     Checkbox,
     Button,
     FormControl,
@@ -14,16 +13,19 @@ import placeholder from '../assets/images/placeholder.svg';
 import { IoEyeOffOutline } from 'react-icons/io5';
 import { IoEyeOutline } from 'react-icons/io5';
 import { useState } from 'react';
+import logo from '../assets/logo.png';
 
 export default function LoginPage() {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(!show);
 
     return (
-        <HStack className="h-screen">
-            <div className="w-1/2">
-                <div className="flex flex-col gap-3 mx-36">
-                    {/* Add Agado Image */}
+        <div className="min-h-screen bg-gray-100 flex justify-center">
+            <div className="max-w-screen-xl m-0 sm:m-10 bg-white drop-shadow-lg sm:rounded-lg flex justify-center flex-1">
+                <div className="flex flex-col gap-3 mx-auto lg:w-1/2 p-6 sm:p-12 my-auto">
+                    <div className="w-32">
+                        <img src={logo} />
+                    </div>
                     <p className="text-xl font-bold">Login to your Account</p>
                     <p>ยินดีต้อนรับกลับมา! กรุณากรอกข้อมูลเพื่อเข้าสู่ระบบ</p>
                     <Divider className="" />
@@ -52,10 +54,12 @@ export default function LoginPage() {
                         <p className="text-royal-blue-500">สมัครสมาชิก</p>
                     </div>
                 </div>
+                <div className="flex-1 hidden lg:flex w-1/2">
+                    <div className="bg-royal-blue-500">
+                        <img className="object-contain object-center" src={placeholder} />
+                    </div>
+                </div>
             </div>
-            <div className="w-1/2 h-screen">
-                <img className="object-contain" src={placeholder} />
-            </div>
-        </HStack>
+        </div>
     );
 }
