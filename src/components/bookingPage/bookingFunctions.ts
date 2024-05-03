@@ -118,15 +118,15 @@ const handleSelectSeat = () => {
     console.log('Route to Seat Selection Path');
 };
 
-export { 
-    increment, 
-    decrement, 
-    handleChangePassenger, 
-    handleDateOfBirthChange, 
-    handleAddPassenger, 
-    handleDeletePassenger, 
-    handleChangeEmergencyContact, 
-    handleChangeCheckbox, 
-    handleSaveAndClose, 
-    handleSelectSeat 
+export {
+    increment,
+    decrement,
+    handleChangePassenger,
+    handleDateOfBirthChange,
+    handleAddPassenger,
+    handleDeletePassenger,
+    handleChangeEmergencyContact,
+    handleChangeCheckbox,
+    handleSaveAndClose,
+    handleSelectSeat
 };
