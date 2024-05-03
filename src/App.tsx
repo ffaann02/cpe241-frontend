@@ -11,6 +11,7 @@ import Footer from './components/layoutBar/Footer';
 import Search from './pages/Search';
 import AdminRoute from './routes/AdminRoute';
 import PrivateRoute from './routes/PrivateRoute';
+import ProfilePage from './pages/Profile';
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
                             <Route path="/search" element={<Search />} />
+                            <Route path="/profile" element={<ProfilePage />} />
                             <Route element={<PrivateRoute />}>
                                 {/* <Route path="/booking" element={<Booking />} />
                                 <Route path="/payment" element={<Payment />} /> */}
