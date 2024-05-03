@@ -23,6 +23,8 @@ import { useLocation } from 'react-router-dom';
 function App() {
     const location = useLocation();
     const disableNavbar =
+        location.pathname.includes('login') ||
+        location.pathname.includes('signup') ||
         location.pathname.includes('dashboard') ||
         location.pathname.includes('auth') ||
         location.pathname.includes('rtl') ||
