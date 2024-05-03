@@ -5,6 +5,7 @@ import FormExtra from './FormExtra';
 import Input from './LoginInput';
 import { useNavigate } from 'react-router-dom';
 import axiosPrivate from '../../api/axios';
+import useAuth from '../../hooks/useAuth';
 
 interface Field {
     id: string;
@@ -24,7 +25,12 @@ interface LoginState {
     [key: string]: string;
 }
 
-const Login: React.FC = () => {
+interface LoginProps {
+    isFetching: boolean;
+    setIsFetching: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Login: React.FC<LoginProps> = ({ setIsFetching }: LoginProps) => {
     const [loginState, setLoginState] = useState<LoginState>(fieldsState);
     const navigate = useNavigate();
     const [ErrorMessage, setErrorMessage] = useState<string>('');
@@ -37,13 +43,23 @@ const Login: React.FC = () => {
         authenticateUser();
     };
 
+    const { setAuth } = useAuth();
+
     // Handle Login API Integration here
     const authenticateUser = async (): Promise<void> => {
         try {
-            console.log(loginState);
+            setIsFetching(true);
             const response = await axiosPrivate.post('/api/login', loginState);
             if (response.status === 200) {
-                navigate('/home');
+                setIsFetching(false);
+                setAuth({
+                    userid: response.data.userid,
+                    role: response.data.role,
+                    firstName: response.data.firstName,
+                    email: response.data.email,
+                });
+                localStorage.setItem('auth', JSON.stringify(response.data));
+                navigate('/');
             } else {
                 setErrorMessage('Error: Invalid email or password');
             }
@@ -54,8 +70,8 @@ const Login: React.FC = () => {
     };
 
     return (
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="-space-y-px">
+        <form className="" onSubmit={handleSubmit}>
+            <div className="">
                 {fields.map((field) => (
                     <Input
                         key={field.id}
@@ -68,13 +84,12 @@ const Login: React.FC = () => {
                         type={field.type}
                         isRequired={field.isRequired}
                         placeholder={field.placeholder}
-
                     />
                 ))}
             </div>
             <FormExtra />
             <FormAction handleSubmit={handleSubmit} text="Login" />
-            <p className="text-red-500" >{ErrorMessage}</p>
+            <p className="text-red-500">{ErrorMessage}</p>
         </form>
     );
 };
