@@ -36,12 +36,14 @@ export default function SignupPage() {
         email: true,
         password: true,
         phoneNumber: true,
-        checked: false,
+        checked: true,
     });
     const [isFetching, setIsFetching] = useState(false);
     const [signupError, setSignupError] = useState('');
     const [signupSuccess, setSignupSuccess] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const [signup, setSignup] = useState<SignupPageProps>({
         firstName: '',
         lastName: '',
@@ -64,27 +66,46 @@ export default function SignupPage() {
         setIsChecked(e.target.checked);
     };
 
+    const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setConfirmPassword(e.target.value);
+    };
+
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>): void => {
         e.preventDefault();
-
-        if (!signup.email || !signup.password || !signup.firstName || !signup.lastName || !signup.phoneNumber || isChecked) {
+        if (
+            !signup.email ||
+            !signup.password ||
+            !signup.firstName ||
+            !signup.lastName ||
+            !signup.phoneNumber ||
+            !isChecked ||
+            !confirmPassword ||
+            signup.password !== confirmPassword
+        ) {
             setInvalidInput({
                 email: !!signup.email,
                 password: !!signup.password,
                 firstName: !!signup.firstName,
                 lastName: !!signup.lastName,
                 phoneNumber: !!signup.phoneNumber,
-                checked: !isChecked,
+                checked: !!isChecked,
             });
+            if (!confirmPassword) {
+                setConfirmPasswordError('กรุณากรอกรหัสผ่านยืนยัน');
+            } else if (signup.password !== confirmPassword) {
+                setConfirmPasswordError('รหัสผ่านและยืนยันรหัสผ่านไม่ตรงกัน');
+            } else {
+                setConfirmPasswordError('');
+            }
             return;
         }
-
-        // authenticateUser();
+        setInvalidInput((prevState) => ({ ...prevState, checked: true }));
+        registerUser();
     };
 
     const { setAuth } = useAuth();
 
-    const authenticateUser = async (): Promise<void> => {
+    const registerUser = async (): Promise<void> => {
         try {
             setIsFetching(true);
             const response = await axiosPrivate.post('/api/signup', signup);
@@ -103,11 +124,14 @@ export default function SignupPage() {
                     navigate('/');
                 }, 1500);
             } else {
-                console.log('Error: Invalid email or password');
+                console.log('Error');
             }
         } catch (error) {
-            if (error.response.status === 401) {
-                setSignupError('ขออภัยอีเมลหรือรหัสผ่านไม่ถูกต้อง โปรดลองอีกครั้ง');
+            if (error.response.status === 400) {
+                setSignupError('ข้อมูลไม่ถูกต้อง โปรดลองอีกครั้ง');
+                setIsFetching(false);
+            } else if (error.response.status === 409) {
+                setSignupError('ขออภัยมีอีเมลนี้อยู่ในระบบแล้ว โปรดลองอีกครั้ง');
                 setIsFetching(false);
             } else {
                 setSignupError('เกิดข้อผิดพลาดภายในเซิฟเวอร์ โปรดลองในภายหลัง');
@@ -198,6 +222,25 @@ export default function SignupPage() {
                             </InputGroup>
                             <FormErrorMessage>กรุณากรอกรหัสผ่าน</FormErrorMessage>
                         </FormControl>
+                        <FormControl isInvalid={!!confirmPasswordError}>
+                            <InputGroup>
+                                <Input
+                                    isRequired
+                                    type={show ? 'text' : 'password'}
+                                    name="confirm-password"
+                                    placeholder="ยืนยันรหัสผ่าน"
+                                    onChange={handleConfirmPasswordChange}
+                                />
+                                <InputRightElement className="">
+                                    <IconButton
+                                        aria-label="show-password"
+                                        onClick={handleShow}
+                                        icon={show ? <IoEyeOffOutline size="1.5rem" /> : <IoEyeOutline size="1.5rem" />}
+                                    />
+                                </InputRightElement>
+                            </InputGroup>
+                            <FormErrorMessage>{confirmPasswordError}</FormErrorMessage>
+                        </FormControl>
                         <FormControl isInvalid={!invalidInput.phoneNumber}>
                             <Input
                                 isRequired
@@ -209,7 +252,7 @@ export default function SignupPage() {
                             <FormErrorMessage>กรุณากรอกเบอร์โทรศัพท์</FormErrorMessage>
                         </FormControl>
                         <div className="flex flex-row gap-1">
-                            <FormControl isInvalid={invalidInput.checked}>
+                            <FormControl isInvalid={!invalidInput.checked}>
                                 <Checkbox colorScheme="purple" isChecked={isChecked} onChange={handleCheckboxChange}>
                                     ท่านยอมรับ<span className="text-royal-blue-500">ข้อกำหนดการใช้งาน</span> และ
                                     <span className="text-royal-blue-500">นโยบายความเป็นส่วนตัว</span>
@@ -229,7 +272,7 @@ export default function SignupPage() {
                         {signupError && <p className="text-red-500 text-center">{signupError}</p>}
                         <div className="flex flex-row justify-center gap-2">
                             <p>มีบัญชีอยู่แล้ว?</p>
-                            <Link to="/signup" className="text-royal-blue-500">
+                            <Link to="/login" className="text-royal-blue-500">
                                 เข้าสู่ระบบ
                             </Link>
                         </div>
