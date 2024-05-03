@@ -15,7 +15,7 @@ import { useState } from 'react';
 import logo from '../assets/logo.png';
 import loginForeground from '../assets/images/loginForeground.svg';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle } from 'react-icons/fa';
 import useAuth from '../hooks/useAuth';
 import axiosPrivate from '../api/axios';
 
@@ -80,14 +80,18 @@ export default function LoginPage() {
                 setLoginSuccess(true);
                 setTimeout(() => {
                     navigate('/');
-                }, 1000);
+                }, 1500);
             } else {
-                setLoginError('ขออภัยอีเมลหรือรหัสผ่านไม่ถูกต้อง โปรดลองอีกครั้ง');
                 console.log('Error: Invalid email or password');
             }
         } catch (error) {
-            setLoginError('เกิดข้อผิดพลาดภายในเซิฟเวอร์ โปรดลองในภายหลัง');
-            setIsFetching(false);
+            if (error.response.status === 401) {
+                setLoginError('ขออภัยอีเมลหรือรหัสผ่านไม่ถูกต้อง โปรดลองอีกครั้ง');
+                setIsFetching(false);
+            } else {
+                setLoginError('เกิดข้อผิดพลาดภายในเซิฟเวอร์ โปรดลองในภายหลัง');
+                setIsFetching(false);
+            }
         }
     };
 
@@ -156,6 +160,7 @@ export default function LoginPage() {
                             colorScheme={loginSuccess ? 'green' : 'gray'}
                             onClick={handleSubmit}
                             isLoading={isFetching}
+                            isDisabled={loginSuccess}
                         >
                             {loginSuccess ? <FaCheckCircle /> : 'เข้าสู่ระบบ'}
                         </Button>
