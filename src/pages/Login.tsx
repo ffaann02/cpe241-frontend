@@ -153,7 +153,7 @@ export default function LoginPage() {
                             <FormErrorMessage>กรุณากรอกรหัสผ่าน</FormErrorMessage>
                         </FormControl>
                         <div className="flex flex-row justify-between">
-                            <Checkbox colorScheme="purple">Remember me</Checkbox>
+                            <Checkbox colorScheme="purple">จดจําฉันไว้</Checkbox>
                             <p className="text-royal-blue-500">ลืมรหัสผ่าน?</p>
                         </div>
                         <Button

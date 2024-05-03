@@ -1,22 +1,241 @@
-import Header from '../components/login-registerPage/LoginHeader';
-import Signup from '../components/login-registerPage/Signup';
+import {
+    Input,
+    Checkbox,
+    Button,
+    FormControl,
+    FormErrorMessage,
+    Divider,
+    InputGroup,
+    InputRightElement,
+    IconButton,
+} from '@chakra-ui/react';
+import { IoEyeOffOutline } from 'react-icons/io5';
+import { IoEyeOutline } from 'react-icons/io5';
+import { useState } from 'react';
+import logo from '../assets/logo.png';
+import signupForeground from '../assets/images/signupForeground.svg';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaCheckCircle } from 'react-icons/fa';
+import useAuth from '../hooks/useAuth';
+import axiosPrivate from '../api/axios';
+
+interface SignupPageProps {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    phoneNumber: string;
+}
+
 export default function SignupPage() {
+    const [show, setShow] = useState(false);
+    const handleShow = () => setShow(!show);
+    const [invalidInput, setInvalidInput] = useState({
+        firstName: true,
+        lastName: true,
+        email: true,
+        password: true,
+        phoneNumber: true,
+        checked: false,
+    });
+    const [isFetching, setIsFetching] = useState(false);
+    const [signupError, setSignupError] = useState('');
+    const [signupSuccess, setSignupSuccess] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
+    const [signup, setSignup] = useState<SignupPageProps>({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        phoneNumber: '',
+    });
+
+    const navigate = useNavigate();
+
+    const handleSignupChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setSignup((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIsChecked(e.target.checked);
+    };
+
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>): void => {
+        e.preventDefault();
+
+        if (!signup.email || !signup.password || !signup.firstName || !signup.lastName || !signup.phoneNumber || isChecked) {
+            setInvalidInput({
+                email: !!signup.email,
+                password: !!signup.password,
+                firstName: !!signup.firstName,
+                lastName: !!signup.lastName,
+                phoneNumber: !!signup.phoneNumber,
+                checked: !isChecked,
+            });
+            return;
+        }
+
+        // authenticateUser();
+    };
+
+    const { setAuth } = useAuth();
+
+    const authenticateUser = async (): Promise<void> => {
+        try {
+            setIsFetching(true);
+            const response = await axiosPrivate.post('/api/signup', signup);
+            if (response.status === 200) {
+                setIsFetching(false);
+                setAuth({
+                    userid: response.data.userid,
+                    role: response.data.role,
+                    firstName: response.data.firstName,
+                    email: response.data.email,
+                });
+                localStorage.setItem('auth', JSON.stringify(response.data));
+                setSignupError('');
+                setSignupSuccess(true);
+                setTimeout(() => {
+                    navigate('/');
+                }, 1500);
+            } else {
+                console.log('Error: Invalid email or password');
+            }
+        } catch (error) {
+            if (error.response.status === 401) {
+                setSignupError('ขออภัยอีเมลหรือรหัสผ่านไม่ถูกต้อง โปรดลองอีกครั้ง');
+                setIsFetching(false);
+            } else {
+                setSignupError('เกิดข้อผิดพลาดภายในเซิฟเวอร์ โปรดลองในภายหลัง');
+                setIsFetching(false);
+            }
+        }
+    };
+
     return (
-        <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
-            <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="shadow-xl rounded-xl border-t border-t-slate-50">
-                    <div className="px-6 py-4">
-                        <Header
-                            heading="Signup to create an account"
-                            paragraph="Already have an account? "
-                            linkName="Login"
-                            linkUrl="/Login"
-                        />
-                        <Signup />
+        <div className="min-h-screen bg-gray-100 flex justify-center">
+            <div className="max-w-screen-xl m-0 sm:m-10 bg-white drop-shadow-lg sm:rounded-lg flex justify-center flex-1">
+                <div className="flex-1 hidden lg:flex w-1/2 ">
+                    <div className="bg-royal-blue-600">
+                        <img src={signupForeground} className="object-contain w-full h-full" />
+                    </div>
+                </div>
+                <div className="flex flex-col gap-3 mx-auto lg:w-1/2 p-6 sm:p-12">
+                    <Link to="/" className="">
+                        <div className="text-royal-blue-500 flex flex-row items-center gap-1">
+                            <svg
+                                width="8"
+                                height="12"
+                                viewBox="0 0 8 12"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M6.70994 2.11997L2.82994 5.99997L6.70994 9.87997C7.09994 10.27 7.09994 10.9 6.70994 11.29C6.31994 11.68 5.68994 11.68 5.29994 11.29L0.709941 6.69997C0.319941 6.30997 0.319941 5.67997 0.709941 5.28997L5.29994 0.699971C5.68994 0.309971 6.31994 0.309971 6.70994 0.699971C7.08994 1.08997 7.09994 1.72997 6.70994 2.11997V2.11997Z"
+                                    fill="#605dec"
+                                />
+                            </svg>
+                            กลับสู่หน้าหลัก
+                        </div>
+                    </Link>
+                    <div className="flex flex-col gap-3 my-auto">
+                        <div className="w-32 my-1">
+                            <img src={logo} />
+                        </div>
+                        <p className="text-xl font-bold">Signup</p>
+                        <p>ยินดีต้อนรับ กรุณากรอกข้อมูลเพื่อสมัครสมาชิก</p>
+                        <Divider className="" />
+                        <FormControl isInvalid={!invalidInput.firstName}>
+                            <Input
+                                isRequired
+                                type="text"
+                                name="firstName"
+                                placeholder="ชื่อจริง"
+                                onChange={handleSignupChange}
+                            />
+                            <FormErrorMessage>กรุณากรอกชื่อจริง</FormErrorMessage>
+                        </FormControl>
+                        <FormControl isInvalid={!invalidInput.lastName}>
+                            <Input
+                                isRequired
+                                type="text"
+                                name="lastName"
+                                placeholder="นามสกุล"
+                                onChange={handleSignupChange}
+                            />
+                            <FormErrorMessage>กรุณากรอกนามสกุล</FormErrorMessage>
+                        </FormControl>
+                        <FormControl isInvalid={!invalidInput.email}>
+                            <Input
+                                isRequired
+                                type="email"
+                                name="email"
+                                placeholder="อีเมล"
+                                onChange={handleSignupChange}
+                            />
+                            <FormErrorMessage>กรุณากรอกอีเมล</FormErrorMessage>
+                        </FormControl>
+                        <FormControl isInvalid={!invalidInput.password}>
+                            <InputGroup>
+                                <Input
+                                    isRequired
+                                    type={show ? 'text' : 'password'}
+                                    name="password"
+                                    placeholder="รหัสผ่าน"
+                                    onChange={handleSignupChange}
+                                />
+                                <InputRightElement className="">
+                                    <IconButton
+                                        aria-label="show-password"
+                                        onClick={handleShow}
+                                        icon={show ? <IoEyeOffOutline size="1.5rem" /> : <IoEyeOutline size="1.5rem" />}
+                                    />
+                                </InputRightElement>
+                            </InputGroup>
+                            <FormErrorMessage>กรุณากรอกรหัสผ่าน</FormErrorMessage>
+                        </FormControl>
+                        <FormControl isInvalid={!invalidInput.phoneNumber}>
+                            <Input
+                                isRequired
+                                type="text"
+                                name="phoneNumber"
+                                placeholder="เบอร์โทรศัพท์"
+                                onChange={handleSignupChange}
+                            />
+                            <FormErrorMessage>กรุณากรอกเบอร์โทรศัพท์</FormErrorMessage>
+                        </FormControl>
+                        <div className="flex flex-row gap-1">
+                            <FormControl isInvalid={invalidInput.checked}>
+                                <Checkbox colorScheme="purple" isChecked={isChecked} onChange={handleCheckboxChange}>
+                                    ท่านยอมรับ<span className="text-royal-blue-500">ข้อกำหนดการใช้งาน</span> และ
+                                    <span className="text-royal-blue-500">นโยบายความเป็นส่วนตัว</span>
+                                    ของอดาโก้
+                                </Checkbox>
+                                <FormErrorMessage>ต้องยอมรับข้อกําหนดการใช้งาน</FormErrorMessage>
+                            </FormControl>
+                        </div>
+                        <Button
+                            colorScheme={signupSuccess ? 'green' : 'gray'}
+                            onClick={handleSubmit}
+                            isLoading={isFetching}
+                            isDisabled={signupSuccess}
+                        >
+                            {signupSuccess ? <FaCheckCircle /> : 'เข้าสู่ระบบ'}
+                        </Button>
+                        {signupError && <p className="text-red-500 text-center">{signupError}</p>}
+                        <div className="flex flex-row justify-center gap-2">
+                            <p>มีบัญชีอยู่แล้ว?</p>
+                            <Link to="/signup" className="text-royal-blue-500">
+                                เข้าสู่ระบบ
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }
-
