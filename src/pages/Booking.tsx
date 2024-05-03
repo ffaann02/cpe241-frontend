@@ -57,6 +57,8 @@ export default function Booking() {
         phoneNumber: '',
     });
     const [usePassengerDataForEmergencyContact, setUsePassengerDataForEmergencyContact] = useState<boolean>(false);
+    const [passengerEmailError, setPassengerEmailError] = useState<string[]>([]);
+    const [passengerPhoneNumberError, setPassengerPhoneNumberError] = useState<string[]>([]);
     
     return (
         <div>
@@ -71,11 +73,15 @@ export default function Booking() {
                         <PassengerForm
                             index={index}
                             passenger={passenger}
-                            handleChangePassenger={handleChangePassenger(setPassengerData, passengerData)}
+                            handleChangePassenger={handleChangePassenger(setPassengerData, passengerData, )}
                             handleDateOfBirthChange={handleDateOfBirthChange(setPassengerData, passengerData)}
                             passengerData={passengerData}
                             handleDeletePassenger={handleDeletePassenger(setPassengerData, passengerData)}
                             handleAddPassenger={handleAddPassenger(setPassengerData, passengerData)}
+                            passengerEmailError={passengerEmailError}
+                            passengerPhoneNumberError={passengerPhoneNumberError}
+                            setPassengerEmailError={setPassengerEmailError}
+                            setPassengerPhoneNumberError={setPassengerPhoneNumberError}
                         />
                     ))}
                     <EmergencyContactForm
@@ -108,7 +114,7 @@ export default function Booking() {
                     <div className="mt-10 flex gap-x-4">
                         <button
                             className="btn px-4 border-[1px] border-royal-blue-500 text-royal-blue-500 rounded hover:bg-royal-blue-500 hover:text-white transition-all duration-200"
-                            onClick={handleSaveAndClose}
+                            onClick={handleSaveAndClose(passengerData)}
                             disabled={
                                 !passengerData.every(
                                     (passenger) =>

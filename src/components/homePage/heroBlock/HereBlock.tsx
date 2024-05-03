@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { IoMdAirplane, IoIosGift, IoIosSwap } from 'react-icons/io';
-import { LocationInputForm } from './Form/FlightInputForm';
+import { City, LocationInputForm } from './Form/FlightInputForm';
 import { PiAirplaneTakeoffFill, PiAirplaneLandingFill } from 'react-icons/pi';
 import { GoPeople } from 'react-icons/go';
 import { DatePicker } from './Form/DatePicker';
@@ -20,8 +20,8 @@ const flightTypeList = [
 ];
 
 export interface FlightData {
-    from: string;
-    to: string;
+    from: City;
+    to: City;
     departDate: string;
     returnDate: string;
 }
@@ -32,22 +32,32 @@ export interface PassengerAmountInfo {
     infant: number;
 }
 
-const HereBlock = () => {
+const HereBlock = ({recommendAirports}:{recommendAirports:City[]}) => {
     const navigate = useNavigate();
     const [serviceIndex, setServiceIndex] = useState<number>(1);
     const [flightType, setFlightType] = useState<number>(1);
     const [flightData, setFlightData] = useState<FlightData[]>([
         {
-            from: '',
-            to: '',
+            from: {
+                airportName: '',
+                city: '',
+                country: '',
+                iata: '',
+            },
+            to: {
+                airportName: '',
+                city: '',
+                country: '',
+                iata: '',
+            },
             departDate: '',
             returnDate: '',
         },
     ]);
     const [passengerAmount, setPassengerAmount] = useState<PassengerAmountInfo>({
         adult: 1,
-        child: 10,
-        infant: 2,
+        child: 0,
+        infant: 0,
     });
     const [selectedDate, setSelectedDate] = useState<{ startDate: string; endDate: string }>({
         startDate: new Date().toISOString().slice(0, 10),
@@ -59,7 +69,6 @@ const HereBlock = () => {
             index === 0 ? { ...flight, departDate: selectedDate.startDate } : flight
         ));
     },[selectedDate])
-
 
     const [focusedState, setFocusedState] = useState<string>('');
     const [isEnterPassengerPicker, setIsEnterPassengerPicker] = useState<boolean>(false);
@@ -96,7 +105,7 @@ const HereBlock = () => {
         let flightDataParams = flightData
             .map(
                 (data) =>
-                    `from=${encodeURIComponent(data.from)}&to=${encodeURIComponent(data.to)}&departDate=${encodeURIComponent(data.departDate)}&returnDate=${encodeURIComponent(data.returnDate)}`
+                    `from=${encodeURIComponent(data.from.iata)}&to=${encodeURIComponent(data.to.iata)}&departDate=${encodeURIComponent(data.departDate)}&returnDate=${encodeURIComponent(data.returnDate)}`
             )
             .join('&');
 
@@ -145,6 +154,7 @@ const HereBlock = () => {
                                             setFlightData={setFlightData}
                                             focusedState={focusedState}
                                             setFocusedState={setFocusedState}
+                                            recommendAirports={recommendAirports}
                                         />
                                         <LocationInputForm
                                             icon={<PiAirplaneLandingFill />}
@@ -156,6 +166,7 @@ const HereBlock = () => {
                                             setFlightData={setFlightData}
                                             focusedState={focusedState}
                                             setFocusedState={setFocusedState}
+                                            recommendAirports={recommendAirports}
                                         />
                                         <SwitchFlightButton
                                             handleSwapLocations={handleSwapLocations}
