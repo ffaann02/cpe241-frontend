@@ -70,11 +70,12 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
                     </InputLeftElement>
                     <Input
                         size="lg"
+                        fontSize={'md'}
                         focusBorderColor="purple.200"
                         type="text"
                         onClick={() => setIsEnterPassengerPicker(true)}
                         onFocus={() => setIsEnterPassengerPicker(true)}
-                        className="placeholder:text-sm text-slate-500 pt-0.5"
+                        className="placeholder:text-sm text-slate-500"
                         placeholder="จำนวนผู้ใหญ่, เด็ก, ทารก"
                         value={`ผู้ใหญ่ ${passengerAmount.adult}, เด็ก ${passengerAmount.child}, ทารก ${passengerAmount.infant}`}
                         readOnly
@@ -94,7 +95,7 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
                             <button onClick={() => handleDecrement('adult')}>
                                 <FiMinus className="my-auto" />
                             </button>
-                            <div className="text-xl font-semibold text-violet-500 w-6 text-center">
+                            <div className="text-xl font-semibold text-royal-blue-500 w-6 text-center">
                                 {passengerAmount.adult}
                             </div>
                             <button onClick={() => handleIncrement('adult')}>
@@ -110,7 +111,7 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
                             <button onClick={() => handleDecrement('child')}>
                                 <FiMinus className="my-auto" />
                             </button>
-                            <div className="text-xl font-semibold text-violet-500 w-6 text-center">
+                            <div className="text-xl font-semibold text-royal-blue-500 w-6 text-center">
                                 {passengerAmount.child}
                             </div>
                             <button onClick={() => handleIncrement('child')}>
@@ -126,7 +127,7 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
                             <button onClick={() => handleDecrement('infant')}>
                                 <FiMinus className="my-auto" />
                             </button>
-                            <div className="text-xl font-semibold text-violet-500 w-6 text-center">
+                            <div className="text-xl font-semibold text-royal-blue-500 w-6 text-center">
                                 {passengerAmount.infant}
                             </div>
                             <button onClick={() => handleIncrement('infant')}>
@@ -135,7 +136,7 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
                         </div>
                     </div>
                     <button
-                        className="bg-violet-400 hover:bg-violet-500 w-fit px-10 py-2 ml-auto text-white rounded-md"
+                        className="bg-royal-blue-400 hover:bg-royal-blue-500 w-fit px-10 py-2 ml-auto text-white rounded-md"
                         onClick={handleSubmit}
                     >
                         เสร็จสิ้น

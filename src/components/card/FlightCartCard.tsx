@@ -38,7 +38,7 @@ const FlightCartCard: React.FC<FlightCardProps> = ({ flight }) => {
                     <div className="flex">
                         <img src={airlineIcon} alt={airline} className="w-10 mr-2 mt-1 mb-auto" />
                         <div className="flex flex-col mt-0 mb-auto">
-                            <h2 className="text-lg text-royal-blue-800 font-semibold">{airline}</h2>
+                            <h2 className="text-lg text-royal-blue-600 font-semibold">{airline}</h2>
                             <p className="text-slate-400">{flightNumber}</p>
                         </div>
                     </div>
@@ -56,7 +56,7 @@ const FlightCartCard: React.FC<FlightCardProps> = ({ flight }) => {
                     <div className="flex">
                         <img src={airlineIcon} alt={airline} className="w-10 mr-2 mt-1 mb-auto" />
                         <div className="flex flex-col mt-0 mb-auto">
-                            <h2 className="text-lg text-royal-blue-800 font-semibold">{airline}</h2>
+                            <h2 className="text-lg text-royal-blue-600 font-semibold">{airline}</h2>
                             <p className="text-slate-400">{flightNumber}</p>
                         </div>
                     </div>

@@ -95,7 +95,7 @@ const PassengerForm: React.FC<PassengerProps> = ({
 
     return (
         <div className="grid grid-cols-6 gap-4 mb-4" key={index}>
-            <h2 className="text-[#6E7491] text-lg font-medium col-span-6">
+            <h2 className="text-slate-500 text-lg font-medium col-span-6">
                 ผู้โดยสาร {index + 1} {index > 0 ? null : '(ผู้ใหญ่)'}
             </h2>
             <FormControl isInvalid={(touched.firstName && passenger.firstName.trim() === '') && !passenger.firstName.trim()} onBlur={() => handleBlur('firstName')} className='col-span-2'>
@@ -176,8 +176,8 @@ const PassengerForm: React.FC<PassengerProps> = ({
             <div className="col-span-full">
                 {index === passengerData.length - 1 ? (
                     <button
-                        className="bg-white text-blue-500 border-blue-400 hover:bg-blue-500 px-3 py-2
-                    hover:text-white hover:border-blue-400 col-start-1 border rounded-md"
+                        className="bg-white text-royal-blue-500 border-royal-blue-400 hover:bg-royal-blue-500 px-3 py-2
+                    hover:text-white hover:border-royal-blue-400 col-start-1 border rounded-md"
                         onClick={handleAddPassenger}
                     >
                         เพิ่มผู้โดยสาร
