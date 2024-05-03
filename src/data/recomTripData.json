@@ -1,0 +1,48 @@
+[
+    {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/27/Tamatsukuri_onsen_yado02s3648.jpg",
+      "title": "Ryokan Japan",
+      "country": "Japan"
+    },
+    {
+        "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipMJbGQ5OuCFUniJZ04j0BYTlsmT8dScO7OyEuYU=s680-w680-h510",
+        "title": "Kinkaku-ji Temple",
+        "country": "Japan"
+      },
+      {
+        "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipMPljwQVCU4NjVQuCgIykprZvHEu9ZMn8wU6WXY=s680-w680-h510",
+        "title": "Osaka Castle",
+        "country": "Japan"
+      },
+      {
+        "imageUrl": "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcTMVhXDt4-w-ReCKrhsZYZepYbNlceAJu7dGiCdm4ZupD1osecQ8N3GrLiBo8p7MivU",
+        "title": "Waikiki Beach",
+        "country": "Hawaii"
+      },
+      {
+        "imageUrl": "https://cdn2.veltra.com/ptr/20230126000820_1008701975_10670_0.jpg",
+        "title": "Hanauma Bay",
+        "country": "Hawaii"
+      },
+      {
+        "imageUrl": "https://cdn.outsideonline.com/wp-content/uploads/2022/12/haleakala-crater-slidingsands_h.jpg",
+        "title": "Haleakalā National Park",
+        "country": "Hawaii"
+      },
+      {
+        "imageUrl": "https://img3.oastatic.com/img2/77047234/max/variant.jpg",
+        "title": "Wat Arun",
+        "country": "Thailand"
+      },
+      {
+        "imageUrl": "https://a.cdn-hotels.com/gdcs/production6/d726/05cbcbb9-903e-4cdb-85a2-219d442b33f5.jpg?impolicy=fcrop&w=800&h=533&q=medium",
+        "title": "Grand Palace, Bangkok",
+        "country": "Thailand"
+      },
+      {
+        "imageUrl": "https://www.elitehavens.com/magazine/wp-content/uploads/2020/07/phiphi-island-edit.jpg",
+        "title": "Phi Phi Islands",
+        "country": "Thailand"
+      }
+  ]
+  

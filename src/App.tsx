@@ -9,6 +9,7 @@ import Booking from './pages/Booking';
 import Payment from './pages/Payment';
 import Footer from './components/layoutBar/Footer';
 import Search from './pages/Search';
+import Confirm from './pages/Confirm';
 import TripSection from './components/homePage/Trip/TripSection';
 import AdminRoute from './routes/AdminRoute';
 import PrivateRoute from './routes/PrivateRoute';
@@ -39,6 +40,8 @@ function App() {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
+                            <Route path="search" element={<Search/>}/>
+                            <Route path="/confirm" element={<Confirm/>}/>
                             <Route path="search" element={<Search />} />
                             <Route path="auth/*" element={<AuthLayout />} />
                             <Route path="admin/*" element={<AdminLayout />} />

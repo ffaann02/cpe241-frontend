@@ -23,3 +23,36 @@
     background-color: #a78bfa;
     color: white;
 }
+
+.text-dot-animation span {
+    opacity: 0;
+    animation: dots 1.5s infinite;
+}
+
+.text-dot-animation span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.text-dot-animation span:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.text-dot-animation span:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes dots {
+    0% {
+        opacity: 0;
+    }
+    33% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+

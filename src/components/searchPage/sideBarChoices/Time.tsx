@@ -1,7 +1,5 @@
-import { useState } from 'react';
-import { Checkbox } from '@chakra-ui/react';
+import { Checkbox, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon} from '@chakra-ui/react';
 import { TimeRange } from '../FilterSideBar';
-import ToggleHeader from './ToggleHeader';
 
 interface TimeProps {
     title: string;
@@ -33,11 +31,15 @@ const quaters = [
 ];
 
 const Time: React.FC<TimeProps> = ({ title, selectedTime, setSelectedTime }: TimeProps) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
     return (
-        <div className="py-2 border-b border-b-slate-300">
-            <ToggleHeader title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
-            {isOpen && (
+        <AccordionItem className="py-2 border-b border-b-slate-300" borderTop={0}>
+            <AccordionButton paddingX={0} paddingY={1} _hover={{ bgColor: 'transparent' }}>
+                <Box as="span" flex="1" textAlign="left">
+                    <h2 className="text-slate-500 font-semibold">{title}</h2>
+                </Box>
+                <AccordionIcon textColor={'gray'} />
+            </AccordionButton>
+            <AccordionPanel paddingBottom={2} paddingX={1}>
                 <div className="mt-2">
                     <div className="flex flex-col gap-y-2">
                         {quaters.map((q) => (
@@ -63,8 +65,8 @@ const Time: React.FC<TimeProps> = ({ title, selectedTime, setSelectedTime }: Tim
                         ))}
                     </div>
                 </div>
-            )}
-        </div>
+            </AccordionPanel>
+        </AccordionItem>
     );
 };
 export default Time;
