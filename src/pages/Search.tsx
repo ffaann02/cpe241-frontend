@@ -4,6 +4,20 @@ import SearchHeader from '../components/searchPage/SearchHeader';
 import FilterSideBar from '../components/searchPage/FilterSideBar';
 import FlightResult from '../components/searchPage/FlightResult';
 import { LoadingAirplaneGif } from '../components/LoadingGroup';
+import fakeFlightData from "../data/fakeFlightData.json"
+
+export interface Flight{
+    airlineIcon: string;
+    airline: string;
+    flightNumber: string;
+    FlightTime: string;
+    departureTime: string;
+    arrivalTime: string;
+    duration: string;
+    from: string;
+    destination: string;
+    subtotal: number;
+}
 
 const Search = () => {
     const location = useLocation();
@@ -18,12 +32,14 @@ const Search = () => {
     }, [location.search]);
 
     const [isFetching, setIsFetching] = useState(false);
+    const [flightResult, setFlightResult] = useState<Flight[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
             setIsFetching(true);
             // Simulate fetching flight data
             await new Promise((resolve) => setTimeout(resolve, 2000));
+            setFlightResult(fakeFlightData as Flight[]);
             setIsFetching(false);
         };
         fetchData();
@@ -38,7 +54,7 @@ const Search = () => {
                 id="flight_result_container"
             >
                 <FilterSideBar />
-                <FlightResult isFetching={isFetching} setIsFetching={setIsFetching} />
+                <FlightResult isFetching={isFetching} flightResult={flightResult}/>
             </div>
         </div>
     );
