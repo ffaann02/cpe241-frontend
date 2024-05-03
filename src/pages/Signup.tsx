@@ -171,7 +171,7 @@ export default function SignupPage() {
                             <img src={logo} />
                         </div>
                         <p className="text-xl font-bold">Signup</p>
-                        <p>ยินดีต้อนรับ กรุณากรอกข้อมูลเพื่อสมัครสมาชิก</p>
+                        <p>ยินดีต้อนรับสู่ครอบครัวอดาโก้ กรุณากรอกข้อมูลเพื่อสมัครสมาชิก</p>
                         <Divider className="" />
                         <FormControl isInvalid={!invalidInput.firstName}>
                             <Input
@@ -267,7 +267,7 @@ export default function SignupPage() {
                             isLoading={isFetching}
                             isDisabled={signupSuccess}
                         >
-                            {signupSuccess ? <FaCheckCircle /> : 'เข้าสู่ระบบ'}
+                            {signupSuccess ? <FaCheckCircle /> : 'สมัครสมาชิก'}
                         </Button>
                         {signupError && <p className="text-red-500 text-center">{signupError}</p>}
                         <div className="flex flex-row justify-center gap-2">
