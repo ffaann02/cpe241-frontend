@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { FlightData } from '../FlightResult';
+import { Flight } from '../../../pages/Search';
 import { Collapse } from '@chakra-ui/react';
 import '../../component.css';
-export const FlightCard = ({ flight }: { flight: FlightData }) => {
+export const FlightCard = ({ flight }: { flight: Flight }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [detailSection, setDetailSection] = useState<string>('flight');
 
