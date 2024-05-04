@@ -57,6 +57,8 @@ export default function Booking() {
         phoneNumber: '',
     });
     const [usePassengerDataForEmergencyContact, setUsePassengerDataForEmergencyContact] = useState<boolean>(false);
+    const [passengerEmailError, setPassengerEmailError] = useState<string[]>([]);
+    const [passengerPhoneNumberError, setPassengerPhoneNumberError] = useState<string[]>([]);
     
     return (
         <div>
@@ -71,11 +73,15 @@ export default function Booking() {
                         <PassengerForm
                             index={index}
                             passenger={passenger}
-                            handleChangePassenger={handleChangePassenger(setPassengerData, passengerData)}
+                            handleChangePassenger={handleChangePassenger(setPassengerData, passengerData, )}
                             handleDateOfBirthChange={handleDateOfBirthChange(setPassengerData, passengerData)}
                             passengerData={passengerData}
                             handleDeletePassenger={handleDeletePassenger(setPassengerData, passengerData)}
                             handleAddPassenger={handleAddPassenger(setPassengerData, passengerData)}
+                            passengerEmailError={passengerEmailError}
+                            passengerPhoneNumberError={passengerPhoneNumberError}
+                            setPassengerEmailError={setPassengerEmailError}
+                            setPassengerPhoneNumberError={setPassengerPhoneNumberError}
                         />
                     ))}
                     <EmergencyContactForm
@@ -93,7 +99,7 @@ export default function Booking() {
                         description="Each passenger is allowed one free carry-on bag and one personal item. First checked bag for
                         each passenger is also free. Second bag check fees are waived for loyalty program members."
                         span={
-                            <span className="text-[#605CDE] hover:underline cursor-pointer"> the full bag policy.</span>
+                            <span className="text-royal-blue-500 hover:underline cursor-pointer"> the full bag policy.</span>
                         }
                         className="mt-6"
                     />
@@ -107,8 +113,8 @@ export default function Booking() {
                     ))}
                     <div className="mt-10 flex gap-x-4">
                         <button
-                            className="btn px-4 border-[1px] border-[#605DEC] text-[#605DEC] rounded hover:bg-[#605DEC] hover:text-white transition-all duration-200"
-                            onClick={handleSaveAndClose}
+                            className="btn px-4 border-[1px] border-royal-blue-500 text-royal-blue-500 rounded hover:bg-royal-blue-500 hover:text-white transition-all duration-200"
+                            onClick={handleSaveAndClose(passengerData)}
                             disabled={
                                 !passengerData.every(
                                     (passenger) =>
@@ -128,8 +134,8 @@ export default function Booking() {
                         </button>
                         <button
                             className="px-4 py-2 border-[1px] border-[#7C8DB0] text-[#7C8DB0] 
-                            bg-[#CBD4E6] rounded hover:bg-[#605DEC] hover:text-white 
-                            hover:border-[#605DEC] transition-all duration-200"
+                            bg-[#CBD4E6] rounded hover:bg-royal-blue-500 hover:text-white 
+                            hover:border-royal-blue-500 transition-all duration-200"
                             onClick={handleSelectSeat}
                         >
                             เลือกที่นั่ง

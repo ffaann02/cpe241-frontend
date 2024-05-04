@@ -8,7 +8,7 @@ const TripSection = () => {
         <>
             <div className="flex flex-col gap-7">
                 <div className="flex items-center justify-between">
-                    <div className="text-[#605DEC] text-2xl px-10 font-bold">จุดหมายที่น่าสนใจ</div>
+                    <div className="text-royal-blue-500 text-2xl px-10 font-bold">จุดหมายที่น่าสนใจ</div>
                 </div>
                 <div className="flex gap-16 flex-wrap items-start justify-center ">
                     <TripCard
