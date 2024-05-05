@@ -3,7 +3,7 @@ import TripSection from '../components/homePage/Trip/TripSection';
 import ReviewSection from '../components/homePage/Review/ReviewSection';
 import { useEffect, useState } from 'react';
 import { City } from '../components/homePage/heroBlock/Form/FlightInputForm';
-import { axiosPrivate } from '../api/axios';
+import axiosPrivate from '../api/axios';
 
 export default function Home() {
     const [recommendAirports, setRecommendAirports] = useState<City[]>([]);
