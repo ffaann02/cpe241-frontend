@@ -18,6 +18,7 @@ import NotFound from './pages/NotFound';
 import RtlLayout from './dashboard/layouts/rtl';
 import AdminLayout from './dashboard/layouts/admin';
 import AuthLayout from './dashboard/layouts/auth';
+import Mybooking from './pages/MyBooking';
 import { useLocation } from 'react-router-dom';
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
                             <Route element={<AdminRoute />}>
                                 <Route path="/dashboard" element={<h1>Admin Page</h1>} />
                             </Route>
+                            <Route path="mybooking" element={<Mybooking />} />
                         </Routes>
                     </div>
                 </div>
