@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FlightData } from '../HereBlock';
 import { Input, InputGroup, InputLeftElement, Skeleton, Stack } from '@chakra-ui/react';
-import { axiosPrivate } from '../../../../api/axios';
+import axiosPrivate from '../../../../api/axios';
 
 export interface City {
     airportName: string;
