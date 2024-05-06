@@ -1,8 +1,8 @@
 const TripSection = ({ image, title, name, price, des }) => {
     return (
         <>
-            <div className="w-[410.67px] h-[480px] flex flex-col justify-start gap-2 bg-white -z-10 drop-shadow-md rounded-lg">
-                <div className="w-full h-[397px]">
+            <div className="flex flex-col justify-start gap-2 bg-white -z-10 drop-shadow-md rounded-lg">
+                <div className="w-full">
                     <img src={image} alt="images" className="w-full h-full object-cover rounded-t" />
                 </div>
                 <div className="w-full h-full flex flex-col justify-center items-start gap-1 px-4">

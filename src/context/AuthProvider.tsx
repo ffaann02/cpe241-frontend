@@ -1,5 +1,5 @@
 import { createContext , useEffect, useState } from "react";
-// import { axiosPrivate } from "../api/axios";
+// import axiosPrivate from "../api/axios";
 
 interface User {
     userid: string;

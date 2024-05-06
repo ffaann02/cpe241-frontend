@@ -3,7 +3,7 @@ import { signupFields } from '../../constants/formfield';
 import FormAction from './FormAction';
 import Input from './LoginInput';
 import { useNavigate } from 'react-router-dom';
-import { axiosPrivate } from '../../api/axios';
+import axiosPrivate from '../../api/axios';
 
 const fields = signupFields;
 
