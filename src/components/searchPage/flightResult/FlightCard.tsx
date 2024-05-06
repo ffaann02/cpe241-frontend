@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { Flight } from '../../../pages/Search';
 import { Collapse } from '@chakra-ui/react';
 import '../../component.css';
-export const FlightCard = ({ flight }: { flight: Flight }) => {
+import FlightDetail from './Flightdetail';
+import Pricedetail from './Pricedetail';
+import { FlightData } from '../../card/FlightCartCard';
+export const FlightCard = ({ flight, index }: { flight: FlightData; index: number }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [detailSection, setDetailSection] = useState<string>('flight');
-
     const handleToggle = (detail: string, event: React.MouseEvent) => {
         event.stopPropagation(); // This will stop the event from bubbling up
         setDetailSection(detail);
@@ -73,11 +75,11 @@ export const FlightCard = ({ flight }: { flight: Flight }) => {
                 <div className="bg-royal-blue-50 border-t border-t-royal-blue-200 py-2 px-4 rounded-b-md">
                     {detailSection === 'flight' ? (
                         <div>
-                            <p>Flight details here</p>
+                            <FlightDetail flight={flight} />
                         </div>
                     ) : (
                         <div>
-                            <p>Price details here</p>
+                            <Pricedetail flight={flight}/>
                         </div>
                     )}
                 </div>
