@@ -8,6 +8,7 @@ declare global {
 	interface RoutesType {
 		name: string;
 		layout: string;
+		base: string;
 		component:  JSX.Element;
 		icon: JSX.Element | string;
 		path: string;
