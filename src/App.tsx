@@ -19,6 +19,7 @@ import RtlLayout from './dashboard/layouts/rtl';
 import AdminLayout from './dashboard/layouts/admin';
 import AuthLayout from './dashboard/layouts/auth';
 import { useLocation } from 'react-router-dom';
+import SelectSeat from './pages/SelectSeat';
 
 function App() {
     const location = useLocation();
@@ -41,11 +42,10 @@ function App() {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
+                            <Route path="/confirm" element={<Confirm />} />
+                            <Route path="/select-seat" element={<SelectSeat/>} />
                             <Route path="/search" element={<Search />} />
                             <Route path="/profile" element={<ProfilePage />} />
-                            <Route path="search" element={<Search />} />
-                            <Route path="/confirm" element={<Confirm />} />
-                            <Route path="search" element={<Search />} />
                             <Route path="auth/*" element={<AuthLayout />} />
                             <Route path="admin/*" element={<AdminLayout />} />
                             <Route path="rtl/*" element={<RtlLayout />} />
