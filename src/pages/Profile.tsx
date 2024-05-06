@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/login-registerPage/LoginHeader';
 import Signup from '../components/login-registerPage/Signup';
 
@@ -6,12 +6,26 @@ import { Editable, EditableInput, EditableTextarea, EditablePreview } from '@cha
 import { FormControl, FormLabel, FormErrorMessage, FormHelperText } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react';
 import { Button, ButtonGroup } from '@chakra-ui/react'
-
+import axiosPrivate from '../api/axios';
 
 
 
 
 export default function ProfilePage() {
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const response = await axiosPrivate.get('/api/profile');
+                console.log(response)
+            } catch (error) {
+                console.error('An error occurred while fetching the profile:', error);
+                // handle the error here
+            }
+        };
+    
+        fetchProfile();
+    }, []);
+
     return (
         <div className="w-full flex">
             <section className="grid grid-cols-7 gap-x-4 pt-8 max-w-5xl mx-auto w-full">

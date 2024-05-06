@@ -22,6 +22,7 @@ import { FaRegUserCircle, FaPlane, FaRegQuestionCircle } from 'react-icons/fa';
 import { PiSignOut } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import axiosPrivate from '../../api/axios';
 
 export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
@@ -119,6 +120,7 @@ export default function WithSubnavigation() {
                                 marginY={1}
                                 onClick={() => {
                                     localStorage.removeItem('auth');
+                                    axiosPrivate.post('/api/logout');
                                     setAuth(null);
                                     window.location.reload();
                                 }}

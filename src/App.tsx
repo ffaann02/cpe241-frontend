@@ -24,6 +24,8 @@ import SelectSeat from './pages/SelectSeat';
 function App() {
     const location = useLocation();
     const disableNavbar =
+        location.pathname.includes('login') ||
+        location.pathname.includes('signup') ||
         location.pathname.includes('dashboard') ||
         location.pathname.includes('auth') ||
         location.pathname.includes('rtl') ||
