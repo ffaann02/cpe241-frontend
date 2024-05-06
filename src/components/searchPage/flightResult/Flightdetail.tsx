@@ -1,11 +1,10 @@
-import { FlightData } from '../FlightResult';
 import { Step, StepIndicator, StepSeparator, Stepper, useSteps, } from '@chakra-ui/react'
 import { InfoOutlineIcon } from '@chakra-ui/icons'
+import { FlightData } from '../../card/FlightCartCard';
 const steps = [
     { title: 'First', description: 'Contact Info' },
     { title: 'Second', description: 'Date & Time' },
 ]
-
 export const Flightdetail= ({ flight}: { flight: FlightData;}) => {
     const { activeStep } = useSteps({
         index: 1,
@@ -28,7 +27,7 @@ export const Flightdetail= ({ flight}: { flight: FlightData;}) => {
                     ))}
                 </Stepper>
                 <div className="grid grid-rows-10 col-span-4">
-                    <p>{flight.from}</p>
+                    <p>{flight.destination}</p>
                     <p className='text-gray-500'>city</p>
                     <p className='row-start-4 row-span-2'>
                         {flight.airline}

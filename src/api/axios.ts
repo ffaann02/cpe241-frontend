@@ -1,13 +1,26 @@
 import axios from 'axios';
+axios.defaults.withCredentials = true;
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL ? import.meta.env.VITE_BASE_URL : 'http://localhost:3000';
 
-export default axios.create({
-    baseURL: BASE_URL,
-});
-
-export const axiosPrivate = axios.create({
+const axiosPrivate = axios.create({
     withCredentials: true,
     baseURL: BASE_URL,
     headers: { 'Content-Type': 'application/json' },
 });
+
+axiosPrivate.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+        const prevRequest = error?.config;
+        if (error?.response?.status === 401 && !prevRequest?._retry) {
+            console.log('Refreshing token');
+            prevRequest._retry = true;
+            await axiosPrivate.post('/api/refresh');
+            return axiosPrivate(prevRequest);
+        }
+        return Promise.reject(error);
+    }
+);
+
+export default axiosPrivate;

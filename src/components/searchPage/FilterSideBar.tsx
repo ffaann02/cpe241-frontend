@@ -3,6 +3,7 @@ import Price from './sideBarChoices/Price';
 import Airline from './sideBarChoices/Airline';
 import Time from './sideBarChoices/Time';
 import Service from './sideBarChoices/Service';
+import { Accordion } from '@chakra-ui/react';
 
 export type PriceRange = {
     min: number;
@@ -37,7 +38,7 @@ const FilterSideBar = () => {
     const [selectedServices, setSelectedServices] = useState<ServiceType>({
         extraStorage: false,
         food: false,
-        plug: false
+        plug: false,
     });
 
     return (
@@ -46,12 +47,16 @@ const FilterSideBar = () => {
                 <h1 className="text-slate-600 font-bold text-lg">คัดกรองการค้นหา</h1>
                 <button className="text-red-600 text-sm">ล้างข้อมูล</button>
             </div>
-            <div className="flex flex-col gap-y-2 mt-1" id="choice_container">
+            <Accordion className="flex flex-col gap-y-2 mt-1" id="choice_container" defaultIndex={[0]} allowMultiple>
                 <Price title="ราคา" price={price} setPrice={setPrice} />
                 <Airline title="สายการบิน" selectedAirline={selectedAirline} setSelectedAirline={setSelectedAirline} />
                 <Time title="เวลาออกเดินทาง" selectedTime={selectedTime} setSelectedTime={setSelectedTime} />
-                <Service title="บริการเพิ่มเติม" selectedServices={selectedServices} setSelectedServices={setSelectedServices}/>
-            </div>
+                <Service
+                    title="บริการเพิ่มเติม"
+                    selectedServices={selectedServices}
+                    setSelectedServices={setSelectedServices}
+                />
+            </Accordion>
         </div>
     );
 };

@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import fakeAirportData from '../../../../data/fakeAirportData.json';
 import { FlightData } from '../HereBlock';
-import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { Input, InputGroup, InputLeftElement, Skeleton, Stack } from '@chakra-ui/react';
+import axiosPrivate from '../../../../api/axios';
 
 export interface City {
-    name: string;
-    name_th: string;
-    code: string;
+    airportName: string;
+    city: string;
     country: string;
-    airport: string;
+    iata: string;
 }
 
 interface LocationInputFormProps {
@@ -21,6 +20,7 @@ interface LocationInputFormProps {
     setFlightData: React.Dispatch<React.SetStateAction<FlightData[]>>;
     focusedState: string;
     setFocusedState: React.Dispatch<React.SetStateAction<string>>;
+    recommendAirports: City[];
 }
 
 export const LocationInputForm: React.FC<LocationInputFormProps> = ({
@@ -32,11 +32,14 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
     setFlightData,
     focusedState,
     setFocusedState,
+    recommendAirports,
 }: LocationInputFormProps) => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [selectedCity, setSelectedCity] = useState<City | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const [airportResult, setAirportResult] = useState<City[]>([]);
+    const [isFetching, setIsFetching] = useState<boolean>(false);
 
     const handleFocus = () => {
         setFocusedState(state);
@@ -48,20 +51,57 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
         }
     }, [focusedState, state]);
 
+    useEffect(() => {
+        setAirportResult(recommendAirports);
+    }, [recommendAirports]);
+
+    useEffect(() => {
+        const getAirports = async (): Promise<void> => {
+            setIsFetching(true);
+            try {
+                if (searchTerm.length > 0) {
+                    const response = await axiosPrivate.get(`/api/search/airports?query=${searchTerm}`);
+                    if (response.status === 200) {
+                        setAirportResult(response.data);
+                        setIsFetching(false);
+                    } else {
+                        alert('Failed to fetch airport data');
+                    }
+                }
+            } catch (error) {
+                console.error('An error occurred while trying to fetch airport data:', error);
+            }
+        };
+        if (searchTerm.length === 0) {
+            setAirportResult(recommendAirports);
+            setIsFetching(false);
+            return;
+        }
+        getAirports();
+    }, [searchTerm]);
+
     // Allow one backspace to erase selected city
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (
                 selectedCity &&
                 event.key === 'Backspace' &&
-                searchTerm === `${selectedCity.name} (${selectedCity.code})`
+                searchTerm === `${selectedCity.city} (${selectedCity.iata})`
             ) {
                 setSearchTerm('');
                 setSelectedCity(null);
                 setFlightData((prevFlightData) => {
                     return prevFlightData.map((flightData, i) => {
                         if (i === index) {
-                            return { ...flightData, [state]: '' };
+                            return {
+                                ...flightData,
+                                [state]: {
+                                    airportName: '',
+                                    city: '',
+                                    country: '',
+                                    iata: '',
+                                },
+                            };
                         }
                         return flightData;
                     });
@@ -100,18 +140,15 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
     };
 
     useEffect(() => {
-        const cityCode = flightData[index][state];
-        if (cityCode === '') {
+        const city = flightData[index][state];
+        if (city.iata === '') {
             setSelectedCity(null);
             setSearchTerm('');
             return;
         }
-        if (cityCode) {
-            const city = fakeAirportData.find((city) => city.code === cityCode);
-            if (city) {
-                setSelectedCity(city);
-                setSearchTerm(`${city.name} (${city.code})`);
-            }
+        if (city.iata !== '') {
+            setSelectedCity(city);
+            setSearchTerm(`${city.city} (${city.iata})`);
         }
     }, [selectedCity, flightData[index][state]]);
 
@@ -120,7 +157,7 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
         setFlightData((prevFlightData) => {
             return prevFlightData.map((flightData, i) => {
                 if (i === index) {
-                    return { ...flightData, [state]: city.code };
+                    return { ...flightData, [state]: city };
                 }
                 return flightData;
             });
@@ -131,11 +168,10 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
     const filterCities = (city: City) => {
         const lowercaseSearchTerm = searchTerm.toLowerCase();
         return (
-            city.name.toLowerCase().includes(lowercaseSearchTerm) ||
-            city.name_th.toLowerCase().includes(lowercaseSearchTerm) ||
-            city.code.toLowerCase().includes(lowercaseSearchTerm) ||
+            city.airportName.toLowerCase().includes(lowercaseSearchTerm) ||
+            city.city.toLowerCase().includes(lowercaseSearchTerm) ||
             city.country.toLowerCase().includes(lowercaseSearchTerm) ||
-            city.airport.toLowerCase().includes(lowercaseSearchTerm)
+            city.iata.toLowerCase().includes(lowercaseSearchTerm)
         );
     };
 
@@ -159,36 +195,46 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
                         onChange={handleChange}
                     />
                 </InputGroup>
-                {focusedState === state && !selectedCity && (
+                {!selectedCity && focusedState === state && (
                     <div
                         ref={dropdownRef}
                         className="absolute w-full bg-white overflow-y-auto max-h-80 left-0 top-14 border rounded-lg z-10"
                     >
-                        <p className="text-sm sticky top-0 bg-slate-100 pl-4 py-2 shadow-sm shadow-slate-200">
-                            ค้นหาเมืองหรือสนามบินที่คุณต้องการ
-                        </p>
-                        <ul className="">
-                            {fakeAirportData.filter(filterCities).map((city, index) => (
-                                <li
-                                    key={index}
-                                    onClick={() => handleSelectCity(city)}
-                                    className={`hover:bg-violet-50 px-4 py-2 rounded-none cursor-pointer 
-                                    ${fakeAirportData.filter(filterCities).length - 1 !== index ? 'border-b' : 'border-b-0'}`}
-                                >
-                                    <div className="text-sm">
-                                        <p className="font-semibold text-slate-600">
-                                            {city.name}, {city.country}
-                                        </p>
-                                        <p className="text-slate-500">
-                                            {city.code} - {city.airport}
-                                        </p>
-                                    </div>
-                                </li>
-                            ))}
-                            {fakeAirportData.filter(filterCities).length === 0 && (
-                                <li className="px-4 py-2 text-sm text-slate-600">ไม่พบผลลัพธ์</li>
-                            )}
-                        </ul>
+                        {!isFetching ? (
+                            <div>
+                                <p className="text-sm sticky top-0 bg-slate-100 pl-4 py-2 shadow-sm shadow-slate-200">
+                                    ค้นหาเมืองหรือสนามบินที่คุณต้องการ
+                                </p>
+                                <ul className="">
+                                    {airportResult.filter(filterCities).map((city, index) => (
+                                        <li
+                                            key={index}
+                                            onClick={() => handleSelectCity(city)}
+                                            className={`hover:bg-violet-50 px-4 py-2 rounded-none cursor-pointer 
+                                    ${airportResult.filter(filterCities).length - 1 !== index ? 'border-b' : 'border-b-0'}`}
+                                        >
+                                            <div className="text-sm">
+                                                <p className="font-semibold text-slate-600">
+                                                    {city.city}, {city.country}
+                                                </p>
+                                                <p className="text-slate-500">
+                                                    {city.iata} - {city.airportName}
+                                                </p>
+                                            </div>
+                                        </li>
+                                    ))}
+                                    {airportResult.filter(filterCities).length === 0 && (
+                                        <li className="px-4 py-2 text-sm text-slate-600">ไม่พบผลลัพธ์</li>
+                                    )}
+                                </ul>
+                            </div>
+                        ) : (
+                            <Stack className='p-2'>
+                                <Skeleton height="10px" />
+                                <Skeleton height="10px" />
+                                <Skeleton height="10px" />
+                            </Stack>
+                        )}
                     </div>
                 )}
             </label>

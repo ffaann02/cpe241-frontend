@@ -12,13 +12,21 @@ import {
     PopoverContent,
     useColorModeValue,
     useDisclosure,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { FaRegUserCircle } from 'react-icons/fa';
+import { FaRegUserCircle, FaPlane, FaRegQuestionCircle } from 'react-icons/fa';
+import { PiSignOut } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import axiosPrivate from '../../api/axios';
 
-export default function WithSubnavigation({ isLoggedIn }: { isLoggedIn: boolean }) {
+export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
+    const { auth, setAuth } = useAuth();
     return (
         <Box>
             <Flex className="top-0 bg-white drop-shadow-md z-50 w-full fixed h-[60px] py-2 px-6 border-b border-solid border-gray-200 items-center">
@@ -40,7 +48,7 @@ export default function WithSubnavigation({ isLoggedIn }: { isLoggedIn: boolean 
                 <Flex className="my-auto mr-6" display={{ base: 'none', md: 'flex' }}>
                     <DesktopNav />
                 </Flex>
-                {!isLoggedIn ? (
+                {!auth ? (
                     <Stack flex={{ base: 1, md: 0 }} justify={'flex-end'} direction={'row'} spacing={6}>
                         <Link to="/login" className="my-auto">
                             <Button fontSize={'sm'} fontWeight={500} variant={'link'} color={'slateblue'}>
@@ -65,19 +73,63 @@ export default function WithSubnavigation({ isLoggedIn }: { isLoggedIn: boolean 
                         </Link>
                     </Stack>
                 ) : (
-                    <Flex className="flex gap-x-4 px-3 py-2 border border-royal-blue-300 rounded-md">
-                        <FaRegUserCircle className="text-2xl" />
-                        <Button
-                            as={'a'}
-                            fontSize={'sm'}
-                            fontWeight={500}
-                            variant={'link'}
-                            href={'#'}
-                            color={'slateblue'}
+                    <Menu>
+                        <MenuButton
+                            px={3}
+                            py={2}
+                            bg="transparent"
+                            transition="all 0.2s"
+                            borderRadius="md"
+                            borderWidth="1px"
+                            borderColor={'transparent'}
+                            _hover={{ bg: 'gray.100', borderColor: 'gray.200' }}
+                            _expanded={{
+                                bg: 'gray.100',
+                                boxShadow: 'outline',
+                            }}
+                            _focus={{ bg: 'gray.100' }}
+                            as={Button}
                         >
-                            ออกจากระบบ
-                        </Button>
-                    </Flex>
+                            <div className="flex text-sm font-normal">
+                                <FaRegUserCircle className="text-xl mb-0.5 text-royal-blue-600 mr-2" />
+                                <p className="my-auto mr-1">สวัสดี,</p>
+                                <p className="my-auto">{auth.firstName}</p>
+                            </div>
+                        </MenuButton>
+                        <MenuList className="" padding={2} marginTop={2} borderY={10} fontSize={'sm'}>
+                            <Link to="/profile/flights">
+                                <MenuItem borderRadius={4} marginY={1}>
+                                    <FaPlane className="mr-3" />
+                                    การเดินทางของฉัน
+                                </MenuItem>
+                            </Link>
+                            <Link to="/profile/edit">
+                                <MenuItem borderRadius={4} marginY={1}>
+                                    <FaRegUserCircle className="mr-3" />
+                                    ตั้งค่าบัญชี
+                                </MenuItem>
+                            </Link>
+                            <Link to="/help">
+                                <MenuItem borderRadius={4} marginY={1}>
+                                    <FaRegQuestionCircle className="mr-3" />
+                                    ความช่วยเหลือ
+                                </MenuItem>
+                            </Link>
+                            <MenuItem
+                                borderRadius={4}
+                                marginY={1}
+                                onClick={() => {
+                                    localStorage.removeItem('auth');
+                                    axiosPrivate.post('/api/logout');
+                                    setAuth(null);
+                                    window.location.reload();
+                                }}
+                            >
+                                <PiSignOut className="mr-3 text-red-600" />
+                                <button>ออกจากระบบ</button>
+                            </MenuItem>
+                        </MenuList>
+                    </Menu>
                 )}
             </Flex>
 

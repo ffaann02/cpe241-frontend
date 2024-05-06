@@ -3,7 +3,7 @@ import useAuth from '../hooks/useAuth';
 
 const AdminRoute = () => {
     const { auth } = useAuth();
-    if (!auth || auth?.role !== 'employee') return <Navigate to="/" />;
+    if (!auth || auth?.role === 0) return <Navigate to="/" />;
     return <Outlet />;
 };
 

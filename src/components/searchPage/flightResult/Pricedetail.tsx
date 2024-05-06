@@ -1,8 +1,8 @@
-import { FlightData } from '../FlightResult';
 import { useState } from 'react';
 import { WarningTwoIcon, CalendarIcon, InfoOutlineIcon } from '@chakra-ui/icons'
 import { Button } from '@chakra-ui/react';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, } from '@chakra-ui/react'
+import { FlightData } from '../../card/FlightCartCard';
 export const Pricedetail = ({ flight }: { flight: FlightData; }) => {
     const [showAlert, setShowAlert] = useState(false);
     console.log(showAlert);
@@ -23,7 +23,7 @@ export const Pricedetail = ({ flight }: { flight: FlightData; }) => {
                             <p className="text-slate-600 text-sm">{flight.airline}</p>
                         </div>
                         <div className="flex gap-x text-gray-500 text-xs">
-                            <p>{flight.from}→</p>
+                            <p>{flight.destination}→</p>
                             <p>{flight.destination}</p>
                         </div>
                         <div className='divide-y divide-royal-blue-300 mt-5'>
@@ -86,7 +86,7 @@ export const Pricedetail = ({ flight }: { flight: FlightData; }) => {
                                     <p className="text-slate-600 text-sm">{flight.airline}</p>
                                 </div>
                                 <div className="flex gap-x text-gray-500">
-                                    <p>{flight.from}→</p>
+                                    <p>{flight.destination}→</p>
                                     <p>{flight.destination}</p>
                                 </div>
                                 <p>ชั้นประหยัด</p>
@@ -115,7 +115,7 @@ export const Pricedetail = ({ flight }: { flight: FlightData; }) => {
                                 <p className="text-slate-600 text-sm">{flight.airline}</p>
                             </div>
                             <div className="flex gap-2 text-gray-500">
-                                <p>{flight.from} →</p>
+                                <p>{flight.destination} →</p>
                                 <p>{flight.destination}</p>
                                 <p>:ชั้นประหยัด</p>
                             </div>

@@ -4,13 +4,13 @@ import {
     RangeSliderFilledTrack,
     RangeSliderThumb,
     Box,
-    Collapse,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
 } from '@chakra-ui/react';
 import { FaCircle } from 'react-icons/fa';
 import { PriceRange } from '../FilterSideBar';
-import { useState } from 'react';
-import ToggleHeader from './ToggleHeader';
-
 interface PriceProps {
     title: string;
     price: PriceRange;
@@ -26,12 +26,16 @@ const Price: React.FC<PriceProps> = ({ title, price, setPrice }: PriceProps) => 
         console.log(values);
         setPrice((prevPrice) => ({ ...prevPrice, min: values[0], max: values[1] }));
     };
-    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (
-        <div className="py-2 border-b border-b-slate-300">
-            <ToggleHeader title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
-            <Collapse in={isOpen} animateOpacity={false}>
+        <AccordionItem className="py-2 border-b border-b-slate-300" borderTop={0}>
+            <AccordionButton paddingX={0} paddingY={1} _hover={{ bgColor: 'transparent' }}>
+                <Box as="span" flex="1" textAlign="left">
+                    <h2 className="text-slate-500 font-semibold">{title}</h2>
+                </Box>
+                <AccordionIcon textColor={"gray"}/>
+            </AccordionButton>
+            <AccordionPanel paddingBottom={2} paddingX={1}>
                 <div>
                     <RangeSlider
                         aria-label={['min', 'max']}
@@ -62,8 +66,8 @@ const Price: React.FC<PriceProps> = ({ title, price, setPrice }: PriceProps) => 
                         </div>
                     </div>
                 </div>
-            </Collapse>
-        </div>
+            </AccordionPanel>
+        </AccordionItem>
     );
 };
 export default Price;

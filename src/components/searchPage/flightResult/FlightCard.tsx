@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { FlightData } from '../FlightResult';
+import { Flight } from '../../../pages/Search';
 import { Collapse } from '@chakra-ui/react';
 import '../../component.css';
 import FlightDetail from './Flightdetail';
 import Pricedetail from './Pricedetail';
+import { FlightData } from '../../card/FlightCartCard';
 export const FlightCard = ({ flight, index }: { flight: FlightData; index: number }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [detailSection, setDetailSection] = useState<string>('flight');
@@ -29,7 +30,7 @@ export const FlightCard = ({ flight, index }: { flight: FlightData; index: numbe
                         <div className="flex">
                             <div>
                                 <p className="text-slate-500 font-semibold text-lg">{flight.departureTime}</p>
-                                <p className="text-slate-600 text-xs">{flight.from}</p>
+                                <p className="text-slate-600 text-xs">{flight.destination}</p>
                             </div>
                             <div className="mx-auto"></div>
                             <div>

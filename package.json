@@ -11,20 +11,32 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@chakra-ui/hooks": "^2.2.1",
     "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/modal": "^2.3.1",
+    "@chakra-ui/popover": "^2.2.1",
+    "@chakra-ui/portal": "^2.1.0",
     "@chakra-ui/react": "^2.8.2",
+    "@chakra-ui/system": "^2.6.2",
+    "@chakra-ui/tooltip": "^2.3.1",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@tanstack/react-table": "^8.16.0",
+    "apexcharts": "^3.49.0",
     "axios": "^1.6.8",
     "framer-motion": "^11.1.7",
     "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
+    "react-calendar": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.1.0",
     "react-router-dom": "^6.23.0",
     "react-slick": "^0.30.2",
+    "react-table": "^7.8.0",
     "react-tailwindcss-datepicker": "^1.6.0",
     "slick-carousel": "^1.8.1",
-    "tailwind-datepicker-react": "^1.4.3"
+    "tailwind-datepicker-react": "^1.4.3",
+    "tailwindcss-rtl": "^0.9.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

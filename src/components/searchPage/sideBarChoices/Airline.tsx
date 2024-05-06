@@ -1,7 +1,12 @@
-import { useState } from 'react';
 import fakeAirlineData from '../../../data/fakeFlightData.json';
-import { Checkbox, Collapse } from '@chakra-ui/react';
-import ToggleHeader from './ToggleHeader';
+import {
+    Checkbox,
+    Box,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+} from '@chakra-ui/react';
 
 interface AirlineProps {
     title: string;
@@ -10,7 +15,6 @@ interface AirlineProps {
 }
 
 const Airline: React.FC<AirlineProps> = ({ title, selectedAirline, setSelectedAirline }: AirlineProps) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleCheckboxChange = (airline: string, isChecked: boolean) => {
         if (isChecked) {
@@ -21,9 +25,14 @@ const Airline: React.FC<AirlineProps> = ({ title, selectedAirline, setSelectedAi
     };
 
     return (
-        <div className="py-2 border-b border-b-slate-300">
-            <ToggleHeader title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
-            <Collapse in={isOpen} animateOpacity={false}>
+        <AccordionItem className="py-2 border-b border-b-slate-300" borderTop={0}>
+            <AccordionButton paddingX={0} paddingY={1} _hover={{ bgColor: 'transparent' }}>
+                <Box as="span" flex="1" textAlign="left">
+                    <h2 className="text-slate-500 font-semibold">{title}</h2>
+                </Box>
+                <AccordionIcon textColor={'gray'} />
+            </AccordionButton>
+            <AccordionPanel paddingBottom={2} paddingX={1}>
                 <div className="flex flex-col gap-y-4 mt-2">
                     {fakeAirlineData.map((airline, index) => (
                         <Checkbox
@@ -45,8 +54,8 @@ const Airline: React.FC<AirlineProps> = ({ title, selectedAirline, setSelectedAi
                         </Checkbox>
                     ))}
                 </div>
-            </Collapse>
-        </div>
+            </AccordionPanel>
+        </AccordionItem>
     );
 };
 export default Airline;
