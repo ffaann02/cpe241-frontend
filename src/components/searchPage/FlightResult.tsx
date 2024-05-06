@@ -9,6 +9,7 @@ export interface FlightData {
     departureTime: string;
     arrivalTime: string;
     duration: string;
+    from: string;
     destination: string;
     subtotal: number;
 }

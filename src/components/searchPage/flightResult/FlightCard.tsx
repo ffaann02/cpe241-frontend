@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { FlightData } from '../FlightResult';
 import { Collapse } from '@chakra-ui/react';
 import '../../component.css';
+import FlightDetail from './Flightdetail';
+import Pricedetail from './Pricedetail';
 export const FlightCard = ({ flight, index }: { flight: FlightData; index: number }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [detailSection, setDetailSection] = useState<string>('flight');
-
     const handleToggle = (detail: string, event: React.MouseEvent) => {
         event.stopPropagation(); // This will stop the event from bubbling up
         setDetailSection(detail);
@@ -16,7 +17,6 @@ export const FlightCard = ({ flight, index }: { flight: FlightData; index: numbe
         <div
             className="border transition-all duration-100 ease-linear border-neutral-300 bg-white 
             hover:drop-shadow-md hover:border-royal-blue-300 pt-3 rounded-[5px] cursor-pointer"
-            id={`${flight.airline}_${index}`}
             onClick={(event) => handleToggle('flight', event)}
         >
             <div className="grid grid-cols-6 px-4">
@@ -29,7 +29,7 @@ export const FlightCard = ({ flight, index }: { flight: FlightData; index: numbe
                         <div className="flex">
                             <div>
                                 <p className="text-slate-500 font-semibold text-lg">{flight.departureTime}</p>
-                                <p className="text-slate-600 text-xs">{flight.destination}</p>
+                                <p className="text-slate-600 text-xs">{flight.from}</p>
                             </div>
                             <div className="mx-auto"></div>
                             <div>
@@ -74,11 +74,11 @@ export const FlightCard = ({ flight, index }: { flight: FlightData; index: numbe
                 <div className="bg-royal-blue-50 border-t border-t-royal-blue-200 py-2 px-4 rounded-b-md">
                     {detailSection === 'flight' ? (
                         <div>
-                            <p>Flight details here</p>
+                            <FlightDetail flight={flight} />
                         </div>
                     ) : (
                         <div>
-                            <p>Price details here</p>
+                            <Pricedetail flight={flight}/>
                         </div>
                     )}
                 </div>
