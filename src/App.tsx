@@ -14,6 +14,7 @@ import TripSection from './components/homePage/Trip/TripSection';
 import PrivateRoute from './routes/PrivateRoute';
 import ProfilePage from './pages/Profile';
 import NotFound from './pages/NotFound';
+import Mybooking from './pages/MyBooking';
 import Dashboard from './pages/Dashboard';
 import { useLocation } from 'react-router-dom';
 
@@ -52,7 +53,7 @@ function App() {
                                 {/* <Route path="/booking" element={<Booking />} />
                                 <Route path="/payment" element={<Payment />} /> */}
                             </Route>
-
+                            <Route path="mybooking" element={<Mybooking />} />
                             <Route path="dashboard/*" element={<Dashboard />} />
 
                         </Routes>
