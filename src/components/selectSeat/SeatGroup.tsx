@@ -1,5 +1,4 @@
 import { FaUser } from 'react-icons/fa';
-
 const SelectedSeat = ({ index, size }: { index: number; size?: number }) => {
     return (
         <button
@@ -47,9 +46,9 @@ const SeatGroup: React.FC<SeatGroupProps> = ({ capacity, bookedSeat, setBookedSe
     const seatLabelsRight = ['D', 'E', 'F'];
 
     return (
-        <div className="col-span-2">
+        <div className="col-span-2 relative">
             <div
-                className="w-full bg-neutral-50 pb-10 flex flex-col gap-y-2 border-2 border-royal-blue-200 
+                className="w-full bg-neutral-50 pb-10 flex flex-col gap-y-2 rounded-xl rounded-r-0 border border-r-0
             relative overflow-y-scroll h-[90vh]"
             >
                 <div className="sticky top-0 bg-white border-b drop-shadow-sm">
