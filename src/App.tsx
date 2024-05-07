@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import About from './pages/AboutUs';
 import SignupPage from './pages/Signup';
@@ -17,6 +17,7 @@ import NotFound from './pages/NotFound';
 import Mybooking from './pages/MyBooking';
 import Dashboard from './pages/Dashboard';
 import { useLocation } from 'react-router-dom';
+import SelectSeat from './pages/SelectSeat';
 
 
 function App() {
@@ -42,9 +43,14 @@ function App() {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
+                            <Route path="/confirm" element={<Confirm />} />
+                            <Route path="/select-seat" element={<SelectSeat/>} />
                             <Route path="/search" element={<Search />} />
                             <Route path="/profile" element={<ProfilePage />} />
-                            <Route path="search" element={<Search />} />
+                            {/* <Route path="auth/*" element={<AuthLayout />} />
+                            <Route path="admin/*" element={<AdminLayout />} />
+                            <Route path="rtl/*" element={<RtlLayout />} /> */}
+                            <Route path="/dashboard" element={<Navigate to="/admin" replace />} />
                             <Route path="/confirm" element={<Confirm />} />
                             <Route path="search" element={<Search />} />
                             <Route path="/trip" element={<TripSection />} />
