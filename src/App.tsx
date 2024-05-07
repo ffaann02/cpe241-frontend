@@ -11,15 +11,14 @@ import Footer from './components/layoutBar/Footer';
 import Search from './pages/Search';
 import Confirm from './pages/Confirm';
 import TripSection from './components/homePage/Trip/TripSection';
-import AdminRoute from './routes/AdminRoute';
 import PrivateRoute from './routes/PrivateRoute';
 import ProfilePage from './pages/Profile';
 import NotFound from './pages/NotFound';
-import RtlLayout from './dashboard/layouts/rtl';
-import AdminLayout from './dashboard/layouts/admin';
-import AuthLayout from './dashboard/layouts/auth';
+import Mybooking from './pages/MyBooking';
+import Dashboard from './pages/Dashboard';
 import { useLocation } from 'react-router-dom';
 import SelectSeat from './pages/SelectSeat';
+
 
 function App() {
     const location = useLocation();
@@ -48,19 +47,21 @@ function App() {
                             <Route path="/select-seat" element={<SelectSeat/>} />
                             <Route path="/search" element={<Search />} />
                             <Route path="/profile" element={<ProfilePage />} />
-                            <Route path="auth/*" element={<AuthLayout />} />
+                            {/* <Route path="auth/*" element={<AuthLayout />} />
                             <Route path="admin/*" element={<AdminLayout />} />
-                            <Route path="rtl/*" element={<RtlLayout />} />
+                            <Route path="rtl/*" element={<RtlLayout />} /> */}
                             <Route path="/dashboard" element={<Navigate to="/admin" replace />} />
+                            <Route path="/confirm" element={<Confirm />} />
+                            <Route path="search" element={<Search />} />
                             <Route path="/trip" element={<TripSection />} />
                             <Route path="*" element={<NotFound />} />
                             <Route element={<PrivateRoute />}>
                                 {/* <Route path="/booking" element={<Booking />} />
                                 <Route path="/payment" element={<Payment />} /> */}
                             </Route>
-                            <Route element={<AdminRoute />}>
-                                <Route path="/dashboard" element={<h1>Admin Page</h1>} />
-                            </Route>
+                            <Route path="mybooking" element={<Mybooking />} />
+                            <Route path="dashboard/*" element={<Dashboard />} />
+
                         </Routes>
                     </div>
                 </div>

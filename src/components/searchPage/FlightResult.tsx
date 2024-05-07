@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Box, Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react';
 import HeaderSortCard from './flightResult/HeaderSortCard';
 import { Flight } from '../../pages/Search';
-
 const FlightResult = ({
     isFetching,
     flightResult,
@@ -41,7 +40,7 @@ const FlightResult = ({
                     ))}
             {flightResult.map((flight, index) => (
                 <div key={index}>
-                    <FlightCard flight={flight} />
+                    <FlightCard flight={flight} index={index}/>
                 </div>
             ))}
         </div>

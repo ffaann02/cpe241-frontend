@@ -1,5 +1,14 @@
 import { FaUser } from 'react-icons/fa';
-const SelectedSeat = ({ index, size }: { index: number; size?: number }) => {
+
+interface Seat {
+    index: number;
+    size?: number;
+    number?: number;
+    seatId?: string;
+    handleChooseSeat?: (seat: string) => void;
+}
+
+const BookedSeat = ({ index, size, seatId }: Seat) => {
     return (
         <button
             disabled
@@ -12,9 +21,10 @@ const SelectedSeat = ({ index, size }: { index: number; size?: number }) => {
     );
 };
 
-const AvailableSeat = ({ index, size }: { index: number; size?: number }) => {
+const AvailableSeat = ({ index, size, seatId, handleChooseSeat }: Seat) => {
     return (
         <button
+            onClick={() => handleChooseSeat(seatId)}
             key={index}
             className={`bg-white border border-b-4 border-b-green-400 border-green-400 rounded-md flex hover:bg-green-100 
             col-span-2 ${size && `h-${size} w-${size} `}`}
@@ -22,23 +32,34 @@ const AvailableSeat = ({ index, size }: { index: number; size?: number }) => {
     );
 };
 
-// const AccesibleSeat = ({ index, size }: { index: number; size?: number }) => {
-//     return (
-//         <button
-//             key={index}
-//             className={`bg-white border border-b-4 border-b-green-400 border-green-400 rounded-md flex hover:bg-green-100
-//             col-span-2 ${size && `h-${size} w-${size} `}`}
-//         ></button>
-//     );
-// };
+const ChoosedSeat = ({ index, size, number, seatId, handleChooseSeat }: Seat) => {
+    return (
+        <button
+            onClick={() => handleChooseSeat(seatId)}
+            key={index}
+            className={`bg-orange-300 border border-b-4 border-b-orange-400 border-orange-400 rounded-md flex 
+            col-span-2 ${size && `h-${size} w-${size} `}`}
+        >
+            <p className="m-auto text-white font-bold pt-1">{number}</p>
+        </button>
+    );
+};
 
 interface SeatGroupProps {
     capacity: number;
     bookedSeat: string[];
+    choosedSeat: { seat: string | null; name: string }[];
     setBookedSeat: (seat: string[]) => void;
+    handleChooseSeat: (seat: string) => void;
 }
 
-const SeatGroup: React.FC<SeatGroupProps> = ({ capacity, bookedSeat, setBookedSeat }: SeatGroupProps) => {
+const SeatGroup: React.FC<SeatGroupProps> = ({
+    capacity,
+    bookedSeat,
+    choosedSeat,
+    setBookedSeat,
+    handleChooseSeat,
+}: SeatGroupProps) => {
     const seatsPerRow = 6;
     const numberOfRows = Math.ceil(capacity / seatsPerRow);
     const seatData = Array.from({ length: numberOfRows }, (_, i) => i + 1);
@@ -58,12 +79,16 @@ const SeatGroup: React.FC<SeatGroupProps> = ({ capacity, bookedSeat, setBookedSe
                         </div>
                         <div className="flex gap-x-4 pt-2">
                             <div className="flex">
-                                <SelectedSeat index={-1} size={6} />
+                                <BookedSeat index={-1} size={6} />
                                 <p className="my-auto ml-2 text-slate-500 text-sm">จองแล้ว</p>
                             </div>
                             <div className="flex">
                                 <AvailableSeat index={-1} size={6} />
                                 <p className="my-auto ml-2 text-slate-500 text-sm">ว่าง</p>
+                            </div>
+                            <div className="flex">
+                                <ChoosedSeat index={-1} size={6} />
+                                <p className="my-auto ml-2 text-slate-500 text-sm">คุณเลือก</p>
                             </div>
                         </div>
                     </div>
@@ -87,20 +112,56 @@ const SeatGroup: React.FC<SeatGroupProps> = ({ capacity, bookedSeat, setBookedSe
                     <div key={row} className="grid grid-cols-13 min-h-10 gap-3 px-8">
                         {seatLabelsLeft.map((label, index) => {
                             const seatId = `${label}${row}`;
-                            return bookedSeat.includes(seatId) ? (
-                                <SelectedSeat index={index} />
-                            ) : (
-                                <AvailableSeat index={index} />
-                            );
+                            if (bookedSeat.includes(seatId)) {
+                                return <BookedSeat index={index} seatId={seatId} handleChooseSeat={handleChooseSeat} />;
+                            } else {
+                                const choosedSeatIndex = choosedSeat.findIndex((s) => s.seat === seatId);
+                                if (choosedSeatIndex !== -1) {
+                                    return (
+                                        <ChoosedSeat
+                                            index={index}
+                                            seatId={seatId}
+                                            handleChooseSeat={handleChooseSeat}
+                                            number={choosedSeatIndex + 1}
+                                        />
+                                    );
+                                } else {
+                                    return (
+                                        <AvailableSeat
+                                            index={index}
+                                            seatId={seatId}
+                                            handleChooseSeat={handleChooseSeat}
+                                        />
+                                    );
+                                }
+                            }
                         })}
                         <div className="col-start-7 m-auto text-neutral-400 text-sm col-span-1">{row}</div>
                         {seatLabelsRight.map((label, index) => {
                             const seatId = `${label}${row}`;
-                            return bookedSeat.includes(seatId) ? (
-                                <SelectedSeat index={index} />
-                            ) : (
-                                <AvailableSeat index={index} />
-                            );
+                            if (bookedSeat.includes(seatId)) {
+                                return <BookedSeat index={index} seatId={seatId} handleChooseSeat={handleChooseSeat} />;
+                            } else {
+                                const choosedSeatIndex = choosedSeat.findIndex((s) => s.seat === seatId);
+                                if (choosedSeatIndex !== -1) {
+                                    return (
+                                        <ChoosedSeat
+                                            index={index}
+                                            seatId={seatId}
+                                            handleChooseSeat={handleChooseSeat}
+                                            number={choosedSeatIndex + 1}
+                                        />
+                                    );
+                                } else {
+                                    return (
+                                        <AvailableSeat
+                                            index={index}
+                                            seatId={seatId}
+                                            handleChooseSeat={handleChooseSeat}
+                                        />
+                                    );
+                                }
+                            }
                         })}
                     </div>
                 ))}

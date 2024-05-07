@@ -4,6 +4,7 @@ import { SiBitcoin } from 'react-icons/si';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import {
+    Input,
     Button,
     Modal,
     ModalOverlay,
@@ -79,7 +80,7 @@ const Payment = () => {
                                 encryption.
                             </p>
                         </div>
-                        <div className="w-full h-12 md:w-[686px] border-2 border-[#605DEC] flex justify-between items-center rounded">
+                        <div className="w-full h-12 md:w-[686px] border-2 border-royal-blue-500 flex justify-between items-center rounded">
                             <p
                                 onClick={() => handlePaymentSelection('Credit card')}
                                 className={`w-full h-full flex items-center justify-center gap-1 text-sm sm:text-base ${selectedPayment === 'Credit card' ? 'bg-[#605DEC] text-[#FAFAFA]' : 'text-[#605DEC] hover:bg-[#605DEC] hover:text-[#FAFAFA] focus:bg-[#605DEC] focus:text-[#FAFAFA] transition-all duration-200'}`}
@@ -119,34 +120,42 @@ const Payment = () => {
                         <div className="w-full flex flex-col items-start justify-start gap-5">
                             <h2 className="text-[#6E7491] text-xl">Credit card details</h2>
                             <form className="w-full h-full flex flex-col items-start justify-start gap-5">
-                                <input
+                                <Input
                                     type="text"
+                                    size="lg"
+                                    focusBorderColor="purple.200"
                                     placeholder="Name on card"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                    className="w-full sm:w-[480px] h-full outline-none border-[1px] border-[#A1B0CC] placeholder:text-[#7C8DB0] text-[#7C8DB0] px-2 py-3 text-base rounded"
+                                    className="placeholder:text-md text-slate-500 pt-0.5"
                                 />
-                                <input
+                                <Input
                                     type="text"
+                                    size="lg"
+                                    focusBorderColor="purple.200"
                                     placeholder="Card Number"
                                     value={number}
                                     onChange={(e) => setNumber(e.target.value)}
-                                    className="w-full sm:w-[480px] h-full outline-none border-[1px] border-[#A1B0CC] placeholder:text-[#7C8DB0] text-[#7C8DB0] px-2 py-3 text-base rounded"
+                                    className="placeholder:text-md text-slate-500 pt-0.5"
                                 />
                                 <div className="flex items-center justify-center gap-5">
-                                    <input
-                                        type="text"
+                                    <Input
+                                    type="text"
+                                    size="lg"
+                                    focusBorderColor="purple.200"
                                         placeholder="Expiration date [MM/YY]"
                                         value={date}
                                         onChange={(e) => setDate(e.target.value)}
-                                        className="w-full sm:w-[240px] h-full outline-none border-[1px] border-[#A1B0CC] placeholder:text-[#7C8DB0] text-[#7C8DB0] px-2 py-3 text-base rounded"
+                                        className="placeholder:text-md text-slate-500 pt-0.5"
                                     />
-                                    <input
-                                        type="text"
+                                    <Input
+                                    type="text"
+                                    size="lg"
+                                    focusBorderColor="purple.200"
                                         placeholder="CCV"
                                         value={ccv}
                                         onChange={(e) => setCcv(e.target.value)}
-                                        className="w-full sm:w-[216px] h-full outline-none border-[1px] border-[#A1B0CC] placeholder:text-[#7C8DB0] text-[#7C8DB0] px-2 py-3 text-base rounded"
+                                        className="placeholder:text-md text-slate-500 pt-0.5"
                                     />
                                 </div>
                             </form>
