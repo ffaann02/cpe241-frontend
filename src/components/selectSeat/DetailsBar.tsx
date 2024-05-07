@@ -1,6 +1,6 @@
 const DetailsBar = () => {
   return (
-    <div>DetailsBar</div>
+    <div className="col-span-3">DetailsBar</div>
   )
 }
 export default DetailsBar
