@@ -19,54 +19,55 @@ import { FaCheckCircle } from 'react-icons/fa';
 import useAuth from '../hooks/useAuth';
 import axiosPrivate from '../api/axios';
 import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-interface LoginPageProps {
-    email: string;
-    password: string;
-}
+const loginSchema = z.object({
+    email: z.string().email({ message: 'รูปแบบอีเมลไม่ถูกต้อง' }),
+    password: z.string().min(8, { message: 'รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัว' }),
+});
+
+type LoginPageProps = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
     const {
         register,
         handleSubmit,
-        formState: { errors },
-    } = useForm<LoginPageProps>({ mode: 'onSubmit', reValidateMode: 'onBlur' });
+        setError,
+        formState: { errors, isSubmitting },
+    } = useForm<LoginPageProps>({ mode: 'onSubmit', reValidateMode: 'onBlur', resolver: zodResolver(loginSchema) });
     const navigate = useNavigate();
     const { setAuth } = useAuth();
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(!show);
-    const [isFetching, setIsFetching] = useState(false);
-    const [loginError, setLoginError] = useState('');
     const [loginSuccess, setLoginSuccess] = useState(false);
 
     const onSubmit = async (data: LoginPageProps) => {
         try {
-            setIsFetching(true);
             const response = await axiosPrivate.post('/api/login', data);
-            if (response.status === 200) {
-                setIsFetching(false);
-                setAuth({
-                    userid: response.data.userid,
-                    role: response.data.role,
-                    firstName: response.data.firstName,
-                    email: response.data.email,
-                });
-                localStorage.setItem('auth', JSON.stringify(response.data));
-                setLoginError('');
-                setLoginSuccess(true);
-                setTimeout(() => {
-                    navigate('/');
-                }, 1500);
-            } else {
-                console.log('Error: Invalid email or password');
-            }
+            setAuth({
+                userid: response.data.userid,
+                role: response.data.role,
+                firstName: response.data.firstName,
+                email: response.data.email,
+            });
+            localStorage.setItem('auth', JSON.stringify(response.data));
+            setLoginSuccess(true);
+            setTimeout(() => {
+                navigate('/');
+            }, 1500);
         } catch (error) {
-            if (error.response.status === 401) {
-                setLoginError('ขออภัยอีเมลหรือรหัสผ่านไม่ถูกต้อง โปรดลองอีกครั้ง');
-                setIsFetching(false);
+            if (error.response && error.response.status === 401) {
+                setError('root.serverError', {
+                    type: 'manual',
+                    message: 'ขออภัยอีเมลหรือรหัสผ่านไม่ถูกต้อง โปรดลองอีกครั้ง',
+                });
             } else {
-                setLoginError('เกิดข้อผิดพลาดภายในเซิฟเวอร์ โปรดลองในภายหลัง');
-                setIsFetching(false);
+                console.log('Error: Internal server error');
+                setError('root.serverError', {
+                    type: 'manual',
+                    message: 'เกิดข้อผิดพลาดภายในเซิฟเวอร์ โปรดลองในภายหลัง',
+                });
             }
         }
     };
@@ -101,18 +102,7 @@ export default function LoginPage() {
                             <p>ยินดีต้อนรับกลับมา! กรุณากรอกข้อมูลเพื่อเข้าสู่ระบบ</p>
                             <Divider className="" />
                             <FormControl isInvalid={!!errors.email}>
-                                <Input
-                                    name="email"
-                                    type="email"
-                                    {...register('email', {
-                                        required: 'กรุณากรอกอีเมล',
-                                        pattern: {
-                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                            message: 'รูปแบบอีเมลไม่ถูกต้อง',
-                                        },
-                                    })}
-                                    placeholder="อีเมล"
-                                />
+                                <Input name="email" {...register('email')} type="text" placeholder="อีเมล" />
                                 <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
                             </FormControl>
                             <FormControl isInvalid={!!errors.password}>
@@ -120,13 +110,7 @@ export default function LoginPage() {
                                     <Input
                                         name="password"
                                         type={show ? 'text' : 'password'}
-                                        {...register('password', {
-                                            required: 'กรุณากรอกรหัสผ่าน',
-                                            minLength: {
-                                                value: 8,
-                                                message: 'รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร',
-                                            },
-                                        })}
+                                        {...register('password')}
                                         placeholder="รหัสผ่าน"
                                     />
                                     <InputRightElement className="">
@@ -152,13 +136,15 @@ export default function LoginPage() {
                             <Button
                                 colorScheme={loginSuccess ? 'green' : 'gray'}
                                 type="submit"
-                                isLoading={isFetching}
+                                isLoading={isSubmitting}
                                 isDisabled={loginSuccess}
                                 onClick={() => console.log(errors.email, errors.password)}
                             >
                                 {loginSuccess ? <FaCheckCircle /> : 'เข้าสู่ระบบ'}
                             </Button>
-                            {loginError && <p className="text-red-500 text-center">{loginError}</p>}
+                            {errors.root?.serverError && (
+                                <p className="text-red-500 text-center">{errors.root.serverError.message}</p>
+                            )}
                             <div className="flex flex-row justify-center gap-2">
                                 <p>ยังไม่มีบัญชี?</p>
                                 <Link to="/signup" className="text-royal-blue-500">
