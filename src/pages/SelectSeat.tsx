@@ -33,7 +33,7 @@ const SelectSeat = () => {
             name: 'YES',
         },
         {
-            seat: 'A2',
+            seat: null,
             name: 'YES 2',
         },
     ]);

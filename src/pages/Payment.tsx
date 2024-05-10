@@ -2,7 +2,7 @@ import { AiFillApple, AiOutlineCreditCard, AiOutlineGoogle } from 'react-icons/a
 import { BsPaypal } from 'react-icons/bs';
 import { SiBitcoin } from 'react-icons/si';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
     Input,
     Button,
@@ -14,8 +14,11 @@ import {
     ModalBody,
     ModalCloseButton,
 } from '@chakra-ui/react';
+import { BookingDetailsContext } from '../context/BookingDetailsProvider';
 
 const Payment = () => {
+    const { step } = useContext(BookingDetailsContext);
+
     const navigate = useNavigate();
 
     const [name, setName] = useState('');
@@ -26,6 +29,12 @@ const Payment = () => {
     const [selectedPayment, setSelectedPayment] = useState('Credit card');
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
+
+    useEffect(()=>{
+        if(step!==2){
+            navigate('/booking/passenger')
+        }
+    },[])
 
     const handlePaymentSelection = (payment: string) => {
         setSelectedPayment(payment);
@@ -57,7 +66,7 @@ const Payment = () => {
 
     return (
         <>
-            <Modal isOpen={showAlert} onClose={onClose} >
+            <Modal isOpen={showAlert} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Sorry for inconvenience</ModalHeader>
@@ -140,18 +149,18 @@ const Payment = () => {
                                 />
                                 <div className="flex items-center justify-center gap-5">
                                     <Input
-                                    type="text"
-                                    size="lg"
-                                    focusBorderColor="purple.200"
+                                        type="text"
+                                        size="lg"
+                                        focusBorderColor="purple.200"
                                         placeholder="Expiration date [MM/YY]"
                                         value={date}
                                         onChange={(e) => setDate(e.target.value)}
                                         className="placeholder:text-md text-slate-500 pt-0.5"
                                     />
                                     <Input
-                                    type="text"
-                                    size="lg"
-                                    focusBorderColor="purple.200"
+                                        type="text"
+                                        size="lg"
+                                        focusBorderColor="purple.200"
                                         placeholder="CCV"
                                         value={ccv}
                                         onChange={(e) => setCcv(e.target.value)}

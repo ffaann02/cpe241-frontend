@@ -3,6 +3,9 @@ import { Flight } from '../../pages/SelectSeat';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer } from '@chakra-ui/react';
 import { IoCloseCircleSharp } from 'react-icons/io5';
+import { useContext } from 'react';
+import { BookingDetailsContext } from '../../context/BookingDetailsProvider';
+import { useNavigate } from 'react-router-dom';
 
 interface DetailsBarProps {
     flight: Flight;
@@ -17,6 +20,8 @@ const DetailsBar: React.FC<DetailsBarProps> = ({
     choosedSeat,
     handleChooseSeat,
 }: DetailsBarProps) => {
+    const {setStep} = useContext(BookingDetailsContext);
+    const navigate = useNavigate();
     return (
         <div className="col-span-3 w-full pl-4">
             <h1 className="text-xl font-bold text-slate-600 flex gap-x-2">รายละเอียดเที่ยวบินของคุณ</h1>
@@ -108,6 +113,15 @@ const DetailsBar: React.FC<DetailsBarProps> = ({
                     </TableContainer>
                 </div>
             </div>
+            <button
+                className="cursor-pointer px-4 py-2 border-[1px] border-royal-blue-500 text-royal-blue-500 
+                            rounded hover:bg-royal-blue-500 hover:text-white transition-all duration-200 mt-4"
+                onClick={()=>{
+                    setStep(2);
+                    navigate("/booking/payment");
+                }}>
+                บันทีกและถัดไป
+            </button>
         </div>
     );
 };

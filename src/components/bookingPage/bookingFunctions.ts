@@ -97,7 +97,7 @@ const handleChangeCheckbox = (setUsePassengerDataForEmergencyContact, setEmergen
     }
 };
 
-const handleSaveAndClose = (passengerData) => () => {
+const handleSaveAndClose = async (passengerData) => () => {
     const isValid = passengerData.every((passenger) => {
         return (
             passenger.firstName.trim() !== '' &&
@@ -109,6 +109,7 @@ const handleSaveAndClose = (passengerData) => () => {
 
     if (isValid) {
         console.log('Form data saved:', passengerData);
+        return 1;
     } else {
         console.log('Please fill in all required fields for each passenger.');
     }
