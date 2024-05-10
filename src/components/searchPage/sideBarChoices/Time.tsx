@@ -1,6 +1,5 @@
 import { Checkbox, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon} from '@chakra-ui/react';
 import { TimeRange } from '../FilterSideBar';
-
 interface TimeProps {
     title: string;
     selectedTime: TimeRange;
