@@ -3,7 +3,7 @@ import TripSection from '../components/homePage/Trip/TripSection';
 import ReviewSection from '../components/homePage/Review/ReviewSection';
 import { useEffect, useState } from 'react';
 import { City } from '../components/homePage/heroBlock/Form/FlightInputForm';
-import axiosPrivate from '../api/axios';
+import axios from 'axios';
 
 export default function Home() {
     const [recommendAirports, setRecommendAirports] = useState<City[]>([]);
@@ -11,7 +11,7 @@ export default function Home() {
     useEffect(()=> {
         const getAirports = async (): Promise<void> => {
             try {
-                    const response = await axiosPrivate.get(`/api/search/airports/recommend?number=8`);
+                    const response = await axios.get(`/api/search/airports/recommend?number=8`);
                     if (response.status === 200) {
                         setRecommendAirports(response.data);
                     } else {

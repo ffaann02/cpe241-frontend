@@ -32,7 +32,7 @@ export interface PassengerAmountInfo {
     infant: number;
 }
 
-const HereBlock = ({recommendAirports}:{recommendAirports:City[]}) => {
+const HereBlock = ({ recommendAirports }: { recommendAirports: City[] }) => {
     const navigate = useNavigate();
     const [serviceIndex, setServiceIndex] = useState<number>(1);
     const [flightType, setFlightType] = useState<number>(1);
@@ -64,11 +64,11 @@ const HereBlock = ({recommendAirports}:{recommendAirports:City[]}) => {
         endDate: new Date().toISOString().slice(0, 10),
     });
 
-    useEffect(()=>{
-        setFlightData(prevState => prevState.map((flight, index) => 
-            index === 0 ? { ...flight, departDate: selectedDate.startDate } : flight
-        ));
-    },[selectedDate])
+    useEffect(() => {
+        setFlightData((prevState) =>
+            prevState.map((flight, index) => (index === 0 ? { ...flight, departDate: selectedDate.startDate } : flight))
+        );
+    }, [selectedDate]);
 
     const [focusedState, setFocusedState] = useState<string>('');
     const [isEnterPassengerPicker, setIsEnterPassengerPicker] = useState<boolean>(false);
@@ -83,13 +83,9 @@ const HereBlock = ({recommendAirports}:{recommendAirports:City[]}) => {
         setFlightData(newFlightData);
     };
     const handleSearchFlight = () => {
-        console.log('Search Flight');
-        console.log(flightData);
-        console.log(passengerAmount);
-
         // Check if flightData has any null or empty string values
         for (let data of flightData) {
-            if (!data.from || !data.to || !data.departDate) {
+            if (!data.from.iata || !data.to.iata || !data.departDate) {
                 console.log('Invalid flight data');
                 return;
             }
@@ -102,11 +98,20 @@ const HereBlock = ({recommendAirports}:{recommendAirports:City[]}) => {
             return;
         }
 
+        // Check if each child or infant is accompanied by at least one adult
+        if (passengerAmount.child + passengerAmount.infant > passengerAmount.adult) {
+            console.log('Each child or infant must be accompanied by at least one adult');
+            return;
+        }
+
         let flightDataParams = flightData
-            .map(
-                (data) =>
-                    `from=${encodeURIComponent(data.from.iata)}&to=${encodeURIComponent(data.to.iata)}&departDate=${encodeURIComponent(data.departDate)}&returnDate=${encodeURIComponent(data.returnDate)}`
-            )
+            .map((data) => {
+                let params = `from=${encodeURIComponent(data.from.iata)}&to=${encodeURIComponent(data.to.iata)}&departDate=${encodeURIComponent(data.departDate)}`;
+                if (data.returnDate) {
+                    params += `&returnDate=${encodeURIComponent(data.returnDate)}`;
+                }
+                return params;
+            })
             .join('&');
 
         let passengerAmountParams = Object.entries(passengerAmount)
