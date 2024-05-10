@@ -22,7 +22,8 @@ export interface PassengerData {
     firstName: string;
     middleName: string;
     lastName: string;
-    suffix: string;
+    prefix: string;
+    nationality: string;
     dateOfBirth: string;
     email: string;
     phoneNumber: string;
@@ -42,7 +43,8 @@ export default function Booking() {
             firstName: '',
             middleName: '',
             lastName: '',
-            suffix: '',
+            prefix: '',
+            nationality: '',
             dateOfBirth: '',
             email: '',
             phoneNumber: '',
