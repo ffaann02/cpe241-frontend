@@ -45,9 +45,9 @@ export default function RTL() {
   };
   const getRoutes = (routes: RoutesType[]): any => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/rtl") {
+      if (prop.layout === "rtl") {
         return (
-          <Route path={`/${prop.path}`} element={prop.component} key={key} />
+          <Route path={`${prop.path}`} element={prop.component} key={key} />
         );
       } else {
         return null;
@@ -78,7 +78,7 @@ export default function RTL() {
 
                 <Route
                   path="/"
-                  element={<Navigate to="/admin/default" replace />}
+                  element={<Navigate to="default" replace />}
                 />
               </Routes>
             </div>

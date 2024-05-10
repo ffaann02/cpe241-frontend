@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import FlightCartData from '../components/card/FlightCartCard';
 import fakeFlightData from '../data/fakeFlightData.json';
 import PassengerForm from '../components/bookingPage/PassengerForm';
@@ -17,6 +17,8 @@ import {
     handleSaveAndClose,
     handleSelectSeat,
 } from '../components/bookingPage/bookingFunctions';
+import { useNavigate } from 'react-router-dom';
+import { BookingDetailsContext } from '../context/BookingDetailsProvider';
 
 export interface PassengerData {
     firstName: string;
@@ -37,6 +39,7 @@ export interface EmergencyContactData {
 }
 
 export default function Booking() {
+    const navigate = useNavigate();
     const [passengerData, setPassengerData] = useState<PassengerData[]>([
         {
             firstName: '',
@@ -59,10 +62,11 @@ export default function Booking() {
     const [usePassengerDataForEmergencyContact, setUsePassengerDataForEmergencyContact] = useState<boolean>(false);
     const [passengerEmailError, setPassengerEmailError] = useState<string[]>([]);
     const [passengerPhoneNumberError, setPassengerPhoneNumberError] = useState<string[]>([]);
-    
+    const { step, setStep } = useContext(BookingDetailsContext);
+
     return (
         <div>
-            <section className="p-8 grid grid-cols-10 mx-20 gap-x-10">
+            <section className="py-8 grid grid-cols-10 gap-x-10 max-w-6xl mx-auto">
                 <section className="mx-4 col-span-6 pr-20">
                     <FormHeader
                         title="ข้อมูลผู้โดยสาร"
@@ -73,7 +77,7 @@ export default function Booking() {
                         <PassengerForm
                             index={index}
                             passenger={passenger}
-                            handleChangePassenger={handleChangePassenger(setPassengerData, passengerData, )}
+                            handleChangePassenger={handleChangePassenger(setPassengerData, passengerData)}
                             handleDateOfBirthChange={handleDateOfBirthChange(setPassengerData, passengerData)}
                             passengerData={passengerData}
                             handleDeletePassenger={handleDeletePassenger(setPassengerData, passengerData)}
@@ -99,7 +103,10 @@ export default function Booking() {
                         description="Each passenger is allowed one free carry-on bag and one personal item. First checked bag for
                         each passenger is also free. Second bag check fees are waived for loyalty program members."
                         span={
-                            <span className="text-royal-blue-500 hover:underline cursor-pointer"> the full bag policy.</span>
+                            <span className="text-royal-blue-500 hover:underline cursor-pointer">
+                                {' '}
+                                the full bag policy.
+                            </span>
                         }
                         className="mt-6"
                     />
@@ -113,8 +120,15 @@ export default function Booking() {
                     ))}
                     <div className="mt-10 flex gap-x-4">
                         <button
-                            className="btn px-4 border-[1px] border-royal-blue-500 text-royal-blue-500 rounded hover:bg-royal-blue-500 hover:text-white transition-all duration-200"
-                            onClick={handleSaveAndClose(passengerData)}
+                            className="cursor-pointer px-4 py-2 border-[1px] border-royal-blue-500 text-royal-blue-500 
+                            rounded hover:bg-royal-blue-500 hover:text-white transition-all duration-200"
+                            onClick={async () => {
+                                const pass = await handleSaveAndClose(passengerData);
+                                if (pass) {
+                                    setStep(1);
+                                    navigate('/booking/select-seat');
+                                }
+                            }}
                             disabled={
                                 !passengerData.every(
                                     (passenger) =>
@@ -130,16 +144,16 @@ export default function Booking() {
                                         emergencyContactData.phoneNumber.trim() === ''))
                             }
                         >
-                            บันทึกและปิด
+                            บันทีกและถัดไป
                         </button>
-                        <button
+                        {/* <button
                             className="px-4 py-2 border-[1px] border-[#7C8DB0] text-[#7C8DB0] 
                             bg-[#CBD4E6] rounded hover:bg-royal-blue-500 hover:text-white 
                             hover:border-royal-blue-500 transition-all duration-200"
                             onClick={handleSelectSeat}
                         >
                             เลือกที่นั่ง
-                        </button>
+                        </button> */}
                     </div>
                 </section>
                 <section className="my-10 col-span-4 flex flex-col">
