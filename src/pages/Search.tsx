@@ -54,7 +54,7 @@ const Search = () => {
                 id="flight_result_container"
             >
                 <FilterSideBar />
-                <FlightResult isFetching={isFetching} flightResult={flightResult}/>
+                <FlightResult isFetching={isFetching} flightResult={flightResult} selectedTime={null}/>
             </div>
         </div>
     );
