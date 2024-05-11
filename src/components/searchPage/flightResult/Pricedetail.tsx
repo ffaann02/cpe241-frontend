@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { WarningTwoIcon, CalendarIcon, InfoOutlineIcon } from '@chakra-ui/icons'
 import { Button } from '@chakra-ui/react';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, } from '@chakra-ui/react'
-import { FlightData } from '../../card/FlightCartCard';
-export const Pricedetail = ({ flight }: { flight: FlightData; }) => {
+import { Flight } from '../../../pages/Search';
+export const Pricedetail = ({ flight }: { flight: Flight; }) => {
     const [showAlert, setShowAlert] = useState(false);
     console.log(showAlert);
     return (

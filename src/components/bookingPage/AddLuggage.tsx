@@ -1,5 +1,5 @@
 import React from 'react';
-import { PassengerData } from '../../pages/Booking';
+import { PassengerData } from '../../context/BookingDetailsProvider';
 interface AddLuggageProps {
     passenger: PassengerData;
     index: number;
