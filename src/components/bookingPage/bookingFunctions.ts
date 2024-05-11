@@ -1,3 +1,4 @@
+import { initPassenger } from "../../pages/Booking";
 
 
 const increment = (setPassengerData) => (index: number) => {
@@ -38,31 +39,20 @@ const handleChangePassenger = (setPassengerData, passengerData) => (index: numbe
 const handleDateOfBirthChange = (setPassengerData, passengerData) => (index: number, value: { startDate: string; endDate: string }) => {
     const updatedPassengerData = [...passengerData];
     updatedPassengerData[index].dateOfBirth = value.startDate;
-    console.log(updatedPassengerData)
-    console.log(updatedPassengerData[index].dateOfBirth)
     setPassengerData(updatedPassengerData);
 };
 
 const handleAddPassenger = (setPassengerData, passengerData) => () => {
     setPassengerData([
         ...passengerData,
-        {
-            firstName: '',
-            middleName: '',
-            lastName: '',
-            suffix: '',
-            dateOfBirth: '',
-            email: '',
-            phoneNumber: '',
-            count: 1,
-        },
+        initPassenger,
     ]);
 };
 
 const handleDeletePassenger = (setPassengerData, passengerData) => (index: number) => {
     if (passengerData.length > 1) {
         const updatedPassengerData = [...passengerData];
-        updatedPassengerData.splice(index, 1);
+        updatedPassengerData.splice(index+1, 1);
         setPassengerData(updatedPassengerData);
     }
 };

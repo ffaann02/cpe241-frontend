@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
-        console.log("test Auth");
         const checkUser = async () => {
             try {
                 const localAuth = localStorage.getItem('auth');

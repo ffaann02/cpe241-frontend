@@ -60,6 +60,14 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
             setIsFetching(true);
             try {
                 if (searchTerm.length > 0) {
+                    if (searchTerm.includes('(')) {
+                        let [city, iata] = searchTerm.split(' (');
+                        iata = iata.slice(0, -1);
+                        const selected = airportResult.some(
+                            (airport) => airport.city === city && airport.iata === iata
+                        );
+                        if (selected) return;
+                    }
                     const response = await axiosPrivate.get(`/api/search/airports?query=${searchTerm}`);
                     if (response.status === 200) {
                         setAirportResult(response.data);
@@ -165,16 +173,6 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
         setFocusedState('');
     };
 
-    const filterCities = (city: City) => {
-        const lowercaseSearchTerm = searchTerm.toLowerCase();
-        return (
-            city.airportName.toLowerCase().includes(lowercaseSearchTerm) ||
-            city.city.toLowerCase().includes(lowercaseSearchTerm) ||
-            city.country.toLowerCase().includes(lowercaseSearchTerm) ||
-            city.iata.toLowerCase().includes(lowercaseSearchTerm)
-        );
-    };
-
     return (
         <div>
             <p className="text-slate-500 text-sm ml-0.5">{title}</p>
@@ -206,12 +204,12 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
                                     ค้นหาเมืองหรือสนามบินที่คุณต้องการ
                                 </p>
                                 <ul className="">
-                                    {airportResult.filter(filterCities).map((city, index) => (
+                                    {airportResult.map((city, index) => (
                                         <li
                                             key={index}
                                             onClick={() => handleSelectCity(city)}
                                             className={`hover:bg-violet-50 px-4 py-2 rounded-none cursor-pointer 
-                                    ${airportResult.filter(filterCities).length - 1 !== index ? 'border-b' : 'border-b-0'}`}
+                                    ${airportResult.length - 1 !== index ? 'border-b' : 'border-b-0'}`}
                                         >
                                             <div className="text-sm">
                                                 <p className="font-semibold text-slate-600">
@@ -223,13 +221,13 @@ export const LocationInputForm: React.FC<LocationInputFormProps> = ({
                                             </div>
                                         </li>
                                     ))}
-                                    {airportResult.filter(filterCities).length === 0 && (
+                                    {airportResult.length === 0 && (
                                         <li className="px-4 py-2 text-sm text-slate-600">ไม่พบผลลัพธ์</li>
                                     )}
                                 </ul>
                             </div>
                         ) : (
-                            <Stack className='p-2'>
+                            <Stack className="p-2">
                                 <Skeleton height="10px" />
                                 <Skeleton height="10px" />
                                 <Skeleton height="10px" />
