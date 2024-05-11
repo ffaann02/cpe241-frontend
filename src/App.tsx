@@ -12,10 +12,11 @@ import Search from './pages/Search';
 import Confirm from './pages/Confirm';
 import TripSection from './components/homePage/Trip/TripSection';
 import PrivateRoute from './routes/PrivateRoute';
-import ProfilePage from './pages/Profile';
+
 import NotFound from './pages/NotFound';
 import Mybooking from './pages/MyBooking';
 import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profilenew'
 import { useLocation } from 'react-router-dom';
 
 
@@ -43,7 +44,6 @@ function App() {
                             <Route path="/booking" element={<Booking />} />
                             <Route path="/payment" element={<Payment />} />
                             <Route path="/search" element={<Search />} />
-                            <Route path="/profile" element={<ProfilePage />} />
                             <Route path="search" element={<Search />} />
                             <Route path="/confirm" element={<Confirm />} />
                             <Route path="search" element={<Search />} />
@@ -55,6 +55,8 @@ function App() {
                             </Route>
                             <Route path="mybooking" element={<Mybooking />} />
                             <Route path="dashboard/*" element={<Dashboard />} />
+                            <Route path="/profile" element={<Profile />} />
+
 
                         </Routes>
                     </div>
