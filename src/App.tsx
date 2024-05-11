@@ -62,7 +62,7 @@ function App() {
                             {/* <Route path="auth/*" element={<AuthLayout />} />
                             <Route path="admin/*" element={<AdminLayout />} />
                             <Route path="rtl/*" element={<RtlLayout />} /> */}
-                            <Route path="/dashboard" element={<Navigate to="/admin" replace />} />
+                            <Route path="/dashboard" element={<Navigate to="admin" replace />} />
                             <Route path="/confirm" element={<Confirm />} />
                             <Route path="search" element={<Search />} />
                             <Route path="/trip" element={<TripSection />} />
