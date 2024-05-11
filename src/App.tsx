@@ -21,7 +21,7 @@ import SelectSeat from './pages/SelectSeat';
 import BookingNavbar from './components/layoutBar/BookingNavbar';
 import BookingRoute from './routes/BookingRoute';
 import BookingDetailsProvider from './context/BookingDetailsProvider';
-
+import MybookingEdit from './pages/Mybooking-Edit';
 function App() {
     const location = useLocation();
     const disableNavbar =
@@ -72,6 +72,7 @@ function App() {
                                 <Route path="/payment" element={<Payment />} /> */}
                             </Route>
                             <Route path="mybooking" element={<Mybooking />} />
+                            <Route path="mybooking/edit" element={<MybookingEdit />} />
                             <Route path="dashboard/*" element={<Dashboard />} />
                         </Routes>
                     </div>
