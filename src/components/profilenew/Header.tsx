@@ -1,4 +1,6 @@
 // Layouts and components
+import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
+
 import {
     Box,
     Center,
@@ -37,7 +39,10 @@ export default function Header() {
             {/* First row */}
             <Flex flexDirection={'row'} justify={'space-between'} w={{ base: '100%' }} h='auto' gap='2'>
                 <Box w='auto' h='auto' >
+                    <div className='flex flex-column gap-4'>
+                    <Avatar src='https://bit.ly/broken-link' />
                     <Heading color='gray.900'>Profile</Heading>
+                    </div>
                 </Box>
                 <Flex w='auto' h='auto' gap={2} >
                     {/* Search Icon */}
