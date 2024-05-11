@@ -72,6 +72,8 @@ export default function ProfilePage() {
 
     return (
         <div className="">
+            <div className='mb-8'>
+            </div>
             <div className="flex flex-row gap-8">
                 <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900  my-auto">ชื่อ</label>
