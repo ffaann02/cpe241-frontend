@@ -18,7 +18,6 @@ export interface Flight {
     from: string;
     destination: string;
     subtotal: number;
-    seat: string;
 }
 
 const Search = () => {
@@ -38,6 +37,7 @@ const Search = () => {
                     params: searchParams,
                 });
                 if (response.status === 200) {
+                    console.log(response.data);
                     setFlightResult(response.data as Flight[]);
                 } else {
                     alert('Failed to fetch flight data');

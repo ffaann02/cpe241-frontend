@@ -22,11 +22,11 @@ import axiosPrivate from '../api/axios';
 import { LoadingSpinner } from '../components/LoadingGroup';
 import travelBagImage from '../assets/images/Traveling-bag.png';
 
-const initPassenger = {
+export const initPassenger = {
     firstName: '',
     middleName: '',
     lastName: '',
-    suffix: '',
+    nationality: '',
     dateOfBirth: '',
     email: '',
     phoneNumber: '',
@@ -50,12 +50,12 @@ export default function Booking() {
     const { setStep } = useContext(BookingDetailsContext);
     const [isFetching, setIsFetching] = useState<boolean>(false);
     useEffect(() => {
+        setStep(0);
         const fetchData = async () => {
             setIsFetching(true);
             try {
                 const fid = new URLSearchParams(window.location.search).get('fid');
                 const response = await axiosPrivate.get(`/api/flight/${fid}`);
-                console.log(response.data);
                 setSelectedFlight(response.data);
                 const passengerAmount = new URLSearchParams(window.location.search).get('initAmount');
                 const initialPassengerData = Array.from({ length: parseInt(passengerAmount) }, () => initPassenger);
@@ -65,7 +65,9 @@ export default function Booking() {
             }
             setIsFetching(false);
         };
-        fetchData();
+        if (!selectedFlight || passengerData.length === 0) {
+            fetchData();
+        }
     }, []);
     return (
         <div>
@@ -161,9 +163,7 @@ export default function Booking() {
                     </div>
                 </section>
                 <section className="my-10 col-span-4 flex flex-col">
-                    <div>
-                        <FlightCartData flight={selectedFlight} />
-                    </div>
+                    <div>{selectedFlight && <FlightCartData flight={selectedFlight} />}</div>
                     <div className="flex justify-end mt-6">
                         <img src={travelBagImage} alt="" />
                     </div>

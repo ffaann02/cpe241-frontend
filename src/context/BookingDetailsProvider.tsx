@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 interface BookingDetailsContext {
     step: number;
@@ -9,17 +9,20 @@ interface BookingDetailsContext {
     setEmergencyContactData: React.Dispatch<React.SetStateAction<EmergencyContactData>>;
     selectedFlight: any;
     setSelectedFlight: React.Dispatch<React.SetStateAction<any>>;
+    paymentInfo: PaymentInfoData;
+    setPaymentInfo: React.Dispatch<React.SetStateAction<PaymentInfoData>>;
 }
 
 export interface PassengerData {
     firstName: string;
     middleName: string;
     lastName: string;
-    suffix: string;
+    nationality: string;
     dateOfBirth: string;
     email: string;
     phoneNumber: string;
     count: number;
+    seat: string | null;
 }
 
 export interface EmergencyContactData {
@@ -27,6 +30,13 @@ export interface EmergencyContactData {
     lastName: string;
     email: string;
     phoneNumber: string;
+}
+
+interface PaymentInfoData {
+    name: string;
+    number: string;
+    date: string;
+    ccv: string;
 }
 
 export const BookingDetailsContext = createContext<BookingDetailsContext | undefined>(undefined);
@@ -41,6 +51,15 @@ const BookingDetailsProvider = ({ children }) => {
         phoneNumber: '',
     });
     const [selectedFlight, setSelectedFlight] = useState(null);
+    const [paymentInfo, setPaymentInfo] = useState<PaymentInfoData>({
+        name: '',
+        number: '',
+        date: '',
+        ccv: '',
+    });
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[window.location.pathname])
 
     return (
         <BookingDetailsContext.Provider
@@ -53,6 +72,8 @@ const BookingDetailsProvider = ({ children }) => {
                 setEmergencyContactData,
                 selectedFlight,
                 setSelectedFlight,
+                paymentInfo,
+                setPaymentInfo,
             }}
         >
             {children}

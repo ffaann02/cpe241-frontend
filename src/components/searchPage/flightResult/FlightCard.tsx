@@ -26,7 +26,7 @@ export const FlightCard = ({
     const navigate = useNavigate();
 
     const handleSelectFlight = (flight: Flight) => () => {
-        const passengerCount = navigate(`/booking/passenger?fid=${flight.flightID}&initAmount=${passengerAmount}`);
+       navigate(`/booking/passenger?fid=${flight.flightID}&initAmount=${passengerAmount}`);
     };
 
     return (

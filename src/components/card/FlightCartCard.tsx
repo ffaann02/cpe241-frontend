@@ -7,19 +7,7 @@ interface FlightCardProps {
 }
 
 const FlightCartCard: React.FC<FlightCardProps> = ({ flight }) => {
-    const {
-        flightID,
-        aircraftID,
-        departureAirportID,
-        arrivalAirportID,
-        arrivalDateTime,
-        departureDateTime,
-        flightNo,
-        currentCapacity,
-        status,
-        baseFare,
-    } = flight;
-    console.log(flight);
+    const { airlineName, airlineIcon, flightNo, departureTime, arrivalTime, duration, destination, subtotal } = flight;
     return (
         <div className="float-right mr-4 w-full max-w-md mt-2">
             <div
@@ -28,51 +16,51 @@ const FlightCartCard: React.FC<FlightCardProps> = ({ flight }) => {
             >
                 <div className="flex justify-between px-2 py-3">
                     <div className="flex">
-                        <img src={""} alt={"airline"} className="w-10 mr-2 mt-1 mb-auto" />
+                        <img src={airlineIcon} alt={airlineName} className="w-10 mr-2 mt-1 mb-auto" />
                         <div className="flex flex-col mt-0 mb-auto">
-                            <h2 className="text-lg text-royal-blue-600 font-semibold">{"airline"}</h2>
+                            <h2 className="text-lg text-royal-blue-600 font-semibold">{airlineName}</h2>
                             <p className="text-slate-400">{flightNo}</p>
                         </div>
                     </div>
                     <div className="flex flex-col items-end gap-y-1">
                         <p>{2}</p>
                         <p>
-                            {departureDateTime} - {arrivalDateTime}
+                            {departureTime} - {arrivalTime}
                         </p>
                     </div>
                 </div>
-                {/* <div className="flex justify-between px-2 py-3">
+                <div className="flex justify-between px-2 py-3">
                     <div className="flex">
-                        <img src={airlineIcon} alt={airline} className="w-10 mr-2 mt-1 mb-auto" />
+                        <img src={airlineIcon} alt={airlineName} className="w-10 mr-2 mt-1 mb-auto" />
                         <div className="flex flex-col mt-0 mb-auto">
-                            <h2 className="text-lg text-royal-blue-600 font-semibold">{airline}</h2>
-                            <p className="text-slate-400">{flightNumber}</p>
+                            <h2 className="text-lg text-royal-blue-600 font-semibold">{airlineName}</h2>
+                            <p className="text-slate-400">{flightNo}</p>
                         </div>
                     </div>
                     <div className="flex flex-col items-end gap-y-1">
-                        <p>{duration}</p>
+                        <p>{formatDuration(parseInt(duration))}</p>
                         <p>
                             {departureTime} - {arrivalTime}
                         </p>
                         <p className="text-slate-400">
-                            {duration} in {destination}
+                            {formatDuration(parseInt(duration))} ใน {destination}
                         </p>
                     </div>
-                </div> */}
+                </div>
             </div>
             <div className="gap-x-10 mt-1 gap-y-1 py-2 font-semibold w-full items-end flex flex-col text-slate-500">
                 <div className="w-1/2 grid grid-cols-2">
                     <p className="text-right">ราคาย่อย</p>
-                    <p className="text-right">${baseFare}</p>
+                    <p className="text-right">${subtotal}</p>
                 </div>
                 <div className="w-1/2 grid grid-cols-2">
                     <p className="text-right">ภาษี</p>
-                    <p className="text-right">${baseFare * 0.02}</p>
+                    <p className="text-right">${(subtotal * 0.02).toFixed(2)}</p>
                 </div>
-                {baseFare && (
+                {subtotal && (
                     <div className="w-1/2 grid grid-cols-2">
                         <p className="text-right">ราคาสุทธิ</p>
-                        <p className="text-right">${baseFare * 1.02}</p>
+                        <p className="text-right">${subtotal * 1.02}</p>
                     </div>
                 )}
             </div>

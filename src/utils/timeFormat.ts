@@ -5,7 +5,7 @@ export function formatDuration(minutes: number): string {
     let result = '';
 
     if (hours > 0) {
-        result += `${hours} ชม. `;
+        result += `${hours} ${remainingMinutes > 0 ? 'ชม.' : 'ชั่วโมง'} `;
     }
 
     if (remainingMinutes > 0) {
