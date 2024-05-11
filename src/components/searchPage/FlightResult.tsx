@@ -6,9 +6,11 @@ import { Flight } from '../../pages/Search';
 const FlightResult = ({
     isFetching,
     flightResult,
+    passengerAmount
 }: {
     isFetching: boolean;
     flightResult: Flight[];
+    passengerAmount: number;
 }) => {
     const [sortType, setSortType] = useState<string>('price'); // 1: recommend, 2: price, 3: fastest
     const [sortBy, setSortBy] = useState(1);
@@ -40,7 +42,7 @@ const FlightResult = ({
                     ))}
             {flightResult.map((flight, index) => (
                 <div key={index}>
-                    <FlightCard flight={flight} index={index}/>
+                    <FlightCard flight={flight} index={index} passengerAmount={passengerAmount}/>
                 </div>
             ))}
         </div>

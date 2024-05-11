@@ -1,33 +1,25 @@
 import React from 'react';
-
-export interface FlightData {
-    airlineIcon: string;
-    airline: string;
-    flightNumber: string;
-    FlightTime: string;
-    departureTime: string;
-    arrivalTime: string;
-    duration: string;
-    destination: string;
-    subtotal: number;
-}
+import { Flight } from '../../pages/Search';
+import { formatDuration } from '../../utils/timeFormat';
 
 interface FlightCardProps {
-    flight: FlightData;
+    flight: any;
 }
 
 const FlightCartCard: React.FC<FlightCardProps> = ({ flight }) => {
     const {
-        airlineIcon,
-        airline,
-        flightNumber,
-        FlightTime,
-        departureTime,
-        arrivalTime,
-        duration,
-        destination,
-        subtotal,
+        flightID,
+        aircraftID,
+        departureAirportID,
+        arrivalAirportID,
+        arrivalDateTime,
+        departureDateTime,
+        flightNo,
+        currentCapacity,
+        status,
+        baseFare,
     } = flight;
+    console.log(flight);
     return (
         <div className="float-right mr-4 w-full max-w-md mt-2">
             <div
@@ -36,23 +28,20 @@ const FlightCartCard: React.FC<FlightCardProps> = ({ flight }) => {
             >
                 <div className="flex justify-between px-2 py-3">
                     <div className="flex">
-                        <img src={airlineIcon} alt={airline} className="w-10 mr-2 mt-1 mb-auto" />
+                        <img src={""} alt={"airline"} className="w-10 mr-2 mt-1 mb-auto" />
                         <div className="flex flex-col mt-0 mb-auto">
-                            <h2 className="text-lg text-royal-blue-600 font-semibold">{airline}</h2>
-                            <p className="text-slate-400">{flightNumber}</p>
+                            <h2 className="text-lg text-royal-blue-600 font-semibold">{"airline"}</h2>
+                            <p className="text-slate-400">{flightNo}</p>
                         </div>
                     </div>
                     <div className="flex flex-col items-end gap-y-1">
-                        <p>{FlightTime}</p>
+                        <p>{2}</p>
                         <p>
-                            {departureTime} - {arrivalTime}
-                        </p>
-                        <p className="text-slate-400">
-                            {duration} in {destination}
+                            {departureDateTime} - {arrivalDateTime}
                         </p>
                     </div>
                 </div>
-                <div className="flex justify-between px-2 py-3">
+                {/* <div className="flex justify-between px-2 py-3">
                     <div className="flex">
                         <img src={airlineIcon} alt={airline} className="w-10 mr-2 mt-1 mb-auto" />
                         <div className="flex flex-col mt-0 mb-auto">
@@ -61,7 +50,7 @@ const FlightCartCard: React.FC<FlightCardProps> = ({ flight }) => {
                         </div>
                     </div>
                     <div className="flex flex-col items-end gap-y-1">
-                        <p>{FlightTime}</p>
+                        <p>{duration}</p>
                         <p>
                             {departureTime} - {arrivalTime}
                         </p>
@@ -69,21 +58,21 @@ const FlightCartCard: React.FC<FlightCardProps> = ({ flight }) => {
                             {duration} in {destination}
                         </p>
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className="gap-x-10 mt-1 gap-y-1 py-2 font-semibold w-full items-end flex flex-col text-slate-500">
                 <div className="w-1/2 grid grid-cols-2">
                     <p className="text-right">ราคาย่อย</p>
-                    <p className="text-right">${subtotal}</p>
+                    <p className="text-right">${baseFare}</p>
                 </div>
                 <div className="w-1/2 grid grid-cols-2">
                     <p className="text-right">ภาษี</p>
-                    <p className="text-right">${subtotal * 0.24}</p>
+                    <p className="text-right">${baseFare * 0.02}</p>
                 </div>
-                {subtotal && (
+                {baseFare && (
                     <div className="w-1/2 grid grid-cols-2">
                         <p className="text-right">ราคาสุทธิ</p>
-                        <p className="text-right">${subtotal * 1.24}</p>
+                        <p className="text-right">${baseFare * 1.02}</p>
                     </div>
                 )}
             </div>

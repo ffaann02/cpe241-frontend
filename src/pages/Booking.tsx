@@ -1,6 +1,5 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import FlightCartData from '../components/card/FlightCartCard';
-import fakeFlightData from '../data/fakeFlightData.json';
 import PassengerForm from '../components/bookingPage/PassengerForm';
 import EmergencyContactForm from '../components/bookingPage/EmergencyContactForm';
 import AddLuggage from '../components/bookingPage/AddLuggage';
@@ -19,53 +18,58 @@ import {
 } from '../components/bookingPage/bookingFunctions';
 import { useNavigate } from 'react-router-dom';
 import { BookingDetailsContext } from '../context/BookingDetailsProvider';
+import axiosPrivate from '../api/axios';
+import { LoadingSpinner } from '../components/LoadingGroup';
+import travelBagImage from '../assets/images/Traveling-bag.png';
 
-export interface PassengerData {
-    firstName: string;
-    middleName: string;
-    lastName: string;
-    suffix: string;
-    dateOfBirth: string;
-    email: string;
-    phoneNumber: string;
-    count: number;
-}
-
-export interface EmergencyContactData {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: string;
-}
+const initPassenger = {
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    suffix: '',
+    dateOfBirth: '',
+    email: '',
+    phoneNumber: '',
+    count: 1,
+    seat: null,
+};
 
 export default function Booking() {
     const navigate = useNavigate();
-    const [passengerData, setPassengerData] = useState<PassengerData[]>([
-        {
-            firstName: '',
-            middleName: '',
-            lastName: '',
-            suffix: '',
-            dateOfBirth: '',
-            email: '',
-            phoneNumber: '',
-            count: 1,
-        },
-    ]);
-
-    const [emergencyContactData, setEmergencyContactData] = useState<EmergencyContactData>({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-    });
+    const {
+        passengerData,
+        setPassengerData,
+        emergencyContactData,
+        setEmergencyContactData,
+        selectedFlight,
+        setSelectedFlight,
+    } = useContext(BookingDetailsContext);
     const [usePassengerDataForEmergencyContact, setUsePassengerDataForEmergencyContact] = useState<boolean>(false);
     const [passengerEmailError, setPassengerEmailError] = useState<string[]>([]);
     const [passengerPhoneNumberError, setPassengerPhoneNumberError] = useState<string[]>([]);
-    const { step, setStep } = useContext(BookingDetailsContext);
-
+    const { setStep } = useContext(BookingDetailsContext);
+    const [isFetching, setIsFetching] = useState<boolean>(false);
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsFetching(true);
+            try {
+                const fid = new URLSearchParams(window.location.search).get('fid');
+                const response = await axiosPrivate.get(`/api/flight/${fid}`);
+                console.log(response.data);
+                setSelectedFlight(response.data);
+                const passengerAmount = new URLSearchParams(window.location.search).get('initAmount');
+                const initialPassengerData = Array.from({ length: parseInt(passengerAmount) }, () => initPassenger);
+                setPassengerData(initialPassengerData);
+            } catch (error) {
+                console.error('An error occurred while trying to fetch flight data:', error);
+            }
+            setIsFetching(false);
+        };
+        fetchData();
+    }, []);
     return (
         <div>
+            <LoadingSpinner loading={isFetching} />
             <section className="py-8 grid grid-cols-10 gap-x-10 max-w-6xl mx-auto">
                 <section className="mx-4 col-span-6 pr-20">
                     <FormHeader
@@ -158,10 +162,10 @@ export default function Booking() {
                 </section>
                 <section className="my-10 col-span-4 flex flex-col">
                     <div>
-                        <FlightCartData flight={fakeFlightData[2]} />
+                        <FlightCartData flight={selectedFlight} />
                     </div>
                     <div className="flex justify-end mt-6">
-                        <img src="src\assets\images\Traveling-bag.png" alt="" />
+                        <img src={travelBagImage} alt="" />
                     </div>
                 </section>
             </section>
