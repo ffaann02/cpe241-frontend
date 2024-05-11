@@ -1,12 +1,13 @@
 import Datepicker from 'react-tailwindcss-datepicker';
 import React, { useState } from 'react';
 import { PassengerData } from '../../pages/Booking';
-import { Input, InputGroup, FormControl, FormErrorMessage } from '@chakra-ui/react';
+import { Input, InputGroup, FormControl, FormErrorMessage, Select } from '@chakra-ui/react';
+import nationalityData from "../../data/nationality.json"
 
 interface PassengerProps {
     index: number;
     passenger: PassengerData;
-    handleChangePassenger: (index: number, e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleChangePassenger: (index: number, e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void; // Updated handleChangePassenger to handle Select element
     handleDateOfBirthChange: (index: number, e: any) => void;
     passengerData: PassengerData[];
     handleDeletePassenger: (index: number) => void;
@@ -19,7 +20,7 @@ interface PassengerProps {
 
 export interface FormProps {
     value: string;
-    handleChange: (index: number, e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleChange: (index: number, e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void; // Updated handleChange to handle Select element
     onBlur?: any;
     index: number;
     placeholder: string;
@@ -129,13 +130,28 @@ const PassengerForm: React.FC<PassengerProps> = ({
                 <FormErrorMessage>Last name is required.</FormErrorMessage>
             </FormControl>
             <Form
-                value={passenger.suffix}
+                value={passenger.prefix}
                 handleChange={handleChangePassenger}
                 index={index}
-                placeholder="คำลงท้าย"
-                name="suffix"
-                className="col-span-3"
+                placeholder="คำนำหน้า"
+                name="prefix"
+                className="col-span-2"
             />
+            <div className='col-span-2'>
+                <Select
+                    value={passenger.nationality}
+                    onChange={(e) => handleChangePassenger(index, e)}
+                    placeholder="สัญชาติ"
+                    name="nationality"
+                    className="transform origin-top-left text-slate-500 h-full"
+                >
+                    {nationalityData.map((nationality: any, i: number) => (
+                        <option key={i} value={nationality.name}>
+                            {nationality.name}
+                        </option>
+                    ))}
+                </Select>
+            </div>
             <div className="col-span-2 relative"
                 id="datepicker">
                 <Datepicker
@@ -162,14 +178,14 @@ const PassengerForm: React.FC<PassengerProps> = ({
                 />
                 <FormErrorMessage>Please enter a valid email address</FormErrorMessage>
             </FormControl>
-            <FormControl isInvalid={(touched.phoneNumber && passenger.phoneNumber.trim() === '') || (touched.phoneNumber && !validate('phoneNumber', passenger.phoneNumber))} onBlur={() => handleBlur('phoneNumber')} className='col-span-2'>
+            <FormControl isInvalid={(touched.phoneNumber && passenger.phoneNumber.trim() === '') || (touched.phoneNumber && !validate('phoneNumber', passenger.phoneNumber))} onBlur={() => handleBlur('phoneNumber')} className='col-span-3'>
                 <Form
                     value={passenger.phoneNumber}
                     handleChange={handleChangePassenger}
                     index={index}
                     placeholder="เบอร์ติดต่อ*"
                     name="phoneNumber"
-                    className="col-span-2"
+                    className="col-span-3"
                 />
                 <FormErrorMessage>Please enter a valid phone number (e.g., 123456789)</FormErrorMessage>
             </FormControl>

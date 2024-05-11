@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import About from './pages/AboutUs';
 import SignupPage from './pages/Signup';
@@ -18,7 +18,10 @@ import Mybooking from './pages/MyBooking';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profilenew'
 import { useLocation } from 'react-router-dom';
-
+import SelectSeat from './pages/SelectSeat';
+import BookingNavbar from './components/layoutBar/BookingNavbar';
+import BookingRoute from './routes/BookingRoute';
+import BookingDetailsProvider from './context/BookingDetailsProvider';
 
 function App() {
     const location = useLocation();
@@ -29,11 +32,11 @@ function App() {
         location.pathname.includes('auth') ||
         location.pathname.includes('rtl') ||
         location.pathname.includes('admin');
-
+    const enableBookingNavbar = location.pathname.startsWith('/booking');
     return (
         <>
             <div className="w-full h-full font-IBM-Plex">
-                {!disableNavbar && <Navbar />}
+                {!disableNavbar && !enableBookingNavbar && <Navbar />}
                 <div className={`w-full h-full min-h-screen ${!disableNavbar && 'pt-[60px]'} flex`} id="app_container">
                     <div className="flex-1">
                         <Routes>
@@ -41,10 +44,25 @@ function App() {
                             <Route path="/about" element={<About />} />
                             <Route path="/signup" element={<SignupPage />} />
                             <Route path="/login" element={<LoginPage />} />
-                            <Route path="/booking" element={<Booking />} />
-                            <Route path="/payment" element={<Payment />} />
+                            <Route
+                                path="/booking"
+                                element={
+                                    <BookingDetailsProvider>
+                                       {enableBookingNavbar && <BookingNavbar />}
+                                        <BookingRoute />
+                                    </BookingDetailsProvider>
+                                }
+                            >
+                                <Route path="passenger" element={<Booking />} />
+                                <Route path="select-seat" element={<SelectSeat />} />
+                                <Route path="payment" element={<Payment />} />
+                                <Route path="confirm" element={<Confirm />} />
+                            </Route>
                             <Route path="/search" element={<Search />} />
-                            <Route path="search" element={<Search />} />
+                            {/* <Route path="auth/*" element={<AuthLayout />} />
+                            <Route path="admin/*" element={<AdminLayout />} />
+                            <Route path="rtl/*" element={<RtlLayout />} /> */}
+                            <Route path="/dashboard" element={<Navigate to="/admin" replace />} />
                             <Route path="/confirm" element={<Confirm />} />
                             <Route path="search" element={<Search />} />
                             <Route path="/trip" element={<TripSection />} />
@@ -56,7 +74,6 @@ function App() {
                             <Route path="mybooking" element={<Mybooking />} />
                             <Route path="dashboard/*" element={<Dashboard />} />
                             <Route path="/profile" element={<Profile />} />
-
 
                         </Routes>
                     </div>
