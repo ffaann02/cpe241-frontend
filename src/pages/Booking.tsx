@@ -1,6 +1,5 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import FlightCartData from '../components/card/FlightCartCard';
-import fakeFlightData from '../data/fakeFlightData.json';
 import PassengerForm from '../components/bookingPage/PassengerForm';
 import EmergencyContactForm from '../components/bookingPage/EmergencyContactForm';
 import AddLuggage from '../components/bookingPage/AddLuggage';
@@ -18,56 +17,61 @@ import {
 } from '../components/bookingPage/bookingFunctions';
 import { useNavigate } from 'react-router-dom';
 import { BookingDetailsContext } from '../context/BookingDetailsProvider';
-import { Checkbox } from '@chakra-ui/react';
+import axiosPrivate from '../api/axios';
+import { LoadingSpinner } from '../components/LoadingGroup';
+import travelBagImage from '../assets/images/Traveling-bag.png';
 
-export interface PassengerData {
-    firstName: string;
-    middleName: string;
-    lastName: string;
-    prefix: string;
-    nationality: string;
-    dateOfBirth: string;
-    email: string;
-    phoneNumber: string;
-    bagCount: string;
-}
-
-export interface EmergencyContactData {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: string;
-}
+export const initPassenger = {
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    nationality: '',
+    dateOfBirth: '',
+    email: '',
+    phoneNumber: '',
+    bagCount: '',
+    seat: null,
+};
 
 export default function Booking() {
     const navigate = useNavigate();
-    const [passengerData, setPassengerData] = useState<PassengerData[]>([
-        {
-            firstName: '',
-            middleName: '',
-            lastName: '',
-            prefix: '',
-            nationality: '',
-            dateOfBirth: '',
-            email: '',
-            phoneNumber: '',
-            bagCount: '',
-        },
-    ]);
+    const {
+        passengerData,
+        setPassengerData,
+        emergencyContactData,
+        setEmergencyContactData,
+        selectedFlight,
+        setSelectedFlight,
+    } = useContext(BookingDetailsContext);
 
-    const [emergencyContactData, setEmergencyContactData] = useState<EmergencyContactData>({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-    });
     const [usePassengerDataForEmergencyContact, setUsePassengerDataForEmergencyContact] = useState<boolean>(false);
     const [passengerEmailError, setPassengerEmailError] = useState<string[]>([]);
     const [passengerPhoneNumberError, setPassengerPhoneNumberError] = useState<string[]>([]);
-    const { step, setStep } = useContext(BookingDetailsContext);
-
+    const { setStep } = useContext(BookingDetailsContext);
+    const [isFetching, setIsFetching] = useState<boolean>(false);
+    useEffect(() => {
+        setStep(0);
+        const fetchData = async () => {
+            setIsFetching(true);
+            try {
+                const fid = new URLSearchParams(window.location.search).get('fid');
+                const response = await axiosPrivate.get(`/api/flight/${fid}`);
+                setSelectedFlight(response.data);
+                const passengerAmount = new URLSearchParams(window.location.search).get('initAmount');
+                const initialPassengerData = Array.from({ length: parseInt(passengerAmount) }, () => initPassenger);
+                setPassengerData(initialPassengerData);
+            } catch (error) {
+                console.error('An error occurred while trying to fetch flight data:', error);
+            }
+            setIsFetching(false);
+        };
+        if (!selectedFlight || passengerData.length === 0) {
+            fetchData();
+        }
+    }, []);
     return (
         <div>
+            <LoadingSpinner loading={isFetching} />
             <section className="py-8 grid grid-cols-10 gap-x-10 max-w-6xl mx-auto">
                 <section className="mx-4 col-span-6 pr-20">
                     <FormHeader
@@ -120,7 +124,7 @@ export default function Booking() {
                             setPassengerData={setPassengerData}
                         />
                     ))}
-                    <ServicePackage/>
+                    <ServicePackage />
                     <div className="mt-10 flex gap-x-4">
                         <button
                             className="cursor-pointer px-4 py-2 border-[1px] border-royal-blue-500 text-royal-blue-500 
@@ -161,9 +165,7 @@ export default function Booking() {
                     </div>
                 </section>
                 <section className="my-10 col-span-4 flex flex-col">
-                    <div>
-                        <FlightCartData flight={fakeFlightData[2]} />
-                    </div>
+                    <div>{selectedFlight && <FlightCartData flight={selectedFlight} />}</div>
                     <div className='mt-10'>
                         <ul className='text-lg text-bold'>เงื่อนไขการจอง</ul>
                         <li className='mt-1 text-sm'>หากท่านดำเนินการเปลี่ยนแปลงข้อมูลเที่ยวบินกับสายการบินโดยตรง หรือสายการบินเป็นผู้ดำเนินการเปลี่ยนแปลง อโกด้าจะไม่ได้รับแจ้งรายละเอียดดังกล่าว กรุณาตรวจสอบข้อมูลการติดต่อที่ท่านกรอกในแบบฟอร์มการจองให้ถูกต้อง เนื่องจากสายการบินจะแจ้งรายละเอียดการเปลี่ยนแปลงให้ท่านทราบโดยตรง</li>
@@ -175,7 +177,7 @@ export default function Booking() {
                         <li className='text-sm'>อโกด้าพยายามอย่างเต็มที่เพื่อให้ท่านสามารถจองเที่ยวบินและชำระเงินได้ในราคาสุดท้าย อย่างไรก็ตาม หากมีการเรียกเก็บภาษีหรือมีการเพิ่มอัตราภาษีใดๆ จากรัฐบาลสำหรับการขนส่งทางอากาศสำหรับเที่ยวบินที่ท่านจองก่อนการเดินทางของท่าน ท่านอาจต้องชำระภาษีหรือค่าธรรมเนียมดังกล่าว</li>
                     </div>
                     <div className="flex justify-end mt-6">
-                        <img src="src\assets\images\Traveling-bag.png" alt="" />
+                        <img src={travelBagImage} alt="" />
                     </div>
                 </section>
             </section>

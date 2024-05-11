@@ -1,7 +1,7 @@
 import React from 'react';
-import { PassengerData } from '../../pages/Booking';
 import { Select } from '@chakra-ui/react';
 import { useState } from 'react';
+import { PassengerData } from '../../context/BookingDetailsProvider';
 
 interface AddLuggageProps {
     passenger: PassengerData;

@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { FaUser } from 'react-icons/fa';
+import { BookingDetailsContext } from '../../context/BookingDetailsProvider';
 
 interface Seat {
     index: number;
@@ -48,7 +50,6 @@ const ChoosedSeat = ({ index, size, number, seatId, handleChooseSeat }: Seat) =>
 interface SeatGroupProps {
     capacity: number;
     bookedSeat: string[];
-    choosedSeat: { seat: string | null; name: string }[];
     setBookedSeat: (seat: string[]) => void;
     handleChooseSeat: (seat: string) => void;
 }
@@ -56,7 +57,6 @@ interface SeatGroupProps {
 const SeatGroup: React.FC<SeatGroupProps> = ({
     capacity,
     bookedSeat,
-    choosedSeat,
     setBookedSeat,
     handleChooseSeat,
 }: SeatGroupProps) => {
@@ -65,6 +65,7 @@ const SeatGroup: React.FC<SeatGroupProps> = ({
     const seatData = Array.from({ length: numberOfRows }, (_, i) => i + 1);
     const seatLabelsLeft = ['A', 'B', 'C'];
     const seatLabelsRight = ['D', 'E', 'F'];
+    const {passengerData} = useContext(BookingDetailsContext);
 
     return (
         <div className="col-span-2 relative">
@@ -115,7 +116,7 @@ const SeatGroup: React.FC<SeatGroupProps> = ({
                             if (bookedSeat.includes(seatId)) {
                                 return <BookedSeat index={index} seatId={seatId} handleChooseSeat={handleChooseSeat} />;
                             } else {
-                                const choosedSeatIndex = choosedSeat.findIndex((s) => s.seat === seatId);
+                                const choosedSeatIndex = passengerData.findIndex((s) => s.seat === seatId);
                                 if (choosedSeatIndex !== -1) {
                                     return (
                                         <ChoosedSeat
@@ -142,7 +143,7 @@ const SeatGroup: React.FC<SeatGroupProps> = ({
                             if (bookedSeat.includes(seatId)) {
                                 return <BookedSeat index={index} seatId={seatId} handleChooseSeat={handleChooseSeat} />;
                             } else {
-                                const choosedSeatIndex = choosedSeat.findIndex((s) => s.seat === seatId);
+                                const choosedSeatIndex = passengerData.findIndex((s) => s.seat === seatId);
                                 if (choosedSeatIndex !== -1) {
                                     return (
                                         <ChoosedSeat

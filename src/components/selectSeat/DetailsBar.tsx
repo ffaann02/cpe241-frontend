@@ -9,19 +9,13 @@ import { useNavigate } from 'react-router-dom';
 
 interface DetailsBarProps {
     flight: Flight;
-    setFlight: (flight: Flight) => void;
-    choosedSeat: { seat: string | null; name: string }[];
     handleChooseSeat: (seat: string) => void;
 }
 
-const DetailsBar: React.FC<DetailsBarProps> = ({
-    flight,
-    setFlight,
-    choosedSeat,
-    handleChooseSeat,
-}: DetailsBarProps) => {
-    const {setStep} = useContext(BookingDetailsContext);
+const DetailsBar: React.FC<DetailsBarProps> = ({ flight, handleChooseSeat }: DetailsBarProps) => {
+    const { setStep } = useContext(BookingDetailsContext);
     const navigate = useNavigate();
+    const { passengerData } = useContext(BookingDetailsContext);
     return (
         <div className="col-span-3 w-full pl-4">
             <h1 className="text-xl font-bold text-slate-600 flex gap-x-2">รายละเอียดเที่ยวบินของคุณ</h1>
@@ -84,10 +78,10 @@ const DetailsBar: React.FC<DetailsBarProps> = ({
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                {choosedSeat.map((passenger, index) => (
+                                {passengerData.map((passenger, index) => (
                                     <Tr className="text-sm">
                                         <Td style={{ width: '5%' }}>{index + 1}.</Td>
-                                        <Td style={{ width: '50%' }}>{passenger.name}</Td>
+                                        <Td style={{ width: '50%' }}>{passenger.firstName}</Td>
                                         <Td style={{ width: '45%' }}>
                                             <div className="text-right font-IBM-Plex">
                                                 {passenger.seat ? (
@@ -113,15 +107,27 @@ const DetailsBar: React.FC<DetailsBarProps> = ({
                     </TableContainer>
                 </div>
             </div>
-            <button
-                className="cursor-pointer px-4 py-2 border-[1px] border-royal-blue-500 text-royal-blue-500 
-                            rounded hover:bg-royal-blue-500 hover:text-white transition-all duration-200 mt-4"
-                onClick={()=>{
-                    setStep(2);
-                    navigate("/booking/payment");
-                }}>
-                บันทีกและถัดไป
-            </button>
+            <div className="flex gap-x-3 mt-4">
+                <button
+                    className="cursor-pointer px-4 py-2 border-[1px] bg-slate-50 border-slate-500 
+                    text-slate-500 rounded hover:bg-slate-500 hover:text-white transition-all duration-200"
+                    onClick={() => {
+                        navigate(-1);
+                    }}
+                >
+                    ย้อนกลับ
+                </button>
+                <button
+                    className="cursor-pointer px-4 py-2 border-[1px] border-royal-blue-500 text-royal-blue-500 
+                            rounded hover:bg-royal-blue-500 hover:text-white transition-all duration-200"
+                    onClick={() => {
+                        setStep(2);
+                        navigate('/booking/payment');
+                    }}
+                >
+                    บันทีกและถัดไป
+                </button>
+            </div>
         </div>
     );
 };

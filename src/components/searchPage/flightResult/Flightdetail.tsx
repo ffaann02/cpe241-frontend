@@ -1,11 +1,11 @@
 import { Step, StepIndicator, StepSeparator, Stepper, useSteps, } from '@chakra-ui/react'
 import { InfoOutlineIcon } from '@chakra-ui/icons'
-import { FlightData } from '../../card/FlightCartCard';
+import { Flight } from '../../../pages/Search'
 const steps = [
     { title: 'First', description: 'Contact Info' },
     { title: 'Second', description: 'Date & Time' },
 ]
-export const Flightdetail= ({ flight}: { flight: FlightData;}) => {
+export const Flightdetail= ({ flight}: { flight: Flight;}) => {
     const { activeStep } = useSteps({
         index: 1,
         count: steps.length,

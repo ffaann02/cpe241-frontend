@@ -3,51 +3,49 @@ import { useEffect, useState, useCallback } from 'react';
 import { Box, Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react';
 import HeaderSortCard from './flightResult/HeaderSortCard';
 import { Flight } from '../../pages/Search';
-import { TimeRange, InitialTimeRange } from './FilterSideBar';
 const FlightResult = ({
     isFetching,
     flightResult,
-    selectedTime,
+    passengerAmount
 }: {
     isFetching: boolean;
     flightResult: Flight[];
-    selectedTime: TimeRange
+    passengerAmount: number;
 }) => {
     const [sortType, setSortType] = useState<string>('price'); // 1: recommend, 2: price, 3: fastest
     const [sortBy, setSortBy] = useState(1);
     const [filteredFlightResult, setFilteredFlightResult] = useState<Flight[]>([]);
-    if (!selectedTime) {
-        selectedTime = InitialTimeRange;
-    }
-    const isTimeInRange = (time: string, startTime: string, endTime: string) => {
-        const [startHour, startMinute] = startTime.split(':').map(Number);
-        const [endHour, endMinute] = endTime.split(':').map(Number);
-        const [flightHour, flightMinute] = time.split(':').map(Number);
-        const startTotalMinutes = startHour * 60 + startMinute;
-        const endTotalMinutes = endHour * 60 + endMinute;
-        const flightTotalMinutes = flightHour * 60 + flightMinute;
-        return startTotalMinutes <= flightTotalMinutes && flightTotalMinutes < endTotalMinutes;
-    };
-    const filterCallback = useCallback(
-        (flight) => {
-            if (!selectedTime.q1 && !selectedTime.q2 && !selectedTime.q3 && !selectedTime.q4) {
-                return true;
-            }
-            if (
-                (selectedTime.q1 && isTimeInRange(flight.departureTime, '00:00', '06:00')) ||
-                (selectedTime.q2 && isTimeInRange(flight.departureTime, '06:00', '12:00')) ||
-                (selectedTime.q3 && isTimeInRange(flight.departureTime, '12:00', '18:00')) ||
-                (selectedTime.q4 && isTimeInRange(flight.departureTime, '18:00', '24:00'))) {
-                return true;
-            }
-            return false;
-        },
-        [selectedTime, isTimeInRange]
-    );
-    useEffect(() => {
-        const newFilteredFlightResult = flightResult.filter(filterCallback);
-        setFilteredFlightResult(newFilteredFlightResult);
-    }, [selectedTime, filterCallback]);
+
+    // const isTimeInRange = (time: string, startTime: string, endTime: string) => {
+    //     const [startHour, startMinute] = startTime.split(':').map(Number);
+    //     const [endHour, endMinute] = endTime.split(':').map(Number);
+    //     const [flightHour, flightMinute] = time.split(':').map(Number);
+    //     const startTotalMinutes = startHour * 60 + startMinute;
+    //     const endTotalMinutes = endHour * 60 + endMinute;
+    //     const flightTotalMinutes = flightHour * 60 + flightMinute;
+    //     return startTotalMinutes <= flightTotalMinutes && flightTotalMinutes < endTotalMinutes;
+    // };
+
+    // const filterCallback = useCallback(
+    //     (flight) => {
+    //         if (!selectedTime.q1 && !selectedTime.q2 && !selectedTime.q3 && !selectedTime.q4) {
+    //             return true;
+    //         }
+    //         if (
+    //             (selectedTime.q1 && isTimeInRange(flight.departureTime, '00:00', '06:00')) ||
+    //             (selectedTime.q2 && isTimeInRange(flight.departureTime, '06:00', '12:00')) ||
+    //             (selectedTime.q3 && isTimeInRange(flight.departureTime, '12:00', '18:00')) ||
+    //             (selectedTime.q4 && isTimeInRange(flight.departureTime, '18:00', '24:00'))) {
+    //             return true;
+    //         }
+    //         return false;
+    //     },
+    //     [selectedTime, isTimeInRange]
+    // );
+    // useEffect(() => {
+    //     const newFilteredFlightResult = flightResult.filter(filterCallback);
+    //     setFilteredFlightResult(newFilteredFlightResult);
+    // }, [selectedTime, filterCallback]);
     const selectSortType = (type: string) => {
         setSortType(type);
     };
@@ -74,9 +72,9 @@ const FlightResult = ({
                             <SkeletonText isLoaded={!isFetching} mt="4" noOfLines={2} spacing="3" skeletonHeight="2" />
                         </Box>
                     ))}
-            {filteredFlightResult.map((flight, index) => (
+            {flightResult.map((flight, index) => (
                 <div key={index}>
-                    <FlightCard flight={flight} index={index} />
+                    <FlightCard flight={flight} index={index} passengerAmount={passengerAmount}/>
                 </div>
             ))}
         </div>

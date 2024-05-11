@@ -1,9 +1,14 @@
 import { Checkbox } from "@chakra-ui/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { BookingDetailsContext } from "../../context/BookingDetailsProvider";
 
 const ServicePackage = ({ }) => {
-    const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
-    const [travelInsurance, setTravelInsurance] = useState<string | null>(null);
+    const {
+        selectedPackage,
+        setSelectedPackage,
+        travelInsurance,
+        setTravelInsurance
+    } = useContext(BookingDetailsContext);
 
     const handlePackageSelection = (value: string) => {
         setSelectedPackage(value === selectedPackage ? null : value);
