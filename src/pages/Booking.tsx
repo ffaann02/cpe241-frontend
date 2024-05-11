@@ -13,8 +13,6 @@ import {
     handleAddPassenger,
     handleChangeCheckbox,
     handleChangeEmergencyContact,
-    increment,
-    decrement,
     handleSaveAndClose,
     handleSelectSeat,
 } from '../components/bookingPage/bookingFunctions';
@@ -31,7 +29,7 @@ export interface PassengerData {
     dateOfBirth: string;
     email: string;
     phoneNumber: string;
-    count: number;
+    bagCount: string;
 }
 
 export interface EmergencyContactData {
@@ -53,7 +51,7 @@ export default function Booking() {
             dateOfBirth: '',
             email: '',
             phoneNumber: '',
-            count: 1,
+            bagCount: '',
         },
     ]);
 
@@ -119,8 +117,7 @@ export default function Booking() {
                         <AddLuggage
                             passenger={passenger}
                             index={index}
-                            increment={increment(setPassengerData)}
-                            decrement={decrement(setPassengerData)}
+                            setPassengerData={setPassengerData}
                         />
                     ))}
                     <ServicePackage/>
@@ -134,6 +131,7 @@ export default function Booking() {
                                     setStep(1);
                                     navigate('/booking/select-seat');
                                 }
+                                console.log(passengerData);
                             }}
                             disabled={
                                 !passengerData.every(
