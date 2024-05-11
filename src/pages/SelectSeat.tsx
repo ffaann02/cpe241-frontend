@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import DetailsBar from '../components/selectSeat/DetailsBar';
 import SeatGroup from '../components/selectSeat/SeatGroup';
+import { BookingDetailsContext } from '../context/BookingDetailsProvider';
 
 export interface Flight {
     departure: string;
@@ -22,28 +23,17 @@ const SelectSeat = () => {
         airline: 'Thai Airways',
         price: 1500,
     });
-
-    const [choosedSeat, setChoosedSeat] = useState([
-        {
-            seat: null,
-            name: 'TEST ',
-        },
-        {
-            seat: null,
-            name: 'YES',
-        },
-        {
-            seat: null,
-            name: 'YES 2',
-        },
-    ]);
+    const {passengerData,setPassengerData,setStep} = useContext(BookingDetailsContext);
+    useEffect(()=>{
+        setStep(1);
+    },[])
 
     const handleChooseSeat = (seat: string) => {
-        if (choosedSeat.some((s) => s.seat === seat)) {
-            setChoosedSeat(choosedSeat.map((s) => (s.seat === seat ? { ...s, seat: null } : s)));
+        if (passengerData.some((s) => s.seat === seat)) {
+            setPassengerData(passengerData.map((s) => (s.seat === seat ? { ...s, seat: null } : s)));
         } else {
             let seatAssigned = false;
-            const updatedSeats = choosedSeat.map((s) => {
+            const updatedSeats = passengerData.map((s) => {
                 if (s.seat === null && !seatAssigned) {
                     seatAssigned = true;
                     return { ...s, seat };
@@ -51,7 +41,7 @@ const SelectSeat = () => {
                     return s;
                 }
             });
-            setChoosedSeat(updatedSeats);
+            setPassengerData(updatedSeats);
         }
     };
 
@@ -60,14 +50,11 @@ const SelectSeat = () => {
             <SeatGroup
                 capacity={capacity}
                 bookedSeat={bookedSeat}
-                choosedSeat={choosedSeat}
                 setBookedSeat={setBookedSeat}
                 handleChooseSeat={handleChooseSeat}
             />
             <DetailsBar
                 flight={flight}
-                setFlight={setFlight}
-                choosedSeat={choosedSeat}
                 handleChooseSeat={handleChooseSeat}
             />
         </div>
