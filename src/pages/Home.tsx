@@ -8,25 +8,26 @@ import axios from 'axios';
 export default function Home() {
     const [recommendAirports, setRecommendAirports] = useState<City[]>([]);
 
-    useEffect(()=> {
+    useEffect(() => {
         const getAirports = async (): Promise<void> => {
             try {
-                    const response = await axios.get(`/api/search/airports/recommend?number=8`);
-                    if (response.status === 200) {
-                        setRecommendAirports(response.data);
-                    } else {
-                        alert("Failed to fetch airport data");
-                    }
+                const response = await axios.get(`/api/search/airports/recommend?number=8`);
+                if (response.status === 200) {
+                    console.log(response.data);
+                    setRecommendAirports(response.data);
+                } else {
+                    alert('Failed to fetch airport data');
+                }
             } catch (error) {
                 console.error('An error occurred while trying to fetch airport data:', error);
             }
-        }
+        };
         getAirports();
-},[]);
+    }, []);
 
     return (
         <div className="w-full h-full">
-            <HereBlock recommendAirports={recommendAirports}/>
+            <HereBlock recommendAirports={recommendAirports} />
             <div className="my-28 lg:mx-52">
                 <TripSection />
                 <ReviewSection />

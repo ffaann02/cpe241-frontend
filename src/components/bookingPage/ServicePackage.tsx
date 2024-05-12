@@ -1,7 +1,24 @@
 import { Checkbox } from "@chakra-ui/react";
+import { useContext, useState } from "react";
+import { BookingDetailsContext } from "../../context/BookingDetailsProvider";
 
-const ServicePackage = ({}) => {
-    return(
+const ServicePackage = ({ }) => {
+    const {
+        selectedPackage,
+        setSelectedPackage,
+        travelInsurance,
+        setTravelInsurance
+    } = useContext(BookingDetailsContext);
+
+    const handlePackageSelection = (value: string) => {
+        setSelectedPackage(value === selectedPackage ? null : value);
+    };
+
+    const handleTravelInsuranceSelection = (option: string) => {
+        setTravelInsurance(option === travelInsurance ? null : option);
+    };
+
+    return (
         <div className='text-slate-500'>
             <h1 className='font-bold text-xl'>บริการเสริม</h1>
             <div className='mt-4 border rounded-lg shadow-md p-5'>
@@ -9,31 +26,40 @@ const ServicePackage = ({}) => {
                 <p className='text-sm mb-6'>เลือกรับบริการช่วยเหลือแบบพรีเมียม - รับบริการที่รวดเร็วยิ่งขึ้นจากเจ้าหน้าที่ของเรา</p>
                 <div className='grid grid-cols-4 gap-4 text-sm divide-x'>
                     <div></div>
-                    <a className='col-start-2 justify-center items-center border rounded-lg cursor-pointer'>
+                    <a className={`col-start-2 justify-center items-center border rounded-lg cursor-pointer ${selectedPackage === 'Basic' ? 'bg-gray-200' : ''}`}
+                        onClick={() => handlePackageSelection('Basic')}
+                    >
                         <div className='flex justify-center m-2'>
                             <Checkbox
                                 size={'md'}
                                 className="cursor-pointer"
+                                isChecked={selectedPackage === 'Basic'}
                             />
                         </div>
                         <p className='flex justify-center font-bold m-2'>เบสิก</p>
                         <p className='flex justify-center font-bold m-2'>฿ 0</p>
                     </a>
-                    <a className='col-start-3 justify-center items-center border rounded-lg cursor-pointer'>
+                    <a className={`col-start-3 justify-center items-center border rounded-lg cursor-pointer ${selectedPackage === 'Plus' ? 'bg-gray-200' : ''}`}
+                        onClick={() => handlePackageSelection('Plus')}
+                    >
                         <div className='flex justify-center m-2'>
                             <Checkbox
                                 size={'md'}
                                 className="cursor-pointer"
+                                isChecked={selectedPackage === 'Plus'}
                             />
                         </div>
                         <p className='flex justify-center font-bold m-2'>พลัส</p>
                         <p className='flex justify-center font-bold m-2'>฿ 331</p>
                     </a>
-                    <a className='col-start-4 justify-center items-center border rounded-lg cursor-pointer'>
+                    <a className={`col-start-4 justify-center items-center border rounded-lg cursor-pointer ${selectedPackage === 'Premium' ? 'bg-gray-200' : ''}`}
+                        onClick={() => handlePackageSelection('Premium')}
+                    >
                         <div className='flex justify-center m-2'>
                             <Checkbox
                                 size={'md'}
                                 className="cursor-pointer"
+                                isChecked={selectedPackage === 'Premium'}
                             />
                         </div>
                         <p className='flex justify-center font-bold m-2'>พรีเมียม</p>
@@ -80,11 +106,13 @@ const ServicePackage = ({}) => {
             <div className='mt-4 border rounded-lg shadow-md p-5'>
                 <h1 className='font-medium text-lg'>คุณต้องการคุ้มครองการเดินทางหรือไม่?</h1>
                 <p className='text-base'>คุ้มครองตลอดทริปไม่ว่าคุณจะเดินทางไปที่ใด</p>
-                <div className='grid grid-cols-10 border rounded-lg mt-5 py-2 cursor-pointer'>
+                <div className='grid grid-cols-10 border rounded-lg mt-5 py-2'>
                     <div className='flex justify-center'>
                         <Checkbox
                             size={'md'}
                             className="cursor-pointer"
+                            isChecked={travelInsurance === 'yes'}
+                            onChange={() => handleTravelInsuranceSelection('yes')}
                         />
                     </div>
                     <div className='col-span-9'>
@@ -107,14 +135,16 @@ const ServicePackage = ({}) => {
                         </div>
                     </div>
                 </div>
-                <div className='grid grid-cols-10 mt-4 cursor-pointer'>
+                <div className='grid grid-cols-10 mt-4'>
                     <div className='flex justify-center'>
                         <Checkbox
                             size={'md'}
                             className="cursor-pointer"
+                            isChecked={travelInsurance === 'no'}
+                            onChange={() => handleTravelInsuranceSelection('no')}
                         />
                     </div>
-                    <span className='col-span-9 text-sm'>ไม่ ฉันไม่ต้องการประกันภัยการเดินทาง ฉันจะรับผิดชอบค่าใช้จ่ายด้วยตนเองในกรณีฉุกเฉิน</span>
+                    <label htmlFor="no" className='col-span-9 text-sm'>ไม่ ฉันไม่ต้องการประกันภัยการเดินทาง ฉันจะรับผิดชอบค่าใช้จ่ายด้วยตนเองในกรณีฉุกเฉิน</label>
                 </div>
             </div>
         </div>

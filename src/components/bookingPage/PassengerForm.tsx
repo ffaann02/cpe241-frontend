@@ -1,6 +1,6 @@
 import Datepicker from 'react-tailwindcss-datepicker';
 import React, { useState } from 'react';
-import { PassengerData } from '../../pages/Booking';
+import { PassengerData } from '../../context/BookingDetailsProvider';
 import { Input, InputGroup, FormControl, FormErrorMessage, Select } from '@chakra-ui/react';
 import nationalityData from "../../data/nationality.json"
 
@@ -129,21 +129,24 @@ const PassengerForm: React.FC<PassengerProps> = ({
                 />
                 <FormErrorMessage>Last name is required.</FormErrorMessage>
             </FormControl>
-            <Form
+            {/* <Form
                 value={passenger.prefix}
                 handleChange={handleChangePassenger}
                 index={index}
                 placeholder="คำนำหน้า"
                 name="prefix"
                 className="col-span-2"
-            />
+            /> */}
             <div className='col-span-2'>
                 <Select
                     value={passenger.nationality}
                     onChange={(e) => handleChangePassenger(index, e)}
-                    placeholder="สัญชาติ"
+                    placeholder='สัญชาติ'
                     name="nationality"
-                    className="transform origin-top-left text-slate-500 h-full"
+                    size={'lg'}
+                    focusBorderColor="purple.200"
+                    className={`transform origin-top-left 
+                        ${passenger.nationality==="" ? "text-slate-400":"text-slate-500"} h-full`}
                 >
                     {nationalityData.map((nationality: any, i: number) => (
                         <option key={i} value={nationality.name}>

@@ -57,7 +57,7 @@ const FilterSideBar = () => {
                 <Price title="ราคา" price={price} setPrice={setPrice} />
                 <Airline title="สายการบิน" selectedAirline={selectedAirline} setSelectedAirline={setSelectedAirline} />
                 <Time title="เวลาออกเดินทาง" selectedTime={selectedTime} setSelectedTime={setSelectedTime} />
-                <FlightResult isFetching={null} flightResult={[]} selectedTime={selectedTime}/>
+                {/* <FlightResult isFetching={null} flightResult={[]}/> */}
                 <Service
                     title="บริการเพิ่มเติม"
                     selectedServices={selectedServices}

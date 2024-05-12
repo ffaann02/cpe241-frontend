@@ -1,28 +1,4 @@
-
-
-const increment = (setPassengerData) => (index: number) => {
-    setPassengerData((prevPassengerData) => {
-        const updatedPassengerData = [...prevPassengerData];
-        updatedPassengerData[index] = {
-            ...updatedPassengerData[index],
-            count: updatedPassengerData[index].count + 1,
-        };
-        return updatedPassengerData;
-    });
-};
-
-const decrement = (setPassengerData) => (index: number) => {
-    setPassengerData((prevPassengerData) => {
-        const updatedPassengerData = [...prevPassengerData];
-        if (updatedPassengerData[index].count > 1) {
-            updatedPassengerData[index] = {
-                ...updatedPassengerData[index],
-                count: updatedPassengerData[index].count - 1,
-            };
-        }
-        return updatedPassengerData;
-    });
-};
+import { initPassenger } from "../../pages/Booking";
 
 const handleChangePassenger = (setPassengerData, passengerData) => (index: number, e: any) => {
     const { name, value } = e.target;
@@ -38,31 +14,20 @@ const handleChangePassenger = (setPassengerData, passengerData) => (index: numbe
 const handleDateOfBirthChange = (setPassengerData, passengerData) => (index: number, value: { startDate: string; endDate: string }) => {
     const updatedPassengerData = [...passengerData];
     updatedPassengerData[index].dateOfBirth = value.startDate;
-    console.log(updatedPassengerData)
-    console.log(updatedPassengerData[index].dateOfBirth)
     setPassengerData(updatedPassengerData);
 };
 
 const handleAddPassenger = (setPassengerData, passengerData) => () => {
     setPassengerData([
         ...passengerData,
-        {
-            firstName: '',
-            middleName: '',
-            lastName: '',
-            suffix: '',
-            dateOfBirth: '',
-            email: '',
-            phoneNumber: '',
-            count: 1,
-        },
+        initPassenger,
     ]);
 };
 
 const handleDeletePassenger = (setPassengerData, passengerData) => (index: number) => {
     if (passengerData.length > 1) {
         const updatedPassengerData = [...passengerData];
-        updatedPassengerData.splice(index, 1);
+        updatedPassengerData.splice(index+1, 1);
         setPassengerData(updatedPassengerData);
     }
 };
@@ -120,8 +85,6 @@ const handleSelectSeat = () => {
 };
 
 export {
-    increment,
-    decrement,
     handleChangePassenger,
     handleDateOfBirthChange,
     handleAddPassenger,
