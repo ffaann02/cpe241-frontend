@@ -90,10 +90,10 @@ const PassengerFormLock: React.FC<PassengerProps> = ({
                 <FormErrorMessage>Last name is required.</FormErrorMessage>
             </FormControl>
             <Form
-                value={passenger.suffix}
+                value={passenger.nationality}
                 index={index}
-                placeholder="คำลงท้าย"
-                name="suffix"
+                placeholder="สัญชาติ"
+                name="nationality"
                 className="col-span-3"
                 disabled={true}
                 handleChange={null}
@@ -111,6 +111,7 @@ const PassengerFormLock: React.FC<PassengerProps> = ({
                     popoverDirection="down"
                     inputClassName="h-full border w-full px-4 py-[0.6rem] rounded-md text-slate-500 outline-none 
                         focus:outline-2"
+                    disabled
                 />
             </div>
             <FormControl className='col-span-3'>
