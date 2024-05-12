@@ -10,7 +10,7 @@ export interface PassengerData {
     dateOfBirth: string;
     email: string;
     phoneNumber: string;
-    count: number;
+    bagCount: string;
     seat: string | null;
 }
 export interface ExternalService {
@@ -27,7 +27,7 @@ export default function MybookingEdit() {
             dateOfBirth: '11/5/2567',
             email: '',
             phoneNumber: '',
-            count: 1,
+            bagCount: "15kg (฿ 456)",
             seat: 'A1',
         },
         {
@@ -38,7 +38,7 @@ export default function MybookingEdit() {
             dateOfBirth: '11/5/2567',
             email: '',
             phoneNumber: '',
-            count: 2,
+            bagCount: "15kg (฿ 456)",
             seat: 'A2',
         },
     ]);

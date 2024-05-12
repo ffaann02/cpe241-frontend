@@ -1,6 +1,16 @@
 import { Checkbox } from "@chakra-ui/react";
 import { useState } from "react";
-const ServiceUpdate = ({ serviceCheck,insurance}) => {
+const ServiceUpdate = ({ ExternalService,setExternalService}) => {
+    const handleCheckboxServiceChange = (eS: React.ChangeEvent<HTMLInputElement>, index: number) => {
+        setExternalService(prevState => {
+            const updatedExternalService = {...prevState, ServiceCheck: index};
+            console.log(updatedExternalService.ServiceCheck);
+            return updatedExternalService;
+        });
+    };
+    const handleCheckboxInsuranceChange = (eS: React.ChangeEvent<HTMLInputElement>,index: number) => {
+        setExternalService({...ExternalService,InsuranceCheck: index });
+    }
     return (
         <div className='text-slate-500'>
             <div className='mt-4 border rounded-lg shadow-md p-5'>
@@ -11,8 +21,9 @@ const ServiceUpdate = ({ serviceCheck,insurance}) => {
                     <a className='col-start-2 justify-center items-center border rounded-lg cursor-pointer'>
                         <div className='flex justify-center m-2'>
                             <Checkbox
-                                isDisabled={serviceCheck >= 1}
-                                defaultChecked={serviceCheck === 1}
+                                // isDisabled={ExternalService.ServiceCheck >= 1}
+                                checked={ExternalService.ServiceCheck === 1?true:false}
+                                onChange={(e)=>handleCheckboxServiceChange(e,1)}
                             />
                         </div>
                         <p className='flex justify-center font-bold m-2'>เบสิก</p>
@@ -21,8 +32,9 @@ const ServiceUpdate = ({ serviceCheck,insurance}) => {
                     <a className='col-start-3 justify-center items-center border rounded-lg cursor-pointer'>
                         <div className='flex justify-center m-2'>
                             <Checkbox
-                                isDisabled={serviceCheck >= 2}
-                                defaultChecked={serviceCheck === 2}
+                                // isDisabled={ExternalService.ServiceCheck >= 2}
+                                checked={ExternalService.ServiceCheck === 2?true:false}
+                                onChange={(e)=>handleCheckboxServiceChange(e,2)}
                             />
                         </div>
                         <p className='flex justify-center font-bold m-2'>พลัส</p>
@@ -31,8 +43,9 @@ const ServiceUpdate = ({ serviceCheck,insurance}) => {
                     <a className='col-start-4 justify-center items-center border rounded-lg cursor-pointer'>
                         <div className='flex justify-center m-2'>
                             <Checkbox
-                                isDisabled={serviceCheck >= 3}
-                                defaultChecked={serviceCheck === 3}
+                                // isDisabled={ExternalService.serviceCheck >= 3}
+                                checked={ExternalService.ServiceCheck === 3?true:false}
+                                onChange={(e)=>handleCheckboxServiceChange(e,3)}
                             />
                         </div>
                         <p className='flex justify-center font-bold m-2'>พรีเมียม</p>
@@ -82,8 +95,8 @@ const ServiceUpdate = ({ serviceCheck,insurance}) => {
                 <div className='grid grid-cols-10 border rounded-lg mt-5 py-2 cursor-pointer'>
                     <div className='flex justify-center'>
                         <Checkbox
-                            isDisabled={insurance >= 2}
-                            defaultChecked={insurance === 2}
+                            defaultChecked={ExternalService.Insurance === 2}
+                            onChange={(e)=>handleCheckboxInsuranceChange(e,2)}
                         />
                     </div>
                     <div className='col-span-9'>
@@ -109,8 +122,8 @@ const ServiceUpdate = ({ serviceCheck,insurance}) => {
                 <div className='grid grid-cols-10 mt-4 cursor-pointer'>
                     <div className='flex justify-center'>
                         <Checkbox
-                            isDisabled={insurance >= 1}
-                            defaultChecked={insurance === 1}
+                            defaultChecked={ExternalService.insurance === 1}
+                            onChange={(e)=>handleCheckboxInsuranceChange(e,1)}
                         />
                     </div>
                     <span className='col-span-9 text-sm'>ไม่ ฉันไม่ต้องการประกันภัยการเดินทาง ฉันจะรับผิดชอบค่าใช้จ่ายด้วยตนเองในกรณีฉุกเฉิน</span>

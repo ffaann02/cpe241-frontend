@@ -13,8 +13,6 @@ import {
     handleAddPassenger,
     handleChangeCheckbox,
     handleChangeEmergencyContact,
-    increment,
-    decrement,
     handleSaveAndClose,
     handleSelectSeat,
 } from '../../bookingPage/bookingFunctions';
@@ -43,7 +41,7 @@ const Editbooking: React.FC<EditBookingProps> = ({ passengerDataProp, externalSe
             dateOfBirth: '',
             email: '',
             phoneNumber: '',
-            count: 1,
+            bagCount: "15kg (฿ 456)",
             seat: null,
         },
     ])
@@ -59,7 +57,7 @@ const Editbooking: React.FC<EditBookingProps> = ({ passengerDataProp, externalSe
         }
     );
     const handleSaveEdit = () => {
-        console.log(passengerData,emergencyContactData,externalService,setExternalService)
+        console.log(passengerData,emergencyContactData,externalService)
     }
     const [usePassengerDataForEmergencyContact, setUsePassengerDataForEmergencyContact] = useState<boolean>(false);
     const [passengerEmailError, setPassengerEmailError] = useState<string[]>([]);
@@ -124,11 +122,10 @@ const Editbooking: React.FC<EditBookingProps> = ({ passengerDataProp, externalSe
                             </div>
                             {passengerData.map((passenger, index) => (
                                 <AddLuggage
-                                    passenger={passenger}
-                                    index={index}
-                                    increment={increment(setPassengerData)}
-                                    decrement={decrement(setPassengerData)}
-                                />
+                                passenger={passenger}
+                                index={index}
+                                setPassengerData={setPassengerData}
+                            />
                             ))}
                         </div>
                     </AccordionPanel>
@@ -144,7 +141,7 @@ const Editbooking: React.FC<EditBookingProps> = ({ passengerDataProp, externalSe
                         </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4}>
-                        <ServiceUpdate serviceCheck={externalService.ServiceCheck} insurance={externalService.Insurance} />
+                        <ServiceUpdate ExternalService={externalService} setExternalService={setExternalService}/>
                     </AccordionPanel>
                 </AccordionItem>
             </Accordion>
