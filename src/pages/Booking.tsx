@@ -12,8 +12,6 @@ import {
     handleAddPassenger,
     handleChangeCheckbox,
     handleChangeEmergencyContact,
-    increment,
-    decrement,
     handleSaveAndClose,
     handleSelectSeat,
 } from '../components/bookingPage/bookingFunctions';
@@ -31,7 +29,7 @@ export const initPassenger = {
     dateOfBirth: '',
     email: '',
     phoneNumber: '',
-    count: 1,
+    bagCount: '',
     seat: null,
 };
 
@@ -45,6 +43,7 @@ export default function Booking() {
         selectedFlight,
         setSelectedFlight,
     } = useContext(BookingDetailsContext);
+
     const [usePassengerDataForEmergencyContact, setUsePassengerDataForEmergencyContact] = useState<boolean>(false);
     const [passengerEmailError, setPassengerEmailError] = useState<string[]>([]);
     const [passengerPhoneNumberError, setPassengerPhoneNumberError] = useState<string[]>([]);
@@ -122,11 +121,10 @@ export default function Booking() {
                         <AddLuggage
                             passenger={passenger}
                             index={index}
-                            increment={increment(setPassengerData)}
-                            decrement={decrement(setPassengerData)}
+                            setPassengerData={setPassengerData}
                         />
                     ))}
-                    <ServicePackage/>
+                    <ServicePackage />
                     <div className="mt-10 flex gap-x-4">
                         <button
                             className="cursor-pointer px-4 py-2 border-[1px] border-royal-blue-500 text-royal-blue-500 
@@ -137,6 +135,7 @@ export default function Booking() {
                                     setStep(1);
                                     navigate('/booking/select-seat');
                                 }
+                                console.log(passengerData);
                             }}
                             disabled={
                                 !passengerData.every(

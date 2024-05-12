@@ -22,6 +22,7 @@ import SelectSeat from './pages/SelectSeat';
 import BookingNavbar from './components/layoutBar/BookingNavbar';
 import BookingRoute from './routes/BookingRoute';
 import BookingDetailsProvider from './context/BookingDetailsProvider';
+import CancelBooking from './pages/CancelBooking';
 
 function App() {
     const location = useLocation();
@@ -71,7 +72,8 @@ function App() {
                                 {/* <Route path="/booking" element={<Booking />} />
                                 <Route path="/payment" element={<Payment />} /> */}
                             </Route>
-                            <Route path="mybooking" element={<Mybooking />} />
+                            <Route path="/mybooking" element={<Mybooking />} />
+                            <Route path="/mybooking/cancel" element={<CancelBooking />} />
                             <Route path="dashboard/*" element={<Dashboard />} />
                             <Route path="/profile" element={<Profile />} />
 
