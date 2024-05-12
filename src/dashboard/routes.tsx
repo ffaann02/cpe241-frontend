@@ -4,6 +4,8 @@ import NFTMarketplace from "./views/admin/marketplace";
 import Profile from "./views/admin/profile";
 import DataTables from "./views/admin/tables";
 import RTLDefault from "./views/rtl/default";
+import FlightTable from "./views/admin/flightTable";
+
 
 // Auth Imports
 import SignIn from "./views/auth/SignIn";
@@ -50,6 +52,15 @@ const routes = [
     base: "dashboard",
     icon: <MdPerson className="h-6 w-6" />,
     component: <Profile />,
+  },
+  {
+    name: "Flight Table",
+    layout: "admin",
+    path: "flight-table",
+    base: "dashboard",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <FlightTable />,
+    secondary: true,
   },
   {
     name: "Sign In",

@@ -11,6 +11,10 @@ interface BookingDetailsContext {
     setSelectedFlight: React.Dispatch<React.SetStateAction<any>>;
     paymentInfo: PaymentInfoData;
     setPaymentInfo: React.Dispatch<React.SetStateAction<PaymentInfoData>>;
+    selectedPackage: string;
+    setSelectedPackage: React.Dispatch<React.SetStateAction<string>>;
+    travelInsurance: string;
+    setTravelInsurance: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface PassengerData {
@@ -21,7 +25,7 @@ export interface PassengerData {
     dateOfBirth: string;
     email: string;
     phoneNumber: string;
-    count: number;
+    bagCount: string;
     seat: string | null;
 }
 
@@ -51,15 +55,17 @@ const BookingDetailsProvider = ({ children }) => {
         phoneNumber: '',
     });
     const [selectedFlight, setSelectedFlight] = useState(null);
+    const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
+    const [travelInsurance, setTravelInsurance] = useState<string | null>(null);
     const [paymentInfo, setPaymentInfo] = useState<PaymentInfoData>({
         name: '',
         number: '',
         date: '',
         ccv: '',
     });
-    useEffect(()=>{
-        window.scrollTo(0,0)
-    },[window.location.pathname])
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [window.location.pathname])
 
     return (
         <BookingDetailsContext.Provider
@@ -74,6 +80,10 @@ const BookingDetailsProvider = ({ children }) => {
                 setSelectedFlight,
                 paymentInfo,
                 setPaymentInfo,
+                selectedPackage,
+                setSelectedPackage,
+                travelInsurance,
+                setTravelInsurance
             }}
         >
             {children}

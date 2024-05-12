@@ -1,30 +1,5 @@
 import { initPassenger } from "../../pages/Booking";
 
-
-const increment = (setPassengerData) => (index: number) => {
-    setPassengerData((prevPassengerData) => {
-        const updatedPassengerData = [...prevPassengerData];
-        updatedPassengerData[index] = {
-            ...updatedPassengerData[index],
-            count: updatedPassengerData[index].count + 1,
-        };
-        return updatedPassengerData;
-    });
-};
-
-const decrement = (setPassengerData) => (index: number) => {
-    setPassengerData((prevPassengerData) => {
-        const updatedPassengerData = [...prevPassengerData];
-        if (updatedPassengerData[index].count > 1) {
-            updatedPassengerData[index] = {
-                ...updatedPassengerData[index],
-                count: updatedPassengerData[index].count - 1,
-            };
-        }
-        return updatedPassengerData;
-    });
-};
-
 const handleChangePassenger = (setPassengerData, passengerData) => (index: number, e: any) => {
     const { name, value } = e.target;
     const updatedPassengerData = [...passengerData];
@@ -110,8 +85,6 @@ const handleSelectSeat = () => {
 };
 
 export {
-    increment,
-    decrement,
     handleChangePassenger,
     handleDateOfBirthChange,
     handleAddPassenger,
