@@ -5,7 +5,7 @@ import Profile from "./views/admin/profile";
 import DataTables from "./views/admin/tables";
 import RTLDefault from "./views/rtl/default";
 import FlightTable from "./views/admin/flightTable";
-import newpage from "./views/admin/newpage";
+import EmployeeReport from "./views/admin/employeeTable";
 
 // Auth Imports
 import SignIn from "./views/auth/SignIn";
@@ -53,6 +53,15 @@ const routes = [
     icon: <MdOutlineShoppingCart className="h-6 w-6" />,
     component: <FlightTable />,
     secondary: true,
+  },
+  {
+    name: "Employee Table",
+    layout: "admin",
+    path: "employee-table",
+    base: "dashboard",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <EmployeeReport />,
+    secondary: true
   },
   {
     name: "Booking Table",
