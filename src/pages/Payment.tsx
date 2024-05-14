@@ -103,7 +103,7 @@ const Payment = () => {
                 flight: selectedFlight,
                 passengers: passengerData,
                 emergencyContact: emergencyContactData,
-                package: selectedPackage,
+                flightPackage: selectedPackage,
                 travelInsurance: travelInsurance,
                 payment: paymentInfo,
             });
