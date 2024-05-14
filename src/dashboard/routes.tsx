@@ -18,24 +18,16 @@ import {
   MdPerson,
   MdLock,
 } from "react-icons/md";
+import BookingTable from "./views/admin/bookingTable";
 
 const routes = [
   {
-    name: "Main Dashboard",
+    name: "Overview",
     layout: "admin",
     path: "default",
     base: "dashboard",
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
-  },
-  {
-    name: "NFT Marketplace",
-    layout: "admin",
-    path: "nft-marketplace",
-    base: "dashboard",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
-    component: <NFTMarketplace />,
-    secondary: true,
   },
   {
     name: "Data Tables",
@@ -63,20 +55,21 @@ const routes = [
     secondary: true,
   },
   {
+    name: "Booking Table",
+    layout: "admin",
+    path: "booking-table",
+    base: "dashboard",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <BookingTable />,
+    secondary: true,
+  },
+  {
     name: "Sign In",
     layout: "auth",
     path: "sign-in",
     base: "dashboard",
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
-  },
-  {
-    name: "RTL Admin",
-    layout: "rtl",
-    path: "rtl",
-    base: "dashboard",
-    icon: <MdHome className="h-6 w-6" />,
-    component: <RTLDefault />,
   },
 ];
 export default routes;

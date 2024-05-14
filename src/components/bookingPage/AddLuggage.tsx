@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Select } from '@chakra-ui/react';
 import { useState } from 'react';
 import { PassengerData } from '../../context/BookingDetailsProvider';
+import { BookingDetailsContext } from "../../context/BookingDetailsProvider";
 
 interface AddLuggageProps {
     passenger: PassengerData;
@@ -10,7 +11,10 @@ interface AddLuggageProps {
 }
 
 const AddLuggage: React.FC<AddLuggageProps> = ({ passenger, index, setPassengerData }: AddLuggageProps) => {
-    const [selectedBagCount, setSelectedBagCount] = useState<string | null>(null);
+    const {
+        selectedBagCount,
+        setSelectedBagCount
+    } = useContext(BookingDetailsContext);
 
     const bagCountOptions = ['+ 15kg (฿ 456)', '+ 20kg (฿ 508)', '+ 25kg (฿ 636)', '+ 30kg (฿ 1021)', '+ 35kg (฿ 1227)', '+ 40kg (฿ 1535)'];
 

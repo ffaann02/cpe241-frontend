@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation, Outlet } from 'react-router-dom';
 import './App.css';
 import About from './pages/AboutUs';
 import SignupPage from './pages/Signup';
@@ -16,22 +16,23 @@ import PrivateRoute from './routes/PrivateRoute';
 import NotFound from './pages/NotFound';
 import Mybooking from './pages/MyBooking';
 import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profilenew'
-import { useLocation } from 'react-router-dom';
+import Profile from './pages/Profilenew';
 import SelectSeat from './pages/SelectSeat';
 import BookingNavbar from './components/layoutBar/BookingNavbar';
 import BookingRoute from './routes/BookingRoute';
 import BookingDetailsProvider from './context/BookingDetailsProvider';
+import MybookingEdit from './pages/Mybooking-Edit';
+import CancelBooking from './pages/CancelBooking';
+
+const Anonymous = () => {
+    const auth = JSON.parse(localStorage.getItem('auth'));
+    return auth ? <Navigate to="/" replace /> : <Outlet />;
+};
 
 function App() {
     const location = useLocation();
-    const disableNavbar =
-        location.pathname.includes('login') ||
-        location.pathname.includes('signup') ||
-        location.pathname.includes('dashboard') ||
-        location.pathname.includes('auth') ||
-        location.pathname.includes('rtl') ||
-        location.pathname.includes('admin');
+    const pathsToDisableNavbar = ['login', 'signup', 'dashboard', 'auth', 'rtl', 'admin'];
+    const disableNavbar = pathsToDisableNavbar.some((path) => location.pathname.includes(path));
     const enableBookingNavbar = location.pathname.startsWith('/booking');
     return (
         <>
@@ -42,13 +43,15 @@ function App() {
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/about" element={<About />} />
-                            <Route path="/signup" element={<SignupPage />} />
-                            <Route path="/login" element={<LoginPage />} />
+                            <Route element={<Anonymous />}>
+                                <Route path="/signup" element={<SignupPage />} />
+                                <Route path="/login" element={<LoginPage />} />
+                            </Route>
                             <Route
                                 path="/booking"
                                 element={
                                     <BookingDetailsProvider>
-                                       {enableBookingNavbar && <BookingNavbar />}
+                                        {enableBookingNavbar && <BookingNavbar />}
                                         <BookingRoute />
                                     </BookingDetailsProvider>
                                 }
@@ -64,7 +67,6 @@ function App() {
                             <Route path="rtl/*" element={<RtlLayout />} /> */}
                             <Route path="/dashboard" element={<Navigate to="admin" replace />} />
                             <Route path="/confirm" element={<Confirm />} />
-                            <Route path="search" element={<Search />} />
                             <Route path="/trip" element={<TripSection />} />
                             <Route path="*" element={<NotFound />} />
                             <Route element={<PrivateRoute />}>
@@ -72,9 +74,10 @@ function App() {
                                 <Route path="/payment" element={<Payment />} /> */}
                             </Route>
                             <Route path="mybooking" element={<Mybooking />} />
+                            <Route path="mybooking/edit" element={<MybookingEdit />} />
+                            <Route path="/mybooking/cancel" element={<CancelBooking />} />
                             <Route path="dashboard/*" element={<Dashboard />} />
                             <Route path="/profile" element={<Profile />} />
-
                         </Routes>
                     </div>
                 </div>
