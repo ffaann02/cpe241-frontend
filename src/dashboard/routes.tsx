@@ -18,6 +18,7 @@ import {
   MdPerson,
   MdLock,
 } from "react-icons/md";
+import BookingTable from "./views/admin/bookingTable";
 
 const routes = [
   {
@@ -60,6 +61,15 @@ const routes = [
     base: "dashboard",
     icon: <MdOutlineShoppingCart className="h-6 w-6" />,
     component: <FlightTable />,
+    secondary: true,
+  },
+  {
+    name: "Booking Table",
+    layout: "admin",
+    path: "booking-table",
+    base: "dashboard",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <BookingTable />,
     secondary: true,
   },
   {
