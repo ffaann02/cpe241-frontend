@@ -37,9 +37,9 @@ const Sidebar = (props: {
       </ul>
 
       {/* Free Horizon Card */}
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <SidebarCard />
-      </div>
+      </div> */}
 
       {/* Nav item end */}
     </div>
