@@ -14,7 +14,9 @@ axiosPrivate.interceptors.response.use(
     (response) => response,
     async (error) => {
         const prevRequest = error?.config;
-        if (error?.response?.status === 401 && !prevRequest?._retry) {
+        const isLoggedIn = localStorage.getItem('auth');
+
+        if (isLoggedIn && error?.response?.status === 401 && !prevRequest?._retry) {
             console.log('Refreshing token');
             prevRequest._retry = true;
             await axiosPrivate.post('/api/refresh');

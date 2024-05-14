@@ -15,6 +15,8 @@ interface BookingDetailsContext {
     setSelectedPackage: React.Dispatch<React.SetStateAction<string>>;
     travelInsurance: string;
     setTravelInsurance: React.Dispatch<React.SetStateAction<string>>;
+    selectedBagCount: string;
+    setSelectedBagCount: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface PassengerData {
@@ -57,6 +59,8 @@ const BookingDetailsProvider = ({ children }) => {
     const [selectedFlight, setSelectedFlight] = useState(null);
     const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
     const [travelInsurance, setTravelInsurance] = useState<string | null>(null);
+    const [selectedBagCount, setSelectedBagCount] = useState<string | null>(null);
+
     const [paymentInfo, setPaymentInfo] = useState<PaymentInfoData>({
         name: '',
         number: '',
@@ -83,7 +87,9 @@ const BookingDetailsProvider = ({ children }) => {
                 selectedPackage,
                 setSelectedPackage,
                 travelInsurance,
-                setTravelInsurance
+                setTravelInsurance,
+                selectedBagCount,
+                setSelectedBagCount
             }}
         >
             {children}

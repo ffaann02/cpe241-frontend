@@ -143,6 +143,7 @@ export default function SignupPage() {
                                     type="text"
                                     name="firstName"
                                     placeholder="ชื่อจริง"
+                                    autoComplete='given-name'
                                 />
                                 <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
                             </FormControl>
@@ -153,6 +154,7 @@ export default function SignupPage() {
                                     type="text"
                                     name="lastName"
                                     placeholder="นามสกุล"
+                                    autoComplete='family-name'
                                 />
                                 <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
                             </FormControl>
@@ -168,6 +170,7 @@ export default function SignupPage() {
                                         type={show ? 'text' : 'password'}
                                         name="password"
                                         placeholder="รหัสผ่าน"
+                                        autoComplete='new-password'
                                     />
                                     <InputRightElement className="">
                                         <IconButton
@@ -193,6 +196,7 @@ export default function SignupPage() {
                                         type={show ? 'text' : 'password'}
                                         name="confirmPassword"
                                         placeholder="ยืนยันรหัสผ่าน"
+                                        autoComplete='new-password'
                                     />
                                     <InputRightElement className="">
                                         <IconButton
@@ -217,6 +221,7 @@ export default function SignupPage() {
                                     type="text"
                                     name="phoneNumber"
                                     placeholder="เบอร์โทรศัพท์"
+                                    autoComplete='tel-national'
                                 />
                                 <FormErrorMessage>{errors.phoneNumber?.message}</FormErrorMessage>
                             </FormControl>
