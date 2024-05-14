@@ -5,7 +5,7 @@ import Profile from "./views/admin/profile";
 import DataTables from "./views/admin/tables";
 import RTLDefault from "./views/rtl/default";
 import FlightTable from "./views/admin/flightTable";
-
+import newpage from "./views/admin/newpage";
 
 // Auth Imports
 import SignIn from "./views/auth/SignIn";
