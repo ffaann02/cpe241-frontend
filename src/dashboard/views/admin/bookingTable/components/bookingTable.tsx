@@ -20,8 +20,8 @@ export interface BookingInfo {
   seatNumber: string;
   class: string;
   amount: string;
-  bookingDateTime: string; // ISO 8601 date-time format
-  paymentDateTime: string; // ISO 8601 date-time format
+  bookingDateTime: string;
+  paymentDateTime: string;
   paymentMethod: string;
 }
 

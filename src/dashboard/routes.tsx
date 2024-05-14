@@ -5,7 +5,7 @@ import Profile from "./views/admin/profile";
 import DataTables from "./views/admin/tables";
 import RTLDefault from "./views/rtl/default";
 import FlightTable from "./views/admin/flightTable";
-
+import BookingTable from "./views/admin/bookingTable";
 
 // Auth Imports
 import SignIn from "./views/auth/SignIn";
@@ -18,7 +18,6 @@ import {
   MdPerson,
   MdLock,
 } from "react-icons/md";
-import BookingTable from "./views/admin/bookingTable";
 
 const routes = [
   {
