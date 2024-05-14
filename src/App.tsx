@@ -65,7 +65,6 @@ function App() {
                             <Route path="rtl/*" element={<RtlLayout />} /> */}
                             <Route path="/dashboard" element={<Navigate to="admin" replace />} />
                             <Route path="/confirm" element={<Confirm />} />
-                            <Route path="search" element={<Search />} />
                             <Route path="/trip" element={<TripSection />} />
                             <Route path="*" element={<NotFound />} />
                             <Route element={<PrivateRoute />}>
