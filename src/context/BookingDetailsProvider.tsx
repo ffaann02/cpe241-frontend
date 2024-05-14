@@ -38,9 +38,9 @@ export interface EmergencyContactData {
 
 interface PaymentInfoData {
     holderName: string;
-    cardNumber: number;
+    cardNumber: string;
     expiryDate: string;
-    ccv: number;
+    ccv: string;
 }
 
 export const BookingDetailsContext = createContext<BookingDetailsContext | undefined>(undefined);
@@ -59,9 +59,9 @@ const BookingDetailsProvider = ({ children }) => {
     const [travelInsurance, setTravelInsurance] = useState<string | null>(null);
     const [paymentInfo, setPaymentInfo] = useState<PaymentInfoData>({
         holderName: '',
-        cardNumber: 0,
+        cardNumber: '',
         expiryDate: '',
-        ccv: 0,
+        ccv: '',
     });
     useEffect(() => {
         window.scrollTo(0, 0)

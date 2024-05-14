@@ -1,7 +1,7 @@
 import { AiFillApple, AiOutlineCreditCard, AiOutlineGoogle } from 'react-icons/ai';
 import { BsPaypal } from 'react-icons/bs';
 import { SiBitcoin } from 'react-icons/si';
-import { Form, Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import {
     Input,
@@ -15,6 +15,8 @@ import {
     ModalCloseButton,
     FormControl,
     FormErrorMessage,
+    InputRightElement,
+    InputGroup,
 } from '@chakra-ui/react';
 import { BookingDetailsContext } from '../context/BookingDetailsProvider';
 import FlightCartCard from '../components/card/FlightCartCard';
@@ -22,21 +24,17 @@ import { LoadingSpinner } from '../components/LoadingGroup';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { FaCcVisa, FaCcMastercard } from 'react-icons/fa';
 import axiosPrivate from '../api/axios';
 
 const paymentSchema = z
     .object({
         holderName: z.string().min(1, { message: 'Name is required' }),
         cardNumber: z
-            .number()
+            .string()
             .min(1, { message: 'Number is required' })
-            .int()
-            .positive({ message: 'Card number must be a positive integer' }),
-        ccv: z
-            .number()
-            .int()
-            .min(100, { message: 'CCV must be at least 3 digits' })
-            .max(999, { message: 'CCV must be at most 3 digits' }),
+            .length(16, { message: 'Card number must be 16 digits' }),
+        ccv: z.string().min(1, { message: 'CCV is required' }).length(3, { message: 'CCV must be 3 digits' }),
         expiryDate: z
             .string()
             .min(1, { message: 'Date is required' })
@@ -69,7 +67,8 @@ const Payment = () => {
     const [selectedPayment, setSelectedPayment] = useState('Credit card');
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
-    const [isPaying, setIsPaying] = useState<boolean>(false);
+    // const [isPaying, setIsPaying] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>('');
     useEffect(() => {
         setStep(2);
     }, []);
@@ -99,38 +98,24 @@ const Payment = () => {
         console.log(emergencyContactData);
         console.log(selectedPackage);
         console.log(travelInsurance);
-        // try {
-        //     const res = await axiosPrivate.post('/booking', {
-        //         flight: selectedFlight,
-        //         passengers: passengerData,
-        //         emergencyContact: emergencyContactData,
-        //         package: selectedPackage,
-        //         travelInsurance: travelInsurance,
-        //         payment: paymentInfo,
-        //     });
-        //     console.log(res.data);
-        //     navigate('/booking/confirm');
-        // } catch (error) {
-        //     console.error(error);
-        // }
+        try {
+            const res = await axiosPrivate.post('/api/booking/create', {
+                flight: selectedFlight,
+                passengers: passengerData,
+                emergencyContact: emergencyContactData,
+                package: selectedPackage,
+                travelInsurance: travelInsurance,
+                payment: paymentInfo,
+            });
+            console.log(res.data);
+            // setTimeout(() => {
+            //     navigate('/booking/confirm');
+            // }, 1500);
+        } catch (error) {
+            setErrorMessage('Error: Internal server error');
+            console.error(error);
+        }
     };
-
-    // const submitInputs = (e) => {
-    //     e.preventDefault();
-    //     const { name, number, ccv, date } = paymentInfo;
-    //     if (name.trim() !== '' && number.trim() !== '' && ccv.trim() !== '' && date.trim() !== '') {
-    //         setIsPaying(true);
-    //         setTimeout(() => {
-    //             console.log('Payment sent successfully');
-    //             setIsPaying(false);
-    //             if (!isPaying) {
-    //                 navigate('/booking/confirm');
-    //             }
-    //         }, 3000);
-    //     } else {
-    //         console.log('Please fill the card details');
-    //     }
-    // };
 
     const onClose = () => {
         setShowAlert(false);
@@ -141,13 +126,25 @@ const Payment = () => {
         setPaymentInfo({ ...paymentInfo, [name]: value });
     };
 
+    const getCardIcon = (cardNumber: string) => {
+        // Visa cards start with 4, MasterCard cards start with 5
+        if (cardNumber.startsWith('4')) {
+            return <FaCcVisa size="2rem" />;
+        } else if (cardNumber.startsWith('5')) {
+            return <FaCcMastercard size="2rem" />;
+        }
+        return null;
+    };
+
     const isInputComplete =
         paymentInfo.holderName !== '' &&
-        paymentInfo.cardNumber != 0 &&
+        paymentInfo.cardNumber != '' &&
         paymentInfo.expiryDate !== '' &&
-        paymentInfo.ccv != 0;
+        paymentInfo.ccv != '';
+
     return (
         <>
+            {/* {isSubmitting && <LoadingSpinner loading={isSubmitting} />} */}
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Modal isOpen={showAlert} onClose={onClose}>
                     <ModalOverlay />
@@ -223,21 +220,27 @@ const Payment = () => {
                                             name="holderName"
                                             onChange={handleInputChange}
                                             className="placeholder:text-md text-slate-500 pt-0.5"
+                                            autoComplete="cc-name"
                                         />
                                         <FormErrorMessage>{errors.holderName?.message}</FormErrorMessage>
                                     </FormControl>
                                     <FormControl isInvalid={!!errors.cardNumber}>
-                                        <Input
-                                            {...register('cardNumber', { valueAsNumber: true })}
-                                            type="number"
-                                            size="lg"
-                                            focusBorderColor="purple.200"
-                                            placeholder="Card Number"
-                                            value={paymentInfo.cardNumber}
-                                            name="cardNumber"
-                                            onChange={handleInputChange}
-                                            className="placeholder:text-md text-slate-500 pt-0.5"
-                                        />
+                                        <InputGroup>
+                                            <Input
+                                                {...register('cardNumber')}
+                                                type="string"
+                                                size="lg"
+                                                focusBorderColor="purple.200"
+                                                placeholder="Card Number"
+                                                value={paymentInfo.cardNumber}
+                                                name="cardNumber"
+                                                onChange={handleInputChange}
+                                                className="placeholder:text-md text-slate-500 pt-0.5"
+                                                autoComplete="cc-number"
+                                                maxLength={16}
+                                            />
+                                            <InputRightElement>{getCardIcon(paymentInfo.cardNumber)}</InputRightElement>
+                                        </InputGroup>
                                         <FormErrorMessage>{errors.cardNumber?.message}</FormErrorMessage>
                                     </FormControl>
                                     <div className="flex items-center justify-center gap-5">
@@ -252,13 +255,14 @@ const Payment = () => {
                                                 name="expiryDate"
                                                 onChange={handleInputChange}
                                                 className="placeholder:text-md text-slate-500 pt-0.5"
+                                                autoComplete="cc-exp"
                                             />
                                             <FormErrorMessage>{errors.expiryDate?.message}</FormErrorMessage>
                                         </FormControl>
                                         <FormControl isInvalid={!!errors.ccv}>
                                             <Input
-                                                {...register('ccv', { valueAsNumber: true })}
-                                                type="number"
+                                                {...register('ccv')}
+                                                type="string"
                                                 size="lg"
                                                 focusBorderColor="purple.200"
                                                 placeholder="CCV"
@@ -266,6 +270,8 @@ const Payment = () => {
                                                 name="ccv"
                                                 onChange={handleInputChange}
                                                 className="placeholder:text-md text-slate-500 pt-0.5"
+                                                autoComplete="cc-csc"
+                                                maxLength={3}
                                             />
                                             <FormErrorMessage>{errors.ccv?.message}</FormErrorMessage>
                                         </FormControl>
@@ -284,6 +290,7 @@ const Payment = () => {
                                         flight.
                                     </p>
                                 </div>
+                                <p className="text-red-500">{errorMessage}</p>
                             </div>
                             <div className="flex items-center gap-5">
                                 <button
