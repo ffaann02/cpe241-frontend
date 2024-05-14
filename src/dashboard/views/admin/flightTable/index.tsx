@@ -19,7 +19,7 @@ import FlightBoard from './components/flightBoard'
 
 const FlightReport = () => {
     return (
-        <Flex mt={'3'}>
+        <Flex mt={'3'} w={'100%'}>
             <FlightBoard/>
         </Flex>
     );
