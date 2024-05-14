@@ -37,10 +37,10 @@ export interface EmergencyContactData {
 }
 
 interface PaymentInfoData {
-    name: string;
-    number: string;
-    date: string;
-    ccv: string;
+    holderName: string;
+    cardNumber: number;
+    expiryDate: string;
+    ccv: number;
 }
 
 export const BookingDetailsContext = createContext<BookingDetailsContext | undefined>(undefined);
@@ -58,10 +58,10 @@ const BookingDetailsProvider = ({ children }) => {
     const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
     const [travelInsurance, setTravelInsurance] = useState<string | null>(null);
     const [paymentInfo, setPaymentInfo] = useState<PaymentInfoData>({
-        name: '',
-        number: '',
-        date: '',
-        ccv: '',
+        holderName: '',
+        cardNumber: 0,
+        expiryDate: '',
+        ccv: 0,
     });
     useEffect(() => {
         window.scrollTo(0, 0)
