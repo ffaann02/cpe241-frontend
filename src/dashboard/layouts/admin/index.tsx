@@ -51,14 +51,14 @@ export default function Admin(props: { [x: string]: any }) {
         <div className="flex h-full w-full">
             <Sidebar open={open} onClose={() => setOpen(false)} />
             {/* Navbar & Main Content */}
-            <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
+            <div className="h-full w-screen bg-lightPrimary dark:!bg-navy-900">
                 {/* Main Content */}
                 <main
-                    className={`h-full flex-none transition-all xl:ml-[313px]`}
-                    style={{ width: 'calc(100vw - 330px)' }}
+                    className={`h-full flex-none transition-all xl:ml-[313px] `}
+                    // style={{ width: 'calc(100vw - 330px)' }}
                 >
                     {/* Routes */}
-                    <div className="h-full">
+                    <div className="h-full w-full ">
                         <Navbar
                             onOpenSidenav={() => setOpen(true)}
                             brandText={currentRoute}
