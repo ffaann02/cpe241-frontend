@@ -5,7 +5,11 @@ import Profile from "./views/admin/profile";
 import DataTables from "./views/admin/tables";
 import RTLDefault from "./views/rtl/default";
 import FlightTable from "./views/admin/flightTable";
+<<<<<<< HEAD
 import BookingTable from "./views/admin/bookingTable";
+=======
+import EmployeeReport from "./views/admin/employeeTable";
+>>>>>>> b63c546639fcc1c5fb7affff2a5fcc0f0bbf72b1
 
 // Auth Imports
 import SignIn from "./views/auth/SignIn";
@@ -21,21 +25,12 @@ import {
 
 const routes = [
   {
-    name: "Main Dashboard",
+    name: "Overview",
     layout: "admin",
     path: "default",
     base: "dashboard",
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
-  },
-  {
-    name: "NFT Marketplace",
-    layout: "admin",
-    path: "nft-marketplace",
-    base: "dashboard",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
-    component: <NFTMarketplace />,
-    secondary: true,
   },
   {
     name: "Data Tables",
@@ -63,6 +58,15 @@ const routes = [
     secondary: true,
   },
   {
+    name: "Employee Table",
+    layout: "admin",
+    path: "employee-table",
+    base: "dashboard",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <EmployeeReport />,
+    secondary: true
+  },
+  {
     name: "Booking Table",
     layout: "admin",
     path: "booking-table",
@@ -78,14 +82,6 @@ const routes = [
     base: "dashboard",
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
-  },
-  {
-    name: "RTL Admin",
-    layout: "rtl",
-    path: "rtl",
-    base: "dashboard",
-    icon: <MdHome className="h-6 w-6" />,
-    component: <RTLDefault />,
   },
 ];
 export default routes;
