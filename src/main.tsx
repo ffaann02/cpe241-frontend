@@ -1,11 +1,11 @@
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import { BrowserRouter } from 'react-router-dom';
-import { ChakraProvider,extendTheme } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import './index.css';
-import { AuthProvider} from './context/AuthProvider.tsx';
+import { AuthProvider } from './context/AuthProvider.tsx';
 const colors = {
-    royalblue:{
+    royalblue: {
         50: '#f4f8ff',
         100: '#e9f1ff',
         200: '#c7dfff',
@@ -16,15 +16,15 @@ const colors = {
         700: '#1466bf',
         800: '#104f99',
         900: '#0d407f',
-    }
-}
-const theme = extendTheme({colors})
+    },
+};
+const theme = extendTheme({ colors });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
         <AuthProvider>
             <ChakraProvider theme={theme}>
-                <App />
+                    <App />
             </ChakraProvider>
         </AuthProvider>
     </BrowserRouter>
