@@ -4,7 +4,6 @@ import Sidebar from '../../components/sidebar';
 import Footer from '../../components/footer/Footer';
 import routes from '../../routes';
 import { useState, useEffect } from 'react';
-
 export default function Admin(props: { [x: string]: any }) {
     const { ...rest } = props;
     const location = useLocation();
@@ -48,24 +47,24 @@ export default function Admin(props: { [x: string]: any }) {
 
     document.documentElement.dir = 'ltr';
     return (
-        <div className="flex h-full w-full">
+        <div className="h-full w-full grid grid-cols-12 relative bg-slate-100">
             <Sidebar open={open} onClose={() => setOpen(false)} />
             {/* Navbar & Main Content */}
-            <div className="h-full w-screen bg-lightPrimary dark:!bg-navy-900">
+            <div className="h-full dark:!bg-navy-900 col-span-10 w-full ml-[20%]">
                 {/* Main Content */}
                 <main
-                    className={`h-full flex-none transition-all xl:ml-[313px] `}
-                    // style={{ width: 'calc(100vw - 330px)' }}
+                    className={`h-full flex-none transition-all`}
+                    // style={{ width: 'calc(100vw - 305px)' }}
                 >
                     {/* Routes */}
-                    <div className="h-full w-full ">
+                    <div className="h-full w-full">
                         <Navbar
                             onOpenSidenav={() => setOpen(true)}
                             brandText={currentRoute}
                             secondary={getActiveNavbar(routes)}
                             {...rest}
                         />
-                        <div className="pt-2 mb-auto h-full min-h-[84vh] p-2 md:pr-2">
+                        <div className="pt-2 mb-auto h-full min-h-[84vh] p-6">
                             <Routes>
                                 {getRoutes(routes)}
                                 <Route path="/" element={<Navigate to="default" replace />} />

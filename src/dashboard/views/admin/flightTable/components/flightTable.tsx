@@ -1,245 +1,114 @@
 import React, { useState } from 'react';
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
-  Flex,
-  Button,
-  useDisclosure,
-  Input,
+    Table,
+    Thead,
+    Tbody,
+    Tfoot,
+    Tr,
+    Th,
+    Td,
+    TableCaption,
+    TableContainer,
+    Flex,
+    Button,
+    useDisclosure,
+    Input,
 } from '@chakra-ui/react';
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from '@chakra-ui/react'
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-} from '@chakra-ui/react'
 
 // Icons
-import {
-  EditIcon
-}
-  from '@chakra-ui/icons'
+import { EditIcon } from '@chakra-ui/icons';
+import { FaArrowLeft, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import axiosPrivate from '../../../../../api/axios';
+import ModalEditFlight from './modalEditFlight';
+import { LoadingSpinner } from '../../../../../components/LoadingGroup';
+import { FlightInfo } from './flightBoard';
 
-export interface FlightInfo {
-  flightNumber: string;
-  airline: string;
-  origin: string;
-  destination: string;
-  departureDate: string; // ISO 8601 date-time format
-  arrivalDate: string; // ISO 8601 date-time format
-}
+const FlightTable = ({ flightData, searchFlightNumber, flightsForCurrentPage }) => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [editingFlight, setEditingFlight] = useState<FlightInfo | null>(null);
 
-const FlightTable: React.FC = () => {
-  const [flightData, setFlightData] = useState<FlightInfo[]>([
-    {
-      flightNumber: 'AA123',
-      airline: 'American Airlines',
-      origin: 'JFK',
-      destination: 'LAX',
-      departureDate: '2024-05-12T10:00:00Z',
-      arrivalDate: '2024-05-12T13:30:00Z',
-    },
-    {
-      flightNumber: 'UA456',
-      airline: 'United Airlines',
-      origin: 'ORD',
-      destination: 'SFO',
-      departureDate: '2024-05-12T11:30:00Z',
-      arrivalDate: '2024-05-12T14:15:00Z',
-    },
-    {
-      flightNumber: 'DL789',
-      airline: 'Delta Air Lines',
-      origin: 'ATL',
-      destination: 'SEA',
-      departureDate: '2024-05-12T09:00:00Z',
-      arrivalDate: '2024-05-12T11:45:00Z',
-    },
-  ]);
+    const handleEdit = (flight: FlightInfo) => {
+        setEditingFlight(flight);
+        onOpen();
+    };
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [editingFlight, setEditingFlight] = useState<FlightInfo | null>(null);
+    const [loading, setLoading] = useState(false);
 
-  const handleEdit = (flight: FlightInfo) => {
-    setEditingFlight(flight);
-    onOpen();
-  };
+    const handleSave = async () => {
+        try {
+            setLoading(true);
+            const response = await axiosPrivate.post('/api/flight/edit', editingFlight);
+            console.log(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+        // onClose();
+    };
 
-  const handleSave = () => {
-    // Implement logic to save the edited flight data
-    onClose();
-  };
-
-  return (
-    <>
-      <TableContainer>
-        <Table variant="simple">
-          <TableCaption>Current Flight Operations</TableCaption>
-          <Thead>
-            <Tr>
-              <Th>Flight Number</Th>
-              <Th>Airline</Th>
-              <Th>Origin</Th>
-              <Th>Destination</Th>
-              <Th>Departure</Th>
-              <Th>Arrival</Th>
-              <Th >Option</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {flightData.map((flight, index) => (
-              <Tr key={index}>
-                <Td>{flight.flightNumber}</Td>
-                <Td>{flight.airline}</Td>
-                <Td>{flight.origin}</Td>
-                <Td>{flight.destination}</Td>
-                <Td>{new Date(flight.departureDate).toLocaleString()}</Td>
-                <Td>{new Date(flight.arrivalDate).toLocaleString()}</Td>
-                <Td  >
-                  <Flex justifyContent="center">
-                    <EditIcon cursor="pointer" onClick={() => handleEdit(flight)} />
-                  </Flex>
-                </Td>
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered motionPreset="slideInBottom">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Edit Flight Information</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            {editingFlight && (
-              <form>
-                <FormControl mb={4}>
-                  <FormLabel>Flight Number</FormLabel>
-                  <Input
-                    value={editingFlight.flightNumber}
-                    onChange={(e) =>
-                      setEditingFlight({
-                        ...editingFlight,
-                        flightNumber: e.target.value,
-                      })
-                    }
-                  />
-                </FormControl>
-                <FormControl mb={4}>
-                  <FormLabel>Airline</FormLabel>
-                  <Input
-                    value={editingFlight.airline}
-                    onChange={(e) =>
-                      setEditingFlight({ ...editingFlight, airline: e.target.value })
-                    }
-                  />
-                </FormControl>
-                <FormControl mb={4}>
-                  <FormLabel>Origin</FormLabel>
-                  <Input
-                    value={editingFlight.origin}
-                    onChange={(e) =>
-                      setEditingFlight({ ...editingFlight, origin: e.target.value })
-                    }
-                  />
-                </FormControl>
-                <FormControl mb={4}>
-                  <FormLabel>Destination</FormLabel>
-                  <Input
-                    value={editingFlight.destination}
-                    onChange={(e) =>
-                      setEditingFlight({ ...editingFlight, destination: e.target.value })
-                    }
-                  />
-                </FormControl>
-                <Flex direction={'row'} gap={2}>
-                <FormControl mb={4}>
-                  <FormLabel>Departure Date</FormLabel>
-                  <Input
-                    type="date"
-                    value={new Date(editingFlight.departureDate).toISOString().slice(0, 10)}
-                    onChange={(e) =>
-                      setEditingFlight({
-                        ...editingFlight,
-                        departureDate: `${e.target.value}T${new Date(editingFlight.departureDate).toISOString().slice(11, 16)}:00Z`,
-                      })
-                    }
-                  />
-                </FormControl>
-                <FormControl mb={4}>
-                  <FormLabel>Departure Time</FormLabel>
-                  <Input
-                    type="time"
-                    value={new Date(editingFlight.departureDate).toISOString().slice(11, 16)}
-                    onChange={(e) =>
-                      setEditingFlight({
-                        ...editingFlight,
-                        departureDate: `${new Date(editingFlight.departureDate).toISOString().slice(0, 11)}${e.target.value}:00Z`,
-                      })
-                    }
-                  />
-                </FormControl>
-                </Flex>
-                <Flex direction={'row'} gap={2}>
-
-                <FormControl mb={4}>
-                  <FormLabel>Arrival Date</FormLabel>
-                  <Input
-                    type="date"
-                    value={new Date(editingFlight.arrivalDate).toISOString().slice(0, 10)}
-                    onChange={(e) =>
-                      setEditingFlight({
-                        ...editingFlight,
-                        arrivalDate: `${e.target.value}T${new Date(editingFlight.arrivalDate).toISOString().slice(11, 16)}:00Z`,
-                      })
-                    }
-                  />
-                </FormControl>
-                <FormControl mb={4}>
-                  <FormLabel>Arrival Time</FormLabel>
-                  <Input
-                    type="time"
-                    value={new Date(editingFlight.arrivalDate).toISOString().slice(11, 16)}
-                    onChange={(e) =>
-                      setEditingFlight({
-                        ...editingFlight,
-                        arrivalDate: `${new Date(editingFlight.arrivalDate).toISOString().slice(0, 11)}${e.target.value}:00Z`,
-                      })
-                    }
-                  />
-                </FormControl>
-                </Flex>
-              </form>
-            )}
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={handleSave}>
-              Save
-            </Button>
-            <Button variant="ghost" onClick={onClose}>
-              Cancel
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
-  );
+    return (
+        <>
+            <LoadingSpinner loading={loading} />
+            <TableContainer className="px-6 pt-6 pb-4 bg-white border rounded-lg relative">
+                <Table variant="simple">
+                    <Thead>
+                        <Tr>
+                            <Th></Th>
+                            <Th></Th>
+                            <Th>Flight Number</Th>
+                            <Th>Airline</Th>
+                            <Th>Origin</Th>
+                            <Th>Destination</Th>
+                            <Th>Departure</Th>
+                            <Th>Arrival</Th>
+                        </Tr>
+                    </Thead>
+                    {flightsForCurrentPage.length > 0 ? (
+                        <Tbody>
+                            {flightsForCurrentPage.map((flight, index) => (
+                                <Tr key={index}>
+                                    <Td>
+                                        <p className="text-sm">{index + 1}.</p>
+                                    </Td>
+                                    <Td>
+                                        <Flex justifyContent="center">
+                                            <EditIcon cursor="pointer" onClick={() => handleEdit(flight)} />
+                                        </Flex>
+                                    </Td>
+                                    <Td>{flight.flightNo}</Td>
+                                    <Td>{flight.airlineName}</Td>
+                                    <Td>
+                                        {flight.arrivalCity} ({flight.arrivalIATACode})
+                                    </Td>
+                                    <Td>
+                                        {flight.departureCity} ({flight.departureIATACode})
+                                    </Td>
+                                    <Td>{new Date(flight.departureDateTime).toLocaleString()}</Td>
+                                    <Td>{new Date(flight.arrivalDateTime).toLocaleString()}</Td>
+                                </Tr>
+                            ))}
+                        </Tbody>
+                    ) : (
+                        <Tbody>
+                            <Tr>
+                                <Td colSpan={8} className="text-center">
+                                    <p className="text-center">ไม่พบเที่ยวบินที่คุณค้นหา</p>
+                                </Td>
+                            </Tr>
+                        </Tbody>
+                    )}
+                </Table>
+            </TableContainer>
+            <ModalEditFlight
+                isOpen={isOpen}
+                onClose={onClose}
+                editingFlight={editingFlight}
+                setEditingFlight={setEditingFlight}
+                handleSave={handleSave}
+            />
+        </>
+    );
 };
 
 export default FlightTable;
