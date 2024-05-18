@@ -74,8 +74,8 @@ function App() {
                                 <Route path="/payment" element={<Payment />} /> */}
                             </Route>
                             <Route path="mybooking" element={<Mybooking />} />
-                            <Route path="mybooking/edit" element={<MybookingEdit />} />
-                            <Route path="/mybooking/cancel" element={<CancelBooking />} />
+                            <Route path="/mybooking/edit/:bookingID" element={<MybookingEdit />} />
+                            <Route path="/mybooking/cancel/:bookingID" element={<CancelBooking />} />
                             <Route path="dashboard/*" element={<Dashboard />} />
                             <Route path="/profile" element={<Profile />} />
                         </Routes>

@@ -69,7 +69,7 @@ const EmployeeTable: React.FC = () => {
   ]);
 
   return (
-    <TableContainer>
+    <TableContainer className="overflow-x-scroll">
       <Table variant="simple">
         <TableCaption>Current Flight Operations</TableCaption>
         <Thead>

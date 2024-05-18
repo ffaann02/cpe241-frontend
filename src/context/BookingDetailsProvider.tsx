@@ -49,9 +49,9 @@ export interface EmergencyContactData {
 }
 
 interface PaymentInfoData {
-    name: string;
-    number: string;
-    date: string;
+    holderName: string;
+    cardNumber: string;
+    expiryDate: string;
     ccv: string;
 }
 
@@ -71,9 +71,9 @@ const BookingDetailsProvider = ({ children }) => {
     const [selectedFlight, setSelectedFlight] = useState(null);
     const [selectedBagCount, setSelectedBagCount] = useState<string | null>(null);
     const [paymentInfo, setPaymentInfo] = useState<PaymentInfoData>({
-        name: '',
-        number: '',
-        date: '',
+        holderName: '',
+        cardNumber: '',
+        expiryDate: '',
         ccv: '',
     });
 

@@ -5,7 +5,11 @@ import Profile from "./views/admin/profile";
 import DataTables from "./views/admin/tables";
 import RTLDefault from "./views/rtl/default";
 import FlightTable from "./views/admin/flightTable";
+<<<<<<< HEAD
 import BookingTable from "./views/admin/bookingTable";
+=======
+import UserTable from "./views/admin/userTable";
+>>>>>>> origin/dev
 import EmployeeReport from "./views/admin/employeeTable";
 
 // Auth Imports
@@ -53,6 +57,14 @@ const routes = [
     icon: <MdOutlineShoppingCart className="h-6 w-6" />,
     component: <FlightTable />,
     secondary: true,
+  },
+  {
+    name: "User Table",
+    layout: "admin",
+    path: "user-table",
+    base: "dashboard",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <UserTable />
   },
   {
     name: "Employee Table",
