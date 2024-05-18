@@ -5,11 +5,8 @@ import Profile from "./views/admin/profile";
 import DataTables from "./views/admin/tables";
 import RTLDefault from "./views/rtl/default";
 import FlightTable from "./views/admin/flightTable";
-<<<<<<< HEAD
 import BookingTable from "./views/admin/bookingTable";
-=======
 import EmployeeReport from "./views/admin/employeeTable";
->>>>>>> b63c546639fcc1c5fb7affff2a5fcc0f0bbf72b1
 
 // Auth Imports
 import SignIn from "./views/auth/SignIn";
