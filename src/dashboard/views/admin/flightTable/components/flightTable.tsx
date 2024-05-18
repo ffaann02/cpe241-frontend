@@ -79,10 +79,10 @@ const FlightTable = ({ flightData, searchFlightNumber, flightsForCurrentPage }) 
                                     <Td>{flight.flightNo}</Td>
                                     <Td>{flight.airlineName}</Td>
                                     <Td>
-                                        {flight.arrivalCity} ({flight.arrivalIATACode})
+                                        {flight.departureCity} ({flight.departureIATACode})
                                     </Td>
                                     <Td>
-                                        {flight.departureCity} ({flight.departureIATACode})
+                                        {flight.arrivalCity} ({flight.arrivalIATACode})
                                     </Td>
                                     <Td>{new Date(flight.departureDateTime).toLocaleString()}</Td>
                                     <Td>{new Date(flight.arrivalDateTime).toLocaleString()}</Td>

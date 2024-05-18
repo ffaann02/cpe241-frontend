@@ -27,22 +27,18 @@ import {
 import { useEffect, useState } from 'react';
 import axiosPrivate from '../../../../../api/axios';
 import { set } from 'react-hook-form';
+import { calculateDistance } from '../../../../../utils/timeFormat';
 
-export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNewFlight,setFlightData}) => {
-    const handleCreateFlight = () => {
-
-        const reFetchFlight = async () => {
-            const response = await axiosPrivate.get('/api/flight');
-            console.log(response.data);
-            setFlightData(response.data);
-        }
-
+export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNewFlight, setFlightData }) => {
+    const handleCreateFlight = async () => {
         try {
-            const response = axiosPrivate.post('/api/flight/create', {
+            console.log(newFlight);
+            console.log(assignTasks);
+            const response = await axiosPrivate.post('/api/flight/create', {
                 flight: {
                     flightID: newFlight.flightID,
                     flightNo: newFlight.flightNo,
-                    airlineID: parseInt(newFlight.airlineID),
+                    airlineID: parseInt(newFlight.airslineID),
                     aircraftID: parseInt(newFlight.aircraftID),
                     departureAirportID: parseInt(newFlight.departureAirportID),
                     arrivalAirportID: parseInt(newFlight.arrivalAirportID),
@@ -60,7 +56,9 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                     status: task.status,
                 })),
             });
-            reFetchFlight();
+            const updatedFlight = await response.data.newFlight[0];
+            console.log(updatedFlight);
+            setFlightData((prev) => [...prev, updatedFlight]);
             onCloseAddFlight();
         } catch (error) {
             console.log(error);
@@ -124,6 +122,36 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
             getAircraft();
         }
     }, [isAddFlight]);
+
+    useEffect(() => {
+        if (
+            !newFlight ||
+            !newFlight.departureDateTime ||
+            !newFlight.arrivalAirportID ||
+            !newFlight.departureAirportID
+        ) {
+            return;
+        }
+
+        const departureAirport = airportList.find(
+            (airport) => airport.airportID === parseInt(newFlight.departureAirportID)
+        );
+        const arrivalAirport = airportList.find(
+            (airport) => airport.airportID === parseInt(newFlight.arrivalAirportID)
+        );
+
+        const { lat: lat1, lon: lon1 } = departureAirport;
+        const { lat: lat2, lon: lon2 } = arrivalAirport;
+        const distance = calculateDistance(lat1, lon1, lat2, lon2);
+        const airportSpeed = 250;
+        const durationInHours = distance / airportSpeed;
+        const durationInMilliseconds = durationInHours * 60 * 60 * 1000;
+        const departureDateTime = new Date(newFlight.departureDateTime);
+        const arrivalDateTime = new Date(departureDateTime.getTime() + durationInMilliseconds);
+        const formattedArrivalDateTime = `${arrivalDateTime.getFullYear()}-${String(arrivalDateTime.getMonth() + 1).padStart(2, '0')}-${String(arrivalDateTime.getDate()).padStart(2, '0')}T${String(arrivalDateTime.getHours()).padStart(2, '0')}:${String(arrivalDateTime.getMinutes()).padStart(2, '0')}`;        // const arrivalDateTimeUTC = `${arrivalDateTime.getUTCFullYear()}-${String(arrivalDateTime.getUTCMonth() + 1).padStart(2, '0')}-${String(arrivalDateTime.getUTCDate()).padStart(2, '0')}T${String(arrivalDateTime.getUTCHours()).padStart(2, '0')}:${String(arrivalDateTime.getUTCMinutes()).padStart(2, '0')}`;
+        setNewFlight({ ...newFlight, arrivalDateTime: formattedArrivalDateTime });
+    }, [newFlight?.departureDateTime, newFlight?.arrivalAirportID, newFlight?.departureAirportID]);
+
     const [flightStatus, setFlightStatus] = useState({
         scheduled: { en: 'Scheduled', th: 'ตามกำหนด' },
         onTime: { en: 'On-Time', th: 'ตรงเวลา' },
@@ -253,7 +281,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                         <Select
                                             marginTop={-2}
                                             placeholder="เลือกรหัส IATA ของสนามบินขาออก"
-                                            value={newFlight.arrivalAirportI}
+                                            value={newFlight.arrivalAirportID}
                                             onChange={(e) =>
                                                 setNewFlight({ ...newFlight, arrivalAirportID: e.target.value })
                                             }
@@ -278,6 +306,8 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                     <FormControl id="arrivalDateTime" isRequired>
                                         <FormLabel>Arrival Date and Time</FormLabel>
                                         <Input
+                                            disabled
+                                            _disabled={{ bg: 'gray.50', borderColor: '1px solid #f1f5f9' }}
                                             type="datetime-local"
                                             value={newFlight.arrivalDateTime}
                                             onChange={(e) =>
@@ -290,13 +320,14 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                         <Select
                                             marginTop={-2}
                                             placeholder="สถานะเริ่มต้นของเที่ยวบิน"
-                                            value={newFlight.status}
+                                            value={newFlight.status || Object.entries(flightStatus)[0][1].en}
                                             onChange={(e) => setNewFlight({ ...newFlight, status: e.target.value })}
+                                            isDisabled
+                                            _disabled={{ bg: 'gray.50', borderColor: '1px solid #f1f5f9' }}
                                         >
                                             {Object.entries(flightStatus).map(([key, status], index) => (
                                                 <option key={index} value={status.en}>
                                                     {status.en} - {status.th}{' '}
-                                                    {/* This will print the Thai translation */}
                                                 </option>
                                             ))}
                                         </Select>
@@ -335,7 +366,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                                     ))}
                                                 </Select>
                                             </Stack>
-                                            <FormControl id={`assignDateTime${index}`} isRequired>
+                                            {/* <FormControl id={`assignDateTime${index}`} isRequired>
                                                 <FormLabel>Assign Date and Time</FormLabel>
                                                 <Input
                                                     type="datetime-local"
@@ -346,7 +377,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                                         setAssignTasks(newTasks);
                                                     }}
                                                 />
-                                            </FormControl>
+                                            </FormControl> */}
                                             <FormControl id={`taskType${index}`} isRequired>
                                                 <FormLabel>Task Type</FormLabel>
                                                 <Input
@@ -375,12 +406,14 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                                 <FormLabel>Status</FormLabel>
                                                 <Input
                                                     type="text"
-                                                    value={task.status}
+                                                    value={task.status || 'pending'}
                                                     onChange={(e) => {
                                                         const newTasks = [...assignTasks];
                                                         newTasks[index].status = e.target.value;
                                                         setAssignTasks(newTasks);
                                                     }}
+                                                    isDisabled
+                                                    _disabled={{ bg: 'gray.50', borderColor: '1px solid #f1f5f9' }}
                                                 />
                                             </FormControl>
                                         </div>

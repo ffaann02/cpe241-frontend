@@ -25,8 +25,8 @@ const FlightReport = () => {
 
     useEffect(()=>{
         const fetchFlights = async () => {
-            const response = await axiosPrivate('/api/flight/')
-            setFlightData(response.data);
+            const response = await axiosPrivate.get('/api/flight')
+            setFlightData(response.data)
         }
         fetchFlights()
     },[])
