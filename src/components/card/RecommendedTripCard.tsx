@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import recomTripdata from '../../data/recomTripData.json';
 import { Input } from '@chakra-ui/react';
 const RecommendedTripCard: React.FC = () => {
-  const [countryName, setcountryName] = useState<string>(''); // State to store the country name input
+  const [countryName, setcountryName] = useState<string>('japan'); // State to store the country name input
   const filteredCardData = recomTripdata.filter(card => card.country.toLowerCase() === countryName.toLowerCase());
   return (
     <div className="container mx-auto p-4">

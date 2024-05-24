@@ -45,7 +45,9 @@ export default function Booking() {
         servicePackageData,
         travelInsuranceData,
         setServicePackageData,
-        setTravelInsuranceData
+        setTravelInsuranceData,
+        price,
+        setPrice
     } = useContext(BookingDetailsContext);
 
     const [usePassengerDataForEmergencyContact, setUsePassengerDataForEmergencyContact] = useState<boolean>(false);
@@ -60,6 +62,9 @@ export default function Booking() {
             try {
                 const fid = new URLSearchParams(window.location.search).get('fid');
                 const response = await axiosPrivate.get(`/api/flight/${fid}`);
+                console.log(response.data);
+                const price = (response.data.subtotal)*4.11;
+                setPrice(price);
                 setSelectedFlight(response.data);
                 const passengerAmount = new URLSearchParams(window.location.search).get('initAmount');
                 const initialPassengerData = Array.from({ length: parseInt(passengerAmount) }, () => initPassenger);
@@ -185,7 +190,7 @@ export default function Booking() {
                     </div>
                 </section>
                 <section className="my-10 col-span-4 flex flex-col">
-                    <div>{selectedFlight && <FlightCartData flight={selectedFlight} />}</div>
+                    <div>{selectedFlight && <FlightCartData flight={selectedFlight} price={price}/>}</div>
                     <div className='mt-10'>
                         <ul className='text-lg text-bold'>เงื่อนไขการจอง</ul>
                         <li className='mt-1 text-sm'>หากท่านดำเนินการเปลี่ยนแปลงข้อมูลเที่ยวบินกับสายการบินโดยตรง หรือสายการบินเป็นผู้ดำเนินการเปลี่ยนแปลง อโกด้าจะไม่ได้รับแจ้งรายละเอียดดังกล่าว กรุณาตรวจสอบข้อมูลการติดต่อที่ท่านกรอกในแบบฟอร์มการจองให้ถูกต้อง เนื่องจากสายการบินจะแจ้งรายละเอียดการเปลี่ยนแปลงให้ท่านทราบโดยตรง</li>

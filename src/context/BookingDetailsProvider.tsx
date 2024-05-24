@@ -17,6 +17,10 @@ interface BookingDetailsContext {
     setPaymentInfo: React.Dispatch<React.SetStateAction<PaymentInfoData>>;
     selectedBagCount: string;
     setSelectedBagCount: React.Dispatch<React.SetStateAction<string>>;
+    seletecdPackage: string;
+    setSeletecdPackage: React.Dispatch<React.SetStateAction<string>>;
+    price: number;
+    setPrice: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface PassengerData {
@@ -76,6 +80,7 @@ const BookingDetailsProvider = ({ children }) => {
         expiryDate: '',
         ccv: '',
     });
+    const [price,setPrice] = useState<number>(0);
 
     const handleScrollToTop = () => {
         window.scrollTo(0, 0);
@@ -104,6 +109,8 @@ const BookingDetailsProvider = ({ children }) => {
                 setPaymentInfo,
                 selectedBagCount,
                 setSelectedBagCount,
+                price,
+                setPrice
             }}
         >
             {children}

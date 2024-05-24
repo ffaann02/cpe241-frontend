@@ -59,14 +59,14 @@ function App() {
                                 <Route path="passenger" element={<Booking />} />
                                 <Route path="select-seat" element={<SelectSeat />} />
                                 <Route path="payment" element={<Payment />} />
-                                <Route path="confirm" element={<Confirm />} />
+                                <Route path="confirm/:bookingID" element={<Confirm />} />
                             </Route>
                             <Route path="/search" element={<Search />} />
                             {/* <Route path="auth/*" element={<AuthLayout />} />
                             <Route path="admin/*" element={<AdminLayout />} />
                             <Route path="rtl/*" element={<RtlLayout />} /> */}
                             <Route path="/dashboard" element={<Navigate to="admin" replace />} />
-                            <Route path="/confirm" element={<Confirm />} />
+                            {/* <Route path="/confirm" element={<Confirm />} /> */}
                             <Route path="/trip" element={<TripSection />} />
                             <Route path="*" element={<NotFound />} />
                             <Route element={<PrivateRoute />}>

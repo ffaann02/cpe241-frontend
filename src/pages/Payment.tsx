@@ -60,6 +60,7 @@ const Payment = () => {
         emergencyContactData,
         selectedPackage,
         travelInsurance,
+        price
     } = useContext(BookingDetailsContext);
 
     const navigate = useNavigate();
@@ -108,6 +109,7 @@ const Payment = () => {
                 payment: paymentInfo,
             });
             console.log(res.data);
+            navigate('/booking/confirm/' + res.data.bookingID);
             // setTimeout(() => {
             //     navigate('/booking/confirm');
             // }, 1500);
@@ -326,7 +328,7 @@ const Payment = () => {
                                 Confirm and pay
                             </button>
                         </div> */}
-                            <FlightCartCard flight={selectedFlight} />
+                            <FlightCartCard flight={selectedFlight} price={price} />
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,7 @@ const handleDateOfBirthChange = (setPassengerData, passengerData) => (index: num
 const handleAddPassenger = (setPassengerData, passengerData) => () => {
     setPassengerData([
         ...passengerData,
-        initPassenger,
+        { ...initPassenger },
     ]);
 };
 
