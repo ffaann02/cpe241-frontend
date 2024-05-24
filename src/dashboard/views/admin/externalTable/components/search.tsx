@@ -11,13 +11,9 @@ import {
     SearchIcon,
     ChevronDownIcon,
 } from '@chakra-ui/icons'
-import { useDisclosure } from '@chakra-ui/react'
-interface SearchProps {
-    type: string;
-}
 
-export default function Search({type}: SearchProps) {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+
+export default function Search() {
     return (
         <Box w={'full'}>
             {/* Search bar */}
@@ -26,10 +22,9 @@ export default function Search({type}: SearchProps) {
                 fontSize={{ base: 'sm', md: 'md' }}
             >
                 <InputLeftElement pointerEvents='none'>
-                    <SearchIcon color='gray.300' />
+                    <SearchIcon color='gray.300' /> 
                 </InputLeftElement>
-                {type==='employee' && <Input borderRadius='md' type='text' placeholder='Search employee name' />}
-                {type==='task' && <Input borderRadius='md' type='text' placeholder='Search employee task' />}
+                <Input borderRadius='md' type='text' placeholder='Search externalservice name' />
             </InputGroup>
         </Box>
     )

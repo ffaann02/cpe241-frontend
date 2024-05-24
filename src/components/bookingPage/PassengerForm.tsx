@@ -40,15 +40,15 @@ export const Form: React.FC<FormProps> = ({ value, handleChange, index, placehol
                 placeholder={placeholder}
                 value={value}
                 name={name}
-                onChange={(e) => {
-                    handleChange(index, {
-                        ...e,
-                        target: {
-                            ...e.target,
-                            name: name,
-                        },
-                    });
-                }}
+                    onChange={(e) => {
+                        handleChange(index, {
+                            ...e,
+                            target: {
+                                ...e.target,
+                                name: name,
+                            },
+                        });
+                    }}
             />
         </InputGroup>
     );
