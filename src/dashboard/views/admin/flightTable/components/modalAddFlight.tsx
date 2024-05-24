@@ -28,12 +28,13 @@ import { useEffect, useState } from 'react';
 import axiosPrivate from '../../../../../api/axios';
 import { set } from 'react-hook-form';
 import { calculateDistance } from '../../../../../utils/timeFormat';
+import { string } from 'zod';
 
 export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNewFlight, setFlightData }) => {
     const handleCreateFlight = async () => {
         try {
             console.log(newFlight);
-            console.log(assignTasks);
+            console.log(assignTasksCaptain);
             const response = await axiosPrivate.post('/api/flight/create', {
                 flight: {
                     flightID: newFlight.flightID,
@@ -48,7 +49,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                     status: newFlight.status,
                     baseFare: parseInt(newFlight.baseFare),
                 },
-                task: assignTasks.map((task) => ({
+                task: assignTasksCaptain.map((task) => ({
                     employeeID: parseInt(task.employeeID),
                     assignDateTime: task.assignDateTime,
                     taskType: task.taskType,
@@ -65,7 +66,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
         }
     };
 
-    const [assignTasks, setAssignTasks] = useState([
+    const [assignTasksCaptain, setAssignTasksCaptain] = useState([
         {
             employeeID: '1',
             assignDateTime: '',
@@ -74,6 +75,36 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
             status: 'pending',
         },
     ]);
+    const [assignTasksAirhostess, setAssignTasksAirhostess] = useState([
+    ]);
+    const handleAddCaptain = (setAssignTasksCaptain, assignTasksCaptain) => () => {
+        setAssignTasksCaptain([
+            ...assignTasksCaptain,
+            {
+                employeeID: '',
+                assignDateTime: '',
+                taskType: 'Fly',
+                taskDescription: 'Be a Captain',
+                status: '',
+            }]);
+    };
+    const handleRemoveCaptain = (setAssignTasksCaptain, assignTasksCaptain, index) => () => {
+        setAssignTasksCaptain([...assignTasksCaptain.slice(0, index), ...assignTasksCaptain.slice(index + 1)]);
+    };
+    const handleAddAirhostess = (setAssignTasksAirhostess, assignTasksAirhostess) => () => {
+        setAssignTasksAirhostess([
+            ...assignTasksAirhostess,
+            {
+                employeeID: '',
+                assignDateTime: '',
+                taskType: 'Fly',
+                taskDescription: 'Be an Airhostess',
+                status: '',
+            },]);
+    }
+    const handleRemoveAirhostess = (setAssignTasksAirhostess, assignTasksAirhostess, index) => () => {
+        setAssignTasksAirhostess([...assignTasksAirhostess.slice(0, index), ...assignTasksAirhostess.slice(index + 1)]);
+    }
     const [step, setStep] = useState(0);
     const steps = [
         { title: 'เพิ่มเที่ยวบิน', description: '' },
@@ -181,6 +212,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
             getEmployees();
         }
     }, [step]);
+
 
     return (
         <>
@@ -344,18 +376,34 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                             )}
                             {step === 1 && employeeList && (
                                 <div className="">
-                                    {assignTasks.map((task, index) => (
+                                    {assignTasksCaptain.length === 1 ? (
+                                        <button
+                                            className="bg-white text-royal-blue-500 border-royal-blue-400 hover:bg-royal-blue-500 px-3 py-2
+                                                     hover:text-white hover:border-royal-blue-400 col-start-1 border rounded-md"
+                                            onClick={handleAddCaptain(setAssignTasksCaptain, assignTasksCaptain)}
+                                        >
+                                            เพิ่มกัปตันคนที่ 2
+                                        </button>) :
+                                        (<button
+                                            className="bg-white text-red-500 border-red-400 hover:bg-red-500 px-3 py-2
+                                                    hover:text-white hover:border-red-400 col-start-1 border rounded-md"
+                                            onClick={handleRemoveCaptain(setAssignTasksCaptain, assignTasksCaptain, 0)}
+                                        >
+                                            ลบกัปตันคนที่ 2
+                                        </button>)
+                                    }
+                                    {assignTasksCaptain.map((task, index) => (
                                         <div key={index} className="grid grid-cols-2 gap-4">
                                             <Stack>
-                                                <FormLabel>Employee</FormLabel>
+                                                <FormLabel marginTop={3}>Employee</FormLabel>
                                                 <Select
                                                     marginTop={-2}
-                                                    placeholder="เลือกกัปตันของเที่ยวบิน"
+                                                    placeholder={`เลือกกัปตันคนที่ ${index + 1} ของเที่ยวบิน`}
                                                     value={task.employeeID}
                                                     onChange={(e) => {
-                                                        const newTasks = [...assignTasks];
+                                                        const newTasks = [...assignTasksCaptain];
                                                         newTasks[index].employeeID = e.target.value;
-                                                        setAssignTasks(newTasks);
+                                                        setAssignTasksCaptain(newTasks);
                                                     }}
                                                 >
                                                     {employeeList.map((employee, index) => (
@@ -372,21 +420,21 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                                     type="datetime-local"
                                                     value={task.assignDateTime}
                                                     onChange={(e) => {
-                                                        const newTasks = [...assignTasks];
+                                                        const newTasks = [...assignTasksCaptain];
                                                         newTasks[index].assignDateTime = e.target.value;
-                                                        setAssignTasks(newTasks);
+                                                        setAssignTasksCaptain(newTasks);
                                                     }}
                                                 />
                                             </FormControl> */}
-                                            <FormControl id={`taskType${index}`} isRequired>
+                                            <FormControl marginTop={3} id={`taskType${index}`} isRequired>
                                                 <FormLabel>Task Type</FormLabel>
                                                 <Input
                                                     type="text"
                                                     value={task.taskType}
                                                     onChange={(e) => {
-                                                        const newTasks = [...assignTasks];
+                                                        const newTasks = [...assignTasksCaptain];
                                                         newTasks[index].taskType = e.target.value;
-                                                        setAssignTasks(newTasks);
+                                                        setAssignTasksCaptain(newTasks);
                                                     }}
                                                 />
                                             </FormControl>
@@ -396,9 +444,9 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                                     type="text"
                                                     value={task.taskDescription}
                                                     onChange={(e) => {
-                                                        const newTasks = [...assignTasks];
+                                                        const newTasks = [...assignTasksCaptain];
                                                         newTasks[index].taskDescription = e.target.value;
-                                                        setAssignTasks(newTasks);
+                                                        setAssignTasksCaptain(newTasks);
                                                     }}
                                                 />
                                             </FormControl>
@@ -408,9 +456,9 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                                     type="text"
                                                     value={task.status || 'pending'}
                                                     onChange={(e) => {
-                                                        const newTasks = [...assignTasks];
+                                                        const newTasks = [...assignTasksCaptain];
                                                         newTasks[index].status = e.target.value;
-                                                        setAssignTasks(newTasks);
+                                                        setAssignTasksCaptain(newTasks);
                                                     }}
                                                     isDisabled
                                                     _disabled={{ bg: 'gray.50', borderColor: '1px solid #f1f5f9' }}
@@ -418,9 +466,105 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                             </FormControl>
                                         </div>
                                     ))}
+                                    {assignTasksAirhostess.map((task, index) => (
+                                        <div key={index} className="grid grid-cols-2 gap-4">
+                                            {/* <button
+                                                className="bg-white text-red-500 border-red-400 hover:bg-red-500 px-3 py-2
+                                                        hover:text-white hover:border-red-400 col-start-1 border rounded-md"
+                                                onClick={handleRemoveAirhostess(setAssignTasksAirhostess, assignTasksAirhostess, 0)}
+                                            >
+                                                ลบพนักงานต้อนรับ
+                                            </button> */}
+                                            <Stack>
+                                                <FormLabel marginTop={3}>Airhostess</FormLabel>
+                                                <Select
+                                                    marginTop={-2}
+                                                    placeholder={`เลือกพนักงานต้อนรับบนเครื่องบินคนที่ ${index + 1}`}
+                                                    value={task.employeeID}
+                                                    onChange={(e) => {
+                                                        const newTasks = [...assignTasksAirhostess];
+                                                        newTasks[index].employeeID = e.target.value;
+                                                        setAssignTasksAirhostess(newTasks);
+                                                    }}
+                                                >
+                                                    {employeeList.map((employee, index) => (
+                                                        <option key={index} value={employee.employeeID}>
+                                                            A{employee.employeeID}: {employee.firstName}{' '}
+                                                            {employee.lastName}
+                                                        </option>
+                                                    ))}
+                                                </Select>
+                                            </Stack>
+                                            <FormControl marginTop={3} id={`taskType${index}`} isRequired>
+                                                <FormLabel>Task Type</FormLabel>
+                                                <Input
+                                                    type="text"
+                                                    value={task.taskType}
+                                                    onChange={(e) => {
+                                                        const newTasks = [...assignTasksAirhostess];
+                                                        newTasks[index].taskType = e.target.value;
+                                                        setAssignTasksAirhostess(newTasks);
+                                                    }}
+                                                />
+                                            </FormControl>
+                                            <FormControl id={`taskDescription${index}`} isRequired>
+                                                <FormLabel>Task Description</FormLabel>
+                                                <Input
+                                                    type="text"
+                                                    value={task.taskDescription}
+                                                    onChange={(e) => {
+                                                        const newTasks = [...assignTasksAirhostess];
+                                                        newTasks[index].taskDescription = e.target.value;
+                                                        setAssignTasksAirhostess(newTasks);
+                                                    }}
+                                                />
+                                            </FormControl>
+                                            <FormControl id={`status${index}`} isRequired>
+                                                <FormLabel>Status</FormLabel>
+                                                <Input
+                                                    type="text"
+                                                    value={task.status || 'pending'}
+                                                    onChange={(e) => {
+                                                        const newTasks = [...assignTasksAirhostess];
+                                                        newTasks[index].status = e.target.value;
+                                                        setAssignTasksAirhostess(newTasks);
+                                                    }}
+                                                    isDisabled
+                                                    _disabled={{ bg: 'gray.50', borderColor: '1px solid #f1f5f9' }}
+                                                />
+                                            </FormControl>
+                                        </div>  
+                                    ))}
+                                    {assignTasksAirhostess.length === 0 ? (
+                                        <button
+                                            className="bg-white text-royal-blue-500 border-royal-blue-400 hover:bg-royal-blue-500 px-3 py-2
+                                                     hover:text-white hover:border-royal-blue-400 col-start-1 border rounded-md mt-3"
+                                            onClick={handleAddAirhostess(setAssignTasksAirhostess, assignTasksAirhostess)}
+                                        >
+                                            เพิ่มพนักงานต้อนรับ
+                                        </button>) :
+                                        (
+                                        <div className="mt-3">
+                                            <button
+                                            className="bg-white text-royal-blue-500 border-royal-blue-400 hover:bg-royal-blue-500 px-3 py-2
+                                                     hover:text-white hover:border-royal-blue-400 col-start-1 border rounded-md col-span-1"
+                                            onClick={handleAddAirhostess(setAssignTasksAirhostess, assignTasksAirhostess)}
+                                        >
+                                            เพิ่มพนักงานต้อนรับ
+                                        </button>
+                                        <button
+                                            className="bg-white text-red-500 border-red-400 hover:bg-red-500 px-3 py-2
+                                                    hover:text-white hover:border-red-400 col-start-1 border rounded-md ml-3"
+                                            onClick={handleRemoveAirhostess(setAssignTasksAirhostess, assignTasksAirhostess, 0)}
+                                        >
+                                            ลบพนักงานต้อนรับ
+                                        </button>
+                                        </div>)
+                                    }
                                 </div>
                             )}
                         </ModalBody>
+
                         <div className="flex justify-between px-4 pb-1.5">
                             <div className="py-2 ml-2 gap-x-2 flex">
                                 <button
