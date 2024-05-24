@@ -16,7 +16,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
             { title: 'Flight Table', path: '/dashboard/admin/flight-table' },
             { title: 'Booking Table', path: '/dashboard/admin/booking-table' },
             { title: 'User Table', path: '/dashboard/admin/user-table' },
-            { title: 'Employee Table', path: '/dashboard/admin/Employee-table' },
+            { title: 'Employee Table', path: '/dashboard/admin/employee-table' },
         ],
     },
     {

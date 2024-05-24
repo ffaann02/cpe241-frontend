@@ -19,7 +19,7 @@ import UserBoard from './components/userBoard'
 
 const UserReport = () => {
     return (
-        <Flex mt={'3'}>
+        <Flex mt={'3'} w={'100%'}>
             <UserBoard/>
         </Flex>
     );

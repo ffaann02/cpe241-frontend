@@ -19,7 +19,7 @@ import EmployeeBoard from "./components/employeeBoard"
 
 const EmployeeReport = () => {
     return (
-        <Flex mt={'3'}>
+        <Flex mt={'3'} w={'full'}>
             <EmployeeBoard/>
         </Flex>
     );
