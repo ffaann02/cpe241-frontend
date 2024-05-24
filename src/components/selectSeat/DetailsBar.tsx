@@ -8,7 +8,7 @@ import { BookingDetailsContext } from '../../context/BookingDetailsProvider';
 import { useNavigate } from 'react-router-dom';
 
 interface DetailsBarProps {
-    flight: Flight;
+    flight: any;
     handleChooseSeat: (seat: string) => void;
 }
 
@@ -16,6 +16,7 @@ const DetailsBar: React.FC<DetailsBarProps> = ({ flight, handleChooseSeat }: Det
     const { setStep } = useContext(BookingDetailsContext);
     const navigate = useNavigate();
     const { passengerData } = useContext(BookingDetailsContext);
+    console.log(flight);
     return (
         <div className="col-span-3 w-full pl-4">
             <h1 className="text-xl font-bold text-slate-600 flex gap-x-2">รายละเอียดเที่ยวบินของคุณ</h1>
@@ -24,26 +25,38 @@ const DetailsBar: React.FC<DetailsBarProps> = ({ flight, handleChooseSeat }: Det
                     <MdFlight className="text-2xl text-slate-400" />
                     <div>
                         <div className="flex gap-x-6">
-                            <p className="my-auto">{flight.from}</p>
+                            <p className="my-auto">
+                                {flight.arrivalCity} ({flight.from})
+                            </p>
                             <FaArrowRightLong className="my-auto" />
-                            <p className="my-auto">{flight.to}</p>
+                            <p className="my-auto">
+                                {flight.departureCity} ({flight.destination})
+                            </p>
                         </div>
                         <div className="">
-                            <p className="text-sm text-slate-400">พฤหัส, 10 มีนาคม</p>
+                            <p className="text-sm text-slate-400">
+                                {new Date(flight.departureTimeDate).toLocaleDateString('th-TH', {
+                                    weekday: 'long',
+                                    day: 'numeric',
+                                    month: 'long',
+                                })}
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div className="flex mt-2">
-                    <div className="bg-red-200 w-8 h-8 rounded-sm"></div>
+                    <div className="w-8 h-8 rounded-sm">
+                        <img src={flight.airlineIcon} />
+                    </div>
                     <div className="flex">
                         <div className="my-auto ml-4">
                             <p>
-                                {new Date(flight.departure).toLocaleTimeString('en-US', {
+                                {new Date(flight.departureTimeDate).toLocaleTimeString('en-US', {
                                     hour: '2-digit',
                                     minute: '2-digit',
                                 })}
                             </p>
-                            <p className="text-xs">HDY</p>
+                            <p className="text-xs">{flight.from}</p>
                             <p className="text-xs">GMT +07</p>
                         </div>
                         <div className="px-16 relative border-royal-blue-200 border-t border-dashed h-0.5 my-auto mx-6">
@@ -52,12 +65,12 @@ const DetailsBar: React.FC<DetailsBarProps> = ({ flight, handleChooseSeat }: Det
                         </div>
                         <div className="my-auto">
                             <p>
-                                {new Date(flight.departure).toLocaleTimeString('en-US', {
+                                {new Date(flight.arrivalTimeDate).toLocaleTimeString('en-US', {
                                     hour: '2-digit',
                                     minute: '2-digit',
                                 })}
                             </p>
-                            <p className="text-xs">HDY</p>
+                            <p className="text-xs">{flight.destination}</p>
                             <p className="text-xs">GMT +07</p>
                         </div>
                     </div>
@@ -81,7 +94,9 @@ const DetailsBar: React.FC<DetailsBarProps> = ({ flight, handleChooseSeat }: Det
                                 {passengerData.map((passenger, index) => (
                                     <Tr className="text-sm">
                                         <Td style={{ width: '5%' }}>{index + 1}.</Td>
-                                        <Td style={{ width: '50%' }}>{passenger.firstName}</Td>
+                                        <Td style={{ width: '50%' }}>
+                                            {passenger.firstName} {passenger.lastName}
+                                        </Td>
                                         <Td style={{ width: '45%' }}>
                                             <div className="text-right font-IBM-Plex">
                                                 {passenger.seat ? (
