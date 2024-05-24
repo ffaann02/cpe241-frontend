@@ -4,17 +4,17 @@ interface BookingDetailsContext {
     step: number;
     setStep: React.Dispatch<React.SetStateAction<number>>;
     passengerData: PassengerData[];
+    servicePackageData: ServicePackage[];
+    travelInsuranceData: TravelInsurance[];
     setPassengerData: React.Dispatch<React.SetStateAction<PassengerData[]>>;
+    setServicePackageData: React.Dispatch<React.SetStateAction<ServicePackage[]>>;
+    setTravelInsuranceData: React.Dispatch<React.SetStateAction<TravelInsurance[]>>;
     emergencyContactData: EmergencyContactData;
     setEmergencyContactData: React.Dispatch<React.SetStateAction<EmergencyContactData>>;
     selectedFlight: any;
     setSelectedFlight: React.Dispatch<React.SetStateAction<any>>;
     paymentInfo: PaymentInfoData;
     setPaymentInfo: React.Dispatch<React.SetStateAction<PaymentInfoData>>;
-    selectedPackage: string;
-    setSelectedPackage: React.Dispatch<React.SetStateAction<string>>;
-    travelInsurance: string;
-    setTravelInsurance: React.Dispatch<React.SetStateAction<string>>;
     selectedBagCount: string;
     setSelectedBagCount: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -31,6 +31,16 @@ export interface PassengerData {
     seat: string | null;
 }
 
+export interface ServicePackage {
+    name: string;
+    price: number;
+}
+
+export interface TravelInsurance {
+    isIncluded: string;
+    price: number;
+}
+
 export interface EmergencyContactData {
     firstName: string;
     lastName: string;
@@ -39,9 +49,9 @@ export interface EmergencyContactData {
 }
 
 interface PaymentInfoData {
-    name: string;
-    number: string;
-    date: string;
+    holderName: string;
+    cardNumber: string;
+    expiryDate: string;
     ccv: string;
 }
 
@@ -50,6 +60,8 @@ export const BookingDetailsContext = createContext<BookingDetailsContext | undef
 const BookingDetailsProvider = ({ children }) => {
     const [step, setStep] = useState<number>(0);
     const [passengerData, setPassengerData] = useState<PassengerData[]>([]);
+    const [servicePackageData, setServicePackageData] = useState<ServicePackage[]>([]);
+    const [travelInsuranceData, setTravelInsuranceData] = useState<TravelInsurance[]>([]);
     const [emergencyContactData, setEmergencyContactData] = useState<EmergencyContactData>({
         firstName: '',
         lastName: '',
@@ -57,19 +69,21 @@ const BookingDetailsProvider = ({ children }) => {
         phoneNumber: '',
     });
     const [selectedFlight, setSelectedFlight] = useState(null);
-    const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
-    const [travelInsurance, setTravelInsurance] = useState<string | null>(null);
     const [selectedBagCount, setSelectedBagCount] = useState<string | null>(null);
-
     const [paymentInfo, setPaymentInfo] = useState<PaymentInfoData>({
-        name: '',
-        number: '',
-        date: '',
+        holderName: '',
+        cardNumber: '',
+        expiryDate: '',
         ccv: '',
     });
+
+    const handleScrollToTop = () => {
+        window.scrollTo(0, 0);
+    };
+
     useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [window.location.pathname])
+        handleScrollToTop();
+    }, []);
 
     return (
         <BookingDetailsContext.Provider
@@ -77,19 +91,19 @@ const BookingDetailsProvider = ({ children }) => {
                 step,
                 setStep,
                 passengerData,
+                servicePackageData,
+                travelInsuranceData,
                 setPassengerData,
+                setServicePackageData,
+                setTravelInsuranceData,
                 emergencyContactData,
                 setEmergencyContactData,
                 selectedFlight,
                 setSelectedFlight,
                 paymentInfo,
                 setPaymentInfo,
-                selectedPackage,
-                setSelectedPackage,
-                travelInsurance,
-                setTravelInsurance,
                 selectedBagCount,
-                setSelectedBagCount
+                setSelectedBagCount,
             }}
         >
             {children}

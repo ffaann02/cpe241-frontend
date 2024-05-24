@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import "../components/component.css"
+import '../components/component.css';
 export const LoadingAirplaneGif = ({ loading, title }: { loading: boolean; title: string }) => {
     useEffect(() => {
         if (loading) {
@@ -37,13 +37,6 @@ export const LoadingAirplaneGif = ({ loading, title }: { loading: boolean; title
 };
 
 export const LoadingSpinner = ({ loading }: { loading: boolean; title?: string }) => {
-    useEffect(() => {
-        if (loading) {
-            document.body.classList.add('overflow-hidden');
-        } else {
-            document.body.classList.remove('overflow-hidden');
-        }
-    }, [loading]);
     return (
         <>
             {loading && (

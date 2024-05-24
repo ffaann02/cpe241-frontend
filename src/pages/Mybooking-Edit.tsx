@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Editbooking from "../components/myBooking/editBooking/editbooking"
 import FlightCartData from '../components/card/FlightCartCard';
 import fakeFlightData from '../data/fakeFlightData.json';
@@ -42,6 +42,11 @@ export default function MybookingEdit() {
             seat: 'A2',
         },
     ]);
+
+    useEffect(()=>{
+        
+    },[])
+
     const [ExternalService, setExternalService] = useState<ExternalService>({ServiceCheck:1,Insurance:2});
     return (
         <div>

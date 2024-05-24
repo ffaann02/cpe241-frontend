@@ -42,6 +42,10 @@ export default function Booking() {
         setEmergencyContactData,
         selectedFlight,
         setSelectedFlight,
+        servicePackageData,
+        travelInsuranceData,
+        setServicePackageData,
+        setTravelInsuranceData
     } = useContext(BookingDetailsContext);
 
     const [usePassengerDataForEmergencyContact, setUsePassengerDataForEmergencyContact] = useState<boolean>(false);
@@ -69,6 +73,15 @@ export default function Booking() {
             fetchData();
         }
     }, []);
+
+    const handleSelectServicePackage = (selectedPackage) => {
+        setServicePackageData(selectedPackage);
+    };
+
+    const handleTravelInsurance = (travelInsurance) => {
+        setTravelInsuranceData(travelInsurance);
+    };
+
     return (
         <div>
             <LoadingSpinner loading={isFetching} />
@@ -124,7 +137,12 @@ export default function Booking() {
                             setPassengerData={setPassengerData}
                         />
                     ))}
-                    <ServicePackage />
+                    <ServicePackage
+                        servicePackageData={servicePackageData}
+                        travelInsuranceData={travelInsuranceData}
+                        onSelectServicePackage={handleSelectServicePackage}
+                        onToggleTravelInsurance={handleTravelInsurance}
+                    />
                     <div className="mt-10 flex gap-x-4">
                         <button
                             className="cursor-pointer px-4 py-2 border-[1px] border-royal-blue-500 text-royal-blue-500 
@@ -136,6 +154,8 @@ export default function Booking() {
                                     navigate('/booking/select-seat');
                                 }
                                 console.log(passengerData);
+                                console.log(servicePackageData);
+                                console.log(travelInsuranceData)
                             }}
                             disabled={
                                 !passengerData.every(

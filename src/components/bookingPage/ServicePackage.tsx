@@ -2,20 +2,47 @@ import { Checkbox } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { BookingDetailsContext } from "../../context/BookingDetailsProvider";
 
-const ServicePackage = ({ }) => {
-    const {
-        selectedPackage,
-        setSelectedPackage,
-        travelInsurance,
-        setTravelInsurance
-    } = useContext(BookingDetailsContext);
+export const initServicePackage = {
+    name: '',
+    price: 0,
+};
 
-    const handlePackageSelection = (value: string) => {
-        setSelectedPackage(value === selectedPackage ? null : value);
+export const initTravelInsurance = {
+    isIncluded: false,
+    price: 0,
+};
+
+const ServicePackage = ({ servicePackageData, travelInsuranceData, onSelectServicePackage, onToggleTravelInsurance}) => {
+    const [bookingData, setBookingData] = useState({
+        selectedPackage: initServicePackage,
+        travelInsurance: initTravelInsurance,
+    });
+
+    const handleSelectPackage = (packageName, price) => {
+        const selectedPackage = {
+            name: packageName,
+            price: price,
+        };
+        setBookingData((prevData) => ({
+            ...prevData,
+            selectedPackage: selectedPackage,
+        }));
+        onSelectServicePackage(selectedPackage);
     };
 
-    const handleTravelInsuranceSelection = (option: string) => {
-        setTravelInsurance(option === travelInsurance ? null : option);
+
+    const handleToggleTravelInsurance = (isChecked) => {
+        const travelInsurance = {
+            isIncluded: isChecked,
+            price: isChecked ? 230 : 0,
+        };
+    
+        setBookingData((prevData) => ({
+            ...prevData,
+            travelInsurance: travelInsurance,
+        }));
+    
+        onToggleTravelInsurance(travelInsurance);
     };
 
     return (
@@ -26,40 +53,40 @@ const ServicePackage = ({ }) => {
                 <p className='text-sm mb-6'>เลือกรับบริการช่วยเหลือแบบพรีเมียม - รับบริการที่รวดเร็วยิ่งขึ้นจากเจ้าหน้าที่ของเรา</p>
                 <div className='grid grid-cols-4 gap-4 text-sm divide-x'>
                     <div></div>
-                    <a className={`col-start-2 justify-center items-center border rounded-lg cursor-pointer ${selectedPackage === 'Basic' ? 'bg-gray-200' : ''}`}
-                        onClick={() => handlePackageSelection('Basic')}
+                    <a className={`col-start-2 justify-center items-center border rounded-lg cursor-pointer ${bookingData.selectedPackage.name === 'Basic' ? 'bg-gray-200' : ''}`}
+                        onClick={(e) => handleSelectPackage('Basic', 0)}
                     >
                         <div className='flex justify-center m-2'>
                             <Checkbox
                                 size={'md'}
                                 className="cursor-pointer"
-                                isChecked={selectedPackage === 'Basic'}
+                                isChecked={bookingData.selectedPackage.name === 'Basic'}
                             />
                         </div>
                         <p className='flex justify-center font-bold m-2'>เบสิก</p>
                         <p className='flex justify-center font-bold m-2'>฿ 0</p>
                     </a>
-                    <a className={`col-start-3 justify-center items-center border rounded-lg cursor-pointer ${selectedPackage === 'Plus' ? 'bg-gray-200' : ''}`}
-                        onClick={() => handlePackageSelection('Plus')}
+                    <a className={`col-start-3 justify-center items-center border rounded-lg cursor-pointer ${bookingData.selectedPackage.name === 'Plus' ? 'bg-gray-200' : ''}`}
+                        onClick={(e) => handleSelectPackage('Plus', 331)}
                     >
                         <div className='flex justify-center m-2'>
                             <Checkbox
                                 size={'md'}
                                 className="cursor-pointer"
-                                isChecked={selectedPackage === 'Plus'}
+                                isChecked={bookingData.selectedPackage.name === 'Plus'}
                             />
                         </div>
                         <p className='flex justify-center font-bold m-2'>พลัส</p>
                         <p className='flex justify-center font-bold m-2'>฿ 331</p>
                     </a>
-                    <a className={`col-start-4 justify-center items-center border rounded-lg cursor-pointer ${selectedPackage === 'Premium' ? 'bg-gray-200' : ''}`}
-                        onClick={() => handlePackageSelection('Premium')}
+                    <a className={`col-start-4 justify-center items-center border rounded-lg cursor-pointer ${bookingData.selectedPackage.name === 'Premium' ? 'bg-gray-200' : ''}`}
+                        onClick={(e) => handleSelectPackage('Premium', 736)}
                     >
                         <div className='flex justify-center m-2'>
                             <Checkbox
                                 size={'md'}
                                 className="cursor-pointer"
-                                isChecked={selectedPackage === 'Premium'}
+                                isChecked={bookingData.selectedPackage.name === 'Premium'}
                             />
                         </div>
                         <p className='flex justify-center font-bold m-2'>พรีเมียม</p>
@@ -111,12 +138,13 @@ const ServicePackage = ({ }) => {
                         <Checkbox
                             size={'md'}
                             className="cursor-pointer"
-                            isChecked={travelInsurance === 'yes'}
-                            onChange={() => handleTravelInsuranceSelection('yes')}
+                            isChecked={bookingData.travelInsurance.isIncluded}
+                            onChange={(e) => handleToggleTravelInsurance(e.target.checked)}
                         />
                     </div>
                     <div className='col-span-9'>
-                        <span className='text-sm'>ฉันต้องการประกันภัยการเดินทาง ฿ 230</span>
+                        <span className='text-sm'>ฉันต้องการปร
+                            กันภัยการเดินทาง ฿ 230</span>
                         <div className='flex'>
                             <svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="SvgIconstyled__SvgIconStyled-sc-1i6f60b-0 fvZryX"><path d="M21.453 4.487l1.094 1.026a.5.5 0 0 1 .023.707L10.412 19.188a1.25 1.25 0 0 1-1.692.122l-.104-.093-7.146-7.146a.5.5 0 0 1 0-.707l1.06-1.061a.5.5 0 0 1 .707 0l6.234 6.234L20.746 4.51a.5.5 0 0 1 .707-.023z"></path></svg>
                             <p className='text-xs ml-2'>คุ้มครองการบอกเลิกการเดินทาง ครอบคลุมสาเหตุจากโรค Covid-19</p>
@@ -140,8 +168,8 @@ const ServicePackage = ({ }) => {
                         <Checkbox
                             size={'md'}
                             className="cursor-pointer"
-                            isChecked={travelInsurance === 'no'}
-                            onChange={() => handleTravelInsuranceSelection('no')}
+                            isChecked={!bookingData.travelInsurance.isIncluded}
+                            onChange={(e) => handleToggleTravelInsurance(!e.target.checked)}
                         />
                     </div>
                     <label htmlFor="no" className='col-span-9 text-sm'>ไม่ ฉันไม่ต้องการประกันภัยการเดินทาง ฉันจะรับผิดชอบค่าใช้จ่ายด้วยตนเองในกรณีฉุกเฉิน</label>
@@ -150,4 +178,5 @@ const ServicePackage = ({ }) => {
         </div>
     );
 };
+
 export default ServicePackage;
