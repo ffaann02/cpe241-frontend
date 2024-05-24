@@ -49,7 +49,7 @@ const Navbar = (props: {
             {brandText}
           </Link>
         </p>
-      </div>
+      </div> 
 
       <div className="relative mt-[3px] flex h-[61px] w-[355px] flex-grow items-center justify-around gap-2 rounded-full bg-white px-2 py-2 shadow-xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-none md:w-[365px] md:flex-grow-0 md:gap-1 xl:w-[365px] xl:gap-2">
         <div className="flex h-full items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
@@ -63,7 +63,7 @@ const Navbar = (props: {
           />
         </div>
         <span
-          className="flex cursor-pointer text-xl text-gray-600 dark:text-white xl:hidden"
+          className="flex cursor-pointer text-xl text-gray-600 dark:text-white lg:hidden"
           onClick={onOpenSidenav}
         >
           <FiAlignJustify className="h-5 w-5" />
