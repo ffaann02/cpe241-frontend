@@ -15,7 +15,7 @@ const Sidebar = ({ open }) => {
 
     const renderSidebarItem = (item, index) => {
         const isSubmenuOpen = openSubMenus.includes(index);
-
+        
         if (item.submenu) {
             return (
                 <li key={index}>
