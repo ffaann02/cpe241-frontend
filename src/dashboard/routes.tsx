@@ -5,7 +5,11 @@ import Profile from "./views/admin/profile";
 import DataTables from "./views/admin/tables";
 import RTLDefault from "./views/rtl/default";
 import FlightTable from "./views/admin/flightTable";
+<<<<<<< HEAD
+import BookingTable from "./views/admin/bookingTable";
+=======
 import UserTable from "./views/admin/userTable";
+>>>>>>> origin/dev
 import EmployeeReport from "./views/admin/employeeTable";
 
 
@@ -20,8 +24,11 @@ import {
   MdPerson,
   MdLock,
 } from "react-icons/md";
+<<<<<<< HEAD
 import BookingTable from "./views/admin/bookingTable";
 import ExternalReport from "./views/admin/externalTable";
+=======
+>>>>>>> origin/dev
 
 const routes = [
   {
