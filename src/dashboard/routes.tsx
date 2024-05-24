@@ -8,6 +8,7 @@ import FlightTable from "./views/admin/flightTable";
 import UserTable from "./views/admin/userTable";
 import EmployeeReport from "./views/admin/employeeTable";
 
+
 // Auth Imports
 import SignIn from "./views/auth/SignIn";
 
@@ -20,6 +21,7 @@ import {
   MdLock,
 } from "react-icons/md";
 import BookingTable from "./views/admin/bookingTable";
+import ExternalReport from "./views/admin/externalTable";
 
 const routes = [
   {
@@ -79,6 +81,15 @@ const routes = [
     base: "dashboard",
     icon: <MdOutlineShoppingCart className="h-6 w-6" />,
     component: <BookingTable />,
+    secondary: true,
+  },
+  {
+    name: "External Table",
+    layout: "admin",
+    path: "external-table",
+    base: "dashboard",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <ExternalReport />,
     secondary: true,
   },
   {
