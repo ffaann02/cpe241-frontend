@@ -1,41 +1,90 @@
-/* eslint-disable */
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { SIDENAV_ITEMS } from './constants';
 
-import { HiX } from 'react-icons/hi';
-import Links from './components/Links';
+const Sidebar = ({ open }) => {
+    const [openSubMenus, setOpenSubMenus] = useState([]);
 
-import SidebarCard from '../sidebar/componentsrtl/SidebarCard';
-import routes from '../../routes';
+    const handleToggleSubMenu = (index) => {
+        if (openSubMenus.includes(index)) {
+            setOpenSubMenus(openSubMenus.filter((i) => i !== index));
+        } else {
+            setOpenSubMenus([...openSubMenus, index]);
+        }
+    };
 
-const Sidebar = (props: { open: boolean; onClose: React.MouseEventHandler<HTMLSpanElement> }) => {
-    const { open, onClose } = props;
+    const renderSidebarItem = (item, index) => {
+        const isSubmenuOpen = openSubMenus.includes(index);
+
+        if (item.submenu) {
+            return (
+                <li key={index}>
+                    <button
+                        type="button"
+                        className="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                        onClick={() => handleToggleSubMenu(index)}
+                    >
+                        {item.icon}
+                        <span className="ms-3">{item.title}</span>
+                        <svg
+                            className={`w-3 h-3 ms-auto transition-transform ${isSubmenuOpen ? 'rotate-180' : ''}`}
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 10 6"
+                        >
+                            <path
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="m1 1 4 4 4-4"
+                            />
+                        </svg>
+                    </button>
+                    <ul
+                        className={`py-2 space-y-2 transition-all ${isSubmenuOpen ? 'max-h-screen' : 'max-h-0 hidden'}`}
+                    >
+                        {item.subMenuItems.map((subItem, subIndex) => (
+                            <li key={subIndex}>
+                                <Link
+                                    to={subItem.path}
+                                    className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                >
+                                    {subItem.title}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </li>
+            );
+        } else {
+            return (
+                <li key={index}>
+                    <Link
+                        to={item.path}
+                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    >
+                        {item.icon}
+                        <span className="ms-3">{item.title}</span>
+                    </Link>
+                </li>
+            );
+        }
+    };
+
     return (
-        <div
-            className={`sm:none duration-175 linear fixed w-[16.67%] top-0 !z-50 flex min-h-full flex-col bg-white pb-10 shadow-2xl
-       shadow-white/5 transition-all dark:!bg-navy-800 dark:text-white md:!z-50 lg:!z-50 xl:!z-0 ${
-           open ? 'translate-x-0' : '-translate-x-96'
-       }`}
+        <aside
+            id="sidebar-multi-level-sidebar"
+            className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${open ? 'translate-x-0 z-50' : '-translate-x-full'}`}
+            aria-label="Sidebar"
         >
-            <span className="absolute top-4 right-4 block cursor-pointer xl:hidden" onClick={onClose}>
-                <HiX />
-            </span>
-
-            <div className={` p-10 text-center w-full flex justify-center`}>
-                <h1 className="text-2xl text-center font-bold">AGADO Dashboard</h1>
+            <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+                <ul className="space-y-2 font-medium">
+                    {SIDENAV_ITEMS.map((item, index) => renderSidebarItem(item, index))}
+                </ul>
             </div>
-            <div className="mb-7 h-px bg-gray-300 dark:bg-white/30" />
-            {/* Nav item */}
-
-            <ul className="mb-auto pt-1">
-                <Links routes={routes} />
-            </ul>
-
-            {/* Free Horizon Card */}
-            {/* <div className="flex justify-center">
-        <SidebarCard />
-      </div> */}
-
-            {/* Nav item end */}
-        </div>
+        </aside>
     );
 };
 

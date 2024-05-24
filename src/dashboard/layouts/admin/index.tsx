@@ -4,6 +4,10 @@ import Sidebar from '../../components/sidebar';
 import Footer from '../../components/footer/Footer';
 import routes from '../../routes';
 import { useState, useEffect } from 'react';
+import {
+    Flex,
+    Box
+} from '@chakra-ui/react';
 export default function Admin(props: { [x: string]: any }) {
     const { ...rest } = props;
     const location = useLocation();
@@ -45,37 +49,74 @@ export default function Admin(props: { [x: string]: any }) {
         });
     };
 
+
     document.documentElement.dir = 'ltr';
     return (
-        <div className="h-full w-full grid grid-cols-12 relative bg-slate-100">
-            <Sidebar open={open} onClose={() => setOpen(false)} />
+        // <div className="h-full w-full grid grid-cols-12 relative bg-slate-100">
+        //     {/* Navbar & Main Content */}
+
+        //     <div className={`col-span-full lg:col-span-2 w-max bg-gray-50 dark:bg-gray-800  `}>
+        //         <Sidebar open={open} />
+        //     </div>
+
+        //     <div className={`h-full dark:!bg-navy-900 col-span-full lg:col-span-10 overflow-hidden`}>
+        //         {/* Main Content */}
+        //         <main className={`h-full flex-none transition-all`}>
+        //             {/* Routes */}
+        //             <div className="h-full w-full overflow-auto">
+        //                 <Navbar
+        //                     onOpenSidenav={() => setOpen(!open)}
+        //                     brandText={currentRoute}
+        //                     secondary={getActiveNavbar(routes)}
+        //                     {...rest}
+        //                 />
+
+        //                 <div className="pt-2 mb-auto h-full min-h-[84vh] p-6">
+        //                     <Routes>
+        //                         {getRoutes(routes)}
+        //                         <Route path="/" element={<Navigate to="default" replace />} />
+        //                     </Routes>
+        //                 </div>
+
+        //                 <div className="p-3">
+        //                     <Footer />
+        //                 </div>
+        //             </div>
+        //         </main>
+        //     </div>
+        // </div>
+        <Flex className="h-full w-full  bg-slate-100">
             {/* Navbar & Main Content */}
-            <div className="h-full dark:!bg-navy-900 col-span-10 w-full ml-[20%]">
+
+            <Box w={ {lg:'20%'}} maxW={'300px'} className={` bg-gray-50 dark:bg-gray-800  `}>
+                <Sidebar open={open} />
+            </Box>
+
+            <Box className={`h-full dark:!bg-navy-900  overflow-hidden`}>
                 {/* Main Content */}
-                <main
-                    className={`h-full flex-none transition-all`}
-                    // style={{ width: 'calc(100vw - 305px)' }}
-                >
+                <main className={`h-full flex-none transition-all`}>
                     {/* Routes */}
-                    <div className="h-full w-full">
+                    <Box className="h-full w-full overflow-auto">
                         <Navbar
-                            onOpenSidenav={() => setOpen(true)}
+                            onOpenSidenav={() => setOpen(!open)}
                             brandText={currentRoute}
                             secondary={getActiveNavbar(routes)}
                             {...rest}
                         />
-                        <div className="pt-2 mb-auto h-full min-h-[84vh] p-6">
+
+                        <Box className="pt-2 mb-auto h-full min-h-[84vh] p-6">
                             <Routes>
                                 {getRoutes(routes)}
                                 <Route path="/" element={<Navigate to="default" replace />} />
                             </Routes>
-                        </div>
-                        <div className="p-3">
+                        </Box>
+
+                        <Box className="p-3">
                             <Footer />
-                        </div>
-                    </div>
+                        </Box>
+                    </Box>
                 </main>
-            </div>
-        </div>
+            </Box>
+        </Flex>
     );
 }
