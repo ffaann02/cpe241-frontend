@@ -67,11 +67,7 @@ const routes = [
     path: "user-table",
     base: "dashboard",
     icon: <MdOutlineShoppingCart className="h-6 w-6" />,
-<<<<<<< HEAD
     component: <UserTable />,
-=======
-    component: <UserTable />
->>>>>>> origin/dev
   },
   {
     name: "Employee Table",
