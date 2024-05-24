@@ -11,11 +11,13 @@ import {
     SearchIcon,
     ChevronDownIcon,
 } from '@chakra-ui/icons'
+import { useDisclosure } from '@chakra-ui/react'
 interface SearchProps {
     type: string;
 }
 
 export default function Search({type}: SearchProps) {
+    const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <Box w={'full'}>
             {/* Search bar */}
