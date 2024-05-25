@@ -88,10 +88,10 @@ export default function Admin(props: { [x: string]: any }) {
                                 <Route path="/" element={<Navigate to="default" replace />} />
                             </Routes>
                         </Box>
-
+{/* 
                         <Box className="p-3">
                             <Footer />
-                        </Box>
+                        </Box> */}
                     </Box>
                 </main>
             </Box>
