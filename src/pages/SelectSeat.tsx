@@ -15,15 +15,8 @@ export interface Flight {
 const SelectSeat = () => {
     const [capacity, setCapacity] = useState<number>(160);
     const [bookedSeat, setBookedSeat] = useState<string[]>(['A1', 'B10', 'C3', 'D7', 'E5', 'F8']);
-    const [flight, setFlight] = useState<Flight>({
-        departure: '2022-12-31T10:00:00.000Z',
-        arrival: '2022-12-31T12:00:00.000Z',
-        from: 'Bangkok',
-        to: 'Chiang Mai',
-        airline: 'Thai Airways',
-        price: 1500,
-    });
-    const {passengerData,setPassengerData,setStep} = useContext(BookingDetailsContext);
+
+    const {passengerData,setPassengerData,setStep,selectedFlight} = useContext(BookingDetailsContext);
     useEffect(()=>{
         setStep(1);
     },[])
@@ -54,7 +47,7 @@ const SelectSeat = () => {
                 handleChooseSeat={handleChooseSeat}
             />
             <DetailsBar
-                flight={flight}
+                flight={selectedFlight}
                 handleChooseSeat={handleChooseSeat}
             />
         </div>

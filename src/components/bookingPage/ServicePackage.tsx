@@ -143,8 +143,7 @@ const ServicePackage = ({ servicePackageData, travelInsuranceData, onSelectServi
                         />
                     </div>
                     <div className='col-span-9'>
-                        <span className='text-sm'>ฉันต้องการปร
-                            กันภัยการเดินทาง ฿ 230</span>
+                        <span className='text-sm'>ฉันต้องการประกันภัยการเดินทาง ฿ 230</span>
                         <div className='flex'>
                             <svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="SvgIconstyled__SvgIconStyled-sc-1i6f60b-0 fvZryX"><path d="M21.453 4.487l1.094 1.026a.5.5 0 0 1 .023.707L10.412 19.188a1.25 1.25 0 0 1-1.692.122l-.104-.093-7.146-7.146a.5.5 0 0 1 0-.707l1.06-1.061a.5.5 0 0 1 .707 0l6.234 6.234L20.746 4.51a.5.5 0 0 1 .707-.023z"></path></svg>
                             <p className='text-xs ml-2'>คุ้มครองการบอกเลิกการเดินทาง ครอบคลุมสาเหตุจากโรค Covid-19</p>

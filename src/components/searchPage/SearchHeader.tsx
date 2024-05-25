@@ -17,7 +17,7 @@ var settings = {
     slidesToScroll: 1,
 };
 
-const SearchHeader = () => {
+const SearchHeader = ({flightResult}:{flightResult:any}) => {
     const sliderRef = useRef<any>(null);
 
     const handlePrev = () => {
@@ -28,21 +28,21 @@ const SearchHeader = () => {
         sliderRef.current.slickNext();
     };
     const [isOpenForm, setIsOpenForm] = useState<boolean>(false);
-    const handleToggle = () => setIsOpenForm(prev=>!prev) 
+    const handleToggle = () => setIsOpenForm((prev) => !prev);
 
-    return (
+    return(
         <div className="pt-6 pb-6 px-24 bg-gradient-to-b from-royal-blue-600 via-royal-blue-400 to-royal-blue-300 relative">
             <img src={FlightLineImage} className="w-44 absolute z-0 right-4 bottom-12 opacity-50 rotate-12" />
-            <div className="w-full max-w-5xl mx-auto z-10 relative">
+            {flightResult.length>0 && <div className="w-full max-w-5xl mx-auto z-10 relative">
                 <div className="bg-white px-5 py-4 rounded-lg">
                     <div className="flex justify-between">
                         <div className="flex">
                             <PiAirplaneInFlightLight className="text-2xl mr-3 my-auto text-royal-blue-500" />
                             <div className="">
                                 <div className="flex gap-x-4 text-lg font-semibold text-slate-600">
-                                    <p>กรุงเทพมหานคร (BKKA)</p>
+                                    <p>{flightResult[0].departureCity} ({flightResult[0].from})</p>
                                     <FaArrowRightLong className="my-auto" />
-                                    <p>โอซาก้า (OSAA)</p>
+                                    <p>{flightResult[0].arrivalCity} ({flightResult[0].destination})</p>
                                 </div>
                                 <div className="flex text-sm mt-1 divide-x divide-royal-blue-200">
                                     <p className="pr-2.5">จันทร์, 29 เม.ย. 2024</p>
@@ -52,7 +52,8 @@ const SearchHeader = () => {
                             </div>
                         </div>
                         <div className="my-auto">
-                            <Button onClick={handleToggle}
+                            <Button
+                                onClick={handleToggle}
                                 className="px-4 py-3 rounded-lg bg-royal-blue-200 transition-all duration-100 ease-linear
                      hover:bg-royal-blue-100 hover:text-royal-blue-600 text-royal-blue-800 flex"
                             >
@@ -78,18 +79,26 @@ const SearchHeader = () => {
                     <div className="col-span-12 px-2 mr-1" id="card_container">
                         <div>
                             <Slider ref={sliderRef} {...settings}>
-                                {Array(8)
-                                    .fill(0)
-                                    .map((_, index) => (
-                                        <div key={index} className="px-1.5 cursor-pointer">
-                                            <div className="bg-white py-2.5 rounded-md hover:bg-royal-blue-50">
-                                                <div className="text-center">
-                                                    <p className="text-sm text-slate-500">เสาร์, {index} เม.ย.</p>
-                                                    <p className="text-royal-blue-400 font-semibold mt-1">฿ 100</p>
+                                {['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'].map(
+                                    (day, index) => {
+                                        const price = Math.floor(Math.random() * 1000) + 900; // random price between 100 and 1100
+
+                                        return (
+                                            <div key={index} className="px-1.5 cursor-pointer">
+                                                <div className="bg-white py-2.5 rounded-md hover:bg-royal-blue-50">
+                                                    <div className="text-center">
+                                                        <p className="text-sm text-slate-500">
+                                                            {day}, {19+index}{' '}
+                                                        </p>
+                                                        <p className="text-royal-blue-400 font-semibold mt-1">
+                                                            ฿ {price}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        );
+                                    }
+                                )}
                             </Slider>
                         </div>
                     </div>
@@ -101,7 +110,7 @@ const SearchHeader = () => {
                         <FaChevronRight className="text-2xl mx-auto" />
                     </button>
                 </div>
-            </div>
+            </div>}
         </div>
     );
 };
