@@ -4,6 +4,7 @@ import { Flex } from '@chakra-ui/react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useState } from 'react';
 import { ModalAddFlight } from './modalAddFlight';
+import ModalCancelFlight from './modalCancelFlight';
 
 export interface FlightInfo {
     flightID: number;
@@ -43,6 +44,7 @@ export default function flightBoard({ flightData, searchFlightNumber, setSearchF
     const flightsForCurrentPage = filteredFlights.slice(startIndex, endIndex);
     const [newFlight, setNewFlight] = useState<any | null>(null);
     const [isAddFlight, setIsAddFlight] = useState(false);
+    const [isCancelFlight, setIsCancelFlight] = useState(false);
     const onOpenAddFlight = () => {
         setIsAddFlight(true);
         setNewFlight({
@@ -60,17 +62,24 @@ export default function flightBoard({ flightData, searchFlightNumber, setSearchF
         })
     }
     const onCloseAddFlight = () => setIsAddFlight(false);
+    const onOpenCancelFlight = () => setIsCancelFlight(true);
 
     return (
         <Flex direction={'column'} mt={'3'} gap={1} w={'full'} borderRadius={'5'}>
             <Search searchFlightNumber={searchFlightNumber} setSearchFlightNumber={setSearchFlightNumber} />
             <div className="w-full mt-2 mb-0.5 flex justify-between">
-                <div>
+                <div className='gap-x-2 flex'>
                     <button
                         className="px-4 py-2 border border-royal-blue-500 text-royal-blue-500 
                 rounded-md hover:text-white hover:bg-royal-blue-500 duration-200"
                     onClick={onOpenAddFlight}>
                         เพิ่มเที่ยวบิน
+                    </button>
+                    <button
+                        className="px-4 py-2 border border-red-500 text-red-500 
+                rounded-md hover:text-white hover:bg-red-500 duration-200"
+                    onClick={onOpenCancelFlight}>
+                        ยกเลิกเที่ยวบิน
                     </button>
                 </div>
                 <div className="flex my-auto gap-x-4">
@@ -97,6 +106,10 @@ export default function flightBoard({ flightData, searchFlightNumber, setSearchF
                 newFlight={newFlight}
                 setNewFlight={setNewFlight}
                 setFlightData={setFlightData}
+            />
+            <ModalCancelFlight
+                isCancelFlight={isCancelFlight}
+                onCloseCancelFlight={onCloseAddFlight}
             />
             <FlightTable
                 flightData={flightData}
