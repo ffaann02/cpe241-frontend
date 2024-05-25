@@ -63,6 +63,7 @@ export default function flightBoard({ flightData, searchFlightNumber, setSearchF
     }
     const onCloseAddFlight = () => setIsAddFlight(false);
     const onOpenCancelFlight = () => setIsCancelFlight(true);
+    const onCloseCancelFlight = () => setIsCancelFlight(false);
 
     return (
         <Flex direction={'column'} mt={'3'} gap={1} w={'full'} borderRadius={'5'}>
@@ -109,7 +110,7 @@ export default function flightBoard({ flightData, searchFlightNumber, setSearchF
             />
             <ModalCancelFlight
                 isCancelFlight={isCancelFlight}
-                onCloseCancelFlight={onCloseAddFlight}
+                onCloseCancelFlight={onCloseCancelFlight}
             />
             <FlightTable
                 flightData={flightData}

@@ -25,6 +25,7 @@ import {
   MdPerson,
   MdLock,
 } from "react-icons/md";
+import ServiceTable from "./views/admin/serviceTable";
 
 
 const routes = [
@@ -106,6 +107,14 @@ const routes = [
     secondary: true,
   },
   {
+    name: "Service Table",
+    layout: "admin",
+    path: "service-table",
+    base: "dashboard",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <ServiceTable/>
+  },
+  {
     name: "Sign In",
     layout: "auth",
     path: "sign-in",
@@ -113,5 +122,6 @@ const routes = [
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
   },
+  
 ];
 export default routes;
