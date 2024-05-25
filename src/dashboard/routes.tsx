@@ -7,7 +7,7 @@ import RTLDefault from "./views/rtl/default";
 import FlightTable from "./views/admin/flightTable";
 
 import BookingTable from "./views/admin/bookingTable";
-
+import AircraftTable from "./views/admin/aircraftTable";
 import ExternalReport from "./views/admin/externalTable";
 import UserTable from "./views/admin/userTable";
 
@@ -76,6 +76,15 @@ const routes = [
     base: "dashboard",
     icon: <MdOutlineShoppingCart className="h-6 w-6" />,
     component: <EmployeeReport />,
+    secondary: true
+  },
+  {
+    name: "Aircraft Table",
+    layout: "admin",
+    path: "aircraft-table",
+    base: "dashboard",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <AircraftTable />,
     secondary: true
   },
   {
