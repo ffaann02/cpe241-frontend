@@ -53,9 +53,9 @@ const AircraftTable = ({ aircraftData, searchAircraftCallSign, aircraftsForCurre
                         <Tr>
                             <Th></Th>
                             <Th></Th>
-                            <Th>Aircraft ID</Th>
-                            <Th>Airline Name</Th>
+                            {/* <Th>Aircraft ID</Th> */}
                             <Th>Aircraft Call Sign</Th>
+                            <Th>Airline Name</Th>
                             <Th>Manufacturer</Th>
                             <Th>Model</Th>
                             <Th>Max Capacity</Th>
@@ -74,11 +74,11 @@ const AircraftTable = ({ aircraftData, searchAircraftCallSign, aircraftsForCurre
                                             <EditIcon cursor="pointer" onClick={() => handleEdit(aircraft)} />
                                         </Flex>
                                     </Td>
-                                    <Td>{aircraft.aircraftID}</Td>
-                                    <Td>{aircraft.airlineName}</Td>
+                                    {/* <Td>{aircraft.aircraftID}</Td> */}
                                     <Td>
                                         {aircraft.aircraftCallSign}
                                     </Td>
+                                    <Td>{aircraft.airlineName}</Td>
                                     <Td>
                                         {aircraft.manufacturer} 
                                     </Td>

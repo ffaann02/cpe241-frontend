@@ -92,21 +92,23 @@ export default function Confirm() {
                                 </div>
                             </div>
                             <p className="mt-4">ข้อมูลตั๋ว</p>
-                            {confirmFlight.map((flight, index) => (
-                                <div className="border rounded-md py-2">
-                                    <div className="grid grid-cols-2 px-6 text-slate-500">
-                                        <p className="text-sm">ผู้โดยสาร</p>
-                                        <p className="text-sm">ที่นั่ง</p>
+                            <div className='flex flex-col gap-y-4'>
+                                {confirmFlight.map((flight, index) => (
+                                    <div className="border rounded-md py-2">
+                                        <div className="grid grid-cols-2 px-6 text-slate-500">
+                                            <p className="text-sm">ผู้โดยสาร</p>
+                                            <p className="text-sm">ที่นั่ง</p>
+                                        </div>
+                                        <div className="w-full mt-2 px-6 grid grid-cols-2 text-royal-blue-800">
+                                            <p>
+                                                {flight.firstName} {flight.lastName}
+                                            </p>
+                                            <p>{flight.seatNumber}</p>
+                                            <p className="text-sm">น้ำหนักสัมภาระ {flight.luggageWeight} กิโลกรัม</p>
+                                        </div>
                                     </div>
-                                    <div className="w-full mt-2 px-6 grid grid-cols-2 text-royal-blue-800">
-                                        <p>
-                                            {flight.firstName} {flight.lastName}
-                                        </p>
-                                        <p>{flight.seatNumber}</p>
-                                        <p className="text-sm">น้ำหนักสัมภาระ {flight.luggageWeight} กิโลกรัม</p>
-                                    </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                             <p className="text-sm mt-1 text-slate-500">
                                 รายละเอียดตั๋วเพิ่มเติมได้ถูกส่งไปยัง {confirmFlight[0].email} แล้ว
                             </p>
@@ -150,56 +152,11 @@ export default function Confirm() {
                                 </button>
                             </Link>
                         </div>
-
-                        {/* <p className="mt-8 mb-4 text-2xl font-semibold text-royal-blue-600">Bon voyage!</p>
-                        <h2 className="text-gray-600 text-lg font-medium mb-4">Confirmation number : #381029404387</h2>
-                        <h2 className="text-gray-400 text-lg font-medium">
-                            Thank you for booking your travel with Tripma! Below is a summary of your trip to Narita
-                            airport in Tokyo, Japan. We've sent a copy of your booking confirmation to your email
-                            address.
-                        </h2> */}
-                        {/* 
-                        <div className="mb-4">
-                            <h1 className="text-gray-500 text-2xl font-medium mt-10 mb-4">
-                                Share your travel itinerar
-                            </h1>
-                            <h2 className="text-gray-500 text-lg font-normal mb-4">
-                                You can email your itinerary to anyone by entering their email address here.
-                            </h2>
-                            <div>
-                                {emailInputs.map((input) => (
-                                    <div key={input.id} className="mb-2 grid grid-cols-6">
-                                        <Input
-                                            size="lg"
-                                            focusBorderColor="purple.200"
-                                            className="placeholder:text-sm text-slate-500 pt-0.5 col-span-2"
-                                            type="email"
-                                            value={input.value}
-                                            onChange={(e) => handleEmailChange(input.id, e.target.value)}
-                                            placeholder="Email address"
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                            <button
-                                onClick={handleSubmitEmail}
-                                className="btn rounded bg-white text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white hover:border-hidden   col-start-14"
-                            >
-                                Email itinerary
-                            </button>
-                            <button
-                                onClick={handleAddEmail}
-                                className="text-royal-blue-600 text-lg font-medium ml-3 mb-4"
-                            >
-                                Add another
-                            </button>
-                        </div> */}
                     </section>
                     <section className="col-span-3">
                         <p className="mt-8 mb-4 text-royal-blue-600 text-2xl font-bold">ที่พักแนะนำ</p>
                         <p className="text-black text-opacity-40">
-                            ค้นหาที่พักที่ดีที่สุดในเมืองที่คุณกำลังเดินทางไป และเพิ่มความสะดวกสบายในการเดินทางด้วย   
-                            
+                            ค้นหาที่พักที่ดีที่สุดในเมืองที่คุณกำลังเดินทางไป และเพิ่มความสะดวกสบายในการเดินทางด้วย
                         </p>
                         <RecommendedTripCard />
                     </section>
