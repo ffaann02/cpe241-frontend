@@ -21,6 +21,7 @@ import { ExternalService } from '../../../pages/Mybooking-Edit';
 import { initPassenger } from '../../../pages/Booking';
 interface EditBookingProps {
     passengerDataProp: PassengerData[];
+    bookingData: any;
     externalService: ExternalService;
     setExternalService: React.Dispatch<React.SetStateAction<ExternalService>>
 }
@@ -31,7 +32,8 @@ export interface EmergencyContactData {
     phoneNumber: string;
 }
 
-const Editbooking: React.FC<EditBookingProps> = ({ passengerDataProp, externalService, setExternalService }) => {
+const Editbooking: React.FC<EditBookingProps> = ({ passengerDataProp, bookingData,externalService, setExternalService }) => {
+    console.log(bookingData);
     const [passengerData, setPassengerData] = useState<PassengerData[]>([
         {
             firstName: '',
@@ -120,13 +122,13 @@ const Editbooking: React.FC<EditBookingProps> = ({ passengerDataProp, externalSe
                                     </span>
                                 </p>
                             </div>
-                            {passengerData.map((passenger, index) => (
+                            {/* {passengerData.map((passenger, index) => (
                                 <AddLuggage
                                 passenger={passenger}
                                 index={index}
                                 setPassengerData={setPassengerData}
                             />
-                            ))}
+                            ))} */}
                         </div>
                     </AccordionPanel>
                 </AccordionItem>

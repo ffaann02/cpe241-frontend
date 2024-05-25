@@ -172,9 +172,9 @@ const ModalAddAircraft = ({
                 </ModalBody>
                 <ModalFooter>
                     <Button colorScheme="blue" mr={3} onClick={handleCreateAircraft}>
-                        Save
+                        บันทึก
                     </Button>
-                    <Button variant="ghost" onClick={onCloseAddAircraft}>Cancel</Button>
+                    <Button variant="ghost" onClick={onCloseAddAircraft}>ยกเลิก</Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>
