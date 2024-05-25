@@ -7,7 +7,7 @@ import { MdFlightTakeoff } from 'react-icons/md';
 const ServiceTable = () => {
     const [tabIndex, setTabIndex] = useState(0);
     const [bookingID, setBookingID] = useState('');
-    const [bookingData, setBookingData] = useState(null);
+    const [bookingData, setBookingData] = useState([]);
     const [capacity, setCapacity] = useState<number>(160);
 
     const handleTabsChange = (index: number) => {
