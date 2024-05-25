@@ -16,10 +16,10 @@ const SelectSeat = () => {
     const [capacity, setCapacity] = useState<number>(160);
     const [bookedSeat, setBookedSeat] = useState<string[]>(['A1', 'B10', 'C3', 'D7', 'E5', 'F8']);
 
-    const {passengerData,setPassengerData,setStep,selectedFlight} = useContext(BookingDetailsContext);
-    useEffect(()=>{
+    const { passengerData, setPassengerData, setStep, selectedFlight } = useContext(BookingDetailsContext);
+    useEffect(() => {
         setStep(1);
-    },[])
+    }, []);
 
     const handleChooseSeat = (seat: string) => {
         if (passengerData.some((s) => s.seat === seat)) {
@@ -46,10 +46,7 @@ const SelectSeat = () => {
                 setBookedSeat={setBookedSeat}
                 handleChooseSeat={handleChooseSeat}
             />
-            <DetailsBar
-                flight={selectedFlight}
-                handleChooseSeat={handleChooseSeat}
-            />
+            <DetailsBar flight={selectedFlight} handleChooseSeat={handleChooseSeat} />
         </div>
     );
 };

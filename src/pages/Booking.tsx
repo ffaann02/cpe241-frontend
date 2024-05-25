@@ -47,7 +47,7 @@ export default function Booking() {
         setServicePackageData,
         setTravelInsuranceData,
         price,
-        setPrice
+        setPrice,
     } = useContext(BookingDetailsContext);
 
     const [usePassengerDataForEmergencyContact, setUsePassengerDataForEmergencyContact] = useState<boolean>(false);
@@ -63,7 +63,7 @@ export default function Booking() {
                 const fid = new URLSearchParams(window.location.search).get('fid');
                 const response = await axiosPrivate.get(`/api/flight/${fid}`);
                 console.log(response.data);
-                const price = (response.data.subtotal)*4.11;
+                const price = response.data.subtotal * 4.11;
                 setPrice(price);
                 setSelectedFlight(response.data);
                 const passengerAmount = new URLSearchParams(window.location.search).get('initAmount');
@@ -82,42 +82,42 @@ export default function Booking() {
     const handleSelectServicePackage = (selectedPackage) => {
         console.log(selectedPackage);
         let previousPrice = 0;
-        if(servicePackageData.name === 'Basic'){
+        if (servicePackageData.name === 'Basic') {
             previousPrice = 0;
         }
-        if(servicePackageData.name === 'Plus'){
+        if (servicePackageData.name === 'Plus') {
             previousPrice = 230;
         }
-        if(servicePackageData.name === 'Premium'){
+        if (servicePackageData.name === 'Premium') {
             previousPrice = 460;
         }
-    
+
         let newPrice = 0;
-        if(selectedPackage.name === 'Basic'){
+        if (selectedPackage.name === 'Basic') {
             newPrice = 0;
         }
-        if(selectedPackage.name === 'Plus'){
+        if (selectedPackage.name === 'Plus') {
             newPrice = 230;
         }
-        if(selectedPackage.name === 'Premium'){
+        if (selectedPackage.name === 'Premium') {
             newPrice = 460;
         }
-    
+
         setPrice(price - previousPrice + newPrice);
         setServicePackageData(selectedPackage);
     };
 
     const handleTravelInsurance = (travelInsurance) => {
         console.log(travelInsurance);
-        if(travelInsurance.isIncluded){
-            console.log("1")
+        if (travelInsurance.isIncluded) {
+            console.log('1');
             setPrice(price + 230);
         }
-        if(travelInsurance.isIncluded === false){
+        if (travelInsurance.isIncluded === false) {
             setPrice(price - 230);
         }
         // setPrice(price + travelInsurance.price);
-       
+
         setTravelInsuranceData(travelInsurance);
     };
     console.log(price);
@@ -171,11 +171,7 @@ export default function Booking() {
                         className="mt-6"
                     />
                     {passengerData.map((passenger, index) => (
-                        <AddLuggage
-                            passenger={passenger}
-                            index={index}
-                            setPassengerData={setPassengerData}
-                        />
+                        <AddLuggage passenger={passenger} index={index} setPassengerData={setPassengerData} />
                     ))}
                     <ServicePackage
                         servicePackageData={servicePackageData}
@@ -195,7 +191,7 @@ export default function Booking() {
                                 }
                                 console.log(passengerData);
                                 console.log(servicePackageData);
-                                console.log(travelInsuranceData)
+                                console.log(travelInsuranceData);
                             }}
                             disabled={
                                 !passengerData.every(
@@ -225,16 +221,44 @@ export default function Booking() {
                     </div>
                 </section>
                 <section className="my-10 col-span-4 flex flex-col">
-                    <div>{selectedFlight && <FlightCartData flight={selectedFlight} price={price}/>}</div>
-                    <div className='mt-10'>
-                        <ul className='text-lg text-bold'>เงื่อนไขการจอง</ul>
-                        <li className='mt-1 text-sm'>หากท่านดำเนินการเปลี่ยนแปลงข้อมูลเที่ยวบินกับสายการบินโดยตรง หรือสายการบินเป็นผู้ดำเนินการเปลี่ยนแปลง อโกด้าจะไม่ได้รับแจ้งรายละเอียดดังกล่าว กรุณาตรวจสอบข้อมูลการติดต่อที่ท่านกรอกในแบบฟอร์มการจองให้ถูกต้อง เนื่องจากสายการบินจะแจ้งรายละเอียดการเปลี่ยนแปลงให้ท่านทราบโดยตรง</li>
-                        <li className='text-sm'>ผลจากการที่ท่านกรอกข้อมูลการติดต่อไม่ถูกต้องจะไม่ถือเป็นความรับผิดชอบของอโกด้า และการเตรียมเอกสารการเดินทางและเอกสารยืนยันตัวตนที่ถูกต้องถือเป็นความรับผิดชอบของท่าน</li>
-                        <li className='text-sm'>ก่อนเดินทาง กรุณาตรวจสอบเอกสารการเดินทางของท่านว่าสามารถใช้งานได้หรือไม่ รวมถึงตรวจสอบว่าท่านมีวีซ่าและเอกสารอื่นๆ ที่จำเป็นครบถ้วน</li>
-                        <li className='text-sm'>โปรดทราบว่า สายการบินอาจเปลี่ยนแปลงเวลาเที่ยวบินและอาคารผู้โดยสาร ซึ่งสายการบินจะไม่แจ้งข้อมูลดังกล่าวนี้ให้อโกด้าทราบ</li>
-                        <li className='text-sm'>เมื่อยืนยันการจองแล้ว การเปลี่ยนแปลงจะมีค่าปรับและเป็นไปตามข้อจำกัดที่สายการบินกำหนดไว้ บัตรโดยสารบางประเภทไม่สามารถขอรับเงินคืนและไม่สามารถถ่ายโอนสิทธิ์ให้ผู้อื่นได้ การเปลี่ยนบัตรโดยสารอาจมีค่าธรรมเนียมต่อผู้โดยสาร การขอเปลี่ยนหรือแก้ไขชื่อผู้โดยสารขึ้นอยู่กับการตัดสินใจของสายการบิน</li>
-                        <li className='text-sm'>กรุณาไปที่เว็บไซต์อย่างเป็นทางการของสายการบินเพื่ออ่านข้อกำหนดและเงื่อนไขในการขนส่งและราคาบัตรโดยสาร รวมถึงข้อมูลเพิ่มเติมเกี่ยวกับสัมภาระและข้อกำหนดอื่นๆ เที่ยวบินของท่านอาจมีการเรียกเก็บค่าสัมภาระ</li>
-                        <li className='text-sm'>อโกด้าพยายามอย่างเต็มที่เพื่อให้ท่านสามารถจองเที่ยวบินและชำระเงินได้ในราคาสุดท้าย อย่างไรก็ตาม หากมีการเรียกเก็บภาษีหรือมีการเพิ่มอัตราภาษีใดๆ จากรัฐบาลสำหรับการขนส่งทางอากาศสำหรับเที่ยวบินที่ท่านจองก่อนการเดินทางของท่าน ท่านอาจต้องชำระภาษีหรือค่าธรรมเนียมดังกล่าว</li>
+                    <div>{selectedFlight && <FlightCartData flight={selectedFlight} price={price} />}</div>
+                    <div className="mt-10">
+                        <ul className="text-lg text-bold">เงื่อนไขการจอง</ul>
+                        <li className="mt-1 text-sm">
+                            หากท่านดำเนินการเปลี่ยนแปลงข้อมูลเที่ยวบินกับสายการบินโดยตรง
+                            หรือสายการบินเป็นผู้ดำเนินการเปลี่ยนแปลง อโกด้าจะไม่ได้รับแจ้งรายละเอียดดังกล่าว
+                            กรุณาตรวจสอบข้อมูลการติดต่อที่ท่านกรอกในแบบฟอร์มการจองให้ถูกต้อง
+                            เนื่องจากสายการบินจะแจ้งรายละเอียดการเปลี่ยนแปลงให้ท่านทราบโดยตรง
+                        </li>
+                        <li className="text-sm">
+                            ผลจากการที่ท่านกรอกข้อมูลการติดต่อไม่ถูกต้องจะไม่ถือเป็นความรับผิดชอบของอโกด้า
+                            และการเตรียมเอกสารการเดินทางและเอกสารยืนยันตัวตนที่ถูกต้องถือเป็นความรับผิดชอบของท่าน
+                        </li>
+                        <li className="text-sm">
+                            ก่อนเดินทาง กรุณาตรวจสอบเอกสารการเดินทางของท่านว่าสามารถใช้งานได้หรือไม่
+                            รวมถึงตรวจสอบว่าท่านมีวีซ่าและเอกสารอื่นๆ ที่จำเป็นครบถ้วน
+                        </li>
+                        <li className="text-sm">
+                            โปรดทราบว่า สายการบินอาจเปลี่ยนแปลงเวลาเที่ยวบินและอาคารผู้โดยสาร
+                            ซึ่งสายการบินจะไม่แจ้งข้อมูลดังกล่าวนี้ให้อโกด้าทราบ
+                        </li>
+                        <li className="text-sm">
+                            เมื่อยืนยันการจองแล้ว การเปลี่ยนแปลงจะมีค่าปรับและเป็นไปตามข้อจำกัดที่สายการบินกำหนดไว้
+                            บัตรโดยสารบางประเภทไม่สามารถขอรับเงินคืนและไม่สามารถถ่ายโอนสิทธิ์ให้ผู้อื่นได้
+                            การเปลี่ยนบัตรโดยสารอาจมีค่าธรรมเนียมต่อผู้โดยสาร
+                            การขอเปลี่ยนหรือแก้ไขชื่อผู้โดยสารขึ้นอยู่กับการตัดสินใจของสายการบิน
+                        </li>
+                        <li className="text-sm">
+                            กรุณาไปที่เว็บไซต์อย่างเป็นทางการของสายการบินเพื่ออ่านข้อกำหนดและเงื่อนไขในการขนส่งและราคาบัตรโดยสาร
+                            รวมถึงข้อมูลเพิ่มเติมเกี่ยวกับสัมภาระและข้อกำหนดอื่นๆ
+                            เที่ยวบินของท่านอาจมีการเรียกเก็บค่าสัมภาระ
+                        </li>
+                        <li className="text-sm">
+                            อโกด้าพยายามอย่างเต็มที่เพื่อให้ท่านสามารถจองเที่ยวบินและชำระเงินได้ในราคาสุดท้าย
+                            อย่างไรก็ตาม หากมีการเรียกเก็บภาษีหรือมีการเพิ่มอัตราภาษีใดๆ
+                            จากรัฐบาลสำหรับการขนส่งทางอากาศสำหรับเที่ยวบินที่ท่านจองก่อนการเดินทางของท่าน
+                            ท่านอาจต้องชำระภาษีหรือค่าธรรมเนียมดังกล่าว
+                        </li>
                     </div>
                     <div className="flex justify-end mt-6">
                         <img src={travelBagImage} alt="" />

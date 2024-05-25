@@ -90,9 +90,27 @@ const HeaderSortCard = ({
                     </p>
                 </MenuButton>
                 <MenuList>
-                    <MenuItem onClick={()=>{setSortBy(1)}}>เที่ยวบินแรก - สุดท้าย</MenuItem>
-                    <MenuItem onClick={()=>{setSortBy(2)}}>ราคาต่ำสุด - สูงสุด</MenuItem>
-                    <MenuItem onClick={()=>{setSortBy(3)}}>เดินทางเร็วสุด - ช้าสุด</MenuItem>
+                    <MenuItem
+                        onClick={() => {
+                            setSortBy(1);
+                        }}
+                    >
+                        เที่ยวบินแรก - สุดท้าย
+                    </MenuItem>
+                    <MenuItem
+                        onClick={() => {
+                            setSortBy(2);
+                        }}
+                    >
+                        ราคาต่ำสุด - สูงสุด
+                    </MenuItem>
+                    <MenuItem
+                        onClick={() => {
+                            setSortBy(3);
+                        }}
+                    >
+                        เดินทางเร็วสุด - ช้าสุด
+                    </MenuItem>
                 </MenuList>
             </Menu>
         </div>

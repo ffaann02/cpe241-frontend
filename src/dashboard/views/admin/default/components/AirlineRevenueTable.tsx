@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useTable, useSortBy, usePagination } from 'react-table';
-import { Table, Thead, Tbody, Tr, Th, Td, Box, Button } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Td, Box, Button, Input, Select } from '@chakra-ui/react';
 
 const AirlineRevenueTable = ({ data = [] }) => {
     const columns = useMemo(
@@ -29,7 +29,7 @@ const AirlineRevenueTable = ({ data = [] }) => {
         getTableProps,
         getTableBodyProps,
         headerGroups,
-        rows,
+        page,
         prepareRow,
         canPreviousPage,
         canNextPage,
@@ -68,7 +68,8 @@ const AirlineRevenueTable = ({ data = [] }) => {
                     ))}
                 </Thead>
                 <Tbody {...getTableBodyProps()}>
-                    {rows.map((row) => {
+                    {page.map((row) => {
+                        // use page instead of rows
                         prepareRow(row);
                         return (
                             <Tr {...row.getRowProps()}>
@@ -80,7 +81,7 @@ const AirlineRevenueTable = ({ data = [] }) => {
                     })}
                 </Tbody>
             </Table>
-            <Box className="pagination">
+            <Box className="pagination m-4 flex gap-4">
                 <Button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     {'<<'}
                 </Button>
@@ -93,15 +94,16 @@ const AirlineRevenueTable = ({ data = [] }) => {
                 <Button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
                     {'>>'}
                 </Button>
-                <span>
+                <span className="">
                     Page{' '}
-                    <strong>
-                        {pageIndex + 1} of {pageOptions.length}
-                    </strong>{' '}
+                    <div className="font-bold">
+                        {pageIndex + 1} of {pageOptions.length}{' '}
+                    </div>
                 </span>
-                <span>
+                <span className="">
                     | Go to page:{' '}
-                    <input
+                    <Input
+                        className="max-w-12"
                         type="number"
                         defaultValue={pageIndex + 1}
                         onChange={(e) => {
@@ -111,18 +113,21 @@ const AirlineRevenueTable = ({ data = [] }) => {
                         style={{ width: '100px' }}
                     />
                 </span>
-                <select
-                    value={pageSize}
-                    onChange={(e) => {
-                        setPageSize(Number(e.target.value));
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map((pageSize) => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </select>
+                <div className="max-w-32">
+                    <Select
+                        className=""
+                        value={pageSize}
+                        onChange={(e) => {
+                            setPageSize(Number(e.target.value));
+                        }}
+                    >
+                        {[10, 20, 30, 40, 50].map((pageSize) => (
+                            <option key={pageSize} value={pageSize}>
+                                Show {pageSize}
+                            </option>
+                        ))}
+                    </Select>
+                </div>
             </Box>
         </div>
     );

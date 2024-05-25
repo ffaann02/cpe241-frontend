@@ -65,7 +65,7 @@ const SeatGroup: React.FC<SeatGroupProps> = ({
     const seatData = Array.from({ length: numberOfRows }, (_, i) => i + 1);
     const seatLabelsLeft = ['A', 'B', 'C'];
     const seatLabelsRight = ['D', 'E', 'F'];
-    const {passengerData} = useContext(BookingDetailsContext);
+    const { passengerData } = useContext(BookingDetailsContext);
 
     return (
         <div className="col-span-2 relative">

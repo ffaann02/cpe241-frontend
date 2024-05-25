@@ -1,8 +1,5 @@
 // Layouts and components
-import {
-    Box,
-} from '@chakra-ui/react'
-
+import { Box } from '@chakra-ui/react';
 
 // Stepper
 import {
@@ -16,10 +13,9 @@ import {
     StepTitle,
     Stepper,
     useSteps,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
-import { BookingCardProps, FlightDetail } from './types/FlightType'
-
+import { BookingCardProps, FlightDetail } from './types/FlightType';
 
 const BookingCardDetail: React.FC<BookingCardProps> = ({ booking }) => {
     const { activeStep } = useSteps({
@@ -34,11 +30,7 @@ const BookingCardDetail: React.FC<BookingCardProps> = ({ booking }) => {
             {flights.map((flight, index) => (
                 <Step key={index}>
                     <StepIndicator>
-                        <StepStatus
-                            complete={<StepIcon />}
-                            incomplete={<StepNumber />}
-                            active={<StepNumber />}
-                        />
+                        <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
                     </StepIndicator>
                     <Box flexShrink="0">
                         <StepTitle>{flight.airline}</StepTitle>

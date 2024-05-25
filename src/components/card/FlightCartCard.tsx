@@ -58,13 +58,11 @@ const FlightCartCard: React.FC<FlightCardProps> = ({ flight, price }) => {
                             </p>
                         </div>
                     </div>
-                    <div className='pl-2 pb-2 flex gap-x-4'>
+                    <div className="pl-2 pb-2 flex gap-x-4">
                         <p className="text-sm">
                             {departureCity} ({from})
                         </p>
-                        <div className='border-t-2 w-6 border-t-royal-blue-300 mt-2'>
-
-                        </div>
+                        <div className="border-t-2 w-6 border-t-royal-blue-300 mt-2"></div>
                         <p className="text-sm">
                             {arrivalCity} ({destination})
                         </p>

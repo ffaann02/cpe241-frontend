@@ -19,7 +19,6 @@ import AirlineRevenueTable from './components/AirlineRevenueTable';
 import PopularDestinationTable from './components/PopularDestinationTable';
 import AirlinePieChart from './components/AirlinePieChart';
 
-
 const Dashboard = () => {
     const [destinationData, setDestinationData] = useState(null);
     const [revenueData, setRevenueData] = useState(null);

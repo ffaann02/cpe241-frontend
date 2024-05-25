@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Select } from '@chakra-ui/react';
 import { useState } from 'react';
 import { PassengerData } from '../../context/BookingDetailsProvider';
-import { BookingDetailsContext } from "../../context/BookingDetailsProvider";
+import { BookingDetailsContext } from '../../context/BookingDetailsProvider';
 
 interface AddLuggageProps {
     passenger: PassengerData;
@@ -11,28 +11,31 @@ interface AddLuggageProps {
 }
 
 const AddLuggage: React.FC<AddLuggageProps> = ({ passenger, index, setPassengerData }: AddLuggageProps) => {
-    const {
-        selectedBagCount,
-        setSelectedBagCount,
-        setPrice
-    } = useContext(BookingDetailsContext);
+    const { selectedBagCount, setSelectedBagCount, setPrice } = useContext(BookingDetailsContext);
     console.log(selectedBagCount);
 
-    const bagCountOptions = ['+ 15kg (฿ 456)', '+ 20kg (฿ 508)', '+ 25kg (฿ 636)', '+ 30kg (฿ 1021)', '+ 35kg (฿ 1227)', '+ 40kg (฿ 1535)'];
+    const bagCountOptions = [
+        '+ 15kg (฿ 456)',
+        '+ 20kg (฿ 508)',
+        '+ 25kg (฿ 636)',
+        '+ 30kg (฿ 1021)',
+        '+ 35kg (฿ 1227)',
+        '+ 40kg (฿ 1535)',
+    ];
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedValue = e.target.value;
         console.log(selectedValue);
-    
+
         // Extract the price from the previously selected value if it exists
         const previousPrice = selectedBagCount ? parseInt(selectedBagCount.split('฿ ')[1], 10) : 0;
-    
+
         // Extract the price from the selected value if it exists, else set it to 0
         const price = selectedValue !== '' ? parseInt(selectedValue.split('฿ ')[1], 10) : 0;
-    
+
         // Subtract the previous price and add the new price to the total price
-        setPrice(prevPrice => prevPrice - previousPrice + price);
-    
+        setPrice((prevPrice) => prevPrice - previousPrice + price);
+
         setSelectedBagCount(selectedValue);
         updatePassengerData(selectedValue);
     };

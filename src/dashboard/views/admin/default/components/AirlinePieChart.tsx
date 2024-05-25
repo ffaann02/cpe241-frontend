@@ -27,10 +27,10 @@ const AirlinePieChart = () => {
             try {
                 const result = await axiosPrivate.get('/api/dashboard/overview/airlinepercentage');
                 // Extract the data field from each item in the response
-                const pieChartData = result.data.map(item => item.data);
+                const pieChartData = result.data.map((item) => item.data);
                 // Extract the name field from each item in the response
-                const pieChartLabels = result.data.map(item => item.name);
-                const pieChartColors = result.data.map(item => item.color);
+                const pieChartLabels = result.data.map((item) => item.name);
+                const pieChartColors = result.data.map((item) => item.color);
                 setChartData(pieChartData);
                 setChartLabels(pieChartLabels);
                 setChartColors(pieChartColors);
@@ -38,7 +38,7 @@ const AirlinePieChart = () => {
                 console.error('Error fetching data: ', error);
             }
         };
-    
+
         fetchData();
     }, []);
 
@@ -100,7 +100,7 @@ const AirlinePieChart = () => {
                 </div>
             </div>
             <div className="mb-auto flex h-[220px] w-full items-center justify-center">
-            <Chart options={pieChartOptions} series={chartData} type="pie" width="100%" height="100%" />
+                <Chart options={pieChartOptions} series={chartData} type="pie" width="100%" height="100%" />
             </div>
         </Card>
     );

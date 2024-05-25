@@ -13,7 +13,7 @@ interface DatePickerProps {
     setFlightData: React.Dispatch<React.SetStateAction<FlightData[]>>;
 }
 
-export const DatePicker: React.FC<DatePickerProps> = ({ selectedDate, setSelectedDate ,setFlightData}) => {
+export const DatePicker: React.FC<DatePickerProps> = ({ selectedDate, setSelectedDate, setFlightData }) => {
     const [isPickingDate, setIsPickingDate] = useState<boolean>(false);
 
     // Function to format the date in Thai format: วันที่ เดือน ปีพ.ศ.
@@ -45,10 +45,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({ selectedDate, setSelecte
 
     const handleDateChange = (value: any) => {
         setSelectedDate(value);
-    
-        setFlightData(prevState => prevState.map((flight, index) => 
-            index === 0 ? { ...flight, departDate: value.startDate } : flight
-        ));
+
+        setFlightData((prevState) =>
+            prevState.map((flight, index) => (index === 0 ? { ...flight, departDate: value.startDate } : flight))
+        );
     };
 
     return (

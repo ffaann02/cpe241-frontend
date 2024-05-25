@@ -21,7 +21,7 @@ export interface FlightInfo {
     baseFare: number;
 }
 
-export default function flightBoard({ flightData, searchFlightNumber, setSearchFlightNumber ,setFlightData}) {
+export default function flightBoard({ flightData, searchFlightNumber, setSearchFlightNumber, setFlightData }) {
     const [currentPage, setCurrentPage] = useState(0);
     const handlePageChange = (direction: number) => {
         const newPage = currentPage + direction;
@@ -59,8 +59,8 @@ export default function flightBoard({ flightData, searchFlightNumber, setSearchF
             currentCapacity: 0,
             status: '',
             baseFare: 0,
-        })
-    }
+        });
+    };
     const onCloseAddFlight = () => setIsAddFlight(false);
     const onOpenCancelFlight = () => setIsCancelFlight(true);
     const onCloseCancelFlight = () => setIsCancelFlight(false);
@@ -69,17 +69,19 @@ export default function flightBoard({ flightData, searchFlightNumber, setSearchF
         <Flex direction={'column'} mt={'3'} gap={1} w={'full'} borderRadius={'5'}>
             <Search searchFlightNumber={searchFlightNumber} setSearchFlightNumber={setSearchFlightNumber} />
             <div className="w-full mt-2 mb-0.5 flex justify-between">
-                <div className='gap-x-2 flex'>
+                <div className="gap-x-2 flex">
                     <button
                         className="px-4 py-2 border border-royal-blue-500 text-royal-blue-500 
                 rounded-md hover:text-white hover:bg-royal-blue-500 duration-200"
-                    onClick={onOpenAddFlight}>
+                        onClick={onOpenAddFlight}
+                    >
                         เพิ่มเที่ยวบิน
                     </button>
                     <button
                         className="px-4 py-2 border border-red-500 text-red-500 
                 rounded-md hover:text-white hover:bg-red-500 duration-200"
-                    onClick={onOpenCancelFlight}>
+                        onClick={onOpenCancelFlight}
+                    >
                         ยกเลิกเที่ยวบิน
                     </button>
                 </div>
@@ -108,10 +110,7 @@ export default function flightBoard({ flightData, searchFlightNumber, setSearchF
                 setNewFlight={setNewFlight}
                 setFlightData={setFlightData}
             />
-            <ModalCancelFlight
-                isCancelFlight={isCancelFlight}
-                onCloseCancelFlight={onCloseCancelFlight}
-            />
+            <ModalCancelFlight isCancelFlight={isCancelFlight} onCloseCancelFlight={onCloseCancelFlight} />
             <FlightTable
                 flightData={flightData}
                 searchFlightNumber={searchFlightNumber}

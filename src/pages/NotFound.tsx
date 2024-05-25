@@ -30,7 +30,9 @@ const NotFound = () => {
                         className="text-xl flex flex-col"
                     >
                         <div className="flex">
-                            Sorry, the page &nbsp;<span className="text-[#605DEC]">{location.pathname.substring(1)}</span>&nbsp; does not exist.
+                            Sorry, the page &nbsp;
+                            <span className="text-[#605DEC]">{location.pathname.substring(1)}</span>&nbsp; does not
+                            exist.
                         </div>
                         <Button
                             colorScheme="teal"

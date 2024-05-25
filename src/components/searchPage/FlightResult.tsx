@@ -6,7 +6,7 @@ import { Flight } from '../../pages/Search';
 const FlightResult = ({
     isFetching,
     flightResult,
-    passengerAmount
+    passengerAmount,
 }: {
     isFetching: boolean;
     flightResult: Flight[];
@@ -51,18 +51,22 @@ const FlightResult = ({
     };
     return (
         <div className="col-span-9 flex flex-col gap-y-3">
-            {!isFetching ?
+            {!isFetching ? (
                 <HeaderSortCard
                     sortType={sortType}
                     selectSortType={selectSortType}
                     sortBy={sortBy}
-                    setSortBy={setSortBy} />
-                : <div className='w-full h-16 grid grid-cols-4 gap-x-2'>
-                    {Array(4).fill(null).map((_,) => (
-                        <Skeleton borderRadius={4} />
-                    ))}
+                    setSortBy={setSortBy}
+                />
+            ) : (
+                <div className="w-full h-16 grid grid-cols-4 gap-x-2">
+                    {Array(4)
+                        .fill(null)
+                        .map((_) => (
+                            <Skeleton borderRadius={4} />
+                        ))}
                 </div>
-            }
+            )}
             {isFetching &&
                 Array(7)
                     .fill(null)
@@ -74,7 +78,7 @@ const FlightResult = ({
                     ))}
             {flightResult.map((flight, index) => (
                 <div key={index}>
-                    <FlightCard flight={flight} index={index} passengerAmount={passengerAmount}/>
+                    <FlightCard flight={flight} index={index} passengerAmount={passengerAmount} />
                 </div>
             ))}
         </div>

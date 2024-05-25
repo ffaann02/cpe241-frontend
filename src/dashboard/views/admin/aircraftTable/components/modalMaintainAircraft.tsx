@@ -70,19 +70,18 @@ const ModalMaintainAircraft = ({ isAircraftMaintenance, onCloseAircraftMaintenan
         console.log(estimatedFinishDateTime);
         console.log(task);
         console.log(policy);
-        try{
+        try {
             const body = {
                 aircraftID: selectedAircraft,
                 estimatedFinishDateTime: estimatedFinishDateTime,
                 task: task,
                 policy: policy,
                 newAircraft: newAircraft,
-            }
+            };
             const response = await axiosPrivate.post('/api/aircraft/maintenance', body);
             console.log(response.data);
             onCloseAircraftMaintenance();
-        }
-        catch(error){
+        } catch (error) {
             console.log(error);
         }
     };

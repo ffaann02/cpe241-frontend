@@ -10,7 +10,12 @@ export default function Search({ searchAircraftCallSign, setSearchAircraftCallSi
     return (
         <Box w={'full'}>
             {/* Search bar */}
-            <InputGroup size={{ base: 'xs', md: 'sm' }} fontSize={{ base: 'sm', md: 'md' }} display={'flex'} className=''>
+            <InputGroup
+                size={{ base: 'xs', md: 'sm' }}
+                fontSize={{ base: 'sm', md: 'md' }}
+                display={'flex'}
+                className=""
+            >
                 <InputLeftElement pointerEvents="none" className="pt-2.5">
                     <SearchIcon color="gray.300" />
                 </InputLeftElement>

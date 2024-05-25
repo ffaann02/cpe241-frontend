@@ -21,7 +21,7 @@ export interface FormProps {
     disabled: boolean;
 }
 
-export const Form: React.FC<FormProps> = ({ value,index, placeholder, name, className, onBlur,disabled }) => {
+export const Form: React.FC<FormProps> = ({ value, index, placeholder, name, className, onBlur, disabled }) => {
     return (
         <InputGroup className={'flex bg-white rounded-md ' + className}>
             <Input
@@ -33,7 +33,7 @@ export const Form: React.FC<FormProps> = ({ value,index, placeholder, name, clas
                 placeholder={placeholder}
                 value={value}
                 name={name}
-                isDisabled = {disabled}
+                isDisabled={disabled}
             />
         </InputGroup>
     );
@@ -56,7 +56,7 @@ const PassengerFormLock: React.FC<PassengerProps> = ({
             <h2 className="text-slate-500 text-lg font-medium col-span-6">
                 ผู้โดยสาร {index + 1} {index > 0 ? null : '(ผู้ใหญ่)'}
             </h2>
-            <FormControl className='col-span-2'>
+            <FormControl className="col-span-2">
                 <Form
                     value={passenger.firstName}
                     index={index}
@@ -77,7 +77,7 @@ const PassengerFormLock: React.FC<PassengerProps> = ({
                 disabled={true}
                 handleChange={null}
             />
-            <FormControl className='col-span-2'>
+            <FormControl className="col-span-2">
                 <Form
                     value={passenger.lastName}
                     index={index}
@@ -98,8 +98,7 @@ const PassengerFormLock: React.FC<PassengerProps> = ({
                 disabled={true}
                 handleChange={null}
             />
-            <div className="col-span-2 relative"
-                id="datepicker">
+            <div className="col-span-2 relative" id="datepicker">
                 <Datepicker
                     asSingle={true}
                     value={{
@@ -114,7 +113,7 @@ const PassengerFormLock: React.FC<PassengerProps> = ({
                     disabled
                 />
             </div>
-            <FormControl className='col-span-3'>
+            <FormControl className="col-span-3">
                 <Form
                     value={passenger.email}
                     index={index}
@@ -126,7 +125,7 @@ const PassengerFormLock: React.FC<PassengerProps> = ({
                 />
                 <FormErrorMessage>Please enter a valid email address</FormErrorMessage>
             </FormControl>
-            <FormControl className='col-span-2'>
+            <FormControl className="col-span-2">
                 <Form
                     value={passenger.phoneNumber}
                     handleChange={null}

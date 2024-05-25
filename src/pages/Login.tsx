@@ -102,7 +102,13 @@ export default function LoginPage() {
                             <p>ยินดีต้อนรับกลับมา! กรุณากรอกข้อมูลเพื่อเข้าสู่ระบบ</p>
                             <Divider className="" />
                             <FormControl isInvalid={!!errors.email}>
-                                <Input name="email" {...register('email')} type="text" placeholder="อีเมล" autoComplete='email' />
+                                <Input
+                                    name="email"
+                                    {...register('email')}
+                                    type="text"
+                                    placeholder="อีเมล"
+                                    autoComplete="email"
+                                />
                                 <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
                             </FormControl>
                             <FormControl isInvalid={!!errors.password}>
@@ -112,7 +118,7 @@ export default function LoginPage() {
                                         type={show ? 'text' : 'password'}
                                         {...register('password')}
                                         placeholder="รหัสผ่าน"
-                                        autoComplete='current-password'
+                                        autoComplete="current-password"
                                     />
                                     <InputRightElement className="">
                                         <IconButton

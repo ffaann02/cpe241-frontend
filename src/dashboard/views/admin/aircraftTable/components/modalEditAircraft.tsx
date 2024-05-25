@@ -41,9 +41,7 @@ import {
 import { useEffect, useState } from 'react';
 import axiosPrivate from '../../../../../api/axios';
 
-
 const ModalEditFlight = ({ isOpen, onClose, editingAircraft, setEditingAircraft, handleSave }) => {
-
     const [airlineList, setAirlineList] = useState([]);
 
     useEffect(() => {
@@ -69,7 +67,9 @@ const ModalEditFlight = ({ isOpen, onClose, editingAircraft, setEditingAircraft,
                                 <Select
                                     placeholder="Select airline"
                                     value={editingAircraft.airlineName}
-                                    onChange={(e) => setEditingAircraft((prev) => ({ ...prev, airlineName: e.target.value }))}
+                                    onChange={(e) =>
+                                        setEditingAircraft((prev) => ({ ...prev, airlineName: e.target.value }))
+                                    }
                                     name="airlineName"
                                 >
                                     {/* Add airline options here */}
@@ -85,7 +85,9 @@ const ModalEditFlight = ({ isOpen, onClose, editingAircraft, setEditingAircraft,
                                 <Input
                                     type="text"
                                     value={editingAircraft.aircraftCallSign}
-                                    onChange={(e) => setEditingAircraft((prev) => ({ ...prev, aircraftCallSign: e.target.value }))}
+                                    onChange={(e) =>
+                                        setEditingAircraft((prev) => ({ ...prev, aircraftCallSign: e.target.value }))
+                                    }
                                     name="aircraftCallSign"
                                 />
                             </FormControl>
@@ -94,7 +96,9 @@ const ModalEditFlight = ({ isOpen, onClose, editingAircraft, setEditingAircraft,
                                 <Input
                                     type="text"
                                     value={editingAircraft.manufacturer}
-                                    onChange={(e) => setEditingAircraft((prev) => ({ ...prev, manufacturer: e.target.value }))}
+                                    onChange={(e) =>
+                                        setEditingAircraft((prev) => ({ ...prev, manufacturer: e.target.value }))
+                                    }
                                 />
                             </FormControl>
                             <FormControl id="model" isRequired>
@@ -143,8 +147,7 @@ const ModalEditFlight = ({ isOpen, onClose, editingAircraft, setEditingAircraft,
                                 </Select>
                             </FormControl>
                         </Stack>
-                    )
-                    }
+                    )}
                 </ModalBody>
                 <ModalFooter>
                     <Button colorScheme="blue" mr={3} onClick={handleSave}>

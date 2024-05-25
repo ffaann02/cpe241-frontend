@@ -27,8 +27,6 @@ const Sidebar = (props: { open: boolean; onClose: React.MouseEventHandler<HTMLSp
 
             <ul className="mb-auto pt-1">
                 <Links routes={routes} />
-
-
             </ul>
         </div>
     );

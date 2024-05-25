@@ -7,11 +7,7 @@ interface SwitchFlightButtonProps {
     icon: IconType;
 }
 
-export const SwitchFlightButton: React.FC<SwitchFlightButtonProps> = ({
-    handleSwapLocations,
-    index,
-    icon: Icon,
-}) => {
+export const SwitchFlightButton: React.FC<SwitchFlightButtonProps> = ({ handleSwapLocations, index, icon: Icon }) => {
     return (
         <div className="absolute -bottom-2.5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
             <button
@@ -47,9 +43,7 @@ export const HeaderServicesButtons: React.FC<HeaderServicesButtonsProps> = ({
                 <Icon1
                     className={`text-xl my-auto rotate-45 ${serviceIndex === 1 ? 'text-royal-blue-600' : 'text-slate-600'}`}
                 />
-                <p
-                    className={`${serviceIndex === 1 ? 'text-royal-blue-600' : 'text-slate-600'} ml-1 mt-1`}
-                >
+                <p className={`${serviceIndex === 1 ? 'text-royal-blue-600' : 'text-slate-600'} ml-1 mt-1`}>
                     จองเที่ยวบิน
                 </p>
             </button>
@@ -57,12 +51,8 @@ export const HeaderServicesButtons: React.FC<HeaderServicesButtonsProps> = ({
                 className={`flex px-2 py-2 border-b-2 ${serviceIndex === 2 ? 'border-royal-blue-400' : 'border-white'}`}
                 onClick={() => handleChangeService(2)}
             >
-                <Icon2
-                    className={`text-xl my-auto ${serviceIndex === 2 ? 'text-royal-blue-600' : 'text-slate-600'}`}
-                />
-                <p
-                    className={`${serviceIndex === 2 ? 'text-royal-blue-600' : 'text-slate-600'} ml-1 mt-1`}
-                >
+                <Icon2 className={`text-xl my-auto ${serviceIndex === 2 ? 'text-royal-blue-600' : 'text-slate-600'}`} />
+                <p className={`${serviceIndex === 2 ? 'text-royal-blue-600' : 'text-slate-600'} ml-1 mt-1`}>
                     โปรโมชั่น
                 </p>
             </button>
@@ -70,7 +60,7 @@ export const HeaderServicesButtons: React.FC<HeaderServicesButtonsProps> = ({
     );
 };
 
-export const SearchFlightButton = ({handleSearchFlight}:{handleSearchFlight: () => void;}) => {
+export const SearchFlightButton = ({ handleSearchFlight }: { handleSearchFlight: () => void }) => {
     return (
         <button
             onClick={handleSearchFlight}
@@ -100,8 +90,11 @@ export const FlightTypeSelectButtons: React.FC<FlightTypeSelectButtonsProps> = (
                 <button
                     key={item.id}
                     className={`transition-all duration-100 ease-linear px-3.5 py-1.5 border-2 rounded-2xl 
-                    ${flightType === item.id ? 'bg-royal-blue-100 text-royal-blue-600 border-royal-blue-400' 
-                    : 'bg-white text-slate-500 border-slate-200 hover:bg-royal-blue-50 hover:text-royal-blue-400 hover:border-royal-blue-300'}`}
+                    ${
+                        flightType === item.id
+                            ? 'bg-royal-blue-100 text-royal-blue-600 border-royal-blue-400'
+                            : 'bg-white text-slate-500 border-slate-200 hover:bg-royal-blue-50 hover:text-royal-blue-400 hover:border-royal-blue-300'
+                    }`}
                     onClick={() => handleChangeFlightType(item.id)}
                 >
                     {item.name}

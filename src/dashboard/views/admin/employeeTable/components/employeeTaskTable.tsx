@@ -1,7 +1,27 @@
 import React, { useState } from 'react';
-import {Table,Thead,Tbody,TableCaption,TableContainer,Tr,Th,Td,useDisclosure,Modal,ModalOverlay,ModalContent,ModalHeader,ModalFooter,ModalBody,ModalCloseButton,
-    Button,Input,FormControl,FormLabel,Flex,
-    Checkbox
+import {
+    Table,
+    Thead,
+    Tbody,
+    TableCaption,
+    TableContainer,
+    Tr,
+    Th,
+    Td,
+    useDisclosure,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    Button,
+    Input,
+    FormControl,
+    FormLabel,
+    Flex,
+    Checkbox,
 } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 
@@ -18,7 +38,7 @@ export interface EmployeeTaskInfo {
 
 const EmployeeTaskTable: React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [isTimeNow , setIsTimeNow] = useState(false);
+    const [isTimeNow, setIsTimeNow] = useState(false);
     const [editingTask, setEditingTask] = useState<EmployeeTaskInfo | null>(null);
     const [employeeTask, setEmployeeTask] = useState<EmployeeTaskInfo[]>([
         {
@@ -60,14 +80,14 @@ const EmployeeTaskTable: React.FC = () => {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setEditingTask((prev) => prev ? { ...prev, [name]: value } : null);
+        setEditingTask((prev) => (prev ? { ...prev, [name]: value } : null));
     };
 
     const handleSave = () => {
         if (editingTask) {
-            if(isTimeNow){
+            if (isTimeNow) {
                 editingTask.assignedDate = new Date().toISOString();
-                setIsTimeNow(false)
+                setIsTimeNow(false);
             }
             const updatedTasks = employeeTask.map((task) =>
                 task.employeeID === editingTask.employeeID ? editingTask : task
@@ -128,50 +148,42 @@ const EmployeeTaskTable: React.FC = () => {
                             <form>
                                 <FormControl mb={4}>
                                     <FormLabel>Employee ID</FormLabel>
-                                    <Input
-                                        name="employeeID"
-                                        value={editingTask.employeeID}
-                                        readOnly
-                                    />
+                                    <Input name="employeeID" value={editingTask.employeeID} readOnly />
                                 </FormControl>
                                 <Flex direction={'row'} gap={2}>
-                                <FormControl mb={4}>
-                                    <FormLabel>Assign Date</FormLabel>
-                                    <Input
-                                        name = "assignedDate"
-                                        type = "date"
-                                        value={new Date(editingTask.assignedDate).toISOString().slice(0, 10)}
-                                        onChange={(e) =>
-                                            setEditingTask({
-                                              ...editingTask,
-                                              assignedDate: `${e.target.value}T${new Date(editingTask.assignedDate).toISOString().slice(11, 16)}:00Z`,
-                                            })
-                                        }
-                                    />
-                                    <Checkbox onChange={() => setIsTimeNow(!isTimeNow)}>Use Current Time</Checkbox>
-                                </FormControl>
-                                <FormControl mb={4}>
-                                    <FormLabel>Assign Time</FormLabel>
-                                    <Input
-                                        name='assignedDate'
-                                        type = "time"
-                                        value={new Date(editingTask.assignedDate).toISOString().slice(11, 16)}
-                                        onChange={(e) =>
-                                            setEditingTask({
-                                              ...editingTask,
-                                              assignedDate: `${new Date(editingTask.assignedDate).toISOString().slice(0, 11)}${e.target.value}:00Z`,
-                                            })
-                                          }
-                                    />
-                                </FormControl>
+                                    <FormControl mb={4}>
+                                        <FormLabel>Assign Date</FormLabel>
+                                        <Input
+                                            name="assignedDate"
+                                            type="date"
+                                            value={new Date(editingTask.assignedDate).toISOString().slice(0, 10)}
+                                            onChange={(e) =>
+                                                setEditingTask({
+                                                    ...editingTask,
+                                                    assignedDate: `${e.target.value}T${new Date(editingTask.assignedDate).toISOString().slice(11, 16)}:00Z`,
+                                                })
+                                            }
+                                        />
+                                        <Checkbox onChange={() => setIsTimeNow(!isTimeNow)}>Use Current Time</Checkbox>
+                                    </FormControl>
+                                    <FormControl mb={4}>
+                                        <FormLabel>Assign Time</FormLabel>
+                                        <Input
+                                            name="assignedDate"
+                                            type="time"
+                                            value={new Date(editingTask.assignedDate).toISOString().slice(11, 16)}
+                                            onChange={(e) =>
+                                                setEditingTask({
+                                                    ...editingTask,
+                                                    assignedDate: `${new Date(editingTask.assignedDate).toISOString().slice(0, 11)}${e.target.value}:00Z`,
+                                                })
+                                            }
+                                        />
+                                    </FormControl>
                                 </Flex>
                                 <FormControl mb={4}>
                                     <FormLabel>Task Type</FormLabel>
-                                    <Input
-                                        name="taskType"
-                                        value={editingTask.taskType}
-                                        onChange={handleInputChange}
-                                    />
+                                    <Input name="taskType" value={editingTask.taskType} onChange={handleInputChange} />
                                 </FormControl>
                                 <FormControl mb={4}>
                                     <FormLabel>Task Description</FormLabel>
@@ -183,11 +195,7 @@ const EmployeeTaskTable: React.FC = () => {
                                 </FormControl>
                                 <FormControl mb={4}>
                                     <FormLabel>Status</FormLabel>
-                                    <Input
-                                        name="status"
-                                        value={editingTask.status}
-                                        onChange={handleInputChange}
-                                    />
+                                    <Input name="status" value={editingTask.status} onChange={handleInputChange} />
                                 </FormControl>
                                 <FormControl mb={4}>
                                     <FormLabel>Flight Number</FormLabel>

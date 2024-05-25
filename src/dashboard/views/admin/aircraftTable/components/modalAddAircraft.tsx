@@ -37,11 +37,7 @@ interface aircraftCreateForm {
     status: number;
 }
 
-const ModalAddAircraft = ({
-    isAddAircraft,
-    onCloseAddAircraft,
-    setAircraftData,
-}) => {
+const ModalAddAircraft = ({ isAddAircraft, onCloseAddAircraft, setAircraftData }) => {
     const [newAircraft, setNewAircraft] = useState<aircraftCreateForm>({
         airlineName: '',
         aircraftCallSign: '',
@@ -83,8 +79,6 @@ const ModalAddAircraft = ({
         getAirlines();
     }, []);
 
-
-
     return (
         <Modal isOpen={isAddAircraft} onClose={onCloseAddAircraft}>
             <ModalOverlay />
@@ -112,7 +106,9 @@ const ModalAddAircraft = ({
                             <Input
                                 type="text"
                                 value={newAircraft.aircraftCallSign}
-                                onChange={(e) => setNewAircraft((prev) => ({ ...prev, aircraftCallSign: e.target.value }))}
+                                onChange={(e) =>
+                                    setNewAircraft((prev) => ({ ...prev, aircraftCallSign: e.target.value }))
+                                }
                             />
                         </FormControl>
                         <FormControl id="manufacturer" isRequired>
@@ -174,7 +170,9 @@ const ModalAddAircraft = ({
                     <Button colorScheme="blue" mr={3} onClick={handleCreateAircraft}>
                         บันทึก
                     </Button>
-                    <Button variant="ghost" onClick={onCloseAddAircraft}>ยกเลิก</Button>
+                    <Button variant="ghost" onClick={onCloseAddAircraft}>
+                        ยกเลิก
+                    </Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>

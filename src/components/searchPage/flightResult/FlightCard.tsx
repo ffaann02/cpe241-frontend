@@ -26,7 +26,7 @@ export const FlightCard = ({
     const navigate = useNavigate();
 
     const handleSelectFlight = (flight: Flight) => () => {
-       navigate(`/booking/passenger?fid=${flight.flightID}&initAmount=${passengerAmount}`);
+        navigate(`/booking/passenger?fid=${flight.flightID}&initAmount=${passengerAmount}`);
     };
 
     return (
@@ -45,12 +45,16 @@ export const FlightCard = ({
                         <div className="flex">
                             <div>
                                 <p className="text-slate-500 font-semibold text-lg">{flight.departureTime}</p>
-                                <p className="text-slate-600 text-xs">{flight.departureCity} ({flight.from})</p>
+                                <p className="text-slate-600 text-xs">
+                                    {flight.departureCity} ({flight.from})
+                                </p>
                             </div>
                             <div className="mx-auto"></div>
                             <div>
                                 <p className="text-slate-500 font-semibold text-lg">{flight.arrivalTime}</p>
-                                <p className="text-slate-600 text-xs">{flight.arrivalCity} ({flight.destination})</p>
+                                <p className="text-slate-600 text-xs">
+                                    {flight.arrivalCity} ({flight.destination})
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -61,7 +65,10 @@ export const FlightCard = ({
                 <div className="my-auto text-right justify-end col-span-2">
                     <div className="flex ml-auto mr-0 justify-end gap-x-1">
                         <span className="text-royal-blue-600  text-xl my-auto font-semibold">฿</span>
-                        <p className="text-royal-blue-600 font-bold text-xl">{(flight.subtotal*4.13).toLocaleString()}</p>                        <span className="text-sm my-auto text-slate-600">/คน</span>
+                        <p className="text-royal-blue-600 font-bold text-xl">
+                            {(flight.subtotal * 4.13).toLocaleString()}
+                        </p>{' '}
+                        <span className="text-sm my-auto text-slate-600">/คน</span>
                     </div>
                     <button
                         className="px-6 py-2 bg-royal-blue-600 hover:bg-royal-blue-400 text-sm 

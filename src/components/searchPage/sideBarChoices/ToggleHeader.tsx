@@ -1,4 +1,4 @@
-import ToggleDropdown from "../ToggleDropdown";
+import ToggleDropdown from '../ToggleDropdown';
 
 interface ToggleHeaderProps {
     title: string;
@@ -6,7 +6,7 @@ interface ToggleHeaderProps {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ToggleHeader:React.FC<ToggleHeaderProps> = ({title,isOpen,setIsOpen}:ToggleHeaderProps) => {
+const ToggleHeader: React.FC<ToggleHeaderProps> = ({ title, isOpen, setIsOpen }: ToggleHeaderProps) => {
     return (
         <div
             className="flex justify-between cursor-pointer"

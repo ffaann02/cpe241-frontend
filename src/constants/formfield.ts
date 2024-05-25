@@ -1,13 +1,13 @@
 const loginFields = [
     {
-        labelText:"Email address",
-        labelFor:"email-address",
-        id:"email",
-        name:"email",
-        type:"email",
-        autoComplete:"email",
-        isRequired:true,
-        placeholder:"Email address"   
+        labelText: 'Email address',
+        labelFor: 'email-address',
+        id: 'email',
+        name: 'email',
+        type: 'email',
+        autoComplete: 'email',
+        isRequired: true,
+        placeholder: 'Email address',
     },
     {
         labelText: 'Password',
@@ -43,14 +43,14 @@ const signupFields = [
         placeholder: 'Lastname',
     },
     {
-        labelText:"Email address",
-        labelFor:"email-address",
-        id:"email",
-        name:"email",
-        type:"email",
-        autoComplete:"email",
-        isRequired:true,
-        placeholder:"Email address"   
+        labelText: 'Email address',
+        labelFor: 'email-address',
+        id: 'email',
+        name: 'email',
+        type: 'email',
+        autoComplete: 'email',
+        isRequired: true,
+        placeholder: 'Email address',
     },
     {
         labelText: 'Password',

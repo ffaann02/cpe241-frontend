@@ -1,12 +1,5 @@
 import fakeAirlineData from '../../../data/fakeFlightData.json';
-import {
-    Checkbox,
-    Box,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
-} from '@chakra-ui/react';
+import { Checkbox, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react';
 
 interface AirlineProps {
     title: string;
@@ -15,7 +8,6 @@ interface AirlineProps {
 }
 
 const Airline: React.FC<AirlineProps> = ({ title, selectedAirline, setSelectedAirline }: AirlineProps) => {
-
     const handleCheckboxChange = (airline: string, isChecked: boolean) => {
         if (isChecked) {
             setSelectedAirline((prev) => [...prev, airline]);

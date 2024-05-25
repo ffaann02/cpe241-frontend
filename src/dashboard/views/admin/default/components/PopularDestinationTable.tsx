@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useTable, useSortBy, usePagination } from 'react-table';
-import { Table, Thead, Tbody, Tr, Th, Td, Box, Button } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Td, Box, Button, Input, Select } from '@chakra-ui/react';
 
 /* 
     {
@@ -85,7 +85,7 @@ const PopularDestinationTable = ({ data = [] }) => {
                     })}
                 </Tbody>
             </Table>
-            <Box className="pagination">
+            <Box className="pagination m-4 flex gap-4">
                 <Button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     {'<<'}
                 </Button>
@@ -98,15 +98,16 @@ const PopularDestinationTable = ({ data = [] }) => {
                 <Button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
                     {'>>'}
                 </Button>
-                <span>
+                <span className="">
                     Page{' '}
-                    <strong>
-                        {pageIndex + 1} of {pageOptions.length}
-                    </strong>{' '}
+                    <div className="font-bold">
+                        {pageIndex + 1} of {pageOptions.length}{' '}
+                    </div>
                 </span>
-                <span>
+                <span className="">
                     | Go to page:{' '}
-                    <input
+                    <Input
+                        className="max-w-12"
                         type="number"
                         defaultValue={pageIndex + 1}
                         onChange={(e) => {
@@ -116,18 +117,21 @@ const PopularDestinationTable = ({ data = [] }) => {
                         style={{ width: '100px' }}
                     />
                 </span>
-                <select
-                    value={pageSize}
-                    onChange={(e) => {
-                        setPageSize(Number(e.target.value));
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map((pageSize) => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </select>
+                <div className="max-w-32">
+                    <Select
+                        className=""
+                        value={pageSize}
+                        onChange={(e) => {
+                            setPageSize(Number(e.target.value));
+                        }}
+                    >
+                        {[10, 20, 30, 40, 50].map((pageSize) => (
+                            <option key={pageSize} value={pageSize}>
+                                Show {pageSize}
+                            </option>
+                        ))}
+                    </Select>
+                </div>
             </Box>
         </div>
     );

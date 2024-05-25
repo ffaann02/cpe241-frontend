@@ -43,7 +43,7 @@ const EmergencyContactForm: React.FC<EmergencyContactProps> = ({
         }
         return true;
     };
-    
+
     return (
         <div>
             <h2 className="text-[#6E7491] text-lg font-medium mt-10">ข้อมูลติดต่อฉุกเฉิน</h2>
@@ -88,7 +88,12 @@ const EmergencyContactForm: React.FC<EmergencyContactProps> = ({
                     />
                     <FormErrorMessage>Last name is required.</FormErrorMessage>
                 </FormControl>
-                <FormControl isInvalid={(touched.email && emergencyContactData.email.trim() === '') || (touched.email && !validate('email', emergencyContactData.email))}>
+                <FormControl
+                    isInvalid={
+                        (touched.email && emergencyContactData.email.trim() === '') ||
+                        (touched.email && !validate('email', emergencyContactData.email))
+                    }
+                >
                     <Input
                         size="lg"
                         focusBorderColor={'purple.200'}
@@ -100,13 +105,18 @@ const EmergencyContactForm: React.FC<EmergencyContactProps> = ({
                         onChange={handleChangeEmergencyContact}
                         onBlur={() => {
                             handleBlur('email');
-                            validate('email', emergencyContactData.email); 
+                            validate('email', emergencyContactData.email);
                         }}
                         disabled={usePassengerDataForEmergencyContact}
                     />
                     <FormErrorMessage>Please enter a valid email address</FormErrorMessage>
                 </FormControl>
-                <FormControl isInvalid={(touched.phoneNumber && emergencyContactData.phoneNumber.trim() === '') || (touched.phoneNumber && !validate('phoneNumber', emergencyContactData.phoneNumber))}>
+                <FormControl
+                    isInvalid={
+                        (touched.phoneNumber && emergencyContactData.phoneNumber.trim() === '') ||
+                        (touched.phoneNumber && !validate('phoneNumber', emergencyContactData.phoneNumber))
+                    }
+                >
                     <Input
                         size="lg"
                         focusBorderColor={'purple.200'}
@@ -118,7 +128,7 @@ const EmergencyContactForm: React.FC<EmergencyContactProps> = ({
                         onChange={handleChangeEmergencyContact}
                         onBlur={() => {
                             handleBlur('phoneNumber');
-                            validate('phoneNumber', emergencyContactData.phoneNumber); 
+                            validate('phoneNumber', emergencyContactData.phoneNumber);
                         }}
                         disabled={usePassengerDataForEmergencyContact}
                     />

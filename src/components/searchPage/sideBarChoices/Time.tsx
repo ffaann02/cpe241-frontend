@@ -1,4 +1,4 @@
-import { Checkbox, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon} from '@chakra-ui/react';
+import { Checkbox, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react';
 import { TimeRange } from '../FilterSideBar';
 interface TimeProps {
     title: string;
@@ -56,7 +56,7 @@ const Time: React.FC<TimeProps> = ({ title, selectedTime, setSelectedTime }: Tim
                                     }));
                                 }}
                             >
-                                <div className='ml-1'>
+                                <div className="ml-1">
                                     <p className="text-sm text-slate-600">{q.text}</p>
                                     <p className="text-xs text-slate-500 tracking-wide">({q.time_range})</p>
                                 </div>

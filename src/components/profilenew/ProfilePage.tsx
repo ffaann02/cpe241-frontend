@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Datepicker from 'react-tailwindcss-datepicker';
-import { Textarea } from '@chakra-ui/react'
+import { Textarea } from '@chakra-ui/react';
 import { Editable, EditableInput, EditableTextarea, EditablePreview } from '@chakra-ui/react';
 import { FormControl, FormLabel, FormErrorMessage, FormHelperText } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react';
@@ -11,16 +11,14 @@ import { Button, ButtonGroup } from '@chakra-ui/react';
 interface ProfileProps {
     firstName: string;
     lastName: string;
-    gender : string;
+    gender: string;
     dateOfBirth: string;
     phoneNumber: string;
     address: string;
     idCard: string;
 }
 
-
 export default function ProfilePage() {
-
     const [profile, setProfile] = useState<ProfileProps>({
         firstName: 'Theetawat',
         lastName: 'Purahong',
@@ -29,14 +27,11 @@ export default function ProfilePage() {
         phoneNumber: '0658647153',
         address: 'มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี 126 ถนนประชาอุทิศ แขวงบางมด เขตทุ่งครุ กรุงเทพฯ 10140',
         idCard: '1709901503207',
-
     });
 
     const handleDateOfBirthChange = (newValue) => {
-        setProfile({...profile,dateOfBirth : newValue.startDate});
+        setProfile({ ...profile, dateOfBirth: newValue.startDate });
     };
-
-
 
     const handleProfileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -53,8 +48,6 @@ export default function ProfilePage() {
             [name]: value,
         }));
     };
-    
-
 
     // useEffect(() => {
     //     const fetchProfile = async () => {
@@ -72,22 +65,31 @@ export default function ProfilePage() {
 
     return (
         <div className="">
-            <div className='mb-8'>
-            </div>
+            <div className="mb-8"></div>
             <div className="flex flex-row gap-8">
                 <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900  my-auto">ชื่อ</label>
-                    <div className='w-96 '>
-                    <Input name='firstName' placeholder='' size='lg' value={profile.firstName} onChange={handleProfileChange}/>
-        
+                    <div className="w-96 ">
+                        <Input
+                            name="firstName"
+                            placeholder=""
+                            size="lg"
+                            value={profile.firstName}
+                            onChange={handleProfileChange}
+                        />
                     </div>
                 </div>
                 <div>
                     <label className="block mb-2  text-sm font-medium text-gray-900 my-auto">นามสกุล</label>
-                    <div className='w-96'>
-                    <Input name='lastName' placeholder='' size='lg' value={profile.lastName} onChange={handleProfileChange}/>
+                    <div className="w-96">
+                        <Input
+                            name="lastName"
+                            placeholder=""
+                            size="lg"
+                            value={profile.lastName}
+                            onChange={handleProfileChange}
+                        />
                     </div>
-
                 </div>
             </div>
 
@@ -118,7 +120,7 @@ export default function ProfilePage() {
                             popoverDirection="down"
                             inputClassName="h-full  bg-gray-50 border  placeholder-black  border w-full px-4 py-[0.6rem] rounded-md text-slate-500 outline-none 
                         focus:outline-2"
-                            displayFormat='DD/MM/YYYY'
+                            displayFormat="DD/MM/YYYY"
                         />
                     </div>
                 </div>
@@ -131,24 +133,41 @@ export default function ProfilePage() {
                         <input className="peer/published" type="radio" name="status" />
                         <label className="mb-2 text-sm font-medium text-gray-900">เลขที่หนังสือเดินทาง</label>
                     </div>
-                    <div className='w-96'>
-                    <Input placeholder='' size='lg' name='idCard' value={profile.idCard} onChange={handleProfileChange}/>
+                    <div className="w-96">
+                        <Input
+                            placeholder=""
+                            size="lg"
+                            name="idCard"
+                            value={profile.idCard}
+                            onChange={handleProfileChange}
+                        />
                     </div>
-
                 </div>
 
                 <div className="sm:max-w-md pt-8">
                     <label className="block mb-1 text-sm font-medium text-gray-900">หมายเลขโทรศัพท์</label>
-                    <div className='w-96'>
-                    <Input placeholder='' size='lg' name='phoneNumber' value={profile.phoneNumber} onChange={handleProfileChange}/>
+                    <div className="w-96">
+                        <Input
+                            placeholder=""
+                            size="lg"
+                            name="phoneNumber"
+                            value={profile.phoneNumber}
+                            onChange={handleProfileChange}
+                        />
                     </div>
                 </div>
             </div>
             <div className="pt-4">
                 <label className="block mb-2 text-sm font-medium text-gray-900">ที่อยู่</label>
-                <div className='w-2/3 rounded-lg'>
-                    <Textarea placeholder='' rows={5} name='address' value={profile.address} onChange={handleTextareaChange}/>
-                    </div>
+                <div className="w-2/3 rounded-lg">
+                    <Textarea
+                        placeholder=""
+                        rows={5}
+                        name="address"
+                        value={profile.address}
+                        onChange={handleTextareaChange}
+                    />
+                </div>
             </div>
             <div className="pt-4">
                 <div className="pt-4 w-2/3">

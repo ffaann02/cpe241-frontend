@@ -33,7 +33,7 @@ const Price: React.FC<PriceProps> = ({ title, price, setPrice }: PriceProps) => 
                 <Box as="span" flex="1" textAlign="left">
                     <h2 className="text-slate-500 font-semibold">{title}</h2>
                 </Box>
-                <AccordionIcon textColor={"gray"}/>
+                <AccordionIcon textColor={'gray'} />
             </AccordionButton>
             <AccordionPanel paddingBottom={2} paddingX={1}>
                 <div>

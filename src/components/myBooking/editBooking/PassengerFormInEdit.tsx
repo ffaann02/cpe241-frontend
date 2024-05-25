@@ -2,7 +2,7 @@ import Datepicker from 'react-tailwindcss-datepicker';
 import React, { useState } from 'react';
 import { PassengerData } from '../../../pages/Mybooking-Edit';
 import { Input, InputGroup, FormControl, FormErrorMessage, Select } from '@chakra-ui/react';
-import nationalityData from "../../../data/nationality.json"
+import nationalityData from '../../../data/nationality.json';
 
 interface PassengerProps {
     index: number;
@@ -63,7 +63,7 @@ const PassengerFormInEdit: React.FC<PassengerProps> = ({
     handleDeletePassenger,
     handleAddPassenger,
     setPassengerEmailError,
-    setPassengerPhoneNumberError
+    setPassengerPhoneNumberError,
 }: PassengerProps) => {
     const [touched, setTouched] = useState({
         firstName: false,
@@ -81,7 +81,11 @@ const PassengerFormInEdit: React.FC<PassengerProps> = ({
         if (name === 'email') {
             setPassengerEmailError(validate('email', passenger.email) ? '' : 'Please enter a valid email address');
         } else if (name === 'phoneNumber') {
-            setPassengerPhoneNumberError(validate('phoneNumber', passenger.phoneNumber) ? '' : 'Please enter a valid phone number (e.g., 123456789)');
+            setPassengerPhoneNumberError(
+                validate('phoneNumber', passenger.phoneNumber)
+                    ? ''
+                    : 'Please enter a valid phone number (e.g., 123456789)'
+            );
         }
     };
 
@@ -99,7 +103,11 @@ const PassengerFormInEdit: React.FC<PassengerProps> = ({
             <h2 className="text-slate-500 text-lg font-medium col-span-6">
                 ผู้โดยสาร {index + 1} {index > 0 ? null : '(ผู้ใหญ่)'}
             </h2>
-            <FormControl isInvalid={(touched.firstName && passenger.firstName.trim() === '') && !passenger.firstName.trim()} onBlur={() => handleBlur('firstName')} className='col-span-2'>
+            <FormControl
+                isInvalid={touched.firstName && passenger.firstName.trim() === '' && !passenger.firstName.trim()}
+                onBlur={() => handleBlur('firstName')}
+                className="col-span-2"
+            >
                 <Form
                     value={passenger.firstName}
                     handleChange={handleChangePassenger}
@@ -118,7 +126,11 @@ const PassengerFormInEdit: React.FC<PassengerProps> = ({
                 name="middleName"
                 className="col-span-2"
             />
-            <FormControl isInvalid={(touched.lastName && passenger.lastName.trim() === '') && !passenger.lastName.trim()} onBlur={() => handleBlur('lastName')} className='col-span-2'>
+            <FormControl
+                isInvalid={touched.lastName && passenger.lastName.trim() === '' && !passenger.lastName.trim()}
+                onBlur={() => handleBlur('lastName')}
+                className="col-span-2"
+            >
                 <Form
                     value={passenger.lastName}
                     handleChange={handleChangePassenger}
@@ -129,16 +141,16 @@ const PassengerFormInEdit: React.FC<PassengerProps> = ({
                 />
                 <FormErrorMessage>Last name is required.</FormErrorMessage>
             </FormControl>
-            <div className='col-span-2'>
+            <div className="col-span-2">
                 <Select
                     value={passenger.nationality}
                     onChange={(e) => handleChangePassenger(index, e)}
-                    placeholder='สัญชาติ'
+                    placeholder="สัญชาติ"
                     name="nationality"
                     size={'lg'}
                     focusBorderColor="purple.200"
                     className={`transform origin-top-left 
-                        ${passenger.nationality==="" ? "text-slate-400":"text-slate-500"} h-full`}
+                        ${passenger.nationality === '' ? 'text-slate-400' : 'text-slate-500'} h-full`}
                 >
                     {nationalityData.map((nationality: any, i: number) => (
                         <option key={i} value={nationality.name}>
@@ -147,10 +159,9 @@ const PassengerFormInEdit: React.FC<PassengerProps> = ({
                     ))}
                 </Select>
             </div>
-            <div className="col-span-2 relative"
-                id="datepicker">
+            <div className="col-span-2 relative" id="datepicker">
                 <Datepicker
-                    useRange={false} 
+                    useRange={false}
                     asSingle={true}
                     value={{
                         // strtDate: passenger.dateOfBirth,
@@ -163,7 +174,14 @@ const PassengerFormInEdit: React.FC<PassengerProps> = ({
                         focus:outline-2"
                 />
             </div>
-            <FormControl isInvalid={(touched.email && passenger.email.trim() === '') || (touched.email && !validate('email', passenger.email))} onBlur={() => handleBlur('email')} className='col-span-3'>
+            <FormControl
+                isInvalid={
+                    (touched.email && passenger.email.trim() === '') ||
+                    (touched.email && !validate('email', passenger.email))
+                }
+                onBlur={() => handleBlur('email')}
+                className="col-span-3"
+            >
                 <Form
                     value={passenger.email}
                     handleChange={handleChangePassenger}
@@ -174,7 +192,14 @@ const PassengerFormInEdit: React.FC<PassengerProps> = ({
                 />
                 <FormErrorMessage>Please enter a valid email address</FormErrorMessage>
             </FormControl>
-            <FormControl isInvalid={(touched.phoneNumber && passenger.phoneNumber.trim() === '') || (touched.phoneNumber && !validate('phoneNumber', passenger.phoneNumber))} onBlur={() => handleBlur('phoneNumber')} className='col-span-3'>
+            <FormControl
+                isInvalid={
+                    (touched.phoneNumber && passenger.phoneNumber.trim() === '') ||
+                    (touched.phoneNumber && !validate('phoneNumber', passenger.phoneNumber))
+                }
+                onBlur={() => handleBlur('phoneNumber')}
+                className="col-span-3"
+            >
                 <Form
                     value={passenger.phoneNumber}
                     handleChange={handleChangePassenger}

@@ -289,7 +289,7 @@ export default function CancelBooking() {
                         {/* Confirmation message */}
                         {showConfirmation && (
                             <div className="mt-4">
-                                <p className='ml-4 text-xl'>คุณต้องการยกเลิกเที่ยวบินนี้ใช่หรือไม่?</p>
+                                <p className="ml-4 text-xl">คุณต้องการยกเลิกเที่ยวบินนี้ใช่หรือไม่?</p>
                                 <div className="flex justify-end">
                                     <button
                                         className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2"

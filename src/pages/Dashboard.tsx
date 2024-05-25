@@ -1,7 +1,7 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import AuthLayout from "../dashboard/layouts/auth";
-import AdminLayout from "../dashboard/layouts/admin";
-import RtlLayout from "../dashboard/layouts/rtl";
+import { Routes, Route, Navigate } from 'react-router-dom';
+import AuthLayout from '../dashboard/layouts/auth';
+import AdminLayout from '../dashboard/layouts/admin';
+import RtlLayout from '../dashboard/layouts/rtl';
 const Dashboard = () => {
     return (
         <>
@@ -13,6 +13,6 @@ const Dashboard = () => {
             </Routes>
         </>
     );
-}
+};
 
 export default Dashboard;

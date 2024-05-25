@@ -1,4 +1,4 @@
-import { HiOutlineTable, HiOutlineHome, HiOutlineUser, HiOutlineFingerPrint } from "react-icons/hi";
+import { HiOutlineTable, HiOutlineHome, HiOutlineUser, HiOutlineFingerPrint } from 'react-icons/hi';
 import { SideNavItem } from './types';
 
 export const SIDENAV_ITEMS: SideNavItem[] = [

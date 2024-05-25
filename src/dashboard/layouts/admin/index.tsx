@@ -4,10 +4,7 @@ import Sidebar from '../../components/sidebar';
 import Footer from '../../components/footer/Footer';
 import routes from '../../routes';
 import { useState, useEffect } from 'react';
-import {
-    Flex,
-    Box
-} from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 export default function Admin(props: { [x: string]: any }) {
     const { ...rest } = props;
     const location = useLocation();
@@ -60,7 +57,6 @@ export default function Admin(props: { [x: string]: any }) {
         });
     };
 
-
     document.documentElement.dir = 'ltr';
     return (
         <Flex h={'screen'} bg={'gray.100'}>
@@ -88,7 +84,7 @@ export default function Admin(props: { [x: string]: any }) {
                                 <Route path="/" element={<Navigate to="default" replace />} />
                             </Routes>
                         </Box>
-{/* 
+                        {/* 
                         <Box className="p-3">
                             <Footer />
                         </Box> */}

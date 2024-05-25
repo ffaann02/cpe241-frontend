@@ -55,7 +55,7 @@ const BookingNavbar = () => {
                         </Step>
                     ))}
                 </Stepper>
-                <div className='my-auto'>
+                <div className="my-auto">
                     <Menu>
                         <MenuButton
                             px={3}

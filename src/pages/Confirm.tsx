@@ -92,7 +92,7 @@ export default function Confirm() {
                                 </div>
                             </div>
                             <p className="mt-4">ข้อมูลตั๋ว</p>
-                            <div className='flex flex-col gap-y-4'>
+                            <div className="flex flex-col gap-y-4">
                                 {confirmFlight.map((flight, index) => (
                                     <div className="border rounded-md py-2">
                                         <div className="grid grid-cols-2 px-6 text-slate-500">

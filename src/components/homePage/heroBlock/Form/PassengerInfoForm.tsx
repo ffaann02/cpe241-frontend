@@ -66,7 +66,9 @@ const PassengerInfoForm: React.FC<PassengerInfoFormProps> = ({
                 /> */}
                 <InputGroup className="flex bg-white rounded-md">
                     <InputLeftElement pointerEvents="none" className="mt-1">
-                        <span className="text-royal-blue-600 text-xl ml-3"><Icon/></span>
+                        <span className="text-royal-blue-600 text-xl ml-3">
+                            <Icon />
+                        </span>
                     </InputLeftElement>
                     <Input
                         size="lg"

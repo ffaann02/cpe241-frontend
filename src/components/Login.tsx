@@ -30,16 +30,14 @@ const Login: React.FC = () => {
         setLoginState({ ...loginState, [e.target.id]: e.target.value });
     };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    authenticateUser();
-  };
-
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        authenticateUser();
+    };
 
     const setAuthTokens = (data: { token: string }) => {
         if (data.token) {
-            axios.defaults.headers.common['Authorization'] =
-                `Bearer ${data.token}`;
+            axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
         } else {
             delete axios.defaults.headers.common['Authorization'];
         }

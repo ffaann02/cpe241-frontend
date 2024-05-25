@@ -80,7 +80,7 @@ const BookingDetailsProvider = ({ children }) => {
         expiryDate: '',
         ccv: '',
     });
-    const [price,setPrice] = useState<number>(0);
+    const [price, setPrice] = useState<number>(0);
 
     const handleScrollToTop = () => {
         window.scrollTo(0, 0);
@@ -110,7 +110,7 @@ const BookingDetailsProvider = ({ children }) => {
                 selectedBagCount,
                 setSelectedBagCount,
                 price,
-                setPrice
+                setPrice,
             }}
         >
             {children}

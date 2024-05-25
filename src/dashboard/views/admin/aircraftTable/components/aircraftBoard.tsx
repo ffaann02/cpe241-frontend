@@ -62,7 +62,7 @@ export default function AircraftBoard({
                 setSearchAircraftCallSign={setSearchAircraftCallSign}
             />
             <div className="w-full mt-2 mb-0.5 flex justify-between">
-                <div className='flex gap-x-2'>
+                <div className="flex gap-x-2">
                     <button
                         className="px-4 py-2 border border-royal-blue-500 text-royal-blue-500 
                 rounded-md hover:text-white hover:bg-royal-blue-500 duration-200"

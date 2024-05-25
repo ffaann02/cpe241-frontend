@@ -59,7 +59,7 @@ const SeatGroup: React.FC<SeatGroupProps> = ({
     bookedSeat,
     setBookedSeat,
     handleChooseSeat,
-    chooseSeat
+    chooseSeat,
 }: SeatGroupProps) => {
     const seatsPerRow = 6;
     const numberOfRows = Math.ceil(capacity / seatsPerRow);
@@ -95,22 +95,21 @@ const SeatGroup: React.FC<SeatGroupProps> = ({
                             </div>
                         </div>
                         <div className="grid grid-cols-13 px-0.5 text-sm py-2 font-bold text-slate-500">
-                        {seatLabelsLeft.map((label, index) => (
-                            <div className="text-center col-span-2">
-                                <p>{label}</p>
+                            {seatLabelsLeft.map((label, index) => (
+                                <div className="text-center col-span-2">
+                                    <p>{label}</p>
+                                </div>
+                            ))}
+                            <div className="text-center col-span-1 text-xs my-auto">
+                                <p>แถว</p>
                             </div>
-                        ))}
-                        <div className="text-center col-span-1 text-xs my-auto">
-                            <p>แถว</p>
+                            {seatLabelsRight.map((label, index) => (
+                                <div className="text-center col-span-2">
+                                    <p>{label}</p>
+                                </div>
+                            ))}
                         </div>
-                        {seatLabelsRight.map((label, index) => (
-                            <div className="text-center col-span-2">
-                                <p>{label}</p>
-                            </div>
-                        ))}
                     </div>
-                    </div>
-                    
                 </div>
                 {seatData.map((row) => (
                     <div key={row} className="grid grid-cols-13 min-h-14 my-1 gap-3 px-8">

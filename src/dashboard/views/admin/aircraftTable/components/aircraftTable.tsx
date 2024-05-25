@@ -1,15 +1,5 @@
 import React, { useState } from 'react';
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    TableContainer,
-    Flex,
-    useDisclosure,
-} from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, Flex, useDisclosure } from '@chakra-ui/react';
 
 // Icons
 import { EditIcon } from '@chakra-ui/icons';
@@ -34,7 +24,10 @@ const AircraftTable = ({ aircraftData, searchAircraftCallSign, aircraftsForCurre
         try {
             onClose();
             setLoading(true);
-            const response = await axiosPrivate.post(`/api/edit/aircraft/${editingAircraft.aircraftID}`, editingAircraft);
+            const response = await axiosPrivate.post(
+                `/api/edit/aircraft/${editingAircraft.aircraftID}`,
+                editingAircraft
+            );
             console.log(response.data);
             setLoading(false);
         } catch (error) {
@@ -43,7 +36,7 @@ const AircraftTable = ({ aircraftData, searchAircraftCallSign, aircraftsForCurre
             setLoading(false);
         }
     };
-    const statusList = ['Inactive','Active', 'Maintenance'] // status array order by status code
+    const statusList = ['Inactive', 'Active', 'Maintenance']; // status array order by status code
     return (
         <>
             <LoadingSpinner loading={loading} />
@@ -75,13 +68,9 @@ const AircraftTable = ({ aircraftData, searchAircraftCallSign, aircraftsForCurre
                                         </Flex>
                                     </Td>
                                     {/* <Td>{aircraft.aircraftID}</Td> */}
-                                    <Td>
-                                        {aircraft.aircraftCallSign}
-                                    </Td>
+                                    <Td>{aircraft.aircraftCallSign}</Td>
                                     <Td>{aircraft.airlineName}</Td>
-                                    <Td>
-                                        {aircraft.manufacturer} 
-                                    </Td>
+                                    <Td>{aircraft.manufacturer}</Td>
                                     <Td>{aircraft.model}</Td>
                                     <Td>{aircraft.maxCapacity}</Td>
                                     <Td>{statusList[aircraft.status]}</Td>

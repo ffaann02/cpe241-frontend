@@ -1,4 +1,14 @@
-const FormHeader = ({ title, description, span, className }: { title: string; description: string; span?: any,className?:string }) => {
+const FormHeader = ({
+    title,
+    description,
+    span,
+    className,
+}: {
+    title: string;
+    description: string;
+    span?: any;
+    className?: string;
+}) => {
     return (
         <div className={className}>
             <h1 className="text-royal-blue-500 text-3xl mb-4">{title}</h1>
