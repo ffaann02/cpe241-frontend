@@ -83,7 +83,7 @@ const FlightCartCard: React.FC<FlightCardProps> = ({ flight, price }) => {
                 {subtotal && (
                     <div className="w-1/2 grid grid-cols-2">
                         <p className="text-right">ราคาสุทธิ</p>
-                        <p className="text-right">฿{(subtotal * 4.11 * 1.02).toFixed(2)}</p>
+                        <p className="text-right">฿{(price * 1.02).toFixed(2)}</p>
                     </div>
                 )}
             </div>

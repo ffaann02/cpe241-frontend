@@ -34,7 +34,7 @@ const AircraftTable = ({ aircraftData, searchAircraftCallSign, aircraftsForCurre
         try {
             onClose();
             setLoading(true);
-            const response = await axiosPrivate.post(`/api/aircraft/${editingAircraft.aircraftID}`, editingAircraft);
+            const response = await axiosPrivate.post(`/api/edit/aircraft/${editingAircraft.aircraftID}`, editingAircraft);
             console.log(response.data);
             setLoading(false);
         } catch (error) {

@@ -80,12 +80,47 @@ export default function Booking() {
     }, []);
 
     const handleSelectServicePackage = (selectedPackage) => {
+        console.log(selectedPackage);
+        let previousPrice = 0;
+        if(servicePackageData.name === 'Basic'){
+            previousPrice = 0;
+        }
+        if(servicePackageData.name === 'Plus'){
+            previousPrice = 230;
+        }
+        if(servicePackageData.name === 'Premium'){
+            previousPrice = 460;
+        }
+    
+        let newPrice = 0;
+        if(selectedPackage.name === 'Basic'){
+            newPrice = 0;
+        }
+        if(selectedPackage.name === 'Plus'){
+            newPrice = 230;
+        }
+        if(selectedPackage.name === 'Premium'){
+            newPrice = 460;
+        }
+    
+        setPrice(price - previousPrice + newPrice);
         setServicePackageData(selectedPackage);
     };
 
     const handleTravelInsurance = (travelInsurance) => {
+        console.log(travelInsurance);
+        if(travelInsurance.isIncluded){
+            console.log("1")
+            setPrice(price + 230);
+        }
+        if(travelInsurance.isIncluded === false){
+            setPrice(price - 230);
+        }
+        // setPrice(price + travelInsurance.price);
+       
         setTravelInsuranceData(travelInsurance);
     };
+    console.log(price);
 
     return (
         <div>

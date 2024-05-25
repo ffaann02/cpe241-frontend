@@ -148,10 +148,10 @@ const ModalEditFlight = ({ isOpen, onClose, editingAircraft, setEditingAircraft,
                 </ModalBody>
                 <ModalFooter>
                     <Button colorScheme="blue" mr={3} onClick={handleSave}>
-                        Save
+                        บันทึก
                     </Button>
                     <Button variant="ghost" onClick={onClose}>
-                        Cancel
+                        ยกเลิก
                     </Button>
                 </ModalFooter>
             </ModalContent>

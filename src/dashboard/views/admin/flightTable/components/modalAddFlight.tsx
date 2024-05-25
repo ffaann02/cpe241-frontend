@@ -92,8 +92,8 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
         },
     ]);
     const handleAddCaptain = (setAssignTasksCaptain, assignTasksCaptain) => () => {
-        const isCaptainExists = assignTasksCaptain.some(task => task.taskDescription === 'เป็นกัปตัน และนักบินหลัก');
-        
+        const isCaptainExists = assignTasksCaptain.some((task) => task.taskDescription === 'เป็นกัปตัน และนักบินหลัก');
+
         setAssignTasksCaptain([
             ...assignTasksCaptain,
             {
@@ -102,27 +102,33 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                 taskType: 'Flight',
                 taskDescription: isCaptainExists ? 'เป็นนักบินคนที่ 2 ร่วมกับกัปตัน' : 'เป็นกัปตันและนักบินหลัก',
                 status: 'pending',
-            }]);
+            },
+        ]);
     };
     const handleRemoveCaptain = (setAssignTasksCaptain, assignTasksCaptain, index) => () => {
         setAssignTasksCaptain([...assignTasksCaptain.slice(0, index), ...assignTasksCaptain.slice(index + 1)]);
     };
     const handleAddAirhostess = (setAssignTasksAirhostess, assignTasksAirhostess) => () => {
-        const isAirhostessExists = assignTasksAirhostess.some(task => task.taskDescription === 'เป็นหัวหน้าพนักงานต้อนรับบนเครื่องบิน');
-    
+        const isAirhostessExists = assignTasksAirhostess.some(
+            (task) => task.taskDescription === 'เป็นหัวหน้าพนักงานต้อนรับบนเครื่องบิน'
+        );
+
         setAssignTasksAirhostess([
             ...assignTasksAirhostess,
             {
                 employeeID: '',
                 assignDateTime: '',
                 taskType: 'Flight',
-                taskDescription: isAirhostessExists ? 'เป็นพนักงานต้อนรับบนเครื่องบินฝ่ายความปลอดภัย' : 'เป็นหัวหน้าพนักงานต้อนรับบนเครื่องบิน',
+                taskDescription: isAirhostessExists
+                    ? 'เป็นพนักงานต้อนรับบนเครื่องบินฝ่ายความปลอดภัย'
+                    : 'เป็นหัวหน้าพนักงานต้อนรับบนเครื่องบิน',
                 status: 'pending',
-            }]);
+            },
+        ]);
     };
     const handleRemoveAirhostess = (setAssignTasksAirhostess, assignTasksAirhostess, index) => () => {
         setAssignTasksAirhostess([...assignTasksAirhostess.slice(0, index), ...assignTasksAirhostess.slice(index + 1)]);
-    }
+    };
     const [step, setStep] = useState(0);
     const steps = [
         { title: 'เพิ่มเที่ยวบิน', description: '' },
@@ -197,7 +203,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
         const durationInMilliseconds = durationInHours * 60 * 60 * 1000;
         const departureDateTime = new Date(newFlight.departureDateTime);
         const arrivalDateTime = new Date(departureDateTime.getTime() + durationInMilliseconds);
-        const formattedArrivalDateTime = `${arrivalDateTime.getFullYear()}-${String(arrivalDateTime.getMonth() + 1).padStart(2, '0')}-${String(arrivalDateTime.getDate()).padStart(2, '0')}T${String(arrivalDateTime.getHours()).padStart(2, '0')}:${String(arrivalDateTime.getMinutes()).padStart(2, '0')}`;        // const arrivalDateTimeUTC = `${arrivalDateTime.getUTCFullYear()}-${String(arrivalDateTime.getUTCMonth() + 1).padStart(2, '0')}-${String(arrivalDateTime.getUTCDate()).padStart(2, '0')}T${String(arrivalDateTime.getUTCHours()).padStart(2, '0')}:${String(arrivalDateTime.getUTCMinutes()).padStart(2, '0')}`;
+        const formattedArrivalDateTime = `${arrivalDateTime.getFullYear()}-${String(arrivalDateTime.getMonth() + 1).padStart(2, '0')}-${String(arrivalDateTime.getDate()).padStart(2, '0')}T${String(arrivalDateTime.getHours()).padStart(2, '0')}:${String(arrivalDateTime.getMinutes()).padStart(2, '0')}`; // const arrivalDateTimeUTC = `${arrivalDateTime.getUTCFullYear()}-${String(arrivalDateTime.getUTCMonth() + 1).padStart(2, '0')}-${String(arrivalDateTime.getUTCDate()).padStart(2, '0')}T${String(arrivalDateTime.getUTCHours()).padStart(2, '0')}:${String(arrivalDateTime.getUTCMinutes()).padStart(2, '0')}`;
         setNewFlight({ ...newFlight, arrivalDateTime: formattedArrivalDateTime });
     }, [newFlight?.departureDateTime, newFlight?.arrivalAirportID, newFlight?.departureAirportID]);
 
@@ -224,6 +230,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
     useEffect(() => {
         const getEmployees = async () => {
             const response = await axiosPrivate.get('/api/search/employees');
+            console.log(response.data);
             setEmployeeList(response.data);
         };
         if (step === 1 && !employeeList) {
@@ -231,14 +238,16 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
         }
     }, [step]);
 
-
     return (
         <>
             {newFlight && isAddFlight && airportList && flightList && airlineList && aircraftList && (
                 <Modal blockScrollOnMount={true} isOpen={isAddFlight} onClose={onCloseAddFlight}>
-                    <ModalOverlay/>
-                    <ModalContent minWidth={'50vw'} maxHeight={'100vh'}  className='overflow-scroll'>
-                        <Stepper index={step} className="px-10 py-6 sticky top-0 bg-white z-40 border-b drop-shadow-sm w-full">
+                    <ModalOverlay />
+                    <ModalContent minWidth={'50vw'} maxHeight={'100vh'} className="overflow-scroll">
+                        <Stepper
+                            index={step}
+                            className="px-10 py-6 sticky top-0 bg-white z-40 border-b drop-shadow-sm w-full"
+                        >
                             {steps.map((step, index) => (
                                 <Step key={index}>
                                     <StepIndicator>
@@ -263,7 +272,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                             {step === 0 && (
                                 <div className="grid grid-cols-2 gap-4">
                                     <Stack>
-                                        <FormLabel>Flight Number</FormLabel>
+                                        <FormLabel>Flight Number (รหัสเที่ยวบิน)</FormLabel>
                                         <Select
                                             marginTop={-2}
                                             placeholder="เลือกรหัสเที่ยวบิน"
@@ -295,7 +304,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                         </Select>
                                     </Stack> */}
                                     <Stack>
-                                        <FormLabel>Aircraft</FormLabel>
+                                        <FormLabel>Aircraft (เครื่องบิน)</FormLabel>
                                         <Select
                                             marginTop={-2}
                                             placeholder="เลือกเครื่องบิน"
@@ -310,7 +319,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                         </Select>
                                     </Stack>
                                     <Stack>
-                                        <FormLabel>Departure IATA Code</FormLabel>
+                                        <FormLabel>Departure Airport (สนามบินขาออก)</FormLabel>
                                         <Select
                                             marginTop={-2}
                                             placeholder="เลือกรหัส IATA ของสนามบินขาออก"
@@ -327,7 +336,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                         </Select>
                                     </Stack>
                                     <Stack>
-                                        <FormLabel>Arrival IATA Code</FormLabel>
+                                        <FormLabel>Arrival Airport (สนามบินขาเข้า)</FormLabel>
                                         <Select
                                             marginTop={-2}
                                             placeholder="เลือกรหัส IATA ของสนามบินขาออก"
@@ -344,7 +353,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                         </Select>
                                     </Stack>
                                     <FormControl id="departureDateTime" isRequired>
-                                        <FormLabel>Departure Date and Time</FormLabel>
+                                        <FormLabel>Departure Date and Time (วันเวลาขาออก)</FormLabel>
                                         <Input
                                             type="datetime-local"
                                             value={newFlight.departureDateTime}
@@ -354,7 +363,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                         />
                                     </FormControl>
                                     <FormControl id="arrivalDateTime" isRequired>
-                                        <FormLabel>Arrival Date and Time</FormLabel>
+                                        <FormLabel>Arrival Date and Time (วันเวลาขาเข้า)</FormLabel>
                                         <Input
                                             disabled
                                             _disabled={{ bg: 'gray.50', borderColor: '1px solid #f1f5f9' }}
@@ -366,7 +375,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                         />
                                     </FormControl>
                                     <Stack>
-                                        <FormLabel>Status</FormLabel>
+                                        <FormLabel>Status (สถานะ)</FormLabel>
                                         <Select
                                             marginTop={-2}
                                             placeholder="สถานะเริ่มต้นของเที่ยวบิน"
@@ -383,7 +392,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                         </Select>
                                     </Stack>
                                     <FormControl id="baseFare" isRequired>
-                                        <FormLabel>Base Fare</FormLabel>
+                                        <FormLabel>Base Fare (ราคาตั๋วพื้นฐาน)</FormLabel>
                                         <Input
                                             type="number"
                                             value={newFlight.baseFare}
@@ -394,11 +403,10 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                             )}
                             {step === 1 && employeeList && (
                                 <div className="">
-                                    
                                     {assignTasksCaptain.map((task, index) => (
                                         <div key={index} className="grid grid-cols-2 gap-4">
                                             <Stack>
-                                                <FormLabel marginTop={3}>นักบินคนที่ {index+1}</FormLabel>
+                                                <FormLabel marginTop={3}>นักบินคนที่ {index + 1}</FormLabel>
                                                 <Select
                                                     marginTop={-2}
                                                     placeholder={`เลือกนักบินคนที่ ${index + 1} ของเที่ยวบิน`}
@@ -409,12 +417,14 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                                         setAssignTasksCaptain(newTasks);
                                                     }}
                                                 >
-                                                    {employeeList.map((employee, index) => (
-                                                        <option key={index} value={employee.employeeID}>
-                                                            A{employee.employeeID}: {employee.firstName}{' '}
-                                                            {employee.lastName}
-                                                        </option>
-                                                    ))}
+                                                    {employeeList
+                                                        .filter((employee) => employee.position === 'Captain')
+                                                        .map((employee, index) => (
+                                                            <option key={index} value={employee.employeeID}>
+                                                                A{employee.employeeID}: {employee.firstName}{' '}
+                                                                {employee.lastName}
+                                                            </option>
+                                                        ))}
                                                 </Select>
                                             </Stack>
                                             {/* <FormControl id={`assignDateTime${index}`} isRequired>
@@ -432,7 +442,9 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                             <FormControl marginTop={3} id={`taskType${index}`} isRequired>
                                                 <FormLabel>ประเภทงาน</FormLabel>
                                                 <Input
+                                                    _disabled={{ bg: 'gray.50', borderColor: '1px solid #f1f5f9' }}
                                                     type="text"
+                                                    disabled
                                                     value={task.taskType}
                                                     onChange={(e) => {
                                                         const newTasks = [...assignTasksCaptain];
@@ -476,18 +488,17 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                             onClick={handleAddCaptain(setAssignTasksCaptain, assignTasksCaptain)}
                                         >
                                             เพิ่มนักบินคนที่ 2
-                                        </button>) :
-                                        (<button
+                                        </button>
+                                    ) : (
+                                        <button
                                             className="mt-2 bg-white text-red-500 border-red-400 hover:bg-red-500 px-3 py-2
                                                     hover:text-white hover:border-red-400 col-start-1 border rounded-md"
                                             onClick={handleRemoveCaptain(setAssignTasksCaptain, assignTasksCaptain, 0)}
                                         >
                                             ลบนักบินคนที่ 2
-                                        </button>)
-                                    }
-                                    <div className='border-t mt-6'>
-
-                                    </div>
+                                        </button>
+                                    )}
+                                    <div className="border-t mt-6"></div>
                                     {assignTasksAirhostess.map((task, index) => (
                                         <div key={index} className="grid grid-cols-2 gap-4 mt-4">
                                             {/* <button
@@ -498,7 +509,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                                 ลบพนักงานต้อนรับ
                                             </button> */}
                                             <Stack>
-                                                <FormLabel marginTop={3}>พนักงานต้อนรับคนที่ {index+1}</FormLabel>
+                                                <FormLabel marginTop={3}>พนักงานต้อนรับคนที่ {index + 1}</FormLabel>
                                                 <Select
                                                     marginTop={-2}
                                                     placeholder={`เลือกพนักงานต้อนรับบนเครื่องบินคนที่ ${index + 1}`}
@@ -509,17 +520,21 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                                         setAssignTasksAirhostess(newTasks);
                                                     }}
                                                 >
-                                                    {employeeList.map((employee, index) => (
-                                                        <option key={index} value={employee.employeeID}>
-                                                            A{employee.employeeID}: {employee.firstName}{' '}
-                                                            {employee.lastName}
-                                                        </option>
-                                                    ))}
+                                                    {employeeList
+                                                        .filter((employee) => employee.position === 'Cabin Crew')
+                                                        .map((employee, index) => (
+                                                            <option key={index} value={employee.employeeID}>
+                                                                A{employee.employeeID}: {employee.firstName}{' '}
+                                                                {employee.lastName}
+                                                            </option>
+                                                        ))}
                                                 </Select>
                                             </Stack>
                                             <FormControl marginTop={3} id={`taskType${index}`} isRequired>
-                                                <FormLabel>Task Type</FormLabel>
+                                                <FormLabel>ประเภทงาน</FormLabel>
                                                 <Input
+                                                    _disabled={{ bg: 'gray.50', borderColor: '1px solid #f1f5f9' }}
+                                                    disabled
                                                     type="text"
                                                     value={task.taskType}
                                                     onChange={(e) => {
@@ -530,7 +545,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                                 />
                                             </FormControl>
                                             <FormControl id={`taskDescription${index}`} isRequired>
-                                                <FormLabel>Task Description</FormLabel>
+                                                <FormLabel>คำอธิบายรายงาน</FormLabel>
                                                 <Input
                                                     type="text"
                                                     value={task.taskDescription}
@@ -542,7 +557,7 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                                 />
                                             </FormControl>
                                             <FormControl id={`status${index}`} isRequired>
-                                                <FormLabel>Status</FormLabel>
+                                                <FormLabel>สถานะ</FormLabel>
                                                 <Input
                                                     type="text"
                                                     value={task.status || 'pending'}
@@ -555,34 +570,44 @@ export const ModalAddFlight = ({ isAddFlight, onCloseAddFlight, newFlight, setNe
                                                     _disabled={{ bg: 'gray.50', borderColor: '1px solid #f1f5f9' }}
                                                 />
                                             </FormControl>
-                                        </div>  
+                                        </div>
                                     ))}
                                     {assignTasksAirhostess.length === 0 ? (
                                         <button
                                             className="bg-white text-royal-blue-500 border-royal-blue-400 hover:bg-royal-blue-500 px-3 py-2
                                                      hover:text-white hover:border-royal-blue-400 col-start-1 border rounded-md"
-                                            onClick={handleAddAirhostess(setAssignTasksAirhostess, assignTasksAirhostess)}
+                                            onClick={handleAddAirhostess(
+                                                setAssignTasksAirhostess,
+                                                assignTasksAirhostess
+                                            )}
                                         >
                                             เพิ่มพนักงานต้อนรับ
-                                        </button>) :
-                                        (
+                                        </button>
+                                    ) : (
                                         <div className="mt-3">
                                             <button
-                                            className="bg-white text-royal-blue-500 border-royal-blue-400 hover:bg-royal-blue-500 px-3 py-2
+                                                className="bg-white text-royal-blue-500 border-royal-blue-400 hover:bg-royal-blue-500 px-3 py-2
                                                      hover:text-white hover:border-royal-blue-400 col-start-1 border rounded-md col-span-1"
-                                            onClick={handleAddAirhostess(setAssignTasksAirhostess, assignTasksAirhostess)}
-                                        >
-                                            เพิ่มพนักงานต้อนรับ
-                                        </button>
-                                        <button
-                                            className="bg-white text-red-500 border-red-400 hover:bg-red-500 px-3 py-2
+                                                onClick={handleAddAirhostess(
+                                                    setAssignTasksAirhostess,
+                                                    assignTasksAirhostess
+                                                )}
+                                            >
+                                                เพิ่มพนักงานต้อนรับ
+                                            </button>
+                                            <button
+                                                className="bg-white text-red-500 border-red-400 hover:bg-red-500 px-3 py-2
                                                     hover:text-white hover:border-red-400 col-start-1 border rounded-md ml-3"
-                                            onClick={handleRemoveAirhostess(setAssignTasksAirhostess, assignTasksAirhostess, 0)}
-                                        >
-                                            ลบพนักงานต้อนรับ
-                                        </button>
-                                        </div>)
-                                    }
+                                                onClick={handleRemoveAirhostess(
+                                                    setAssignTasksAirhostess,
+                                                    assignTasksAirhostess,
+                                                    0
+                                                )}
+                                            >
+                                                ลบพนักงานต้อนรับ
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             )}
                         </ModalBody>

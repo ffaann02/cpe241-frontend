@@ -107,6 +107,7 @@ const Payment = () => {
                 flightPackage: selectedPackage,
                 travelInsurance: travelInsurance,
                 payment: paymentInfo,
+                price:price*1.02
             });
             console.log(res.data);
             navigate('/booking/confirm/' + res.data.bookingID);
