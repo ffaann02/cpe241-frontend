@@ -1,0 +1,2144 @@
+[
+    {
+        "id": "184",
+        "name": "เกรเนดา",
+        "longitude": "-61.6667",
+        "latitude": "12.1167",
+        "iso2": "GD",
+        "callingCode": "1473",
+        "languageId": 1
+    },
+    {
+        "id": "212",
+        "name": "เกาหลีใต้",
+        "longitude": "127.880859",
+        "latitude": "36.774092",
+        "iso2": "KR",
+        "callingCode": "82",
+        "languageId": 9
+    },
+    {
+        "id": "81",
+        "name": "เกาะ ยูเอส เวอร์จิ้น",
+        "longitude": "-64.833299",
+        "latitude": "18.3333",
+        "iso2": "VI",
+        "callingCode": "1340",
+        "languageId": 1
+    },
+    {
+        "id": "239",
+        "name": "เกาะเรอูนียง",
+        "longitude": "55.6",
+        "latitude": "-21.1",
+        "iso2": "RE",
+        "callingCode": "262",
+        "languageId": 1
+    },
+    {
+        "id": "283",
+        "name": "เกาะคริสต์มาส",
+        "longitude": "105.630798",
+        "latitude": "-10.489162",
+        "iso2": "CX",
+        "callingCode": "61",
+        "languageId": 1
+    },
+    {
+        "id": "230",
+        "name": "เกาะนอร์ฟอล์ก",
+        "longitude": "167.95",
+        "latitude": "-29.0333",
+        "iso2": "NF",
+        "callingCode": "672",
+        "languageId": 1
+    },
+    {
+        "id": "77",
+        "name": "เกาะบริติช เวอร์จิ้น",
+        "longitude": "-64.5",
+        "latitude": "18.5",
+        "iso2": "VG",
+        "callingCode": "1284",
+        "languageId": 1
+    },
+    {
+        "id": "406",
+        "name": "เกิร์นซีย์",
+        "longitude": "-2.590553",
+        "latitude": "49.454811",
+        "iso2": "GG",
+        "callingCode": "44",
+        "languageId": 1
+    },
+    {
+        "id": "176",
+        "name": "เคนยา",
+        "longitude": "38",
+        "latitude": "1",
+        "iso2": "KE",
+        "callingCode": "254",
+        "languageId": 1
+    },
+    {
+        "id": "292",
+        "name": "เคปเวิร์ด",
+        "longitude": "-24",
+        "latitude": "16",
+        "iso2": "CV",
+        "callingCode": "238",
+        "languageId": 1
+    },
+    {
+        "id": "404",
+        "name": "เจอร์ซี",
+        "longitude": "-2.131267",
+        "latitude": "49.213733",
+        "iso2": "JE",
+        "callingCode": "44",
+        "languageId": 1
+    },
+    {
+        "id": "115",
+        "name": "เซเชลส์",
+        "longitude": "55.471693",
+        "latitude": "-4.629841",
+        "iso2": "SC",
+        "callingCode": "248",
+        "languageId": 1
+    },
+    {
+        "id": "233",
+        "name": "เซเนกัล",
+        "longitude": "-14.414734",
+        "latitude": "14.606805",
+        "iso2": "SN",
+        "callingCode": "221",
+        "languageId": 1
+    },
+    {
+        "id": "137",
+        "name": "เซนต์ วินเซนต์และเกรนาดีนส์",
+        "longitude": "-61.2",
+        "latitude": "13.25",
+        "iso2": "VC",
+        "callingCode": "1784",
+        "languageId": 1
+    },
+    {
+        "id": "333",
+        "name": "เซนต์เฮเลนา",
+        "longitude": "-5.7",
+        "latitude": "-15.9333",
+        "iso2": "SH",
+        "callingCode": "290",
+        "languageId": 1
+    },
+    {
+        "id": "8",
+        "name": "เซนต์คิตส์และเนวิส",
+        "longitude": "-62.75",
+        "latitude": "17.3333",
+        "iso2": "KN",
+        "callingCode": "1869",
+        "languageId": 1
+    },
+    {
+        "id": "348",
+        "name": "เซนต์บาร์เธเลมี",
+        "longitude": "-62.833333",
+        "latitude": "17.9",
+        "iso2": "BL",
+        "callingCode": "590",
+        "languageId": 2
+    },
+    {
+        "id": "347",
+        "name": "เซนต์มาร์ทิน (ฝรั่งเศส)",
+        "longitude": "-63.06",
+        "latitude": "18.07528",
+        "iso2": "MF",
+        "callingCode": "590",
+        "languageId": 2
+    },
+    {
+        "id": "195",
+        "name": "เซนต์ลูเซีย",
+        "longitude": "-61.1333",
+        "latitude": "13.8833",
+        "iso2": "LC",
+        "callingCode": "1758",
+        "languageId": 1
+    },
+    {
+        "id": "339",
+        "name": "เซอร์เบีย",
+        "longitude": "20.937195",
+        "latitude": "44.410241",
+        "iso2": "RS",
+        "callingCode": "381",
+        "languageId": 1
+    },
+    {
+        "id": "308",
+        "name": "เซาตูเมและปรินซิปี",
+        "longitude": "6.733333",
+        "latitude": "0.333333",
+        "iso2": "ST",
+        "callingCode": "239",
+        "languageId": 12
+    },
+    {
+        "id": "309",
+        "name": "เซียร์ราลีโอน",
+        "longitude": "-11.975098",
+        "latitude": "8.570158",
+        "iso2": "SL",
+        "callingCode": "232",
+        "languageId": 1
+    },
+    {
+        "id": "158",
+        "name": "เดนมาร์ก",
+        "longitude": "10",
+        "latitude": "56",
+        "iso2": "DK",
+        "callingCode": "45",
+        "languageId": 29
+    },
+    {
+        "id": "316",
+        "name": "เติร์กเมนิสถาน",
+        "longitude": "58.886719",
+        "latitude": "39.808536",
+        "iso2": "TM",
+        "callingCode": "993",
+        "languageId": 1
+    },
+    {
+        "id": "149",
+        "name": "เนเธอร์แลนด์",
+        "longitude": "5.75",
+        "latitude": "52.5",
+        "iso2": "NL",
+        "callingCode": "31",
+        "languageId": 13
+    },
+    {
+        "id": "120",
+        "name": "เนปาล",
+        "longitude": "83.320313",
+        "latitude": "28.72913",
+        "iso2": "NP",
+        "callingCode": "977",
+        "languageId": 1
+    },
+    {
+        "id": "231",
+        "name": "เบนิน",
+        "longitude": "2.25",
+        "latitude": "9.5",
+        "iso2": "BJ",
+        "callingCode": "229",
+        "languageId": 1
+    },
+    {
+        "id": "118",
+        "name": "เบลเยียม",
+        "longitude": "4.713135",
+        "latitude": "50.471491",
+        "iso2": "BE",
+        "callingCode": "32",
+        "languageId": 13
+    },
+    {
+        "id": "21",
+        "name": "เบลารุส",
+        "longitude": "28",
+        "latitude": "53",
+        "iso2": "BY",
+        "callingCode": "375",
+        "languageId": 1
+    },
+    {
+        "id": "88",
+        "name": "เบลีซ",
+        "longitude": "-88.75",
+        "latitude": "17.25",
+        "iso2": "BZ",
+        "callingCode": "501",
+        "languageId": 1
+    },
+    {
+        "id": "6",
+        "name": "เบอร์มิวดา",
+        "longitude": "-64.754791",
+        "latitude": "32.308027",
+        "iso2": "BM",
+        "callingCode": "1441",
+        "languageId": 1
+    },
+    {
+        "id": "186",
+        "name": "เปรู",
+        "longitude": "-74.338318",
+        "latitude": "-8.090543",
+        "iso2": "PE",
+        "callingCode": "51",
+        "languageId": 5
+    },
+    {
+        "id": "166",
+        "name": "เปอร์โตริโก",
+        "longitude": "-66.5",
+        "latitude": "18.25",
+        "iso2": "PR",
+        "callingCode": "1787",
+        "languageId": 1
+    },
+    {
+        "id": "113",
+        "name": "เฟรนช์เกียนา",
+        "longitude": "-52.942322",
+        "latitude": "4.865316",
+        "iso2": "GF",
+        "callingCode": "594",
+        "languageId": 1
+    },
+    {
+        "id": "14",
+        "name": "เฟรนช์โปลินีเซีย",
+        "longitude": "-144.470215",
+        "latitude": "-15.813396",
+        "iso2": "PF",
+        "callingCode": "689",
+        "languageId": 2
+    },
+    {
+        "id": "86",
+        "name": "เม็กซิโก",
+        "longitude": "-103.255188",
+        "latitude": "25.76639",
+        "iso2": "MX",
+        "callingCode": "52",
+        "languageId": 5
+    },
+    {
+        "id": "98",
+        "name": "เยเมน",
+        "longitude": "48",
+        "latitude": "15",
+        "iso2": "YE",
+        "callingCode": "967",
+        "languageId": 40
+    },
+    {
+        "id": "101",
+        "name": "เยอรมนี",
+        "longitude": "10.546875",
+        "latitude": "50.625073",
+        "iso2": "DE",
+        "callingCode": "49",
+        "languageId": 3
+    },
+    {
+        "id": "31",
+        "name": "เลโซโท",
+        "longitude": "28.5",
+        "latitude": "-29.5",
+        "iso2": "LS",
+        "callingCode": "266",
+        "languageId": 1
+    },
+    {
+        "id": "68",
+        "name": "เลบานอน",
+        "longitude": "35.956896",
+        "latitude": "34.274759",
+        "iso2": "LB",
+        "callingCode": "961",
+        "languageId": 40
+    },
+    {
+        "id": "146",
+        "name": "เวเนซุเอลา",
+        "longitude": "-66",
+        "latitude": "8",
+        "iso2": "VE",
+        "callingCode": "58",
+        "languageId": 5
+    },
+    {
+        "id": "284",
+        "name": "เวสเทิร์นสะฮารา",
+        "longitude": "-13",
+        "latitude": "24.5",
+        "iso2": "EH",
+        "callingCode": "212",
+        "languageId": 1
+    },
+    {
+        "id": "38",
+        "name": "เวียดนาม",
+        "longitude": "108.325195",
+        "latitude": "12.940322",
+        "iso2": "VN",
+        "callingCode": "84",
+        "languageId": 24
+    },
+    {
+        "id": "52",
+        "name": "เอกวาดอร์",
+        "longitude": "-78.431091",
+        "latitude": "-1.017076",
+        "iso2": "EC",
+        "callingCode": "593",
+        "languageId": 5
+    },
+    {
+        "id": "240",
+        "name": "เอธิโอเปีย",
+        "longitude": "40.05719",
+        "latitude": "9.671754",
+        "iso2": "ET",
+        "callingCode": "251",
+        "languageId": 1
+    },
+    {
+        "id": "242",
+        "name": "เอริเทรีย",
+        "longitude": "39",
+        "latitude": "15",
+        "iso2": "ER",
+        "callingCode": "291",
+        "languageId": 1
+    },
+    {
+        "id": "80",
+        "name": "เอลซัลวาดอร์",
+        "longitude": "-88.9167",
+        "latitude": "13.8333",
+        "iso2": "SV",
+        "callingCode": "503",
+        "languageId": 5
+    },
+    {
+        "id": "99",
+        "name": "เอสโตเนีย",
+        "longitude": "26",
+        "latitude": "59",
+        "iso2": "EE",
+        "callingCode": "372",
+        "languageId": 49
+    },
+    {
+        "id": "18",
+        "name": "เอสวาตินี",
+        "longitude": "31.5",
+        "latitude": "-26.5",
+        "iso2": "SZ",
+        "callingCode": "268",
+        "languageId": 1
+    },
+    {
+        "id": "47",
+        "name": "เฮติ",
+        "longitude": "-72.4167",
+        "latitude": "19",
+        "iso2": "HT",
+        "callingCode": "509",
+        "languageId": 1
+    },
+    {
+        "id": "286",
+        "name": "แกมเบีย",
+        "longitude": "-16.5667",
+        "latitude": "13.4667",
+        "iso2": "GM",
+        "callingCode": "220",
+        "languageId": 1
+    },
+    {
+        "id": "36",
+        "name": "แคเมอรูน",
+        "longitude": "12",
+        "latitude": "6",
+        "iso2": "CM",
+        "callingCode": "237",
+        "languageId": 1
+    },
+    {
+        "id": "100",
+        "name": "แคนาดา",
+        "longitude": "-106.347656",
+        "latitude": "58.904646",
+        "iso2": "CA",
+        "callingCode": "1",
+        "languageId": 1
+    },
+    {
+        "id": "307",
+        "name": "แซงปีแยร์และมีเกอลง",
+        "longitude": "-56.324158",
+        "latitude": "46.924007",
+        "iso2": "PM",
+        "callingCode": "508",
+        "languageId": 1
+    },
+    {
+        "id": "171",
+        "name": "แซมเบีย",
+        "longitude": "28.234863",
+        "latitude": "-15.496032",
+        "iso2": "ZM",
+        "callingCode": "260",
+        "languageId": 1
+    },
+    {
+        "id": "199",
+        "name": "แทนซาเนีย",
+        "longitude": "35",
+        "latitude": "-6",
+        "iso2": "TZ",
+        "callingCode": "255",
+        "languageId": 1
+    },
+    {
+        "id": "290",
+        "name": "แองโกลา",
+        "longitude": "18.5",
+        "latitude": "-12.5",
+        "iso2": "AO",
+        "callingCode": "244",
+        "languageId": 1
+    },
+    {
+        "id": "150",
+        "name": "แองกวิลลา",
+        "longitude": "-63.042297",
+        "latitude": "18.220873",
+        "iso2": "AI",
+        "callingCode": "1264",
+        "languageId": 1
+    },
+    {
+        "id": "50",
+        "name": "แอนติกาและบาร์บูดา",
+        "longitude": "-61.267163",
+        "latitude": "17.354351",
+        "iso2": "AG",
+        "callingCode": "1268",
+        "languageId": 1
+    },
+    {
+        "id": "62",
+        "name": "แอฟริกาใต้",
+        "longitude": "24.568542",
+        "latitude": "-29.827805",
+        "iso2": "ZA",
+        "callingCode": "27",
+        "languageId": 1
+    },
+    {
+        "id": "53",
+        "name": "แอลเบเนีย",
+        "longitude": "20.214844",
+        "latitude": "40.988192",
+        "iso2": "AL",
+        "callingCode": "355",
+        "languageId": 1
+    },
+    {
+        "id": "143",
+        "name": "แอลจีเรีย",
+        "longitude": "3.251953",
+        "latitude": "27.839076",
+        "iso2": "DZ",
+        "callingCode": "213",
+        "languageId": 1
+    },
+    {
+        "id": "165",
+        "name": "โกตดิวัวร์",
+        "longitude": "-5.273438",
+        "latitude": "6.489983",
+        "iso2": "CI",
+        "callingCode": "225",
+        "languageId": 1
+    },
+    {
+        "id": "402",
+        "name": "โคโซโว",
+        "longitude": "20.85",
+        "latitude": "42.6",
+        "iso2": "XK",
+        "callingCode": "383",
+        "languageId": 1
+    },
+    {
+        "id": "128",
+        "name": "โครเอเชีย",
+        "longitude": "14.985352",
+        "latitude": "45.02695",
+        "iso2": "HR",
+        "callingCode": "385",
+        "languageId": 48
+    },
+    {
+        "id": "10",
+        "name": "โคลอมเบีย",
+        "longitude": "-72.942078",
+        "latitude": "4.202726",
+        "iso2": "CO",
+        "callingCode": "57",
+        "languageId": 5
+    },
+    {
+        "id": "310",
+        "name": "โซมาเลีย",
+        "longitude": "49",
+        "latitude": "10",
+        "iso2": "SO",
+        "callingCode": "252",
+        "languageId": 1
+    },
+    {
+        "id": "341",
+        "name": "โดมินิกา",
+        "longitude": "-61.365509",
+        "latitude": "15.436472",
+        "iso2": "DM",
+        "callingCode": "1767",
+        "languageId": 1
+    },
+    {
+        "id": "314",
+        "name": "โตเกเลา",
+        "longitude": "-172",
+        "latitude": "-9",
+        "iso2": "TK",
+        "callingCode": "690",
+        "languageId": 1
+    },
+    {
+        "id": "121",
+        "name": "โตโก",
+        "longitude": "1.1667",
+        "latitude": "8",
+        "iso2": "TG",
+        "callingCode": "228",
+        "languageId": 1
+    },
+    {
+        "id": "344",
+        "name": "โบแนร์",
+        "longitude": "-63.233333",
+        "latitude": "17.633333",
+        "iso2": "BQ",
+        "callingCode": "5997",
+        "languageId": 1
+    },
+    {
+        "id": "15",
+        "name": "โบลิเวีย",
+        "longitude": "-64.379883",
+        "latitude": "-17.308688",
+        "iso2": "BO",
+        "callingCode": "591",
+        "languageId": 5
+    },
+    {
+        "id": "182",
+        "name": "โปแลนด์",
+        "longitude": "19.134827",
+        "latitude": "52.771101",
+        "iso2": "PL",
+        "callingCode": "48",
+        "languageId": 27
+    },
+    {
+        "id": "213",
+        "name": "โปรตุเกส",
+        "longitude": "-7.470703",
+        "latitude": "40.513799",
+        "iso2": "PT",
+        "callingCode": "351",
+        "languageId": 12
+    },
+    {
+        "id": "235",
+        "name": "โมซัมบิก",
+        "longitude": "35.815735",
+        "latitude": "-16.420055",
+        "iso2": "MZ",
+        "callingCode": "258",
+        "languageId": 1
+    },
+    {
+        "id": "1",
+        "name": "โมนาโก",
+        "longitude": "7.427122",
+        "latitude": "43.736773",
+        "iso2": "MC",
+        "callingCode": "377",
+        "languageId": 2
+    },
+    {
+        "id": "2",
+        "name": "โมร็อกโก",
+        "longitude": "-5",
+        "latitude": "32",
+        "iso2": "MA",
+        "callingCode": "212",
+        "languageId": 40
+    },
+    {
+        "id": "75",
+        "name": "โรมาเนีย",
+        "longitude": "25.751953",
+        "latitude": "45.73686",
+        "iso2": "RO",
+        "callingCode": "40",
+        "languageId": 37
+    },
+    {
+        "id": "155",
+        "name": "โอมาน",
+        "longitude": "57",
+        "latitude": "21",
+        "iso2": "OM",
+        "callingCode": "968",
+        "languageId": 40
+    },
+    {
+        "id": "336",
+        "name": "โฮลีซี (นครวาติกัน)",
+        "longitude": "12.45",
+        "latitude": "41.9",
+        "iso2": "VA",
+        "callingCode": "379",
+        "languageId": 1
+    },
+    {
+        "id": "24",
+        "name": "ไซปรัส",
+        "longitude": "33",
+        "latitude": "35",
+        "iso2": "CY",
+        "callingCode": "357",
+        "languageId": 10
+    },
+    {
+        "id": "140",
+        "name": "ไต้หวัน",
+        "longitude": "120.981445",
+        "latitude": "24.006326",
+        "iso2": "TW",
+        "callingCode": "886",
+        "languageId": 20
+    },
+    {
+        "id": "106",
+        "name": "ไทย",
+        "longitude": "100.736389",
+        "latitude": "13.649323",
+        "iso2": "TH",
+        "callingCode": "66",
+        "languageId": 22
+    },
+    {
+        "id": "305",
+        "name": "ไนเจอร์",
+        "longitude": "8.942871",
+        "latitude": "17.329664",
+        "iso2": "NE",
+        "callingCode": "227",
+        "languageId": 1
+    },
+    {
+        "id": "65",
+        "name": "ไนจีเรีย",
+        "longitude": "8",
+        "latitude": "10",
+        "iso2": "NG",
+        "callingCode": "234",
+        "languageId": 1
+    },
+    {
+        "id": "299",
+        "name": "ไลบีเรีย",
+        "longitude": "-9.5",
+        "latitude": "6.5",
+        "iso2": "LR",
+        "callingCode": "231",
+        "languageId": 1
+    },
+    {
+        "id": "54",
+        "name": "ไอซ์แลนด์",
+        "longitude": "-18",
+        "latitude": "65",
+        "iso2": "IS",
+        "callingCode": "354",
+        "languageId": 1
+    },
+    {
+        "id": "188",
+        "name": "ไอร์แลนด์",
+        "longitude": "-8.041992",
+        "latitude": "53.159947",
+        "iso2": "IE",
+        "callingCode": "353",
+        "languageId": 1
+    },
+    {
+        "id": "405",
+        "name": "ไอล์ออฟแมน",
+        "longitude": "-4.543435",
+        "latitude": "54.213283",
+        "iso2": "IM",
+        "callingCode": "44",
+        "languageId": 1
+    },
+    {
+        "id": "197",
+        "name": "กรีซ",
+        "longitude": "22.733337",
+        "latitude": "39.76846",
+        "iso2": "GR",
+        "callingCode": "30",
+        "languageId": 10
+    },
+    {
+        "id": "26",
+        "name": "กรีนแลนด์",
+        "longitude": "-40.046692",
+        "latitude": "75.595014",
+        "iso2": "GL",
+        "callingCode": "299",
+        "languageId": 1
+    },
+    {
+        "id": "208",
+        "name": "กวม",
+        "longitude": "144.7833",
+        "latitude": "13.4667",
+        "iso2": "GU",
+        "callingCode": "1671",
+        "languageId": 1
+    },
+    {
+        "id": "89",
+        "name": "กวาเดอลูป",
+        "longitude": "-61.5833",
+        "latitude": "16.25",
+        "iso2": "GP",
+        "callingCode": "590",
+        "languageId": 5
+    },
+    {
+        "id": "163",
+        "name": "กัมพูชา",
+        "longitude": "104.985352",
+        "latitude": "13.11158",
+        "iso2": "KH",
+        "callingCode": "855",
+        "languageId": 1
+    },
+    {
+        "id": "41",
+        "name": "กัวเตมาลา",
+        "longitude": "-90.25",
+        "latitude": "15.5",
+        "iso2": "GT",
+        "callingCode": "502",
+        "languageId": 5
+    },
+    {
+        "id": "105",
+        "name": "กาตาร์",
+        "longitude": "51.25",
+        "latitude": "25.5",
+        "iso2": "QA",
+        "callingCode": "974",
+        "languageId": 40
+    },
+    {
+        "id": "151",
+        "name": "กานา",
+        "longitude": "-1.494141",
+        "latitude": "5.747174",
+        "iso2": "GH",
+        "callingCode": "233",
+        "languageId": 1
+    },
+    {
+        "id": "234",
+        "name": "กาบอง",
+        "longitude": "11.75",
+        "latitude": "-1",
+        "iso2": "GA",
+        "callingCode": "241",
+        "languageId": 1
+    },
+    {
+        "id": "243",
+        "name": "กายอานา",
+        "longitude": "-58.820801",
+        "latitude": "4.67498",
+        "iso2": "GY",
+        "callingCode": "592",
+        "languageId": 1
+    },
+    {
+        "id": "58",
+        "name": "กินี",
+        "longitude": "-10.678711",
+        "latitude": "10.574222",
+        "iso2": "GN",
+        "callingCode": "224",
+        "languageId": 1
+    },
+    {
+        "id": "296",
+        "name": "กินี-บิสเซา",
+        "longitude": "-15",
+        "latitude": "12",
+        "iso2": "GW",
+        "callingCode": "245",
+        "languageId": 1
+    },
+    {
+        "id": "294",
+        "name": "คอโมโรส",
+        "longitude": "43.331451",
+        "latitude": "-11.6213",
+        "iso2": "KM",
+        "callingCode": "269",
+        "languageId": 1
+    },
+    {
+        "id": "40",
+        "name": "คอสตาริกา",
+        "longitude": "-84",
+        "latitude": "10",
+        "iso2": "CR",
+        "callingCode": "506",
+        "languageId": 5
+    },
+    {
+        "id": "154",
+        "name": "คาซัคสถาน",
+        "longitude": "69.389648",
+        "latitude": "49.239121",
+        "iso2": "KZ",
+        "callingCode": "76",
+        "languageId": 11
+    },
+    {
+        "id": "298",
+        "name": "คิริบาส",
+        "longitude": "-157.376404",
+        "latitude": "1.820677",
+        "iso2": "KI",
+        "callingCode": "686",
+        "languageId": 1
+    },
+    {
+        "id": "156",
+        "name": "คีร์กีซสถาน",
+        "longitude": "74.619141",
+        "latitude": "41.836828",
+        "iso2": "KG",
+        "callingCode": "996",
+        "languageId": 1
+    },
+    {
+        "id": "43",
+        "name": "คูเวต",
+        "longitude": "47.6581",
+        "latitude": "29.3375",
+        "iso2": "KW",
+        "callingCode": "965",
+        "languageId": 40
+    },
+    {
+        "id": "342",
+        "name": "คูราเซา",
+        "longitude": "-69",
+        "latitude": "12.183333",
+        "iso2": "CW",
+        "callingCode": "599",
+        "languageId": 13
+    },
+    {
+        "id": "71",
+        "name": "จอร์เจีย",
+        "longitude": "43.59613",
+        "latitude": "42.350102",
+        "iso2": "GE",
+        "callingCode": "995",
+        "languageId": 1
+    },
+    {
+        "id": "152",
+        "name": "จอร์แดน",
+        "longitude": "36.870667",
+        "latitude": "31.647559",
+        "iso2": "JO",
+        "callingCode": "962",
+        "languageId": 40
+    },
+    {
+        "id": "42",
+        "name": "จาเมกา",
+        "longitude": "-77.5",
+        "latitude": "18.25",
+        "iso2": "JM",
+        "callingCode": "1876",
+        "languageId": 1
+    },
+    {
+        "id": "244",
+        "name": "จิบูตี",
+        "longitude": "42.645691",
+        "latitude": "11.914174",
+        "iso2": "DJ",
+        "callingCode": "253",
+        "languageId": 1
+    },
+    {
+        "id": "191",
+        "name": "จีน",
+        "longitude": "104.018555",
+        "latitude": "35.281501",
+        "iso2": "CN",
+        "callingCode": "86",
+        "languageId": 8
+    },
+    {
+        "id": "236",
+        "name": "ชาด",
+        "longitude": "19",
+        "latitude": "15",
+        "iso2": "TD",
+        "callingCode": "235",
+        "languageId": 1
+    },
+    {
+        "id": "69",
+        "name": "ชิลี",
+        "longitude": "-69.206482",
+        "latitude": "-23.888203",
+        "iso2": "CL",
+        "callingCode": "56",
+        "languageId": 5
+    },
+    {
+        "id": "241",
+        "name": "ซาน มาริโน",
+        "longitude": "12.473005",
+        "latitude": "43.950879",
+        "iso2": "SM",
+        "callingCode": "378",
+        "languageId": 4
+    },
+    {
+        "id": "287",
+        "name": "ซามัว",
+        "longitude": "-172.3333",
+        "latitude": "-13.5833",
+        "iso2": "WS",
+        "callingCode": "685",
+        "languageId": 1
+    },
+    {
+        "id": "74",
+        "name": "ซาอุดีอาระเบีย",
+        "longitude": "45",
+        "latitude": "25",
+        "iso2": "SA",
+        "callingCode": "966",
+        "languageId": 40
+    },
+    {
+        "id": "343",
+        "name": "ซินท์มาร์เทน (เนเธอร์แลนด์)",
+        "longitude": "-63.055",
+        "latitude": "18.038483",
+        "iso2": "SX",
+        "callingCode": "1721",
+        "languageId": 1
+    },
+    {
+        "id": "61",
+        "name": "ซิมบับเว",
+        "longitude": "29.794922",
+        "latitude": "-18.885498",
+        "iso2": "ZW",
+        "callingCode": "263",
+        "languageId": 1
+    },
+    {
+        "id": "346",
+        "name": "ซูดานใต้",
+        "longitude": "31.6",
+        "latitude": "4.85",
+        "iso2": "SS",
+        "callingCode": "211",
+        "languageId": 1
+    },
+    {
+        "id": "312",
+        "name": "ซูรินาเม",
+        "longitude": "-55.634766",
+        "latitude": "3.425692",
+        "iso2": "SR",
+        "callingCode": "597",
+        "languageId": 1
+    },
+    {
+        "id": "3",
+        "name": "ญี่ปุ่น",
+        "longitude": "139.394531",
+        "latitude": "36.949892",
+        "iso2": "JP",
+        "callingCode": "81",
+        "languageId": 6
+    },
+    {
+        "id": "95",
+        "name": "ตรินิแดดและโตเบโก",
+        "longitude": "-61.266418",
+        "latitude": "10.4927",
+        "iso2": "TT",
+        "callingCode": "1868",
+        "languageId": 1
+    },
+    {
+        "id": "315",
+        "name": "ตองกา",
+        "longitude": "-175.177841",
+        "latitude": "-21.151949",
+        "iso2": "TO",
+        "callingCode": "676",
+        "languageId": 1
+    },
+    {
+        "id": "331",
+        "name": "ติมอร์ตะวันออก",
+        "longitude": "125.896912",
+        "latitude": "-8.764024",
+        "iso2": "TL",
+        "callingCode": "670",
+        "languageId": 1
+    },
+    {
+        "id": "45",
+        "name": "ตุรกี",
+        "longitude": "35.749512",
+        "latitude": "39.027719",
+        "iso2": "TR",
+        "callingCode": "90",
+        "languageId": 32
+    },
+    {
+        "id": "56",
+        "name": "ตูนิเซีย",
+        "longitude": "9",
+        "latitude": "34",
+        "iso2": "TN",
+        "callingCode": "216",
+        "languageId": 40
+    },
+    {
+        "id": "317",
+        "name": "ตูวาลู",
+        "longitude": "179.296875",
+        "latitude": "-8.510403",
+        "iso2": "TV",
+        "callingCode": "688",
+        "languageId": 1
+    },
+    {
+        "id": "313",
+        "name": "ทาจิกิสถาน",
+        "longitude": "72.421875",
+        "latitude": "38.548165",
+        "iso2": "TJ",
+        "callingCode": "992",
+        "languageId": 1
+    },
+    {
+        "id": "129",
+        "name": "นอร์เวย์",
+        "longitude": "10",
+        "latitude": "62",
+        "iso2": "NO",
+        "callingCode": "47",
+        "languageId": 28
+    },
+    {
+        "id": "84",
+        "name": "นอร์ทมาซิโดเนีย",
+        "longitude": "21.884766",
+        "latitude": "41.664705",
+        "iso2": "MK",
+        "callingCode": "389",
+        "languageId": 1
+    },
+    {
+        "id": "85",
+        "name": "นามิเบีย",
+        "longitude": "17",
+        "latitude": "-22",
+        "iso2": "NA",
+        "callingCode": "264",
+        "languageId": 1
+    },
+    {
+        "id": "304",
+        "name": "นาอูรู",
+        "longitude": "166.9167",
+        "latitude": "-0.5333",
+        "iso2": "NR",
+        "callingCode": "674",
+        "languageId": 1
+    },
+    {
+        "id": "92",
+        "name": "นิการากัว",
+        "longitude": "-85",
+        "latitude": "13",
+        "iso2": "NI",
+        "callingCode": "505",
+        "languageId": 5
+    },
+    {
+        "id": "44",
+        "name": "นิวแคลิโดเนีย",
+        "longitude": "165.5",
+        "latitude": "-21.5",
+        "iso2": "NC",
+        "callingCode": "687",
+        "languageId": 1
+    },
+    {
+        "id": "25",
+        "name": "นิวซีแลนด์",
+        "longitude": "174",
+        "latitude": "-41",
+        "iso2": "NZ",
+        "callingCode": "64",
+        "languageId": 1
+    },
+    {
+        "id": "306",
+        "name": "นีอูเอ",
+        "longitude": "-169.8667",
+        "latitude": "-19.0333",
+        "iso2": "NU",
+        "callingCode": "683",
+        "languageId": 1
+    },
+    {
+        "id": "207",
+        "name": "บราซิล",
+        "longitude": "-55.75531",
+        "latitude": "-5.729453",
+        "iso2": "BR",
+        "callingCode": "55",
+        "languageId": 12
+    },
+    {
+        "id": "330",
+        "name": "บริติชอินเดียนโอเชียนเทร์ริทอรี",
+        "longitude": "71.5",
+        "latitude": "-6",
+        "iso2": "IO",
+        "callingCode": "246",
+        "languageId": 1
+    },
+    {
+        "id": "63",
+        "name": "บรูไนดารุสซาลาม",
+        "longitude": "114.647827",
+        "latitude": "4.494285",
+        "iso2": "BN",
+        "callingCode": "673",
+        "languageId": 23
+    },
+    {
+        "id": "206",
+        "name": "บอตสวานา",
+        "longitude": "24",
+        "latitude": "-22",
+        "iso2": "BW",
+        "callingCode": "267",
+        "languageId": 1
+    },
+    {
+        "id": "103",
+        "name": "บอสเนียและเฮอร์เซโกวีนา",
+        "longitude": "17.936829",
+        "latitude": "44.921322",
+        "iso2": "BA",
+        "callingCode": "387",
+        "languageId": 1
+    },
+    {
+        "id": "117",
+        "name": "บังกลาเทศ",
+        "longitude": "90.184021",
+        "latitude": "24.512142",
+        "iso2": "BD",
+        "callingCode": "880",
+        "languageId": 1
+    },
+    {
+        "id": "126",
+        "name": "บัลแกเรีย",
+        "longitude": "25.409241",
+        "latitude": "43.008034",
+        "iso2": "BG",
+        "callingCode": "359",
+        "languageId": 36
+    },
+    {
+        "id": "94",
+        "name": "บาร์เบโดส",
+        "longitude": "-59.5333",
+        "latitude": "13.1667",
+        "iso2": "BB",
+        "callingCode": "1246",
+        "languageId": 1
+    },
+    {
+        "id": "202",
+        "name": "บาห์เรน",
+        "longitude": "50.55",
+        "latitude": "26",
+        "iso2": "BH",
+        "callingCode": "973",
+        "languageId": 40
+    },
+    {
+        "id": "60",
+        "name": "บาฮามาส",
+        "longitude": "-78.029724",
+        "latitude": "24.834632",
+        "iso2": "BS",
+        "callingCode": "1242",
+        "languageId": 1
+    },
+    {
+        "id": "229",
+        "name": "บุรุนดี",
+        "longitude": "29.931335",
+        "latitude": "-3.192908",
+        "iso2": "BI",
+        "callingCode": "257",
+        "languageId": 1
+    },
+    {
+        "id": "237",
+        "name": "บูร์กินาฟาโซ",
+        "longitude": "-2",
+        "latitude": "13",
+        "iso2": "BF",
+        "callingCode": "226",
+        "languageId": 1
+    },
+    {
+        "id": "401",
+        "name": "ปาเลสไตน์",
+        "longitude": "35.2",
+        "latitude": "31.883333",
+        "iso2": "PS",
+        "callingCode": "970",
+        "languageId": 40
+    },
+    {
+        "id": "133",
+        "name": "ปาเลา",
+        "longitude": "134.5",
+        "latitude": "7.5",
+        "iso2": "PW",
+        "callingCode": "680",
+        "languageId": 1
+    },
+    {
+        "id": "19",
+        "name": "ปากีสถาน",
+        "longitude": "68.378906",
+        "latitude": "28.767659",
+        "iso2": "PK",
+        "callingCode": "92",
+        "languageId": 1
+    },
+    {
+        "id": "175",
+        "name": "ปานามา",
+        "longitude": "-80",
+        "latitude": "9",
+        "iso2": "PA",
+        "callingCode": "507",
+        "languageId": 5
+    },
+    {
+        "id": "91",
+        "name": "ปาปัวนิวกินี",
+        "longitude": "147",
+        "latitude": "-6",
+        "iso2": "PG",
+        "callingCode": "675",
+        "languageId": 1
+    },
+    {
+        "id": "111",
+        "name": "ปารากวัย",
+        "longitude": "-58.007813",
+        "latitude": "-23.926013",
+        "iso2": "PY",
+        "callingCode": "595",
+        "languageId": 5
+    },
+    {
+        "id": "153",
+        "name": "ฝรั่งเศส",
+        "longitude": "2.757568",
+        "latitude": "47.025206",
+        "iso2": "FR",
+        "callingCode": "33",
+        "languageId": 2
+    },
+    {
+        "id": "203",
+        "name": "พม่า",
+        "longitude": "96.547852",
+        "latitude": "21.043491",
+        "iso2": "MM",
+        "callingCode": "95",
+        "languageId": 1
+    },
+    {
+        "id": "109",
+        "name": "ฟิจิ",
+        "longitude": "177.980042",
+        "latitude": "-17.628686",
+        "iso2": "FJ",
+        "callingCode": "679",
+        "languageId": 1
+    },
+    {
+        "id": "28",
+        "name": "ฟินแลนด์",
+        "longitude": "26.953064",
+        "latitude": "62.759701",
+        "iso2": "FI",
+        "callingCode": "358",
+        "languageId": 30
+    },
+    {
+        "id": "70",
+        "name": "ฟิลิปปินส์",
+        "longitude": "121.025391",
+        "latitude": "16.214675",
+        "iso2": "PH",
+        "callingCode": "63",
+        "languageId": 1
+    },
+    {
+        "id": "291",
+        "name": "ภูฏาน",
+        "longitude": "90.087891",
+        "latitude": "27.391278",
+        "iso2": "BT",
+        "callingCode": "975",
+        "languageId": 1
+    },
+    {
+        "id": "302",
+        "name": "มองโกเลีย",
+        "longitude": "103.271484",
+        "latitude": "47.338823",
+        "iso2": "MN",
+        "callingCode": "976",
+        "languageId": 1
+    },
+    {
+        "id": "340",
+        "name": "มอนเตเนโกร",
+        "longitude": "19.434814",
+        "latitude": "42.867912",
+        "iso2": "ME",
+        "callingCode": "382",
+        "languageId": 1
+    },
+    {
+        "id": "303",
+        "name": "มอนต์เซอร์รัต",
+        "longitude": "-62.2",
+        "latitude": "16.75",
+        "iso2": "MS",
+        "callingCode": "1664",
+        "languageId": 1
+    },
+    {
+        "id": "9",
+        "name": "มอริเชียส",
+        "longitude": "57.55",
+        "latitude": "-20.2833",
+        "iso2": "MU",
+        "callingCode": "230",
+        "languageId": 2
+    },
+    {
+        "id": "22",
+        "name": "มอริเตเนีย",
+        "longitude": "-10.327148",
+        "latitude": "20.200346",
+        "iso2": "MR",
+        "callingCode": "222",
+        "languageId": 1
+    },
+    {
+        "id": "141",
+        "name": "มอลโดวา",
+        "longitude": "28.596252",
+        "latitude": "47.744016",
+        "iso2": "MD",
+        "callingCode": "373",
+        "languageId": 1
+    },
+    {
+        "id": "57",
+        "name": "มอลตา",
+        "longitude": "14.462128",
+        "latitude": "35.882374",
+        "iso2": "MT",
+        "callingCode": "356",
+        "languageId": 1
+    },
+    {
+        "id": "34",
+        "name": "มัลดีฟส์",
+        "longitude": "73.196411",
+        "latitude": "3.809446",
+        "iso2": "MV",
+        "callingCode": "960",
+        "languageId": 1
+    },
+    {
+        "id": "169",
+        "name": "มาเก๊า",
+        "longitude": "113.546448",
+        "latitude": "22.186133",
+        "iso2": "MO",
+        "callingCode": "853",
+        "languageId": 7
+    },
+    {
+        "id": "198",
+        "name": "มาเลเซีย",
+        "longitude": "102.392578",
+        "latitude": "4.434044",
+        "iso2": "MY",
+        "callingCode": "60",
+        "languageId": 23
+    },
+    {
+        "id": "209",
+        "name": "มาดากัสการ์",
+        "longitude": "47",
+        "latitude": "-20",
+        "iso2": "MG",
+        "callingCode": "261",
+        "languageId": 1
+    },
+    {
+        "id": "301",
+        "name": "มายอต",
+        "longitude": "45.142822",
+        "latitude": "-12.826531",
+        "iso2": "YT",
+        "callingCode": "262",
+        "languageId": 1
+    },
+    {
+        "id": "83",
+        "name": "มาร์ตินีก",
+        "longitude": "-61",
+        "latitude": "14.6667",
+        "iso2": "MQ",
+        "callingCode": "596",
+        "languageId": 2
+    },
+    {
+        "id": "87",
+        "name": "มาลาวี",
+        "longitude": "34",
+        "latitude": "-13.5",
+        "iso2": "MW",
+        "callingCode": "265",
+        "languageId": 1
+    },
+    {
+        "id": "204",
+        "name": "มาลี",
+        "longitude": "-4",
+        "latitude": "17",
+        "iso2": "ML",
+        "callingCode": "223",
+        "languageId": 1
+    },
+    {
+        "id": "4",
+        "name": "ยิบรอลตาร์",
+        "longitude": "-5.347939",
+        "latitude": "36.136211",
+        "iso2": "GI",
+        "callingCode": "350",
+        "languageId": 1
+    },
+    {
+        "id": "79",
+        "name": "ยูเครน",
+        "longitude": "32",
+        "latitude": "49",
+        "iso2": "UA",
+        "callingCode": "380",
+        "languageId": 50
+    },
+    {
+        "id": "245",
+        "name": "ยูกันดา",
+        "longitude": "32.431641",
+        "latitude": "1.230374",
+        "iso2": "UG",
+        "callingCode": "256",
+        "languageId": 1
+    },
+    {
+        "id": "131",
+        "name": "รวันดา",
+        "longitude": "30",
+        "latitude": "-2",
+        "iso2": "RW",
+        "callingCode": "250",
+        "languageId": 1
+    },
+    {
+        "id": "33",
+        "name": "รัสเซีย",
+        "longitude": "94.111329",
+        "latitude": "64.56819",
+        "iso2": "RU",
+        "callingCode": "7",
+        "languageId": 11
+    },
+    {
+        "id": "7",
+        "name": "ลักเซมเบิร์ก",
+        "longitude": "6.136488",
+        "latitude": "49.686071",
+        "iso2": "LU",
+        "callingCode": "352",
+        "languageId": 2
+    },
+    {
+        "id": "145",
+        "name": "ลัตเวีย",
+        "longitude": "26.035461",
+        "latitude": "57.107549",
+        "iso2": "LV",
+        "callingCode": "371",
+        "languageId": 47
+    },
+    {
+        "id": "190",
+        "name": "ลาว",
+        "longitude": "102.700195",
+        "latitude": "19.973349",
+        "iso2": "LA",
+        "callingCode": "856",
+        "languageId": 1
+    },
+    {
+        "id": "174",
+        "name": "ลิเบีย",
+        "longitude": "17",
+        "latitude": "25",
+        "iso2": "LY",
+        "callingCode": "218",
+        "languageId": 1
+    },
+    {
+        "id": "187",
+        "name": "ลิกเตนสไตน์",
+        "longitude": "9.552526",
+        "latitude": "47.211497",
+        "iso2": "LI",
+        "callingCode": "423",
+        "languageId": 3
+    },
+    {
+        "id": "157",
+        "name": "ลิทัวเนีย",
+        "longitude": "24",
+        "latitude": "56",
+        "iso2": "LT",
+        "callingCode": "370",
+        "languageId": 46
+    },
+    {
+        "id": "194",
+        "name": "วานูอาตู",
+        "longitude": "166.854431",
+        "latitude": "-15.084444",
+        "iso2": "VU",
+        "callingCode": "678",
+        "languageId": 1
+    },
+    {
+        "id": "318",
+        "name": "วาลลิสและฟุตูนา",
+        "longitude": "-178.102112",
+        "latitude": "-14.291001",
+        "iso2": "WF",
+        "callingCode": "681",
+        "languageId": 1
+    },
+    {
+        "id": "82",
+        "name": "ศรีลังกา",
+        "longitude": "80.419922",
+        "latitude": "7.754537",
+        "iso2": "LK",
+        "callingCode": "94",
+        "languageId": 1
+    },
+    {
+        "id": "167",
+        "name": "สเปน",
+        "longitude": "-3.508362",
+        "latitude": "39.886289",
+        "iso2": "ES",
+        "callingCode": "34",
+        "languageId": 5
+    },
+    {
+        "id": "125",
+        "name": "สโลวาเกีย",
+        "longitude": "19.519226",
+        "latitude": "48.764558",
+        "iso2": "SK",
+        "callingCode": "421",
+        "languageId": 31
+    },
+    {
+        "id": "27",
+        "name": "สโลวีเนีย",
+        "longitude": "14.579773",
+        "latitude": "46.338571",
+        "iso2": "SI",
+        "callingCode": "386",
+        "languageId": 38
+    },
+    {
+        "id": "51",
+        "name": "สวิตเซอร์แลนด์",
+        "longitude": "8.162842",
+        "latitude": "46.732331",
+        "iso2": "CH",
+        "callingCode": "41",
+        "languageId": 3
+    },
+    {
+        "id": "49",
+        "name": "สวีเดน",
+        "longitude": "17.837219",
+        "latitude": "65.080577",
+        "iso2": "SE",
+        "callingCode": "46",
+        "languageId": 25
+    },
+    {
+        "id": "218",
+        "name": "สหพันธรัฐไมโครนีเซีย",
+        "longitude": "158.25",
+        "latitude": "6.9167",
+        "iso2": "FM",
+        "callingCode": "691",
+        "languageId": 1
+    },
+    {
+        "id": "181",
+        "name": "สหรัฐอเมริกา",
+        "longitude": "-103.635742",
+        "latitude": "43.711113",
+        "iso2": "US",
+        "callingCode": "1",
+        "languageId": 1
+    },
+    {
+        "id": "64",
+        "name": "สหรัฐอาหรับเอมิเรตส์",
+        "longitude": "54",
+        "latitude": "24",
+        "iso2": "AE",
+        "callingCode": "971",
+        "languageId": 40
+    },
+    {
+        "id": "107",
+        "name": "สหราชอาณาจักร",
+        "longitude": "-2.87616",
+        "latitude": "55.815461",
+        "iso2": "GB",
+        "callingCode": "44",
+        "languageId": 1
+    },
+    {
+        "id": "13",
+        "name": "สาธารณรัฐเช็ก",
+        "longitude": "15.5",
+        "latitude": "49.75",
+        "iso2": "CZ",
+        "callingCode": "420",
+        "languageId": 31
+    },
+    {
+        "id": "293",
+        "name": "สาธารณรัฐแอฟริกากลาง",
+        "longitude": "19.863281",
+        "latitude": "6.009459",
+        "iso2": "CF",
+        "callingCode": "236",
+        "languageId": 1
+    },
+    {
+        "id": "134",
+        "name": "สาธารณรัฐโดมินิกัน",
+        "longitude": "-70.6667",
+        "latitude": "19",
+        "iso2": "DO",
+        "callingCode": "1809",
+        "languageId": 1
+    },
+    {
+        "id": "285",
+        "name": "สาธารณรัฐคองโก",
+        "longitude": "15.556",
+        "latitude": "-1.44",
+        "iso2": "CG",
+        "callingCode": "242",
+        "languageId": 2
+    },
+    {
+        "id": "337",
+        "name": "สาธารณรัฐประชาธิปไตยคองโก",
+        "longitude": "23.656",
+        "latitude": "-2.88",
+        "iso2": "CD",
+        "callingCode": "243",
+        "languageId": 2
+    },
+    {
+        "id": "114",
+        "name": "สิงคโปร์",
+        "longitude": "103.848267",
+        "latitude": "1.323735",
+        "iso2": "SG",
+        "callingCode": "65",
+        "languageId": 1
+    },
+    {
+        "id": "142",
+        "name": "หมู่เกาะเคย์แมน",
+        "longitude": "-81.245011",
+        "latitude": "19.313482",
+        "iso2": "KY",
+        "callingCode": "1345",
+        "languageId": 1
+    },
+    {
+        "id": "334",
+        "name": "หมู่เกาะเซาท์จอร์เจีย",
+        "longitude": "-37",
+        "latitude": "-54.5",
+        "iso2": "GS",
+        "callingCode": "500",
+        "languageId": 1
+    },
+    {
+        "id": "48",
+        "name": "หมู่เกาะเติร์กและไคคอส",
+        "longitude": "-71.5833",
+        "latitude": "21.75",
+        "iso2": "TC",
+        "callingCode": "1649",
+        "languageId": 1
+    },
+    {
+        "id": "200",
+        "name": "หมู่เกาะแฟโร",
+        "longitude": "-6.943359",
+        "latitude": "62.144976",
+        "iso2": "FO",
+        "callingCode": "298",
+        "languageId": 1
+    },
+    {
+        "id": "321",
+        "name": "หมู่เกาะโคโคส",
+        "longitude": "96.8333",
+        "latitude": "-12.5",
+        "iso2": "CC",
+        "callingCode": "61",
+        "languageId": 1
+    },
+    {
+        "id": "323",
+        "name": "หมู่เกาะโซโลมอน",
+        "longitude": "159",
+        "latitude": "-8",
+        "iso2": "SB",
+        "callingCode": "677",
+        "languageId": 1
+    },
+    {
+        "id": "225",
+        "name": "หมู่เกาะคุก",
+        "longitude": "-159.776917",
+        "latitude": "-21.239462",
+        "iso2": "CK",
+        "callingCode": "682",
+        "languageId": 1
+    },
+    {
+        "id": "32",
+        "name": "หมู่เกาะนอร์เทิร์นมาเรียนา",
+        "longitude": "145.75",
+        "latitude": "15.2",
+        "iso2": "MP",
+        "callingCode": "1670",
+        "languageId": 1
+    },
+    {
+        "id": "338",
+        "name": "หมู่เกาะพิตแคร์น",
+        "longitude": "-130.1",
+        "latitude": "-25.066667",
+        "iso2": "PN",
+        "callingCode": "64",
+        "languageId": 1
+    },
+    {
+        "id": "322",
+        "name": "หมู่เกาะฟอล์กแลนด์",
+        "longitude": "-59",
+        "latitude": "-51.75",
+        "iso2": "FK",
+        "callingCode": "500",
+        "languageId": 1
+    },
+    {
+        "id": "300",
+        "name": "หมู่เกาะมาร์แชลล์",
+        "longitude": "168.848877",
+        "latitude": "7.318882",
+        "iso2": "MH",
+        "callingCode": "692",
+        "languageId": 1
+    },
+    {
+        "id": "289",
+        "name": "อเมริกันซามัว",
+        "longitude": "-170.717926",
+        "latitude": "-14.298985",
+        "iso2": "AS",
+        "callingCode": "1684",
+        "languageId": 1
+    },
+    {
+        "id": "139",
+        "name": "ออสเตรเลีย",
+        "longitude": "136.326111",
+        "latitude": "-23.31157",
+        "iso2": "AU",
+        "callingCode": "61",
+        "languageId": 1
+    },
+    {
+        "id": "130",
+        "name": "ออสเตรีย",
+        "longitude": "13.3333",
+        "latitude": "47.3333",
+        "iso2": "AT",
+        "callingCode": "43",
+        "languageId": 3
+    },
+    {
+        "id": "189",
+        "name": "อันดอร์รา",
+        "longitude": "1.547699",
+        "latitude": "42.506528",
+        "iso2": "AD",
+        "callingCode": "376",
+        "languageId": 33
+    },
+    {
+        "id": "288",
+        "name": "อัฟกานิสถาน",
+        "longitude": "66.181641",
+        "latitude": "33.651208",
+        "iso2": "AF",
+        "callingCode": "93",
+        "languageId": 1
+    },
+    {
+        "id": "135",
+        "name": "อาเซอร์ไบจาน",
+        "longitude": "47.5",
+        "latitude": "40.5",
+        "iso2": "AZ",
+        "callingCode": "994",
+        "languageId": 1
+    },
+    {
+        "id": "5",
+        "name": "อาร์เจนตินา",
+        "longitude": "-63.808594",
+        "latitude": "-31.203405",
+        "iso2": "AR",
+        "callingCode": "54",
+        "languageId": 5
+    },
+    {
+        "id": "246",
+        "name": "อาร์เมเนีย",
+        "longitude": "44.585266",
+        "latitude": "40.371659",
+        "iso2": "AM",
+        "callingCode": "374",
+        "languageId": 1
+    },
+    {
+        "id": "66",
+        "name": "อารูบา",
+        "longitude": "-69.9667",
+        "latitude": "12.5",
+        "iso2": "AW",
+        "callingCode": "297",
+        "languageId": 13
+    },
+    {
+        "id": "295",
+        "name": "อิเควทอเรียลกินี",
+        "longitude": "10.376587",
+        "latitude": "1.548884",
+        "iso2": "GQ",
+        "callingCode": "240",
+        "languageId": 1
+    },
+    {
+        "id": "205",
+        "name": "อิตาลี",
+        "longitude": "12.392578",
+        "latitude": "43.261206",
+        "iso2": "IT",
+        "callingCode": "39",
+        "languageId": 4
+    },
+    {
+        "id": "35",
+        "name": "อินเดีย",
+        "longitude": "79.917297",
+        "latitude": "24.791722",
+        "iso2": "IN",
+        "callingCode": "91",
+        "languageId": 1
+    },
+    {
+        "id": "192",
+        "name": "อินโดนีเซีย",
+        "longitude": "122.519531",
+        "latitude": "-4.390229",
+        "iso2": "ID",
+        "callingCode": "62",
+        "languageId": 26
+    },
+    {
+        "id": "297",
+        "name": "อิรัก",
+        "longitude": "44",
+        "latitude": "33",
+        "iso2": "IQ",
+        "callingCode": "964",
+        "languageId": 1
+    },
+    {
+        "id": "144",
+        "name": "อิสราเอล",
+        "longitude": "34.75",
+        "latitude": "31.5",
+        "iso2": "IL",
+        "callingCode": "972",
+        "languageId": 39
+    },
+    {
+        "id": "16",
+        "name": "อียิปต์",
+        "longitude": "30",
+        "latitude": "27",
+        "iso2": "EG",
+        "callingCode": "20",
+        "languageId": 40
+    },
+    {
+        "id": "172",
+        "name": "อุซเบกิสถาน",
+        "longitude": "62.138672",
+        "latitude": "42.843751",
+        "iso2": "UZ",
+        "callingCode": "998",
+        "languageId": 11
+    },
+    {
+        "id": "110",
+        "name": "อุรุกวัย",
+        "longitude": "-55.958801",
+        "latitude": "-32.32483",
+        "iso2": "UY",
+        "callingCode": "598",
+        "languageId": 5
+    },
+    {
+        "id": "132",
+        "name": "ฮ่องกง",
+        "longitude": "114.189148",
+        "latitude": "22.317049",
+        "iso2": "HK",
+        "callingCode": "852",
+        "languageId": 7
+    },
+    {
+        "id": "39",
+        "name": "ฮอนดูรัส",
+        "longitude": "-86.5",
+        "latitude": "15",
+        "iso2": "HN",
+        "callingCode": "504",
+        "languageId": 5
+    },
+    {
+        "id": "37",
+        "name": "ฮังการี",
+        "longitude": "20",
+        "latitude": "47",
+        "iso2": "HU",
+        "callingCode": "36",
+        "languageId": 34
+    }
+]
