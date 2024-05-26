@@ -1,10 +1,9 @@
 import { Routes, Route, Navigate, useLocation, Outlet } from 'react-router-dom';
 import './App.css';
-import About from './pages/AboutUs';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
 import Navbar from './components/layoutBar/Navbar';
-import Home from './pages/Home';
+import Home from './pages/home';
 import Booking from './pages/Booking';
 import Payment from './pages/Payment';
 import Footer from './components/layoutBar/Footer';
@@ -42,7 +41,6 @@ function App() {
                     <div className="flex-1">
                         <Routes>
                             <Route path="/" element={<Home />} />
-                            <Route path="/about" element={<About />} />
                             <Route element={<Anonymous />}>
                                 <Route path="/signup" element={<SignupPage />} />
                                 <Route path="/login" element={<LoginPage />} />
