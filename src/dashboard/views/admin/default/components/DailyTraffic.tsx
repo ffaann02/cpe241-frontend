@@ -50,12 +50,6 @@ const DailyTraffic = () => {
                 fontFamily: undefined,
                 backgroundColor: '#000000',
             },
-            onDatasetHover: {
-                style: {
-                    fontSize: '12px',
-                    fontFamily: undefined,
-                },
-            },
             theme: 'dark',
         },
         xaxis: {

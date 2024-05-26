@@ -59,7 +59,7 @@ const Payment = () => {
         passengerData,
         emergencyContactData,
         selectedPackage,
-        travelInsurance,
+        travelInsuranceData,
         price,
     } = useContext(BookingDetailsContext);
 
@@ -98,14 +98,14 @@ const Payment = () => {
         console.log(passengerData);
         console.log(emergencyContactData);
         console.log(selectedPackage);
-        console.log(travelInsurance);
+        console.log(travelInsuranceData);
         try {
             const res = await axiosPrivate.post('/api/booking/create', {
                 flight: selectedFlight,
                 passengers: passengerData,
                 emergencyContact: emergencyContactData,
                 flightPackage: selectedPackage,
-                travelInsurance: travelInsurance,
+                travelInsurance: travelInsuranceData,
                 payment: paymentInfo,
                 price: price * 1.02,
             });

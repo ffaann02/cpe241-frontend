@@ -44,9 +44,9 @@ const PieChartCard = () => {
         },
         hover: { mode: null },
         plotOptions: {
-            donut: {
-                expandOnClick: false,
+            pie: {
                 donut: {
+                    expandOnClick: false,
                     labels: {
                         show: false,
                     },

@@ -34,7 +34,6 @@ const WeeklyRevenue = () => {
                 show: false,
             },
         },
-        // colors:['#ff3322','#faf']
         tooltip: {
             style: {
                 fontSize: '12px',
@@ -42,12 +41,6 @@ const WeeklyRevenue = () => {
                 backgroundColor: '#000000',
             },
             theme: 'dark',
-            onDatasetHover: {
-                style: {
-                    fontSize: '12px',
-                    fontFamily: undefined,
-                },
-            },
         },
         xaxis: {
             categories: Array.from({ length: 8 }, (_, i) => `${getCurrentWeek() - 4 + i}`),
@@ -79,7 +72,6 @@ const WeeklyRevenue = () => {
                 },
             },
         },
-
         grid: {
             borderColor: 'rgba(163, 174, 208, 0.3)',
             show: true,

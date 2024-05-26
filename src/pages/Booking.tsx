@@ -82,13 +82,13 @@ export default function Booking() {
     const handleSelectServicePackage = (selectedPackage) => {
         console.log(selectedPackage);
         let previousPrice = 0;
-        if (servicePackageData.name === 'Basic') {
+        if (servicePackageData[0].name === 'Basic') {
             previousPrice = 0;
         }
-        if (servicePackageData.name === 'Plus') {
+        if (servicePackageData[0].name === 'Plus') {
             previousPrice = 230;
         }
-        if (servicePackageData.name === 'Premium') {
+        if (servicePackageData[0].name === 'Premium') {
             previousPrice = 460;
         }
 

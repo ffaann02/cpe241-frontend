@@ -63,7 +63,7 @@ const AirlinePieChart = () => {
         },
         hover: { mode: null },
         plotOptions: {
-            donut: {
+            pie: {
                 expandOnClick: false,
                 donut: {
                     labels: {

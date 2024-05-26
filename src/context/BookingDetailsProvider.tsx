@@ -17,8 +17,8 @@ interface BookingDetailsContext {
     setPaymentInfo: React.Dispatch<React.SetStateAction<PaymentInfoData>>;
     selectedBagCount: string;
     setSelectedBagCount: React.Dispatch<React.SetStateAction<string>>;
-    seletecdPackage: string;
-    setSeletecdPackage: React.Dispatch<React.SetStateAction<string>>;
+    selectedPackage: string; // Add the missing property
+    setSelectedPackage: React.Dispatch<React.SetStateAction<string>>; // Add the missing property
     price: number;
     setPrice: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -81,6 +81,7 @@ const BookingDetailsProvider = ({ children }) => {
         ccv: '',
     });
     const [price, setPrice] = useState<number>(0);
+    const [selectedPackage, setSelectedPackage] = useState<string>(''); // Add the missing state
 
     const handleScrollToTop = () => {
         window.scrollTo(0, 0);
@@ -111,6 +112,8 @@ const BookingDetailsProvider = ({ children }) => {
                 setSelectedBagCount,
                 price,
                 setPrice,
+                selectedPackage,
+                setSelectedPackage,
             }}
         >
             {children}
