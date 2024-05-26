@@ -20,7 +20,8 @@ const colors = {
 };
 const theme = extendTheme({ colors });
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
     <BrowserRouter>
         <AuthProvider>
             <ChakraProvider theme={theme}>
@@ -28,4 +29,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             </ChakraProvider>
         </AuthProvider>
     </BrowserRouter>
+  </React.StrictMode>
 );
